@@ -1,34 +1,52 @@
 * {
   box-sizing: border-box;
   font-size: 1rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto";
 }
 body {
   padding: 0;
   margin: 0;
+  height: 1000px;
 }
+
+#blur-background {
+  display: none;
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  background-color: black;
+  z-index: 1;
+  opacity: 50%;
+}
+
+/* header */
 .navigation-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1.25rem;
-  background-color: rgb(49, 49, 49);
-  height: 15vh;
+  padding: 0.75rem 16rem;
+  padding-top: 0;
+  background-color: #181818;
+  height: 18vh;
+  margin-bottom: 1rem;
 }
 .navigation-bar * {
   color: white;
+  display: flex;
+  gap: 1.2rem;
 }
-.navigation-bar img {
+.navigation-bar #logo {
   height: 100%;
-  border-radius: 50%;
+  border-radius: 0 0 30% 30%;
 }
+/* home, menu, news, contact styling */
 .option button{
   position: relative;
   display: inline-block;
   border: none;
   background: none;
-  margin: 0 0.2rem;
-  padding: 0.25rem 1rem;
+  font-size: 1.6rem;
+  cursor: pointer;
 } 
 .option button::after {
   content: '';
@@ -46,14 +64,91 @@ body {
   transform: scaleX(1);
   transform-origin: left;
 }
+/* account singin button */
+.account {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
 .account button{
-  border-radius: 0.25rem;
+  cursor: pointer;
+  border-radius: 0.4rem;
   border: none;
-  margin: 0 0.5rem;
-  padding: 0.25rem 1rem;
-  background-color: rgb(6, 88, 88);
+  background-color: #cd9106;
+  padding: 0.8rem 1.1rem;
 }
 .account button:hover {
-  background-color: rgb(162, 164, 178);
+  background-color: #af7c05;
   transition: 0.3s;
+}
+
+
+.content {
+  height: 100vh;
+}
+.sidebar {
+  float: left;
+  height: inherit;  
+  width: 15%;
+}
+.items {
+  float: left;
+  height: inherit;  
+  width: 85%;
+}
+
+/* menu login */
+#signin-box {
+  z-index: 2;
+  display: none;
+  position: fixed;
+  inset: 0px;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: #ebebeb;
+}
+#exit-btn {
+  font-size: 1.8rem;
+  margin-left: 90%;
+  cursor: pointer;
+}
+.frm-box {
+  margin: 3rem 1.6rem;
+  width: 18vw;
+}
+#signin-box form{
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem;
+}
+.username, .password {
+  border: none;
+  height: 2rem;
+  margin-bottom: 1.2rem;
+  color: black;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+}
+#signin-box input::placeholder {
+  color: rgba(0, 0, 0, 0.304);
+}
+#signin-box input:focus {
+  outline: none;
+}
+
+#submit-btn {
+  background-color: #cd9106;
+  border: none;
+  width: 50%;
+  height: 2rem;
+  border-radius: 0.4rem;
+  color: white;
+}
+#submit-btn:hover {
+  background-color: #dd9d07;
 }
