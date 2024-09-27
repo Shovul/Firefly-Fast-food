@@ -4,27 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firefly Restaurant</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="images/temp-logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/Icons/temp-logo.png" type="image/x-icon">
+    
+    <script src="script/sign_inMenu.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <marquee>Welcome to my world!</marquee>
+    <!-- <div id="blur-background"></div> -->
 
+    <!-- header -->
     <nav class="navigation-bar">
-        <img src="images/temp-logo.png" alt="firefly Logo" id="logo">
+        <img src="images/Icons/temp-logo.png" alt="firefly Logo" id="logo">
 
         <div class="option">
             <button id="home">HOME</button>
             <button id="menu">MENU</button>
-            <button id="news">NEWS</button>
+            <button id="news">SALES</button>
             <button id="contact">CONTACT</button>
         </div>
 
         <div class="account">
-            <button id="log-in">LOG IN</button>
-            <button id="sign-up">SIGN IN</button>
+            <button id="sign-in" onclick="signInMenu()">SIGN IN</button>
         </div>
+        
     </nav>
 
+    <div class="content">
+        <div class="sidebar">
+            <ul>
+                <li>Hamburger</li>
+                <li>Drinks</li>
+                <li>Combos</li>
+            </ul>
+        </div>
+
+        <div class="items">
+            <span>Item 1</span>
+            <span>Item 2</span>
+            <span>Item 3</span>
+            <span>Item 4</span>
+            <span>Item 5</span>
+            <span>Item 6</span>
+        </div>
+    </div>
+    
+    <!-- menu de log in hien ra khi an nut sign in -->
+    <div id="signin-box">
+        <i id="exit-btn" class='bx bx-x' onclick="exitScreen()"></i>
+        <div class="frm-box">
+            <form action=".php" onsubmit="" method="post">
+                <label>Username</label>
+                <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="urname">
+                
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="urpass">
+                
+                <input type="submit" id="submit-btn" value="Sign In">
+            </form>
+            <p>Don't have an account? <a href="">Sign up here</a></p>
+        </div>
+    </div>
 </body>
 </html>
