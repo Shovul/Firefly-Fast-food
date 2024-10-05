@@ -2,29 +2,48 @@
   box-sizing: border-box;
   font-size: 1rem;
   font-family: "Roboto";
-}
-body {
   padding: 0;
   margin: 0;
+  line-height: 1.2rem;
+}
+body {
   height: 1000px;
 }
+svg {
+  fill: black;
+}
 
-#blur-background {
+#blur-bg {
   display: none;
   position: fixed;
   inset: 0;
   height: 100%;
-  background-color: black;
   z-index: 1;
-  opacity: 50%;
+  backdrop-filter: blur(1.1px);
 }
+
+
+/* advertisment slider */
+#slide-box .slider {
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1;
+  animation: sliding ease-in-out infinite;
+}
+.slider img {
+  /* animation: sliding 10s ease-in-out infinite; */
+  height: 50vh;
+  width: 100%;
+  object-fit: cover;
+}
+
 
 /* header */
 .navigation-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 16rem;
+  padding: 0.75rem 8rem;
   padding-top: 0;
   background-color: #181818;
   height: 18vh;
@@ -39,6 +58,8 @@ body {
   height: 100%;
   border-radius: 0 0 30% 30%;
 }
+
+
 /* home, menu, news, contact styling */
 .option button{
   position: relative;
@@ -52,9 +73,9 @@ body {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -10px;
   width: 100%;
-  height: 0.125rem;
+  height: 0.1rem;
   transform-origin: right;
   background-color: white;
   transition: transform 0.1s;
@@ -64,6 +85,103 @@ body {
   transform: scaleX(1);
   transform-origin: left;
 }
+
+
+/* sidebar */
+#sidebar {
+  display: inline-block;
+  padding: 5px 10px;
+  width: 14vw;
+  height: 100vh;
+  background-color: rgb(95, 95, 95);
+  position: sticky;
+  top: 0;
+  transition: .3s ease-in-out;
+  text-wrap: nowrap;
+  align-self: start;
+  float: left;
+  overflow: hidden;
+}
+#sidebar.close {
+  width: 65px;
+  transition: .3s ease-in-out;
+}
+#sidebar ul {
+  list-style: none;
+}
+#sidebar li > button {
+  border: none;
+  background: none;
+}
+#sidebar a{
+  text-decoration: none;
+  color: black;
+}
+#sidebar #active {
+  span {
+    color: rgb(255, 162, 162);
+  }
+  svg {
+    fill: rgb(255, 162, 162);
+  }
+}
+#sidebar a, #sidebar .dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: .5rem;
+  text-decoration: none;
+  padding: .5rem;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+#sidebar #close-btn {
+  border-radius: .5rem;
+  padding: .5rem;
+  text-decoration: none;
+}
+#sidebar > ul >li:first-child {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+#sidebar a:hover, #sidebar li > button:hover{
+  background-color: rgba(0, 0, 0, 0.104);
+}
+#sidebar svg {
+  height: 30px;
+  width: 30px;
+  flex-shrink: 0;
+  fill: black;
+}
+#sidebar a span, #sidebar .dropdown-btn span {
+  flex-grow: 1;
+}
+#sidebar .sub-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: .3s ease-in-out;
+
+  > div {
+    overflow: hidden;
+  }
+}
+#sidebar .sub-menu.show {
+  grid-template-rows: 1fr;
+}
+.dropdown-btn svg:last-child {
+  transition: .3s ease;
+}
+#sidebar .rotate svg:last-child { 
+  transform: rotate(180deg);
+}
+#sidebar .sub-menu > div {
+  padding-left: 1rem;
+}
+
+
 /* account singin button */
 .account {
   display: flex;
@@ -83,22 +201,8 @@ body {
 }
 
 
-.content {
-  height: 100vh;
-}
-.sidebar {
-  float: left;
-  height: inherit;  
-  width: 15%;
-}
-.items {
-  float: left;
-  height: inherit;  
-  width: 85%;
-}
-
 /* menu login */
-#signin-box {
+.box {
   z-index: 2;
   display: none;
   position: fixed;
@@ -112,21 +216,27 @@ body {
   padding: 1rem;
   background-color: #ebebeb;
 }
-#exit-btn {
+#exit-btn, #return-signin {
   font-size: 1.8rem;
-  margin-left: 90%;
+  margin-left: 85%;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 .frm-box {
-  margin: 3rem 1.6rem;
-  width: 18vw;
+  margin: 0 2.7rem;
+  width: 20vw;
 }
-#signin-box form{
+.box h1 {
+  text-align: center;
+  font-size: 1.7rem;
+}
+.box form{
   display: flex;
   flex-direction: column;
   padding: 2.2rem;
 }
-.username, .password {
+.username, .password, .email {
   border: none;
   height: 2rem;
   margin-bottom: 1.2rem;
@@ -134,15 +244,23 @@ body {
   background-color: transparent;
   border-bottom: 1px solid black;
 }
-#signin-box input::placeholder {
+.box input::placeholder {
   color: rgba(0, 0, 0, 0.304);
 }
-#signin-box input:focus {
+.box input:focus {
   outline: none;
+}
+#signup-btn {
+  text-decoration: underline;
+  color: #dd9d07;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-style:oblique;
 }
 
 #submit-btn {
-  background-color: #cd9106;
+  background-color: #dd9d07;
   border: none;
   width: 50%;
   height: 2rem;
@@ -150,5 +268,27 @@ body {
   color: white;
 }
 #submit-btn:hover {
-  background-color: #dd9d07;
+  background-color: #cd9106;
+}
+
+
+/* sign in form */
+.frm-box-signin {
+  display: none;
+  background-color: black;
+}
+
+
+@keyframes sliding {
+  0% {transform: translateX(0%);}
+  10% {transform: translateX(-100%);}
+  20% {transform: translateX(-100%);}
+  30% {transform: translateX(-200%);}
+  40% {transform: translateX(-200%);}
+  50% {transform: translateX(-200%);}
+  60% {transform: translateX(-300%);}
+  70% {transform: translateX(-300%);}
+  80% {transform: translateX(-300%);}
+  90% {transform: translateX(0%);}
+  100% {transform: translateX(0%);}
 }
