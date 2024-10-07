@@ -224,7 +224,10 @@ svg {
   border: none;
 }
 .frm-box {
-  margin: 2rem 2.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3.5rem;
   width: 300px;
 }
 .box h1 {
@@ -233,7 +236,7 @@ svg {
 .box form{
   display: flex;
   flex-direction: column;
-  padding: 2.2rem;
+  width: 80%;
 }
 .username, .password, .email {
   border: none;
@@ -266,6 +269,8 @@ svg {
   height: 2rem;
   border-radius: 0.4rem;
   color: white;
+  margin-bottom: 30px;
+  font-size: 18px;
 }
 #submit-btn:hover {
   background-color: #cd9106;

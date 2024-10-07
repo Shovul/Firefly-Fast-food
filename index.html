@@ -11,6 +11,7 @@
     <script src="script/sign_inMenu.js" defer></script>
     <script src="script/dragable.js" defer></script>
     <script src="script/sidebar.js" defer></script>
+    <script src="script/accountSystem.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,45 +152,45 @@
     </div>
 
     <!-- menu de log in hien ra khi an nut sign in -->
+    <!-- dang nhap -->
     <div id="signin" class="box">
         <button id="exit-btn" onclick="exitSignin()">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
         </button>
         <h1>SIGN IN HERE!</h1>
         <div class="frm-box">
-            <form action=".php" onsubmit="" method="post">
+            <form action=".php" onsubmit="" method="post" name="signin">
                 <label>Username</label>
-                <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="urname">
+                <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="username">
                 
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="urpass">
-                
-                <input type="submit" id="submit-btn" value="Sign In">
+                <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="password">
             </form>
+            <button id="submit-btn" onclick="signInAcc()">Sign in</button>
             <p>Don't have an account? <button id="signup-btn" onclick="signUpMenu()">Sign up here</button></p>
         </div>
     </div>
 
+    <!-- dang ki -->
     <div id="signup" class="box">
         <button id="exit-btn" onclick="exitSignup()">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
         </button>
-        <div class="frm-box">
         <h1>SIGN UP NOW!</h1>
-            <form action=".php" onsubmit="" method="post">
+        <div class="frm-box">
+            <form action=".php" onsubmit="" method="post" name="signup">
                 <label>Username</label>
-                <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="urname">
+                <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="username">
                 <label>Email</label>
-                <input type="text" placeholder="Enter your email" class="email input" autocomplete="off" name="urmail">
+                <input type="text" placeholder="Enter your email" class="email input" autocomplete="off" name="email">
                 
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="urpass">
+                <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="password">
                 <label>Confirm password</label>
-                <input type="password" placeholder="Confirm your password" class="password input" autocomplete="off" name="repass">
+                <input type="password" placeholder="Confirm your password" class="password input" autocomplete="off" name="repassword">
 
-                
-                <input type="submit" id="submit-btn" value="Sign Up">
             </form>
+            <button id="submit-btn" onclick="signUpAcc()">Sign up</button>
         </div>
         
         <button id="return-signin" onclick="exitSignup(), signInMenu()">
