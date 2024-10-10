@@ -1,100 +1,144 @@
-function printAcc() {
-  let accounts = localStorage.getItem("accounts")
-  for (let i = 1; i<=accounts;i++) {
-    getPass = "pass"
-    getName = "name"
-    getPass = getPass + i
-    getName = getName + i
-    console.log(localStorage.getItem(getName) + " " + localStorage.getItem(getPass) + "\n")
-  }
+localStorage.clear()
+function inputFocus(input) {
+  input.previousElementSibling.previousElementSibling.style.transform = "translateY(10px)"
+  input.previousElementSibling.previousElementSibling.style.opacity = 0
+}
+function removeInputValue() {
+  Array.from(document.querySelectorAll('.input')).forEach((item) => {
+    item.value = ""
+  })
+}
+function usernamePopup() {
+  Array.from(document.querySelectorAll('#username-label')).forEach((item) => {
+    item.style.opacity = 1
+    item.style.transform = "translateY(0)"
+  })
+}
+function passwordPopup() {
+  Array.from(document.querySelectorAll('#password-label')).forEach((item) => {
+    item.style.opacity = 1
+    item.style.transform = "translateY(0)"
+  })
+}
+function removeWrongInput() {
+  Array.from(document.querySelectorAll('.wrongText')).forEach((item) => {
+    item.style.display = 'none';
+  })
 }
 
 function signInAcc() {
+  var check = true;
   var name = document.forms["signin"]["username"].value
   var pass = document.forms["signin"]["password"].value
 
   
   if (name == "" || name == null) {
-    alert("Username must be fill")
-    return false
+    usernamePopup()
+    check = false
   }
   if (pass == "" || pass == null) {
-    alert("Password must be fill")
+    passwordPopup()
+    check = false
+  }
+
+  if (check) {
+    let accounts = localStorage.getItem("accounts")
+    let getName, getPass
+
+    for (let i=1; i<=accounts; i++) {
+      getName = "name" + i
+      getPass = "pass" + i
+
+      if (name == localStorage.getItem(getName) && pass == localStorage.getItem(getPass)) {
+        alert("You are logged in! Welcome " + localStorage.getItem(getName))
+        removeWrongInput()
+        removeInputValue()
+        return true
+      }
+    }
+    document.getElementById('wrong-input').style.display = 'block'
     return false
   }
-
-  let accounts = localStorage.getItem("accounts")
-  let getName, getPass
-
-  for (let i=1; i<=accounts; i++) {
-    getName = "name" + i
-    getPass = "pass" + i
-
-    if (name == localStorage.getItem(getName) && pass == localStorage.getItem(getPass)) {
-      alert("You are logged in! Welcome " + localStorage.getItem(getName))
-      return true
-    }
-  }
-  alert("Wrong username or password")
-  return false
 }
 
 function signUpAcc() {
+  var check = true
   var name = document.forms["signup"]["username"].value
   var email = document.forms["signup"]["email"].value
   var pass = document.forms["signup"]["password"].value
   var repass = document.forms["signup"]["repassword"].value
-  console.log(name + " " + email + " " + pass + " " + repass)
 
   if (name == "" || name == null) {
-    alert("Username must be fill")
-    return false
+    usernamePopup()
+    check = false
   }
   if (email == "" || email == null) {
-    alert("Email must be fill")
-    return false
+    document.getElementById("email-label").style.opacity = 1
+    document.getElementById("email-label").style.transform = "translateY(0)"
+    check = false
   }
   if (pass == "" || pass == null) {
-    alert("Password must be fill")
-    return false
+    passwordPopup()
+    check = false
   }
   if (repass == "" || repass == null) {
-    alert("Please comfirm your password")
-    return false
+    document.getElementById("repassword-label").style.opacity = 1
+    document.getElementById("repassword-label").style.transform = "translateY(0)"
+    check = false
   }
   if (repass != pass) {
-    alert("Enter password correctly")
-    return false
+    document.getElementById('password-match').style.display = 'block'
+    check = false
   }
 
-  let getPass, getName, getEmail
-  let accounts = localStorage.getItem("accounts")
-  console.log(accounts)
-  for (let i = 1; i<=accounts; i++) {
-    getName = "name"
-    getName = getName + i
-    getEmail = "email"
-    getEmail = getEmail + i
+  if (check) {
+    let getPass, getName, getEmail
+    let accounts = localStorage.getItem("accounts")
+    for (let i = 1; i<=accounts; i++) {
+      getName = "name"
+      getName = getName + i
+      getEmail = "email"
+      getEmail = getEmail + i
+      
+      if (localStorage.getItem(getName) == name) {
+        document.getElementById('dup-username').style.display = 'block'
+        return false
+      }
+      if (localStorage.getItem(getEmail) == email) {
+        document.getElementById('dup-email').style.display = 'block'
+        return false
+      }
+    }
     
-    if (localStorage.getItem(getName) == name) {
-      alert("Username have been taken")
-      return false
-    }
-    if (localStorage.getItem(getEmail) == email) {
-      alert("Username have been taken")
-      return false
-    }
+    accounts++
+    localStorage.setItem("accounts", accounts)
+    getPass = "pass" + accounts
+    getName = "name" + accounts
+    getEmail = "email" + accounts
+    localStorage.setItem(getPass, pass)
+    localStorage.setItem(getName, name)
+    localStorage.setItem(getEmail, email) 
+
+    const success = document.getElementById('success')
+    console.log(success.style.display)
+    success.style.display = 'block'
+    // success.firstElementChild.classList.toggle('show')
+    // success.firstElementChild.classList.toggle('rotate')
+    document.getElementById('success-text').innerHTML = "Thank you for signing up! " + localStorage.getItem(getName) + " has been created."
+
+    window.setTimeout(function() {
+      success.style.display = 'none'
+    },2000)
+
+    // window.addEventListener('click', window.setTimeout(function(e) {
+    //   if(!this.document.getElementById('success').contains(e.target)) {  
+    //     success.style.display = 'none'
+    //     // success.firstElementChild.classList.toggle('show')
+    //     // success.firstElementChild.classList.toggle('rotate')
+    //   }
+    // }, 1000))
+    
+    removeWrongInput()
+    removeInputValue()
   }
-  
-  accounts++
-  localStorage.setItem("accounts", accounts)
-  getPass = "pass" + accounts
-  getName = "name" + accounts
-  getEmail = "email" + accounts
-  localStorage.setItem(getPass, pass)
-  localStorage.setItem(getName, name)
-  localStorage.setItem(getEmail, email) 
-
-  console.log(accounts + ": " + name + " " + email + " " + pass + " " + repass)
-
 }

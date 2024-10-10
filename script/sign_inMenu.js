@@ -1,3 +1,16 @@
+function removePopup() {
+  Array.from(document.getElementsByClassName('missing-input')).forEach((item) => {
+    item.style.opacity = 0
+  })
+  Array.from(document.querySelectorAll('.wrongText')).forEach((item) => {
+    item.style.display = 'none';
+  })
+  document.getElementById('email-label').style.opacity = 0
+  document.getElementById('repassword-label').style.opacity = 0
+  document.getElementById('email-label').style.transform = 'translateY(10px)'
+  document.getElementById('repassword-label').style.transform = 'translateY(10px)'
+}
+
 function signInMenu() {
   let menu = document.getElementById("signin");
   let bg = document.getElementById("blur-bg");
@@ -6,6 +19,7 @@ function signInMenu() {
   menu.style.display = "block";
   document.body.style.overflow = "hidden";
 
+  removePopup()
 }
 
 function exitSignin() {
@@ -17,6 +31,8 @@ function exitSignin() {
   menu.style.display = "none";
   document.body.style.overflow = "auto";
   bg.style.display = "none";
+
+  removePopup()
 }
 function exitSignup() {
   let menu = document.getElementById("signup");
@@ -29,6 +45,8 @@ function exitSignup() {
   menu.style.display = "none";
   document.body.style.overflow = "auto";
   bg.style.display = "none";
+ 
+  removePopup()
 }
 
 function signUpMenu() {
@@ -40,4 +58,5 @@ function signUpMenu() {
   signin.style.display = "none";
   signup.style.display = "block";
 
+  removePopup()
 }
