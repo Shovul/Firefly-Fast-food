@@ -328,7 +328,6 @@ svg {
   z-index: 3;
 }
 #success .success-box {
-  opacity: 1;
   text-align: center;
   width: 400px;
   padding: 60px 0;
@@ -337,18 +336,18 @@ svg {
   border-radius: 15px;
 }
 #success svg {
-  opacity: 1;
+  transform: rotate(180deg);
   transition: 1s ease;
-  transform: rotate(360deg);
 }
-/* #success .success-box.show {
+#success .success-box.show {
   opacity: 1;
 } 
 #success .success-box.rotate{
   > svg {
-    opacity: 1;
+    transform: rotate(720deg);
+    transition: .8s cubic-bezier(.42, .45, .44, 1.68);
   }
-} */
+}
 
 /* sign in form */
 /* .frm-box-signin {

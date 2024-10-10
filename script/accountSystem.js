@@ -120,15 +120,19 @@ function signUpAcc() {
     localStorage.setItem(getEmail, email) 
 
     const success = document.getElementById('success')
-    console.log(success.style.display)
     success.style.display = 'block'
     // success.firstElementChild.classList.toggle('show')
     // success.firstElementChild.classList.toggle('rotate')
     document.getElementById('success-text').innerHTML = "Thank you for signing up! " + localStorage.getItem(getName) + " has been created."
+    
+    window.setTimeout(function() {
+      success.firstElementChild.classList.toggle('rotate')
+      success.firstElementChild.classList.toggle('show')
+    },0)
 
     window.setTimeout(function() {
       success.style.display = 'none'
-    },2000)
+    },4000)
 
     // window.addEventListener('click', window.setTimeout(function(e) {
     //   if(!this.document.getElementById('success').contains(e.target)) {  
