@@ -1,4 +1,13 @@
-localStorage.clear()
+// check acc xem co nho khong
+// localStorage.clear()
+// const a = JSON.parse(localStorage.getItem('accounts'))
+// a.forEach((account) => {
+//   console.log(account);
+// })
+let remember = JSON.parse(localStorage.getItem('rememberAcc'))
+if (remember != null) {
+  removeSigninBtn();
+}
 function inputFocus(input) {
   input.previousElementSibling.previousElementSibling.style.transform = "translateY(10px)"
   input.previousElementSibling.previousElementSibling.style.opacity = 0
@@ -6,6 +15,11 @@ function inputFocus(input) {
 function removeInputValue() {
   Array.from(document.querySelectorAll('.input')).forEach((item) => {
     item.value = ""
+  })
+}
+function removeWrongInput() {
+  Array.from(document.querySelectorAll('.wrongText')).forEach((item) => {
+    item.style.display = 'none';
   })
 }
 function usernamePopup() {
@@ -20,17 +34,20 @@ function passwordPopup() {
     item.style.transform = "translateY(0)"
   })
 }
-function removeWrongInput() {
-  Array.from(document.querySelectorAll('.wrongText')).forEach((item) => {
-    item.style.display = 'none';
-  })
+function removeSigninBtn() {
+  document.getElementById('sign-in-btn').style.display = 'none'
+  document.getElementById('profile').style.display = 'block'
+  exitSignin()
+  exitSignup()
 }
 
+// dang nhap
 function signInAcc() {
   var check = true;
   var name = document.forms["signin"]["username"].value
   var pass = document.forms["signin"]["password"].value
 
+  let accounts = JSON.parse(localStorage.getItem('accounts'))
   
   if (name == "" || name == null) {
     usernamePopup()
@@ -42,18 +59,16 @@ function signInAcc() {
   }
 
   if (check) {
-    let accounts = localStorage.getItem("accounts")
-    let getName, getPass
-
-    for (let i=1; i<=accounts; i++) {
-      getName = "name" + i
-      getPass = "pass" + i
-
-      if (name == localStorage.getItem(getName) && pass == localStorage.getItem(getPass)) {
-        alert("You are logged in! Welcome " + localStorage.getItem(getName))
-        removeWrongInput()
-        removeInputValue()
-        return true
+    if (accounts != null) {
+      for (let i=0; i<accounts.length; i++) {
+        if (name == accounts[i].name && pass === accounts[i].pass) {
+          localStorage.setItem('rememberAcc', JSON.stringify(accounts[i]))
+          removeWrongInput()
+          removeInputValue()
+          removeSigninBtn()
+          remember = accounts[i];
+          return true
+        }
       }
     }
     document.getElementById('wrong-input').style.display = 'block'
@@ -61,6 +76,7 @@ function signInAcc() {
   }
 }
 
+// dang ky
 function signUpAcc() {
   var check = true
   var name = document.forms["signup"]["username"].value
@@ -92,53 +108,189 @@ function signUpAcc() {
   }
 
   if (check) {
-    let getPass, getName, getEmail
-    let accounts = localStorage.getItem("accounts")
-    for (let i = 1; i<=accounts; i++) {
-      getName = "name"
-      getName = getName + i
-      getEmail = "email"
-      getEmail = getEmail + i
-      
-      if (localStorage.getItem(getName) == name) {
-        document.getElementById('dup-username').style.display = 'block'
-        return false
+    let accounts = JSON.parse(localStorage.getItem('accounts'))
+    const pAccount = {
+      name: name,
+      email: email,
+      pass: pass,
+      repass: repass,
+      phone: null,
+      gender: null,
+      avatar: null,
+      addresses: []
+    }
+
+    if (accounts == null) {
+      accounts = []
+      accounts.push(pAccount)
+
+      localStorage.setItem('accounts', JSON.stringify(accounts))
+    }
+    else {
+      for (let i = 0; i<accounts.length; i++) {
+        if(pAccount.name == accounts[i].name) {
+          document.getElementById('dup-username').style.display = 'block'
+          check = false
+        }
+        else {
+          document.getElementById('dup-username').style.display = 'none'
+        }
+        if(pAccount.email == accounts[i].email) {
+          document.getElementById('dup-email').style.display = 'block'
+          check = false
+        }
+        else {
+          document.getElementById('dup-email').style.display = 'none'
+        }
+        if(check == false) return false
       }
-      if (localStorage.getItem(getEmail) == email) {
-        document.getElementById('dup-email').style.display = 'block'
-        return false
-      }
+      accounts[accounts.length] = pAccount;
+      localStorage.setItem('accounts', JSON.stringify(accounts))
     }
     
-    accounts++
-    localStorage.setItem("accounts", accounts)
-    getPass = "pass" + accounts
-    getName = "name" + accounts
-    getEmail = "email" + accounts
-    localStorage.setItem(getPass, pass)
-    localStorage.setItem(getName, name)
-    localStorage.setItem(getEmail, email) 
-
     const success = document.getElementById('success')
-    console.log(success.style.display)
+    const signup = document.getElementById('signup')
+    signup.style.zIndex = '0'
     success.style.display = 'block'
-    // success.firstElementChild.classList.toggle('show')
-    // success.firstElementChild.classList.toggle('rotate')
-    document.getElementById('success-text').innerHTML = "Thank you for signing up! " + localStorage.getItem(getName) + " has been created."
+    document.getElementById('success-text').innerHTML = "Thank you for signing up! " + pAccount.name + " has been created."
+    
+    window.setTimeout(function() {
+      success.firstElementChild.classList.toggle('rotate')
+      success.firstElementChild.classList.toggle('show')
+    },0)
 
     window.setTimeout(function() {
+      success.firstElementChild.classList.remove('rotate')
+      success.firstElementChild.classList.remove('show')
       success.style.display = 'none'
-    },2000)
-
-    // window.addEventListener('click', window.setTimeout(function(e) {
-    //   if(!this.document.getElementById('success').contains(e.target)) {  
-    //     success.style.display = 'none'
-    //     // success.firstElementChild.classList.toggle('show')
-    //     // success.firstElementChild.classList.toggle('rotate')
-    //   }
-    // }, 1000))
+      signup.style.zIndex = '2'
+    },2500)
     
+    remember = pAccount;
+    localStorage.setItem('rememberAcc', JSON.stringify(remember))
+    exitSignup()
     removeWrongInput()
     removeInputValue()
+    removeSigninBtn()
   }
+}
+
+
+// tai khoan
+function openAccountbar() {
+  const accMenu = document.getElementById('account-menu')
+  accMenu.classList.toggle('show')
+}
+function closeAccountbar() {
+  const accMenu = document.getElementById('account-menu')
+  accMenu.classList.remove('show')
+}
+function logOut() {
+  remember = null
+  document.getElementById('sign-in-btn').style.display = 'block'
+  document.getElementById('profile').style.display = 'none'
+  localStorage.setItem('rememberAcc', null)
+  closeAccountbar()
+}
+
+function showThongtin() {
+  if(remember == null) {
+    document.body.style.margin = '10px'
+    document.body.innerHTML = `
+    <p>Loi trang web</p>
+    <a href="index.html">Nhan vao day de reset<a>`
+    return false
+  }
+  const accInfo = document.getElementById('account-info')
+  accInfo.style.display = 'grid'
+  var thongtin = document.getElementsByClassName('thongtin')
+  thongtin[0].innerHTML = remember.name
+  thongtin[1].innerHTML = remember.email
+  if (remember.phone == null) {
+    const phoneBtn = document.createElement('input')
+    phoneBtn.setAttribute('type', 'tel')
+    phoneBtn.setAttribute('id', 'phoneBtn')
+    phoneBtn.setAttribute('placeholder', 'So dien thoai')
+    phoneBtn.setAttribute('autocomplete', 'off')
+    phoneBtn.textContent = 'Them'
+    phoneBtn.style.color = 'black'
+    thongtin[2].appendChild(phoneBtn)
+    const phone = document.getElementById('phoneBtn')
+    phone.addEventListener('focusout', function(){
+      if(Number(phone.value) != 0 && phone.value.length == 10) {
+        remember.phone = phone.value
+        localStorage.setItem('rememberAcc', JSON.stringify(remember))
+        showThongtin()
+      }
+    })
+  }
+  else {
+    thongtin[2].innerHTML = remember.phone
+  }
+  if(remember.gender != null) {
+    thongtin[3].innerHTML = remember.gender
+    document.getElementById('gioitinh').style.display = 'none '
+  }
+  if(remember.avatar != null) {
+    alert(remember.avatar.value)
+    // const avatar = document.querySelector('.avatar')
+    // avatar.innerHTML = ``
+    // var img = document.createElement('img')
+    // avatar.appendChild(img);
+    // avatar.firstChild.src = URL.createObjectURL(remember.avatar)
+  }
+}
+window.onload = function(e) {
+  var url = window.location.href
+  const goTo = url.split("?")
+
+  switch(goTo[1]) {
+    case "tttk": 
+      showThongtin()
+      break
+  }
+}
+let gender = document.getElementById('gioitinh')
+let displayGender = gender.previousElementSibling
+
+gender.addEventListener('click', function() {
+  switch(gender.value) {
+    case 'nam':
+      gender.style.display = 'none'
+      displayGender.innerHTML = 'Nam'
+      remember.gender = 'Nam'
+      break
+    case 'nu':
+      gender.style.display = 'none'
+      displayGender.innerHTML = 'Nữ'
+      remember.gender = 'Nữ'
+      break
+    case 'khac':
+      gender.style.display = 'none'
+      displayGender.innerHTML = 'Khác'
+      remember.gender = 'Khác'
+      break
+  }
+  localStorage.setItem('rememberAcc', JSON.stringify(remember))
+})
+
+function getAvatar(label) {
+  var input = label.nextElementSibling
+  var avatar = document.querySelector('.avatar')
+  var img = document.createElement('img')
+
+  input.addEventListener('change', function() {
+    avatar.innerHTML = ``
+    avatar.appendChild(img);
+    avatar.firstChild.src = URL.createObjectURL(input.files[0])
+    remember.avatar = input
+    localStorage.setItem('rememberAcc', JSON.stringify(remember))
+
+    // const reader = new FileReader()
+    // img = reader.result
+    // reader.addEventListener('load', () => {
+    //   avatar.style.background = 'url(${png})'
+    // })
+    // reader.readAsDataURL(this.files[0])
+  })
 }

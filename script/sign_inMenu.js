@@ -16,7 +16,8 @@ function signInMenu() {
   let bg = document.getElementById("blur-bg");
 
   bg.style.display = "block";
-  menu.style.display = "block";
+  menu.style.opacity = 1;
+  menu.style.transform = 'translateY(0)';
   document.body.style.overflow = "hidden";
 
   removePopup()
@@ -28,7 +29,9 @@ function exitSignin() {
 
   document.forms["signin"]["username"].value = "";
   document.forms["signin"]["password"].value = "";
-  menu.style.display = "none";
+  // menu.style.display = "none";
+  menu.style.opacity = 0;
+  menu.style.transform = 'translateY(150%)';
   document.body.style.overflow = "auto";
   bg.style.display = "none";
 
@@ -42,21 +45,23 @@ function exitSignup() {
   document.forms["signup"]["email"].value = ""
   document.forms["signup"]["password"].value = ""
   document.forms["signup"]["repassword"].value = ""
-  menu.style.display = "none";
+  menu.style.opacity = 0;
+  menu.style.transform = "translateY(150%)";
   document.body.style.overflow = "auto";
   bg.style.display = "none";
  
   removePopup()
 }
-
 function signUpMenu() {
   let signin = document.getElementById("signin");
   let signup = document.getElementById("signup");
   
   document.forms["signin"]["username"].value = "";
   document.forms["signin"]["password"].value = "";
-  signin.style.display = "none";
-  signup.style.display = "block";
+  signin.style.opacity = 0;
+  signup.style.opacity = 1;
+  signin.style.transform = "translateY(150%)";
+  signup.style.transform = "translateY(0)";
 
   removePopup()
 }
