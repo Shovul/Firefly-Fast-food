@@ -1,15 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --base-color: #232323;
+  --secondary-color: #444444;
+  --text-color: #f9f9f9;
+  --button-selected: #efd067;
+  --button-color: #deb633;
+  --highlight: #ffa2a2;
+  --selected-light: rgba(255, 255, 255, 0.25);
+  --selected-dark: rgba(0, 0, 0, 0.15);
+
+  --base-font: 'Roboto';
+  --emp-font: 'Poppins';
+}
 * {
   box-sizing: border-box;
-  font-family: "Roboto";
   padding: 0;
   margin: 0;
   line-height: 1.2rem;
-}
-body {
-  height: 1000px;
+  font-size: 1.1rem;
+  font-family: 'Roboto', 'Poppins', sans-serif;
 }
 svg {
-  fill: black;
+  fill: var(--base-color);
+}
+button {
+  font-weight: bold;
 }
 
 #blur-bg {
@@ -44,12 +61,12 @@ svg {
   align-items: center;
   padding: 1rem 2rem;
   padding-top: 0;
-  background-color: #181818;
+  background-color: var(--base-color);
   height: 18vh;
   margin-bottom: 1rem;
 }
 .navigation-bar * {
-  color: white;
+  color: var(--text-color);
   display: flex;
   gap: 2.5vw;
   font-size: 1.1rem;
@@ -76,7 +93,7 @@ svg {
   width: 100%;
   height: 0.1rem;
   transform-origin: right;
-  background-color: white;
+  background-color: var(--text-color);
   transition: transform 0.1s ease-in-out;
   transform: scaleX(0);
 }
@@ -91,7 +108,7 @@ svg {
   padding: 5px 10px;
   width: 230px;
   height: 100vh;
-  background-color: rgb(95, 95, 95);
+  background-color: var(--base-color);
   position: sticky;
   top: 0;
   transition: .3s ease-in-out;
@@ -100,10 +117,10 @@ svg {
   float: left;
   overflow: hidden;
   margin-right: 5px;
+  transition: .3s ease-in-out;
 }
 #sidebar.close {
   width: 65px;
-  transition: .3s ease-in-out;
 }
 #sidebar ul {
   list-style: none;
@@ -118,10 +135,10 @@ svg {
 }
 #sidebar #active {
   span {
-    color: rgb(255, 162, 162);
+    color: var(--highlight);
   }
   svg {
-    fill: rgb(255, 162, 162);
+    fill: var(--highlight);
   }
 }
 #sidebar a, #sidebar .dropdown-btn {
@@ -135,6 +152,7 @@ svg {
   width: 100%;
   cursor: pointer;
   text-align: left;
+  color: var(--text-color);
 }
 #sidebar #close-btn {
   border-radius: .5rem;
@@ -147,13 +165,13 @@ svg {
   margin-bottom: 1rem;
 }
 #sidebar a:hover, #sidebar li > button:hover{
-  background-color: rgba(0, 0, 0, 0.104);
+  background-color: var(--selected-light);
 }
 #sidebar svg {
   height: 30px;
   width: 30px;
   flex-shrink: 0;
-  fill: black;
+  fill: var(--text-color);
 }
 #sidebar a span, #sidebar .dropdown-btn span {
   font-size: 1rem;
@@ -187,24 +205,89 @@ svg {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  
+}
+.account #profile {
+  display: none;
 }
 .account button{
   cursor: pointer;
   border-radius: 0.4rem;
   border: none;
-  background-color: #cd9106;
+  background-color: var(--button-color);
   padding: 0.9rem 1.25rem;
 }
 .account button:hover {
-  background-color: #af7c05;
+  background-color: var(--button-selected);
   transition: 0.3s;
 }
-
+.account #profile svg{
+  fill: var(--text-color);
+  cursor: pointer;
+}
+#account-menu {
+  border-left: 0 solid var(--base-color);
+  background-color: var(--base-color);
+  width: 0;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: .3s ease;
+  padding: 4px 0;
+   button {
+    background: none;
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+   button:hover {
+    background-color: var(--selected-light);
+  }
+  svg {
+    fill: white;
+  }
+}
+#account-menu.show {
+  border-left: 4px solid var(--secondary-color);
+  width: 250px;
+  padding: 4px 10px;
+}
+#account-menu > ul > li {
+  list-style: none;
+  padding: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-color);
+  cursor: pointer;
+}
+#account-menu > ul > li > a {
+  width: 100%;
+  display: flex;
+  padding: 12px;
+  border-radius: 8px;
+  text-wrap: nowrap;
+  text-decoration: none;
+  color: white;
+}
+#account-menu > ul > li > a:hover {
+  background-color: var(--selected-light);
+}
+#account-menu > ul > li:first-child {
+  margin-bottom: 12px;
+}
 
 /* menu login */
+/* box chua bang sign in */
 .box {
+  opacity: 0;
   z-index: 2;
-  display: none;
+  display: block;
   position: fixed;
   inset: 0px;
   width: fit-content;
@@ -216,6 +299,12 @@ svg {
   padding: 30px 10px;
   background-color: #ebebeb;
   font-size: 1.1rem;
+  transform: translateY(150%);
+  transition: .3s ease;
+  /* popup */
+  svg {
+    fill: var(--base-color);
+  }
 }
 #exit-btn, #return-signin {
   margin-left: 85%;
@@ -229,6 +318,9 @@ svg {
   align-items: center;
   margin: 3.5rem;
   width: 300px;
+  > p {
+    font-size: .9rem;
+  }
 }
 .box h1 {
   text-align: center;
@@ -236,18 +328,24 @@ svg {
 .box form{
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
+}
+.reset {
+  align-self: center;
 }
 .username, .password, .email {
   border: none;
   height: 2rem;
   margin-bottom: 1.2rem;
-  color: black;
+  color: var(--base-color);
   background-color: transparent;
   border-bottom: 1px solid black;
+  padding: 1.2rem 2rem 1em 0;
+  font-size: 1rem;
+  z-index: 2;
 }
 .box input::placeholder {
-  color: rgba(0, 0, 0, 0.304);
+  color: var(--selected-dark);
 }
 .box input:focus {
   outline: none;
@@ -256,17 +354,19 @@ svg {
   font-size: 1rem;
 }
 .box #username-label, .box #password-label, .box #repassword-label, .box #email-label {
-  opacity: 0;
   transform: translateY(10px);
   transition: .6s ease;
+  z-index: 1;
 }
 .box #username-label::before, .box #password-label::before, .box #repassword-label::before, .box #email-label::before  {
+  font-size: .8rem;
   content: "Please fill in username";
   background-color: white;
   position: fixed;
-  padding: 0.4rem 1.2rem;
+  padding: 0.4rem 1.5rem;
   border-radius: 5px;
   transform: translateY(-10px);
+  left: -5%;
 }
 .box #username-label::after, .box #password-label::after, .box #repassword-label::after, .box #email-label::after {
   content: "";
@@ -289,11 +389,17 @@ svg {
 }
 
 .wrongText {
-  font-size: .8rem;
   position: sticky;
   color: red;
   display: none;
+  text-align: center;
+  > i {
+    font-size: 1rem;
+  }
 }
+.frm-box .remember {
+  margin: 20px 0;
+} 
 #signup-btn {
   text-decoration: underline;
   color: #dd9d07;
@@ -301,8 +407,8 @@ svg {
   background: none;
   border: none;
   font-style:oblique;
-  font-size: 1.1rem;
-  margin-top: 30px;
+  font-size: .9rem;
+  margin-top: 10px;
 }
 #submit-btn {
   background-color: #dd9d07;
@@ -311,7 +417,6 @@ svg {
   height: 2rem;
   border-radius: 0.4rem;
   color: white;
-  margin-bottom: 10px;
   font-size: 18px;
 }
 #submit-btn:hover {
@@ -328,6 +433,7 @@ svg {
   z-index: 3;
 }
 #success .success-box {
+  opacity: 0;
   text-align: center;
   width: 400px;
   padding: 60px 0;
@@ -336,7 +442,7 @@ svg {
   border-radius: 15px;
 }
 #success svg {
-  transform: rotate(180deg);
+  opacity: 0;
   transition: 1s ease;
 }
 #success .success-box.show {
@@ -344,23 +450,164 @@ svg {
 } 
 #success .success-box.rotate{
   > svg {
+    opacity: 1;
     transform: rotate(720deg);
     transition: .8s cubic-bezier(.42, .45, .44, 1.68);
   }
 }
 
-/* sign in form */
-/* .frm-box-signin {
+/* menu thong tin tai khoan, cai dat... */
+#exit.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
+  position: relative;
+  padding: 0;
+}
+#exit.account:hover {
+  background-color: var(--selected-dark);
+}
+#account-info {
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  position: absolute;
+  inset: 0;
+  background-color: white;
   display: none;
-  background-color: black;
-} */
+}
+#setting-container > div {
+  display: none;
+}
+#setting-container .active {
+  display: block;
+}
+#setting-container {
+  box-shadow: 0 0 10px 3px var(--selected-dark);
+  border-radius: 20px;
+  margin: 40px;
+}
+#nav-thongtin {
+  margin: 40px;
+  ul {
+    list-style: none;
+  }
+  span {
+    font-size: 1.2rem;
+    color: gray;
+  }
+}
+#nav-thongtin > ul > li:not(:first-child) {
+  margin-top: 1rem;
+}
+#nav-thongtin > ul > li > ul > li {
+  padding: 10px;
+  border-radius: 12px;
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#nav-thongtin > ul > li > ul > li:hover {
+  background-color: var(--selected-dark);
+}
+#setting-container {
+  padding: 30px 100px;
+}
+#setting-container h2 {
+  position: relative;
+  margin: 20px;
+}
+#setting-container h2::after {
+  content: '';
+  background-color: var(--base-color);
+  position: absolute;
+  width: 80%;
+  height: 1px;
+  top: 50%;
+}
+#setting-container h2::before {
+  content: '';
+  background-color: var(--base-color);
+  position: absolute;
+  width: 50px;
+  height: 1px;
+  top: 50%;
+  left: -50px;
+}
+.avatar {
+  float: right;
+  border: var(--base-color) solid 3px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > input {
+    display: none;
+  }
+  > img {
+    height: 150px;
+    aspect-ratio: 1/ 1;
+    border-radius: 50%;
+    border: var(--base-color) solid 2px;
+  }
+  > label {
+    cursor: pointer;
+  }
+}
+.avatar > label:hover {
+  svg {
+    filter: drop-shadow(0 0 6px var(--selected-dark));
+  }
+}
+.active > ul {
+  list-style: none;
+  > li {
+    margin-bottom: 16px;
+  } 
+  > li > button {
+    background: none;
+    border: 2px black solid;
+    padding: 10px;
+    position: relative;
+    left: -10px;
+    top: -8px;
+    border-radius: 12px;
+  }
+  > li > span {
+    font-style: italic;
+    font-weight: bold;
+  }
+}
+.active > ul > li > button:hover {
+  background-color: var(--selected-dark);
+}
+#phoneBtn {
+  border: 1px solid black;
+  background: none;
+  padding: 3px 5px;
+  font-weight: normal;
+  width: 140px;
+  transition: .3s ease;
+}
+#phoneBtn:focus, #phoneBtn:hover {
+  width: 200px;
+}
 
 
-
-@media (max-width:1000px) {
-  #sidebar {
-    height: 50px;
+@media (max-width:900px) {
+  #sidebar.close {
     width: 100%;
+    z-index: 3;
+  }
+  #sidebar {
+    height: 60px;
+    width: 100% ;
     top: unset;
     bottom: 0;
     position: fixed;
@@ -383,7 +630,6 @@ svg {
     }
     
   }
-
   .navigation-bar .option {
     display: none;
   }

@@ -6,23 +6,23 @@
     <title>Firefly Restaurant</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="images/Icons/temp-logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/Icons/favicon.png" type="image/x-icon">
     
     <script src="script/sign_inMenu.js" defer></script>
     <script src="script/dragable.js" defer></script>
     <script src="script/sidebar.js" defer></script>
     <script src="script/accountSystem.js" defer></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
 </head>
 <body>
     <div id="blur-bg"></div>
     
     
     <!-- sidebar -->
-    <nav id="sidebar">
+    <nav id="sidebar" class="close">
         <ul>
             <li>
                 <button id="close-btn" onclick="toggleSidebar()">
@@ -107,7 +107,7 @@
     <!-- header va content -->
     <!-- navigation bar -->
     <nav class="navigation-bar">
-        <img src="images/Icons/temp-logo.png" alt="firefly Logo" id="logo">
+        <img src="images/Icons/logo.png" alt="firefly Logo" id="logo">
 
         <div class="option">
             <button id="home">THUC AN</button>
@@ -117,9 +117,51 @@
         </div>
 
         <div class="account">
-            <button id="sign-in" onclick="signInMenu()">SIGN IN</button>
+            <button id="sign-in-btn" onclick="signInMenu()">SIGN IN</button>
+            <div id="profile" onclick="openAccountbar()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#FFFFFF"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
+            </div>
         </div>
     </nav>
+    <div id="account-menu">
+        <ul>
+            <li>
+                <button onclick="closeAccountbar()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>    
+                </button>
+            </li>
+            <li>
+                <a href="index.html?tttk">
+                    <span>Thong tin tai khoan</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span>Gio hang</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span>Thong bao</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span>Cai dat</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span>Ho tro</span>
+                </a>
+            </li>
+            <li>
+                <a onclick="logOut()">
+                    <span>Dang xuat</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     
 
@@ -168,16 +210,19 @@
         <div class="frm-box">
             <form action=".php" onsubmit="" method="post" name="signin">
                 <div id="username-label" class="missing-input"></div>
-                <label>Username</label>
+                <label for="username">Username</label>
                 <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="username" onclick="inputFocus(this)">
                 
                 <div id="password-label" class="missing-input"></div>
-                <label>Password</label>
+                <label for="password">Password</label>
                 <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="password" onclick="inputFocus(this)">
             </form>
             <button id="submit-btn" onclick="signInAcc()">Sign in</button>
             <div class="wrongText" id="wrong-input"><i>*You have enter the incorrect username or password*</i></div>
+
             <p>Don't have an account? <button id="signup-btn" onclick="signUpMenu()">Sign up here</button></p>
+
+            <button id="signup-btn" onclick="signUpMenu()">Forgot password?</button>
         </div>
     </div>
 
@@ -190,20 +235,19 @@
         <div class="frm-box">
             <form action=".php" onsubmit="" method="post" name="signup">
                 <div id="username-label" class="missing-input"></div>
-                <label>Username</label>
+                <label for="username">Username</label>
                 <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="username" onclick="inputFocus(this)">
 
                 <div id="email-label"></div>
-                <label>Email</label>
+                <label for="email">Email</label>
                 <input type="text" placeholder="Enter your email" class="email input" autocomplete="off" name="email" onclick="inputFocus(this)">
                 
                 <div id="password-label" class="missing-input"></div>
-                <label>Password</label>
+                <label for="password">Password</label>
                 <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="password" onclick="inputFocus(this)">
                 <div id="repassword-label"></div>
-                <label>Confirm password</label>
+                <label for="repassword">Confirm password</label>
                 <input type="password" placeholder="Confirm your password" class="password input" autocomplete="off" name="repassword" onclick="inputFocus(this)">
-
             </form>
             <button id="submit-btn" onclick="signUpAcc()">Sign up</button>
             <div class="wrongText" id="password-match"><i>*Password doesn't match*</i></div>
@@ -216,5 +260,108 @@
         </button>
     </div>
 
+
+
+    <!-- thong tin tai khoan va cai dat setting -->
+    <div id="account-info">
+        <nav id="nav-thongtin">
+            <ul>
+                <a id="exit" class="account" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg></a>
+                <li>
+                    <span>THÔNG TIN TÀI KHOẢN</span>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
+                            <a>Tai khoan</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
+                            <a>Dia chi</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <span>CÀI ĐẶT CHUNG</span>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"/></svg>
+                            <a>Ngon ngu</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/></svg>
+                            <a>Che do toi</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <span>HỖ TRỢ</span>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            <a>Trung tam ho tro</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            <a>Dieu khoan</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                            <a>Xoa tai khoan</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="setting-container">
+            <div class="taikhoan active">
+                <h1 class="title">THÔNG TIN TÀI KHOẢN</h1>
+                <ul>
+                    <h2>Tai khoan</h2>
+                    <form class="avatar">
+                        <label for="avt-file" onclick="getAvatar(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#FFFFFF"><path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>
+                        </label>
+                        <input type="file" name="file" id="avt-file"/>
+                    </form>
+                    <li>Ten:
+                        <span class="thongtin"></span>
+                    </li>
+                    <li>Email: 
+                        <span class="thongtin"></span>
+                    </li>
+                    <li>So dien thoai:
+                        <span class="thongtin"></span>
+                    </li>
+                    <li>Gioi tinh:
+                        <span class="thongtin"></span>
+                        <select id="gioitinh">
+                            <option value="null" selected="selected"  disabled="disabled">Chon gioi tinh</option>
+                            <option value="nam">Nam</option>
+                            <option value="nu">Nu</option>
+                            <option value="khac">Khac</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button>Thay đổi thông tin</button>
+                    </li>
+                </ul>
+                <ul>
+                    <h2>Dia chi</h2>
+                    <li>
+                        <button>Them dia chi</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="caidat">
+                asd2
+            </div>
+            <div class="hotro">
+                asd3
+            </div>
+        </div>
+    </div>
 </body>
 </html>
