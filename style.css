@@ -539,6 +539,8 @@ button {
   left: -50px;
 }
 .avatar {
+  background: center no-repeat;
+  background-size: cover;
   float: right;
   border: var(--base-color) solid 3px;
   height: 150px;
@@ -547,6 +549,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   > input {
     display: none;
   }
@@ -556,14 +559,10 @@ button {
     border-radius: 50%;
     border: var(--base-color) solid 2px;
   }
-  > label {
-    cursor: pointer;
-  }
 }
-.avatar > label:hover {
-  svg {
-    filter: drop-shadow(0 0 6px var(--selected-dark));
-  }
+.avatar > svg:hover {
+  filter: drop-shadow(0 0 10px var(--selected-dark));
+  fill: var(--button-selected);
 }
 .active > ul {
   list-style: none;

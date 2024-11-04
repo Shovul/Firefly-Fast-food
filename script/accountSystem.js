@@ -1,12 +1,14 @@
 // check acc xem co nho khong
-// localStorage.clear()
+
 // const a = JSON.parse(localStorage.getItem('accounts'))
 // a.forEach((account) => {
 //   console.log(account);
 // })
-let remember = JSON.parse(localStorage.getItem('rememberAcc'))
+let accounts = JSON.parse(localStorage.getItem('accounts'))
+let remember = localStorage.getItem('rememberAcc')
+
 if (remember != null) {
-  removeSigninBtn();
+  removeSigninBtn()
 }
 function inputFocus(input) {
   input.previousElementSibling.previousElementSibling.style.transform = "translateY(10px)"
@@ -46,8 +48,6 @@ function signInAcc() {
   var check = true;
   var name = document.forms["signin"]["username"].value
   var pass = document.forms["signin"]["password"].value
-
-  let accounts = JSON.parse(localStorage.getItem('accounts'))
   
   if (name == "" || name == null) {
     usernamePopup()
@@ -62,11 +62,11 @@ function signInAcc() {
     if (accounts != null) {
       for (let i=0; i<accounts.length; i++) {
         if (name == accounts[i].name && pass === accounts[i].pass) {
-          localStorage.setItem('rememberAcc', JSON.stringify(accounts[i]))
+          localStorage.setItem('rememberAcc', i)
           removeWrongInput()
           removeInputValue()
           removeSigninBtn()
-          remember = accounts[i];
+          remember = i;
           return true
         }
       }
@@ -108,7 +108,6 @@ function signUpAcc() {
   }
 
   if (check) {
-    let accounts = JSON.parse(localStorage.getItem('accounts'))
     const pAccount = {
       name: name,
       email: email,
@@ -120,7 +119,7 @@ function signUpAcc() {
       addresses: []
     }
 
-    if (accounts == null) {
+    if (accounts == null || accounts == 0) {
       accounts = []
       accounts.push(pAccount)
 
@@ -166,8 +165,8 @@ function signUpAcc() {
       signup.style.zIndex = '2'
     },2500)
     
-    remember = pAccount;
-    localStorage.setItem('rememberAcc', JSON.stringify(remember))
+    remember = accounts.length - 1;
+    localStorage.setItem('rememberAcc', remember)
     exitSignup()
     removeWrongInput()
     removeInputValue()
@@ -186,10 +185,9 @@ function closeAccountbar() {
   accMenu.classList.remove('show')
 }
 function logOut() {
-  remember = null
   document.getElementById('sign-in-btn').style.display = 'block'
   document.getElementById('profile').style.display = 'none'
-  localStorage.setItem('rememberAcc', null)
+  localStorage.removeItem('rememberAcc')
   closeAccountbar()
 }
 
@@ -204,9 +202,9 @@ function showThongtin() {
   const accInfo = document.getElementById('account-info')
   accInfo.style.display = 'grid'
   var thongtin = document.getElementsByClassName('thongtin')
-  thongtin[0].innerHTML = remember.name
-  thongtin[1].innerHTML = remember.email
-  if (remember.phone == null) {
+  thongtin[0].innerHTML = accounts[remember].name
+  thongtin[1].innerHTML = accounts[remember].email
+  if (accounts[remember].phone == null) {
     const phoneBtn = document.createElement('input')
     phoneBtn.setAttribute('type', 'tel')
     phoneBtn.setAttribute('id', 'phoneBtn')
@@ -218,26 +216,24 @@ function showThongtin() {
     const phone = document.getElementById('phoneBtn')
     phone.addEventListener('focusout', function(){
       if(Number(phone.value) != 0 && phone.value.length == 10) {
-        remember.phone = phone.value
-        localStorage.setItem('rememberAcc', JSON.stringify(remember))
+        accounts[remember].phone = phone.value
+        localStorage.setItem('accounts', JSON.stringify(accounts))
         showThongtin()
       }
     })
   }
   else {
-    thongtin[2].innerHTML = remember.phone
+    thongtin[2].innerHTML = accounts[remember].phone
   }
-  if(remember.gender != null) {
-    thongtin[3].innerHTML = remember.gender
+  if(accounts[remember].gender != null) {
+    thongtin[3].innerHTML = accounts[remember].gender
     document.getElementById('gioitinh').style.display = 'none '
   }
-  if(remember.avatar != null) {
-    alert(remember.avatar.value)
-    // const avatar = document.querySelector('.avatar')
-    // avatar.innerHTML = ``
-    // var img = document.createElement('img')
-    // avatar.appendChild(img);
-    // avatar.firstChild.src = URL.createObjectURL(remember.avatar)
+  if(accounts[remember].avatar != null) {
+    const avatar = document.querySelector('.avatar')
+    avatar.removeChild(avatar.firstElementChild)
+
+    avatar.style.backgroundImage = `url(${accounts[remember].avatar})`
   }
 }
 window.onload = function(e) {
@@ -258,39 +254,40 @@ gender.addEventListener('click', function() {
     case 'nam':
       gender.style.display = 'none'
       displayGender.innerHTML = 'Nam'
-      remember.gender = 'Nam'
+      accounts[remember].gender = 'Nam'
       break
     case 'nu':
       gender.style.display = 'none'
       displayGender.innerHTML = 'Nữ'
-      remember.gender = 'Nữ'
+      accounts[remember].gender = 'Nữ'
       break
     case 'khac':
       gender.style.display = 'none'
       displayGender.innerHTML = 'Khác'
-      remember.gender = 'Khác'
+      accounts[remember].gender = 'Khác'
       break
   }
-  localStorage.setItem('rememberAcc', JSON.stringify(remember))
+  localStorage.setItem('accounts', JSON.stringify(accounts))
 })
 
-function getAvatar(label) {
-  var input = label.nextElementSibling
-  var avatar = document.querySelector('.avatar')
-  var img = document.createElement('img')
+var avatar = document.querySelector('.avatar')
+var input = avatar.lastElementChild
+var svg = document.getElementById('avatar-ico')
+input.addEventListener('change', function() {
+  avatar.removeChild(avatar.firstChild)
+  const reader = new FileReader()
+  reader.addEventListener('load', function() {
+    console.log('work')
+    accounts[remember].avatar = reader.result
 
-  input.addEventListener('change', function() {
-    avatar.innerHTML = ``
-    avatar.appendChild(img);
-    avatar.firstChild.src = URL.createObjectURL(input.files[0])
-    remember.avatar = input
-    localStorage.setItem('rememberAcc', JSON.stringify(remember))
+    localStorage.setItem('accounts', JSON.stringify(accounts))
 
-    // const reader = new FileReader()
-    // img = reader.result
-    // reader.addEventListener('load', () => {
-    //   avatar.style.background = 'url(${png})'
-    // })
-    // reader.readAsDataURL(this.files[0])
+    accounts = JSON.parse(localStorage.getItem('accounts'))
+    avatar.style.backgroundImage = `url(${accounts[remember].avatar})`
   })
-}
+  reader.readAsDataURL(this.files[0])
+})
+
+accounts.forEach((item) => {
+  console.log(item)
+})
