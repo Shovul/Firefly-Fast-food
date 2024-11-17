@@ -7,8 +7,16 @@
 let accounts = JSON.parse(localStorage.getItem('accounts'))
 let remember = localStorage.getItem('rememberAcc')
 
-if (remember != null) {
+if (remember != null && window.location.href.split('?')[1] == null) {
   removeSigninBtn()
+  adminActive();
+}
+
+function adminActive() {
+  if (accounts[remember].name == "admin") {
+    removeSigninBtn()
+    document.querySelector(".admin").style.display = 'block'
+  }
 }
 function inputFocus(input) {
   input.previousElementSibling.previousElementSibling.style.transform = "translateY(10px)"
@@ -67,6 +75,7 @@ function signInAcc() {
           removeInputValue()
           removeSigninBtn()
           remember = i;
+          adminActive()
           return true
         }
       }
@@ -167,6 +176,7 @@ function signUpAcc() {
     
     remember = accounts.length - 1;
     localStorage.setItem('rememberAcc', remember)
+    adminActive()
     exitSignup()
     removeWrongInput()
     removeInputValue()
@@ -188,6 +198,8 @@ function logOut() {
   document.getElementById('sign-in-btn').style.display = 'block'
   document.getElementById('profile').style.display = 'none'
   localStorage.removeItem('rememberAcc')
+  document.querySelector(".admin").style.display = 'none'
+
   closeAccountbar()
 }
 
@@ -244,12 +256,17 @@ window.onload = function(e) {
     case "tttk": 
       showThongtin()
       break
+    case "qltk":
+      showTaikhoan()
+      break
+    case "qlmn":
+      showQLMenu()
+      break
   }
 }
-let gender = document.getElementById('gioitinh')
-let displayGender = gender.previousElementSibling
 
-gender.addEventListener('click', function() {
+function getGender(genderSelect) {
+  let displayGender = genderSelect.previousElementSibling
   switch(gender.value) {
     case 'nam':
       gender.style.display = 'none'
@@ -268,7 +285,7 @@ gender.addEventListener('click', function() {
       break
   }
   localStorage.setItem('accounts', JSON.stringify(accounts))
-})
+}
 
 var avatar = document.querySelector('.avatar')
 var input = avatar.lastElementChild
@@ -277,17 +294,13 @@ input.addEventListener('change', function() {
   avatar.removeChild(avatar.firstChild)
   const reader = new FileReader()
   reader.addEventListener('load', function() {
-    console.log('work')
     accounts[remember].avatar = reader.result
 
     localStorage.setItem('accounts', JSON.stringify(accounts))
 
     accounts = JSON.parse(localStorage.getItem('accounts'))
     avatar.style.backgroundImage = `url(${accounts[remember].avatar})`
+    avatar.firstElementChild.style.display = 'none'
   })
   reader.readAsDataURL(this.files[0])
-})
-
-accounts.forEach((item) => {
-  console.log(item)
 })
