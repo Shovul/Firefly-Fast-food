@@ -205,10 +205,6 @@ button {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  
-}
-.account #profile {
-  display: none;
 }
 .account button{
   cursor: pointer;
@@ -539,6 +535,8 @@ button {
   left: -50px;
 }
 .avatar {
+  background: center no-repeat;
+  background-size: cover;
   float: right;
   border: var(--base-color) solid 3px;
   height: 150px;
@@ -547,6 +545,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   > input {
     display: none;
   }
@@ -556,14 +555,10 @@ button {
     border-radius: 50%;
     border: var(--base-color) solid 2px;
   }
-  > label {
-    cursor: pointer;
-  }
 }
-.avatar > label:hover {
-  svg {
-    filter: drop-shadow(0 0 6px var(--selected-dark));
-  }
+.avatar > svg:hover {
+  filter: drop-shadow(0 0 10px var(--selected-dark));
+  fill: var(--button-selected);
 }
 .active > ul {
   list-style: none;
@@ -598,14 +593,118 @@ button {
 #phoneBtn:focus, #phoneBtn:hover {
   width: 200px;
 }
+/* admin page */
+.admin-page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+}
+.admin#sidebar {
+  margin: 10px;
+  padding: 30px 12px;
+}
+#manage-box {
+  border: 1px solid var(--secondary-color);
+  margin: 10px;
+  color: var(--text-color);
+  .title span {
+    background-color: var(--button-selected);
+    color: var(--base-color);
+    text-shadow: 2px var(--selected-dark);
+    padding: 10px;
+  }
+  .title {
+    background-color: var(--secondary-color);
+    height: fit-content;
+    padding: 30px;
+
+  }
+}
+#admin-nav > li:first-child {
+  width: fit-content;
+  padding: 6px;
+  border-radius: 8px;
+}
+#manage-box:not(.active) {
+  display: none;
+}
+.account-list {
+  margin: 4px;
+  color: var(--base-color);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) repeat(2,0.5fr);
+  div {
+    padding: 8px;
+    border: 1px solid black;
+  }
+}
+.account-list .acc_title, .menu .menu_title, .account-list .list_edit, .menu-list .menu_edit {
+  text-align: center;
+}
+.account-list .list_edit:hover, .menu-list .menu_edit:hover {
+  svg {
+    transform: scale(1.3);
+  }
+}
+
+.menu .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-list {
+  margin: 4px;
+  color: var(--base-color);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) repeat(2, 0.4fr);
+  div {
+    padding: 8px;
+    border: 1px solid black;
+  }
+}
+.menu > .title > button {
+  background: none;
+  border: 3px solid var(--button-color);
+  border-radius: 6px;
+  height: 35px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  color: var(--button-color);
+  >p {
+    font-size: 1.5rem;
+  }
+}
+.menu > .title > button:hover {
+  border: 3px solid var(--text-color);
+  color: var(--text-color);
+}
+.menu > .title > button::before {
+  content: 'Them san pham';
+  position: absolute;
+  text-wrap: nowrap;
+  right: 150%;
+  bottom: -4px;
+  background-color: var(--text-color);
+  color: black;
+  padding: 8px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: .2s ease-in-out;
+  /* transform-origin: left; */
+}
+.menu > .title > button:hover::before {
+  opacity: 1;
+}
+
+/* tao san pham */
+
 
 
 @media (max-width:900px) {
-  #sidebar.close {
+  #sidebar:not(.admin).close{
     width: 100%;
     z-index: 3;
   }
-  #sidebar {
+  #sidebar:not(.admin) {
     height: 60px;
     width: 100% ;
     top: unset;
@@ -633,7 +732,101 @@ button {
   .navigation-bar .option {
     display: none;
   }
+  .admin-page {
+    grid-template-columns: .2fr 1fr;
+    * {
+      font-size: .8rem;
+    }
+  }
 }
+
+#add_menu {
+  background-color: var(--text-color);
+  display: none;
+  border: 1px solid black;
+  width: 45vw;
+  height: 50vh;
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  padding: 20px;
+  z-index: 2;
+  input[type = "submit"] {
+    background-color: var(--button-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 12px;
+    margin-top: 20px;
+    color: var(--text-color);
+  }
+  #left > select > optgroup > option{
+    color: black;
+  }
+}
+#add_menu input[type = "submit"]:hover {
+  background-color: var(--button-selected);
+}
+#add_menu #left {
+  width: 45%;
+  display: inline-flex;
+  flex-direction: column;
+  >* {
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+}
+#add_menu #exit_menu {
+  background: none;
+  border: none;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#add_menu #exit_menu:hover {
+  background-color: var(--selected-dark);
+}
+#add_menu #right {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 40%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  float: right;
+  > label {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  > input {
+    display: none;
+  }
+  > svg {
+    height: 60px;
+    width: 60px;
+  }
+}
+#add_menu #right:hover {
+  >svg {
+    fill: var(--button-selected);
+  }
+}
+.menu-list div:not(.menu_title) {
+  line-height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 @keyframes sliding {
   0% {transform: translateX(0%);}
   10% {transform: translateX(-100%);}
