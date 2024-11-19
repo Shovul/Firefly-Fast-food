@@ -1,3 +1,5 @@
+accounts = JSON.parse(localStorage.getItem('accounts'))
+remember = localStorage.getItem('rememberAcc')
 function showQLMenu() {
   let menu = document.querySelector(".menu")
   let active = document.querySelector(".active")
@@ -17,6 +19,8 @@ function showMenuList() {
       const listType = document.createElement('div')
       const listDelete = document.createElement('div')
       const listEdit = document.createElement('div')
+
+    
 
       listName.innerHTML = items.name
       listPrice.innerHTML = items.price

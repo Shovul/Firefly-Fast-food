@@ -14,6 +14,9 @@
   --base-font: 'Roboto';
   --emp-font: 'Poppins';
 }
+html {
+  scroll-behavior: smooth;
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -75,7 +78,27 @@ button {
   height: 100%;
   border-radius: 0 0 30% 30%;
 }
-
+.navigation-bar .search {
+  > * {
+    padding: 8px;
+    border-radius: 6px;
+  }
+  input {
+    color: black;
+    outline: none;
+  }
+  button  {
+    background-color: var(--button-color);
+    transition: .2s ease;
+  }
+  button:hover {
+    background-color: var(--button-selected);
+    transform: scale(1.1);
+  }
+  button:active {
+    transform: scale(0.8);
+  }
+}
 
 /* home, menu, news, contact styling */
 .option button{
@@ -468,9 +491,10 @@ button {
 }
 #account-info {
   z-index: 4;
+  height: 100%;
   display: grid;
   grid-template-columns: 310px 1fr;
-  position: absolute;
+  position: fixed;
   inset: 0;
   background-color: white;
   display: none;
@@ -845,30 +869,34 @@ button {
 /* Cai Menu lua thuc an */
 .content
 {
-
+  overflow: hidden;
   background-color:rgb(255, 255, 255);
+  > h2 {
+    padding: 20px;
+    padding-bottom: 8px;
+  }
 }
  .items /* Table chua noi dung */
 {
- 
   background-color: rgb(211, 209, 209);
-  display:flex;
-  flex-wrap:wrap; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 .items-content /* noi dung */
 {
-  width: 32%;
   background-color: rgb(255, 255, 255);
   border:1px solid black;
   margin: 3px;
-  flex-grow:1 ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .items .hinhanh
 {
-  width: 50%;
-  border-radius: 30%;
-  margin-top: 15px;
-  margin-left:150px;
+  margin: 20px;
+  width: 300px;
+  aspect-ratio: 12/9;
+  border-radius: 12px;
   border:3px solid #ffa2a2;
 }
 .items-content .container

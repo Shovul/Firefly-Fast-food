@@ -1,3 +1,19 @@
+window.onload = function(e) {
+  var url = window.location.href
+  const goTo = url.split("?")
+
+  switch(goTo[1]) {
+    case "tttk": 
+      showThongtin()
+      break
+    case "qltk":
+      showTaikhoan()
+      break
+    case "qlmn":
+      showQLMenu()
+      break
+  }
+}
 function removePopup() {
   Array.from(document.getElementsByClassName('missing-input')).forEach((item) => {
     item.style.opacity = 0

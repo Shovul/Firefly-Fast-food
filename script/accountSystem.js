@@ -97,7 +97,7 @@ function signUpAcc() {
     usernamePopup()
     check = false
   }
-  if (email == "" || email == null) {
+  if (email == "" || email == null || !(email.includes("@") && email.includes(".com"))){
     document.getElementById("email-label").style.opacity = 1
     document.getElementById("email-label").style.transform = "translateY(0)"
     check = false
@@ -211,6 +211,7 @@ function showThongtin() {
     <a href="index.html">Nhan vao day de reset<a>`
     return false
   }
+  
   const accInfo = document.getElementById('account-info')
   accInfo.style.display = 'grid'
   var thongtin = document.getElementsByClassName('thongtin')
@@ -248,38 +249,22 @@ function showThongtin() {
     avatar.style.backgroundImage = `url(${accounts[remember].avatar})`
   }
 }
-window.onload = function(e) {
-  var url = window.location.href
-  const goTo = url.split("?")
-
-  switch(goTo[1]) {
-    case "tttk": 
-      showThongtin()
-      break
-    case "qltk":
-      showTaikhoan()
-      break
-    case "qlmn":
-      showQLMenu()
-      break
-  }
-}
 
 function getGender(genderSelect) {
   let displayGender = genderSelect.previousElementSibling
-  switch(gender.value) {
+  switch(genderSelect.value) {
     case 'nam':
-      gender.style.display = 'none'
+      genderSelect.style.display = 'none'
       displayGender.innerHTML = 'Nam'
       accounts[remember].gender = 'Nam'
       break
     case 'nu':
-      gender.style.display = 'none'
+      genderSelect.style.display = 'none'
       displayGender.innerHTML = 'Nữ'
       accounts[remember].gender = 'Nữ'
       break
     case 'khac':
-      gender.style.display = 'none'
+      genderSelect.style.display = 'none'
       displayGender.innerHTML = 'Khác'
       accounts[remember].gender = 'Khác'
       break
