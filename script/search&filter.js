@@ -17,13 +17,12 @@ function normalize(str) {
   str = str.replace(/Đ/g, "D");
   str = str.replace(/ + /g," ");
   str = str.trim();
-  str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
   return str.toLowerCase();
 }
 
 function searchUp() {
-
   removeCurrentMenu()
+  countMenuItems = 0;
   if (search.value == '') {
     loadMenu(foods, drinks, desserts)
     return false
@@ -37,13 +36,13 @@ function searchUp() {
 }
 function removeCurrentMenu() {
   menuDisplay.innerHTML = `
-    <h2 id="thucan">Thức Ăn</h2>
+    <div id="thucan">Thức Ăn</div>
     <div class="items">
     </div>
-    <h2 id="douong">Nước Uống</h2>
+    <div id="douong">Nước Uống</div>
     <div class="items">
     </div>
-    <h2 id="trangmieng">Tráng miệng</h2>
+    <div id="trangmieng">Tráng miệng</div>
     <div class="items">
     </div>
   `

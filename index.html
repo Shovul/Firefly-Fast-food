@@ -15,6 +15,7 @@
     <script src="script/menu.js" defer></script>
     <script src="script/search&filter.js" defer></script>
     <script src="script/chitiet.js" defer></script>
+    <script src="script/autoAdd.js" defer></script>
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,6 +113,9 @@
     <nav class="navigation-bar">
         <img src="images/Icons/logo.png" alt="firefly Logo" id="logo">
 
+        <div id="filter">
+            <span>Filter</span>
+        </div>
         <div class="search">
             <input type="text" name="search" autocomplete="off">
             <button onclick="searchUp()">
@@ -191,31 +195,34 @@
     <div id="hienthongtinsp">
         <h2 id="Title">THÔNG TIN SẢN PHẨM</h2>
         <div id="body">
-            <div id="chen-hinh">div này chèn ảnh sản phẩm</div>
+            <img id="chen-hinh"></img>
             <div id="noidungsp">
-                <div >
-                    <h3 style="text-align: center; margin: 0; color: #395F18;">Khoai tây chiên</h3> 
-                    <p style="margin: 3px; text-align: center; color: gray;">Khoai tây sạch, được cập nhật mỗi ngày. Mỗi phần gồm 200gram khoai</p>
+                <div>
+                    <h3 id="ten-chitiet-sp" style="text-align: center; margin: 0; color: #395F18;">Khoai tây chiên</h3> 
+                    <p id="chitiet-sp" style="margin: 3px; text-align: center; color: gray;"></p>
                 </div>
                  <div class="quantity-container">
                     <button class="button" onclick="decreaseQuantity()">-</button>
                     <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
                     <button class="button" onclick="increaseQuantity()">+</button>
                  </div>   
-                 <h4 id="themvaogio">Thêm vào giỏ hàng - <span id="total-price"> 25.000</span></h4>
+                 <h4 id="themvaogio">
+                    <span>Thêm vào giỏ hàng</span>
+                    <span id="total-price"></span>
+                </h4>
                  <button id="quaylai" onclick="closeSP()"><h4>X</h4></button>
             </div>
         </div>
     </div>
 
     <div class="content">
-        <h2 id="thucan">Thức Ăn</h2>
+        <div id="thucan">Thức Ăn</div>
         <div class="items">
         </div>
-        <h2 id="douong">Nước Uống</h2>
+        <div id="douong">Nước Uống</div>
         <div class="items">
         </div>
-        <h2 id="trangmieng">Tráng miệng</h2>
+        <div id="trangmieng">Tráng miệng</div>
         <div class="items">
         </div>
     </div>

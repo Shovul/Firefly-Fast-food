@@ -88,6 +88,7 @@ button {
     outline: none;
   }
   button  {
+    aspect-ratio: 1/1;
     background-color: var(--button-color);
     transition: .2s ease;
   }
@@ -719,10 +720,8 @@ button {
   opacity: 1;
 }
 
-/* tao san pham */
 
-
-/* Cai Menu lua thuc an *//* Cai Menu lua thuc an */
+/* Cai Menu lua thuc an */
 .content
 {
   overflow: hidden;
@@ -732,11 +731,17 @@ button {
     padding-bottom: 8px;
   }
 }
+.content #thucan, .content #douong, .content #trangmieng {
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
 .content .items /* Table chua noi dung */
 {
-  background-color: rgb(211, 209, 209);
+  background-color: rgb(217, 206, 206);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 5px;
 }
 .content .items-content /* noi dung */
 {
@@ -762,17 +767,23 @@ button {
 }
 .items-content .container-items
 {
+  display: flex;
+  align-items: center;
   margin: 5px;
   padding:5px;  
 }
-.items-content .container-items >svg
+.container-items > svg
 {
   width: 30px;
   height: 30px;
 }
-.items .container-items:hover
+.items .container > .container-items {
+  border-radius: 8px;
+  padding: 10px;
+}
+.items .container > .container-items:hover
 {
-  background-color: rgb(228, 153, 13);
+  background-color: var(--button-color);
 }
 .lienhe
 {
@@ -877,12 +888,13 @@ button {
   }
 }
 
+/* tao sp menu */
 #add_menu {
   background-color: var(--text-color);
   display: none;
   border: 1px solid black;
   width: 45vw;
-  height: 50vh;
+  height: fit-content;
   inset: 0;
   margin: auto;
   position: absolute;
@@ -898,6 +910,17 @@ button {
   }
   #left > select > optgroup > option{
     color: black;
+  }
+  textarea {
+    width: 50%;
+    height: 100px;
+    resize: none;
+    outline: none;
+    border: black solid 1px;
+    padding: 6px;
+  }
+  textarea:hover {
+    border: black solid 1px;
   }
 }
 #add_menu input[type = "submit"]:hover {
@@ -969,7 +992,7 @@ button {
 {
     position: fixed;
     z-index: 3;
-    width: 40%;
+    width: 40vw;
     inset: 0;
     margin: auto;
     height: 270px;
@@ -981,20 +1004,20 @@ button {
     padding: 10px;
     display: none;
 }
-#Title
+#hienthongtinsp #Title
 {
     width: 100%;
     height: 30px;
     text-align: center;
     color: #395F18;
 }
-#body
+#hienthongtinsp #body
 {
     width: 100%;
     height: 200px;
     display: flex;
 }
-#chen-hinh
+#hienthongtinsp #chen-hinh
 {
     width: 30%;
     height: 180px;
@@ -1003,36 +1026,48 @@ button {
     float: left;
     margin: 10px;
 }
-#noidungsp
+#hienthongtinsp #noidungsp
 {
     width: 70%;
     height: 180px;
     float: left;
     margin: 10px;
 }
-.quantity-container {
+#hienthongtinsp .quantity-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.quantity-input {
+#hienthongtinsp .quantity-input {
     width: 50px;
     padding-left: 10px;
     text-align: center;
 }
-.button {
-    padding: 5px 10px;
-    font-size: 16px;
+#hienthongtinsp .button {
+    font-size: 1rem;
     cursor: pointer;
-    margin: 3px;
+    margin: 5px;
+    background: none;
+    border: none;
+    height: 35px;
+    aspect-ratio: 1/1;
 }
-#themvaogio
+#hienthongtinsp .button:hover {
+  background-color: var(--selected-dark);
+  transition: .2s ease;
+  transform: scale(1.1);
+}
+#hienthongtinsp .button:active {
+  transform: scale(0.8);
+}
+#hienthongtinsp #themvaogio
 {
     width: fit-content;
     padding: 18px;
     height: 30px;
     background-color: #FFD15C;
     display: flex;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
     inset: 0;
@@ -1042,11 +1077,11 @@ button {
     color: #0B4A5B;
     font-size: 90%;
 }
-#themvaogio:hover
+#hienthongtinsp #themvaogio:hover
 {
     background-color: #F89B28;
 }
-#quaylai
+#hienthongtinsp #quaylai
 {
     width: 50px;
     height: 30px;
@@ -1061,7 +1096,7 @@ button {
     color: #0B4A5B;
     font-size: 90%;
 }
-#quaylai:hover
+#hienthongtinsp #quaylai:hover
 {
     background-color: #F89B28;
 }

@@ -12,6 +12,9 @@ window.onload = function(e) {
     case "qlmn":
       showQLMenu()
       break
+    default:
+      createAccount()
+      createMenu() 
   }
 }
 function removePopup() {

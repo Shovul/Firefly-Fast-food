@@ -1,11 +1,35 @@
 // Giá mỗi sản phẩm
-const pricePerItem = 25000;
-    
+//mở chi tiết
+var pricePerItem
+function mochitiet(item){
+    var getItem = item.id
+    document.getElementById("hienthongtinsp").style.display = "block";
+    document.body.style.overflow = "hidden";
+    document.getElementById("blur-bg").style.display = "block";
+    document.getElementById("chen-hinh").src = menu[getItem].image
+    document.getElementById('total-price').innerHTML = menu[getItem].price
+    document.getElementById('ten-chitiet-sp').innerHTML = menu[getItem].name
+    pricePerItem = menu[getItem].price
+    document.getElementById("chitiet-sp").innerHTML = menu[getItem].description
+}
+
+// function printMoney(money) {
+//     var stringMoney
+//     while(money !== 0) {
+//         alert(stringMoney)
+//         stringMoney += money%1000
+//         stringMoney += ","
+//         money = Math.floor(money/1000)
+//     }
+//     return stringMoney
+// }
 // Hàm cập nhật tổng giá
 function updateTotalPrice() {
     let quantity = parseInt(document.getElementById("quantity").value);
-    let totalPrice = pricePerItem * quantity;
-    document.getElementById("total-price").innerText = totalPrice.toLocaleString("vi-VN");
+    if(pricePerItem * quantity < Number.MAX_SAFE_INTEGER) {
+        let totalPrice = pricePerItem * quantity;
+        document.getElementById("total-price").innerText = totalPrice
+    }
 }
 
 
@@ -28,21 +52,15 @@ function decreaseQuantity() {
 }
 
 // Tính tổng giá khi trang tải
-window.onload = function() {
-    updateTotalPrice();
-}
+// window.onload = function() {
+//     updateTotalPrice();
+// }
 
 // Đóng bản hiện thị sản phẩm
 function closeSP(){
+    document.getElementById("quantity").value = 1;
     document.getElementById("hienthongtinsp").style.display = "none";
     document.getElementById("blur-bg").style.display = "none";
     document.body.style.overflow = "auto";
-}
-
-//mở chi tiết
-function mochitiet(){
-    document.getElementById("hienthongtinsp").style.display = "block";
-    document.body.style.overflow = "hidden";
-    document.getElementById("blur-bg").style.display = "block";
-    
+    document.getElementById("total-price").innerHTML = ""
 }

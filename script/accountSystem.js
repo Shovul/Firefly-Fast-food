@@ -7,7 +7,7 @@
 let accounts = JSON.parse(localStorage.getItem('accounts'))
 let remember = localStorage.getItem('rememberAcc')
 
-if (remember != null && window.location.href.split('?')[1] == null) {
+if (remember != null && window.location.href.split('?')[1] != "qltk" && window.location.href.split('?')[1] != "qlmn") {
   removeSigninBtn()
   adminActive();
 }
@@ -118,17 +118,17 @@ function signUpAcc() {
 
   if (check) {
     const pAccount = {
+      id: 0,
       name: name,
       email: email,
       pass: pass,
-      repass: repass,
       phone: null,
       gender: null,
       avatar: null,
       addresses: []
     }
 
-    if (accounts == null || accounts == 0) {
+    if (accounts === null) {
       accounts = []
       accounts.push(pAccount)
 
@@ -152,6 +152,7 @@ function signUpAcc() {
         }
         if(check == false) return false
       }
+      pAccount.id = accounts.length;
       accounts[accounts.length] = pAccount;
       localStorage.setItem('accounts', JSON.stringify(accounts))
     }
@@ -203,7 +204,7 @@ function logOut() {
   closeAccountbar()
 }
 
-function showThongtin() {
+function showThongtin() { 
   if(remember == null) {
     document.body.style.margin = '10px'
     document.body.innerHTML = `

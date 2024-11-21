@@ -21,25 +21,27 @@ menu_form.addEventListener('submit', function(e) {
   const food_price = menu_form["price"]
   const food_type = menu_form["type"]
   const food_group = food_type.querySelector('option:checked').parentElement
+  const food_text = menu_form["description"]
   
   var mon = {
+    id: 0,
     name: food_name.value,
     price: food_price.value,
     type: food_type.value,
     image: food_image,
-    group: food_group.label
+    group: food_group.label,
+    description: food_text.value
   }
   console.log(mon)
-  if(menu == null) {
+  if(menu === null) {
     menu = []
     menu.push(mon)
     localStorage.setItem('menu', JSON.stringify(menu))
-
   }
   else {
+    mon.id = menu.length
     menu.push(mon)
     localStorage.setItem('menu', JSON.stringify(menu))
-
   }
   exitAddMenu()
   location.reload();
@@ -49,6 +51,7 @@ menu_form.addEventListener('submit', function(e) {
 function openAddMenu() {
   const addMenu = document.getElementById('add_menu')
   const bg = document.getElementById('blur-bg')
+  document.body.style.overflow = 'hidden'
 
   addMenu.style.display = 'block'
   bg.style.display = 'block'
