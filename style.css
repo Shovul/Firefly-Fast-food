@@ -722,7 +722,122 @@ button {
 /* tao san pham */
 
 
+/* Cai Menu lua thuc an */
+#content
+{
+  background-color:rgb(255, 255, 255);
+}
+#content .items /* Table chua noi dung */
+{
+  background-color: rgb(211, 209, 209);
+  display:flex;
+  flex-wrap:wrap; 
+}
+.items-content /* noi dung */
+{
+  width: 32%;
+  background-color: rgb(255, 255, 255);
+  border:1px solid black;
+  margin: 3px;
+  flex-grow:1 ;
+}
+#content .items .hinhanh
+{
+  width: 50%;
+  border-radius: 30%;
+  margin-top: 15px;
+  margin-left:150px;
+  border:3px solid #ffa2a2;
+}
+.items-content .container
+{
+  display:flex;
+  justify-content: center;
+}
+.items-content .container-items
+{
+  margin: 5px;
+  padding: 10px;  
+  
+}
+.items-content .container-items1
+{
+  margin: 5px;
+  padding: 10px;  
+  
+}
+.items-content .container-items1 >svg
+{
+  width: 30px;
+  height: 30px;
+}
+.items .container-items1:hover
+{
+  background-color: rgb(190, 210, 199);
+  border-radius: 12px;
+}
+.lienhe
+{
+  width:100%;
+  position: absolute;
+  background-color: rgb(227, 221, 180);
+  left: 0;
+}
+.lienhe .container
+{
+  margin-top: 60px;
+  align-items:center;
+  display:flex;
+  flex-wrap:wrap;
+}
+.lienhe .container .items
+{
+  width: fit-content;
+  margin: 15px;
+  
+}
+.lienhe .divbao
+{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
 
+}
+.lienhe .container1
+{
+  margin-top: 30px;
+  margin-left: 50px;
+  width: fit-content; 
+  padding: 30px;
+}
+.lienhe .container1 .items
+{
+  margin: 15px;
+}
+.lienhe .container2
+{
+  margin-top: 30px;
+  margin-left: 50px;
+  padding: 30px;
+}
+.lienhe .container2 .items
+{
+  margin: 15px;  
+}
+.lienhe #logo
+{
+  border-radius: 50%;
+  height: 100px;
+  margin-left: 50px;
+}
+.lienhe #bocongthuong
+{
+  height: 100px;
+  position: absolute;
+  left: 43%;
+  bottom: 30px;
+}
 @media (max-width:900px) {
   #sidebar:not(.admin).close{
     width: 100%;
@@ -967,56 +1082,3 @@ button {
   100% {transform: translateX(0%);}
 }
 
-
-/* Cai Menu lua thuc an */
-.content
-{
-  overflow: hidden;
-  background-color:rgb(255, 255, 255);
-  > h2 {
-    padding: 20px;
-    padding-bottom: 8px;
-  }
-}
- .items /* Table chua noi dung */
-{
-  background-color: rgb(211, 209, 209);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.items-content /* noi dung */
-{
-  background-color: rgb(255, 255, 255);
-  border:1px solid black;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.items .hinhanh
-{
-  margin: 20px;
-  width: 300px;
-  aspect-ratio: 12/9;
-  border-radius: 12px;
-  border:3px solid #ffa2a2;
-}
-.items-content .container
-{
-  display:flex;
-  justify-content: center;
-}
-.items-content .container-items
-{
-  margin: 5px;
-  padding:5px;  
-}
-.items-content .container-items >svg
-{
-  width: 30px;
-  height: 30px;
-}
-.items .container-items:hover
-{
-  background-color: rgb(228, 153, 13);
-}
