@@ -851,6 +851,108 @@ button {
   background-position: center;
 }
 
+/* chi tiết sản phẩm */
+#hienthongtinsp
+{
+    position: fixed;
+    z-index: 3;
+    width: 40%;
+    inset: 0;
+    margin: auto;
+    height: 270px;
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px;
+    overflow: hidden;
+    padding: 10px;
+    display: none;
+}
+#Title
+{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    color: #395F18;
+}
+#body
+{
+    width: 100%;
+    height: 200px;
+    display: flex;
+}
+#chen-hinh
+{
+    width: 30%;
+    height: 180px;
+    border: 1px solid black;
+    border-radius: 10px;
+    float: left;
+    margin: 10px;
+}
+#noidungsp
+{
+    width: 70%;
+    height: 180px;
+    float: left;
+    margin: 10px;
+}
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quantity-input {
+    width: 50px;
+    padding-left: 10px;
+    text-align: center;
+}
+.button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 3px;
+}
+#themvaogio
+{
+    width: fit-content;
+    padding: 18px;
+    height: 30px;
+    background-color: #FFD15C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    margin: auto;
+    border-radius: 15px;
+    margin-top: 8px;
+    color: #0B4A5B;
+    font-size: 90%;
+}
+#themvaogio:hover
+{
+    background-color: #F89B28;
+}
+#quaylai
+{
+    width: 50px;
+    height: 30px;
+    background-color: #FFD15C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    margin: auto;
+    border-radius: 15px;
+    margin-top: 8px;
+    color: #0B4A5B;
+    font-size: 90%;
+}
+#quaylai:hover
+{
+    background-color: #F89B28;
+}
+
 @keyframes sliding {
   0% {transform: translateX(0%);}
   10% {transform: translateX(-100%);}

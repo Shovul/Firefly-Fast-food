@@ -14,6 +14,7 @@
     <script src="script/accountSystem.js" defer></script>
     <script src="script/menu.js" defer></script>
     <script src="script/search&filter.js" defer></script>
+    <script src="script/chitiet.js" defer></script>
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -186,6 +187,27 @@
     </div>
 
     <!-- menu, trang chu, ... -->
+     
+    <div id="hienthongtinsp">
+        <h2 id="Title">THÔNG TIN SẢN PHẨM</h2>
+        <div id="body">
+            <div id="chen-hinh">div này chèn ảnh sản phẩm</div>
+            <div id="noidungsp">
+                <div >
+                    <h3 style="text-align: center; margin: 0; color: #395F18;">Khoai tây chiên</h3> 
+                    <p style="margin: 3px; text-align: center; color: gray;">Khoai tây sạch, được cập nhật mỗi ngày. Mỗi phần gồm 200gram khoai</p>
+                </div>
+                 <div class="quantity-container">
+                    <button class="button" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
+                    <button class="button" onclick="increaseQuantity()">+</button>
+                 </div>   
+                 <h4 id="themvaogio">Thêm vào giỏ hàng - <span id="total-price"> 25.000</span></h4>
+                 <button id="quaylai" onclick="closeSP()"><h4>X</h4></button>
+            </div>
+        </div>
+    </div>
+
     <div class="content">
         <h2 id="thucan">Thức Ăn</h2>
         <div class="items">
