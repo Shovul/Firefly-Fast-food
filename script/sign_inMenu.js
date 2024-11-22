@@ -12,6 +12,8 @@ window.onload = function(e) {
     case "qlmn":
       showQLMenu()
       break
+    case "giohang":
+      break
     default:
       createAccount()
       createMenu() 

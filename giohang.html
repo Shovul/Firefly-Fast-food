@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <!-- Liên kết đến file CSS -->
+    <link rel="stylesheet" href="giohang.css">
+</head>
+<body>
+
+<!-- Header bao gồm menu và nút đăng nhập -->
+<div class="header">
+    <div class="menu">
+        <div class="menu-item">đồ ăn</div> <!-- Mục menu -->
+        <div class="menu-item">đồ uống</div>
+        <div class="menu-item">tráng miệng</div>
+    </div>
+    <div class="login">Đăng nhập</div> <!-- Nút đăng nhập -->
+</div>
+
+<!-- Phần nội dung chính chia thành 2 cột: danh sách sản phẩm và tóm tắt giỏ hàng -->
+<div class="container">
+    <!-- Khu vực danh sách sản phẩm -->
+    <div class="products" id="product-list">
+        <!-- Nội dung được tạo động bởi JavaScript -->
+    </div>
+    
+    <!-- Khu vực tóm tắt giỏ hàng -->
+    <div class="summary">
+        <p><strong>Tổng tiền</strong></p>
+        <div id="summary-items">
+            <!-- Danh sách sản phẩm đã chọn -->
+        </div>
+        <p><strong>Tổng cộng: <span id="total-price">0₫</span></strong></p> <!-- Tổng số tiền -->
+        <div class="buy-button">
+            <button onclick="checkout()">Mua</button> <!-- Nút mua -->
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript để xử lý các chức năng -->
+<script>
+    // Mảng chứa danh sách sản phẩm
+    let products = [
+        { name: "Sản phẩm 1", price: 100000, quantity: 1, selected: false },
+        { name: "Sản phẩm 2", price: 150000, quantity: 1, selected: false }
+    ];
+
+    // Hàm hiển thị danh sách sản phẩm
+    function displayProducts() {
+        const productList = document.getElementById("product-list");
+        productList.innerHTML = ""; // Xóa nội dung cũ
+        products.forEach((product, index) => {
+            // Tạo HTML cho mỗi sản phẩm
+            productList.innerHTML += `
+                <div class="product-item ${product.selected ? 'selected' : ''}">
+                    <!-- Checkbox chọn sản phẩm -->
+                    <input type="checkbox" class="product-checkbox" onchange="toggleSelect(${index})" ${product.selected ? 'checked' : ''} />
+                    <div class="product-image">hình sp</div> <!-- Hình ảnh sản phẩm -->
+                    <div class="product-info">
+                        <p>${product.name}</p> <!-- Tên sản phẩm -->
+                        <p>${product.price.toLocaleString()}₫</p> <!-- Giá sản phẩm -->
+                        <!-- Ô nhập số lượng -->
+                        <input type="number" value="${product.quantity}" min="1" onchange="editQuantity(${index}, this.value)" />
+                    </div>
+                    <!-- Nút xóa sản phẩm -->
+                    <div class="remove" onclick="removeProduct(${index})">X</div>
+                </div>
+            `;
+        });
+        calculateTotal(); // Tính lại tổng tiền
+    }
+
+    // Hàm chỉnh sửa số lượng sản phẩm
+    function editQuantity(index, quantity) {
+        products[index].quantity = parseInt(quantity); // Cập nhật số lượng
+        calculateTotal(); // Tính lại tổng tiền
+    }
+
+    // Hàm chọn hoặc bỏ chọn sản phẩm
+    function toggleSelect(index) {
+        products[index].selected = !products[index].selected; // Đảo trạng thái
+        displayProducts(); // Cập nhật hiển thị
+    }
+
+    // Hàm xóa sản phẩm khỏi danh sách
+    function removeProduct(index) {
+        products.splice(index, 1); // Xóa sản phẩm khỏi mảng
+        displayProducts(); // Cập nhật hiển thị
+    }
+
+    // Hàm tính tổng tiền
+    function calculateTotal() {
+        const summaryItems = document.getElementById("summary-items");
+        summaryItems.innerHTML = ""; // Xóa nội dung cũ
+        let totalPrice = 0;
+
+        // Tính tổng tiền cho các sản phẩm được chọn
+        products.forEach(product => {
+            if (product.selected) {
+                const itemTotal = product.price * product.quantity;
+                totalPrice += itemTotal; // Cộng vào tổng tiền
+                summaryItems.innerHTML += `<div class="summary-item">${product.name}: ${itemTotal.toLocaleString()}₫</div>`;
+            }
+        });
+        
+        document.getElementById("total-price").innerText = `${totalPrice.toLocaleString()}₫`; // Cập nhật tổng tiền
+    }
+
+    // Hàm xử lý thanh toán
+    function checkout() {
+    const selectedProducts = products.filter(product => product.selected); // Lọc sản phẩm đã chọn
+    if (selectedProducts.length === 0) {
+        alert("Chưa có sản phẩm nào được chọn!");
+        return;
+    }
+    // Lưu danh sách sản phẩm đã chọn vào localStorage
+    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+    // Chuyển hướng đến trang thông tin giao hàng
+    window.location.href = "checkout.html";
+    }
+
+    displayProducts();
+</script>
+
+</body>
+</html>
+
