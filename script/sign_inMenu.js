@@ -16,7 +16,7 @@ window.onload = function(e) {
       break
     default:
       createAccount()
-      createMenu() 
+      createMenu()  
   }
 }
 function removePopup() {
