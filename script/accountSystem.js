@@ -13,7 +13,7 @@ if (remember != null && window.location.href.split('?')[1] != "qltk" && window.l
 }
 
 function adminActive() {
-  if (accounts[remember].name == "admin") {
+  if (accounts[remember] == accounts[0]) {
     removeSigninBtn()
     document.querySelector(".admin").style.display = 'block'
   }
@@ -67,17 +67,15 @@ function signInAcc() {
   }
 
   if (check) {
-    if (accounts != null) {
-      for (let i=0; i<accounts.length; i++) {
-        if (name == accounts[i].name && pass === accounts[i].pass) {
-          localStorage.setItem('rememberAcc', i)
-          removeWrongInput()
-          removeInputValue()
-          removeSigninBtn()
-          remember = i;
-          adminActive()
-          return true
-        }
+    for (let i=0; i<accounts.length; i++) {
+      if (name == accounts[i].name && pass === accounts[i].pass) {
+        localStorage.setItem('rememberAcc', i)
+        removeWrongInput()
+        removeInputValue()
+        removeSigninBtn()
+        remember = i;
+        adminActive()
+        return true
       }
     }
     document.getElementById('wrong-input').style.display = 'block'
@@ -118,14 +116,16 @@ function signUpAcc() {
 
   if (check) {
     const pAccount = {
-      id: 0,
+      id: accounts.length,
       name: name,
       email: email,
       pass: pass,
       phone: null,
       gender: null,
       avatar: null,
-      addresses: []
+      status: active,
+      addresses: [],
+      basket: []
     }
 
     if (accounts === null) {

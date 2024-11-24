@@ -52,3 +52,9 @@ search.addEventListener("keyup", function(e) {
     searchUp()
   }
 })
+
+function openFilterList(button) {
+  const filterList = document.getElementById('filter-list')
+  filterList.classList.toggle('show')
+  button.classList.toggle('rotate')
+}
