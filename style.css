@@ -48,6 +48,7 @@ button {
   overflow: hidden;
   z-index: 1;
   animation: sliding ease-in-out infinite;
+  display:block;
 }
 .slider img {
   /* animation: sliding 10s ease-in-out infinite; */
@@ -730,6 +731,7 @@ button {
     padding: 20px;
     padding-bottom: 8px;
   }
+  display: block;
 }
 .content #thucan, .content #douong, .content #trangmieng {
   margin: 1rem;
@@ -1101,6 +1103,17 @@ button {
     background-color: #F89B28;
 }
 
+/* Trang chu */
+.model
+{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+    display: none;
+}
 @keyframes sliding {
   0% {transform: translateX(0%);}
   10% {transform: translateX(-100%);}

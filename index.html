@@ -16,6 +16,8 @@
     <script src="script/search&filter.js" defer></script>
     <script src="script/chitiet.js" defer></script>
     <script src="script/autoAdd.js" defer></script>
+    <script src="script/trangchu.js" defer></script>
+
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +38,7 @@
             <li>
                 <a href="index.html?trangchu">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
-                    <span>Trang chu</span>
+                    <span">Trang chu</span>
                 </a>
             </li>
 
@@ -86,12 +88,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="index.html?lichsu">
                                 <span>Lich su</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="index.html?nguyenlieu">
                                 <span>Nguyen lieu</span>
                             </a>
                         </li>
@@ -114,7 +116,7 @@
         <img src="images/Icons/logo.png" alt="firefly Logo" id="logo">
 
         <div id="filter">
-            <span>Filter</span>
+            <div>Tìm kiếm nâng cao</div>
         </div>
         <div class="search">
             <input type="text" name="search" autocomplete="off">
@@ -181,7 +183,6 @@
             <img src="images/Advertisement/xMDS_homeslide.jpg.pagespeed.ic.x74msAaTAi.webp"></a>
             <img src="images/Advertisement/xWeb-value.jpg.pagespeed.ic.5GlFsD9vWU.webp">
         </div>
-
         <div class="nav-btn">
             <a href="ad-image-1" class="btn"></a>
             <a href="ad-image-2" class="btn"></a>
@@ -189,9 +190,12 @@
             <a href="ad-image-4" class="btn"></a>
         </div>
     </div>
+    <div id="noidungtrangchu" ></div>
+    <div id="noidunglichsu"></div>
+    <div id="noidungnguyenlieu"></div>
 
     <!-- menu, trang chu, ... -->
-     
+    
     <div id="hienthongtinsp">
         <h2 id="Title">THÔNG TIN SẢN PHẨM</h2>
         <div id="body">
@@ -242,14 +246,14 @@
             <div class="container1"><h4> Thông tin</h4>
                     <div class ="items">Tin tức</div>
                     <div class ="items">Khuyến mãi</div>
-                    <div class ="items">Tuyển dụng</div>
-                    <div class ="items">Nhượng quyền</div>
+                    <div class ="items">Tuyển dụng</div></a>
+                    <div class ="items">Nhượng quyền</div></a>
             </div>
             <div class="container1"> <h4>Hỗ trợ</h4>
-                <div class ="items">Điều khoản sử dụng</div>
-                <div class ="items">Chính sách bảo mật</div>
-                <div class ="items">Chính sách giao hàng</div>
-                <div class ="items">Chăm sóc khách hàng</div>
+                <div class ="items">Điều khoản sử dụng</div></a>
+                    <div class ="items">Chính sách bảo mật</div>
+                    <div class ="items">Chính sách giao hàng</div>
+                    <div class ="items">Chăm sóc khách hàng</div>
             </div>
         </div>
         <div >
@@ -354,6 +358,10 @@
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
                             <a>Dia chi</a>
                         </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M160-200v-440 440-15 15Zm0 80q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v171q-18-13-38-22.5T800-508v-132H160v440h283q3 21 9 41t15 39H160Zm240-600h160v-80H400v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm20-208v-112h-40v128l86 86 28-28-74-74Z"/></svg>
+                            <a href ="" >Lich su mua hang</a>
+                        </li>
                     </ul>
                 </li>
                 
@@ -429,6 +437,7 @@
                     </li>
                 </ul>
             </div>
+
             <div class="caidat">
                 asd2
             </div>
