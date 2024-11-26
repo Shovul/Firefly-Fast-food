@@ -153,7 +153,7 @@ function signUpAcc() {
         if(check == false) return false
       }
       pAccount.id = accounts.length;
-      accounts[accounts.length] = pAccount;
+      accounts.push(pAccount);
       localStorage.setItem('accounts', JSON.stringify(accounts))
     }
     
@@ -213,6 +213,7 @@ function showThongtin() {
     return false
   }
   
+  document.body.style.overflow = 'hidden'
   const accInfo = document.getElementById('account-info')
   accInfo.style.display = 'grid'
   var thongtin = document.getElementsByClassName('thongtin')
@@ -249,22 +250,53 @@ function showThongtin() {
 
     avatar.style.backgroundImage = `url(${accounts[remember].avatar})`
   }
+
+  if(accounts[remember].addresses.length > 0) {
+    const diaChiList = document.createElement('select')
+    diaChiList.setAttribute('id', 'thongtin-diachi')
+    diaChiList.setAttribute('onclick', 'selectCurrentAddress(this)')
+    accounts[remember].addresses.forEach(address => {
+      const receiver = document.createElement('optgroup')
+      receiver.setAttribute('label', address.name + ", " + address.phone)
+      const newAddress = document.createElement('option')
+      newAddress.setAttribute('value', address.id)
+      newAddress.innerHTML = address.address
+      receiver.appendChild(newAddress)
+      diaChiList.appendChild(receiver)
+      if(address.status == 'choose') {
+        diaChiList.selectedIndex = address.id
+      }
+    })
+    const listPosition = document.querySelector('.taikhoan > ul > div')
+    listPosition.appendChild(diaChiList)
+  }
+}
+function selectCurrentAddress(thisAddress) {
+  accounts[remember].addresses.forEach(address => {
+    if(address.id == thisAddress.value) {
+      address.status = 'choose'
+    }
+    else {
+      address.status = ''
+    }
+  })
+  localStorage.setItem('accounts', JSON.stringify(accounts))
 }
 
 function getGender(genderSelect) {
   let displayGender = genderSelect.previousElementSibling
   switch(genderSelect.value) {
-    case 'nam':
+    case 'Nam':
       genderSelect.style.display = 'none'
       displayGender.innerHTML = 'Nam'
       accounts[remember].gender = 'Nam'
       break
-    case 'nu':
+    case 'Nữ':
       genderSelect.style.display = 'none'
       displayGender.innerHTML = 'Nữ'
       accounts[remember].gender = 'Nữ'
       break
-    case 'khac':
+    case 'Khác':
       genderSelect.style.display = 'none'
       displayGender.innerHTML = 'Khác'
       accounts[remember].gender = 'Khác'
@@ -289,4 +321,140 @@ input.addEventListener('change', function() {
     avatar.firstElementChild.style.display = 'none'
   })
   reader.readAsDataURL(this.files[0])
+})
+
+function editAccount() {
+  const background = document.getElementById("blur-bg")
+  background.style.display = 'block'
+  const editMenu = document.getElementById("edit_account")
+  editMenu.style.transform = 'scale(1)'
+  const button = document.querySelectorAll("#edit_account>div>button")
+  const input = document.querySelectorAll("#edit_account>div>input")
+  const gender = document.querySelector('#edit_account>div>select')
+  getAccount = remember
+  input[0].placeholder = accounts[getAccount].name
+  input[1].placeholder = accounts[getAccount].email
+  input[2].placeholder = accounts[getAccount].pass
+  input[3].placeholder = accounts[getAccount].phone
+  gender.value = accounts[getAccount].gender
+
+    button[0].addEventListener('click', () => {
+      if(input[0].value == '') {
+        alert('Xin hãy điền tên')
+        input[0].value = ''
+        input[0].focus()
+        return false
+      }
+      for(let i=0; i<accounts.length; i++) {
+        if(accounts[i].name == input[0].value) {
+          alert('Tên bị trùng')
+          input[0].value = ''
+          input[0].focus()
+          return false
+        }
+      }
+      accounts[getAccount].name = input[0].value
+      input[0].value = ''
+      input[0].placeholder = accounts[getAccount].name
+      localStorage.setItem('accounts', JSON.stringify(accounts))
+    })
+    button[1].addEventListener('click', () => {
+      if(input[1].value == '' || !(input[1].value.includes("@") && input[1].value.includes(".com"))) {
+        alert('Xin hãy điền email')
+        input[1].value = ''
+        input[1].focus()
+        return false
+      }
+      for(let i=0; i<accounts.length; i++) {
+        if(accounts[i].email == input[1].value) {
+          alert('Email bị trùng')
+          input[1].value = ''
+          input[1].focus()
+          return false
+        }
+      }
+      accounts[getAccount].email = input[1].value
+      input[1].value = ''
+      input[1].placeholder = accounts[getAccount].email
+      localStorage.setItem('accounts', JSON.stringify(accounts))
+    })
+    button[2].addEventListener('click', () => {
+      if(input[2].value == '') {
+        alert('Xin hãy điền mật khẩu')
+        input[2].value = ''
+        input[2].focus()
+        return false
+      }
+      accounts[getAccount].pass = input[2].value
+      input[2].value = ''
+      input[2].placeholder = accounts[getAccount].pass
+      localStorage.setItem('accounts', JSON.stringify(accounts))
+    })
+    button[3].addEventListener('click', () => {
+      if(input[3].value == '') {
+        alert('Xin hãy điền số điện thoại')
+        input[3].focus()
+        return false
+      }
+      if(input[3].value.length != 10) {
+        alert('Hãy điền đủ 10 số')
+        input[3].focus()
+        return false
+      }
+      for(let i=0; i<accounts.length; i++) {
+        if(accounts[i].phone == input[3].value) {
+          alert('Số điện thoại bị trùng')
+          input[3].focus()
+          return false
+        }
+      }
+      accounts[getAccount].phone = input[3].value
+      input[3].value = ''
+      input[3].placeholder = accounts[getAccount].phone
+      localStorage.setItem('accounts', JSON.stringify(accounts))
+    })
+    button[4].addEventListener('click', () => {
+      accounts[getAccount].gender = gender.value
+      localStorage.setItem('accounts', JSON.stringify(accounts))
+    })
+}
+function exitEditAccount() {
+  let editMenu = document.getElementById("edit_account")
+  editMenu.style.transform = 'scale(0)'
+  location.reload()
+}
+
+const createAddressForm = document.getElementById('dia_chi_form')
+function createAddress() {
+  const createAddressMenu = document.getElementById('dia_chi_tk')
+  createAddressMenu.classList.toggle('show')
+  createAddressForm['name'].value = ''
+  createAddressForm['phone'].value = ''
+  createAddressForm['address'].value = ''
+}
+createAddressForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const receiver = createAddressForm['name']
+  const phone = createAddressForm['phone']
+  const address = createAddressForm['address']
+
+  if(phone.value == '' || phone.value.length != 10 || receiver.value == '' || address.value == '') {
+    alert('Xin hãy điền đúng thông tin')
+    return false
+  }
+
+  accounts[remember].addresses.forEach(address => {
+    address.status = ''
+  })
+  newAddress = {
+    id: accounts[remember].addresses.length,
+    name: receiver.value,
+    phone: phone.value,
+    address: address.value,
+    status: 'choose'
+  }
+  accounts[remember].addresses.push(newAddress)
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+  alert('Đã thêm địa chỉ')
+  location.reload()
 })

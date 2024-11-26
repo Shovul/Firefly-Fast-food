@@ -63,6 +63,16 @@ function showAccountList() {
     const listDelete = document.createElement('div')
     const listEdit = document.createElement('div')
 
+    if(account.status == 'ban') {
+      listName.style.backgroundColor = '#FF003F'
+      listEmail.style.backgroundColor = '#FF003F'
+      listPass.style.backgroundColor = '#FF003F'
+      listPhone.style.backgroundColor = '#FF003F'
+      listGender.style.backgroundColor = '#FF003F'
+      listDelete.style.backgroundColor = '#FF003F'
+      listEdit.style.backgroundColor = '#FF003F'
+    }
+
     listName.innerHTML = account.name
     listEmail.innerHTML = account.email
     listPass.innerHTML = account.pass
@@ -232,27 +242,75 @@ function editAccount(current) {
   avatar.addEventListener('click', () => {
     let confirm = window.confirm("Xóa ảnh của người dùng?")
     if(confirm) {
-      accounts[getAccount].avatar = null
-      avatar.style.backgroundImage = 'none'
+      accounts[getAccount].avatar = 'images/Icons/default.svg'
+      avatar.style.backgroundImage = 'url(images/Icons/default.svg)'
       localStorage.setItem('accounts', JSON.stringify(accounts))
     }
   })
   button[0].addEventListener('click', () => {
+    if(input[0].value == '') {
+      alert('Xin hãy điền tên')
+      return false
+    }
+    for(let i=0; i<accounts.length; i++) {
+      if(accounts[i].name == input[0].value) {
+        alert('Tên bị trùng')
+        return false
+      }
+    }
     accounts[getAccount].name = input[0].value
     changeInputAccounts(input[0])
     localStorage.setItem('accounts', JSON.stringify(accounts))
   })
   button[1].addEventListener('click', () => {
+    if(input[1].value == '' || !(input[1].value.includes("@") && input[1].value.includes(".com"))) {
+      alert('Xin hãy điền email')
+      input[1].value = ''
+      input[1].focus()
+      return false
+    }
+    for(let i=0; i<accounts.length; i++) {
+      if(accounts[i].email == input[1].value) {
+        alert('Email bị trùng')
+        input[1].value = ''
+        input[1].focus()
+        return false
+      }
+    }
     accounts[getAccount].email = input[1].value
     changeInputAccounts(input[1])
     localStorage.setItem('accounts', JSON.stringify(accounts))
   })
   button[2].addEventListener('click', () => {
+    if(input[2].value == '') {
+      alert('Xin hãy điền mật khẩu')
+      input[2].value = ''
+      input[2].focus()
+      return false
+    }
     accounts[getAccount].pass = input[2].value
     changeInputAccounts(input[2])
     localStorage.setItem('accounts', JSON.stringify(accounts))
   })
   button[3].addEventListener('click', () => {
+    if(input[3].value == '') {
+      alert('Xin hãy điền số điện thoại')
+      input[3].focus()
+      return false
+    }
+    if(input[3].value.length != 10) {
+      alert('Hãy điền đủ 10 số')
+      input[3].focus()
+      return false
+    }
+    
+    for(let i=0; i<accounts.length; i++) {
+      if(accounts[i].phone == input[3].value) {
+        alert('Số điện thoại bị trùng')
+        input[3].focus()
+        return false
+      }
+    }
     accounts[getAccount].phone = input[3].value
     changeInputAccounts(input[3])
     localStorage.setItem('accounts', JSON.stringify(accounts))
@@ -312,7 +370,7 @@ addAccountForm.addEventListener('submit', function(e) {
     pass: addAccountForm["password"].value,
     phone: addAccountForm["phone"].value,
     gender: null,
-    avatar: "/images/Icons/default.png",
+    avatar: "/images/Icons/default.svg",
     status: "active",
     addresses: [],
     basket: []
@@ -344,7 +402,7 @@ addAccountForm.addEventListener('submit', function(e) {
     },2000)
     check = false
   }
-  if (newAccount.phone == "" || newAccount.phone == null) {
+  if (newAccount.phone == "" || newAccount.phone == null || newAccount.phone.length != 10) {
     addAccountForm["phone"].previousSibling.previousSibling.style.transform = 'translateY(0)'
     addAccountForm["phone"].previousSibling.previousSibling.style.opacity = 1 
     window.setTimeout(function() {
