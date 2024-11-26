@@ -36,9 +36,9 @@
                 </button>
             </li>
             <li>
-                <a href="index.html?trangchu">
+                <a class="trang-chu" onclick="toMain()">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
-                    <span">Trang chu</span>
+                    <span>Trang chu</span>
                 </a>
             </li>
 
@@ -51,12 +51,12 @@
                 <ul class="sub-menu">
                     <div>
                         <li>
-                            <a href="#thucan">
+                            <a href="#thucan" onclick="toMenu()">
                                 <span>Thuc an</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#douong">
+                            <a href="#douong" onclick="toMenu()">
                                 <span>Thuc uong</span>
                             </a>
                         </li>
@@ -66,7 +66,7 @@
                             </a>
                         </li> -->
                         <li>
-                            <a href="#trangmieng">
+                            <a href="#trangmieng" onclick="toMenu()">
                                 <span>Trang mieng</span>
                             </a>
                         </li>
@@ -83,17 +83,17 @@
                 <ul class="sub-menu">
                     <div>
                         <li>
-                            <a>
+                            <a href="#thongtin" onclick="toIntroduction(1)">
                                 <span>Thong tin</span>
                             </a>
                         </li>
                         <li>
-                            <a href="index.html?lichsu">
+                            <a href="#noidunglichsu" onclick="toIntroduction(2)">
                                 <span>Lich su</span>
                             </a>
                         </li>
                         <li>
-                            <a href="index.html?nguyenlieu">
+                            <a href="#noidungnguyenlieu" onclick="toIntroduction(3)">
                                 <span>Nguyen lieu</span>
                             </a>
                         </li>
@@ -102,7 +102,7 @@
             </li>
 
             <li>
-                <a href="">
+                <a onclick="toSale()" class="khuyen-mai">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
                     <span>Khuyen mai</span>
                 </a>
@@ -116,7 +116,10 @@
         <img src="images/Icons/logo.png" alt="firefly Logo" id="logo">
 
         <div id="filter">
-            <div>Tìm kiếm nâng cao</div>
+            <button onclick="openFilterList(this)">
+                <span>Chọn lọc</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-360 280-560h400L480-360Z"/></svg>
+            </button>
         </div>
         <div class="search">
             <input type="text" name="search" autocomplete="off">
@@ -132,8 +135,49 @@
                 <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#FFFFFF"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
             </div>
         </div>
-    </nav>
+    </nav> 
     
+    <ul id="filter-list">
+        <div>
+            <li>
+                <button onclick="">Burger</button>
+            </li>
+            <li>
+                <button onclick="">Spaghetti</button>
+            </li>
+            <li>
+                <button onclick="">Cơm</button>
+            </li>
+            <li>
+                <button onclick="">Gà</button>
+            </li>
+            <li>
+                <button onclick="">Khai vị</button>
+            </li>
+            <li>
+                <button onclick="">Nước ngọt</button>
+            </li>
+            <li>
+                <button onclick="">Cafe</button>
+            </li>
+            <li>
+                <button onclick="">Trà</button>
+            </li>
+            <li>
+                <button onclick="">Smoothie</button>
+            </li>
+            <li>
+                <button onclick="">Kem</button>
+            </li>
+            <li>
+                <button onclick="">Bánh ngọt</button>
+            </li>
+            <li>
+                <button onclick="">Bánh kem</button>
+            </li>
+        </div>
+    </ul>
+
     <div id="account-menu">
         <ul>
             <li>
@@ -147,7 +191,7 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a href="index.html?giohang">
                     <span>Gio hang</span>
                 </a>
             </li>
@@ -344,6 +388,31 @@
 
     <!-- thong tin tai khoan va cai dat setting -->
     <div id="account-info">
+        <div id="edit_account" class="current">
+            <div>
+                <input type="text"><button>Đổi</button>
+            </div>
+            <div>
+                <input type="text"><button>Đổi</button>
+            </div>
+            <div>
+                <input type="text"><button>Đổi</button>
+            </div>
+            <div>
+                <input type="tel"><button>Đổi</button>
+            </div>
+            <div>
+                <select>
+                    <option value="null" selected="selected"  disabled="disabled">Chon gioi tinh</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nu</option>
+                    <option value="Khác">Khac</option>
+                </select><button>Đổi</button>
+            </div>
+
+
+            <div class="exit btn"><svg  onclick="exitEditAccount()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z"/></svg></div>
+        </div>
         <nav id="nav-thongtin">
             <ul>
                 <a id="exit" class="account" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg></a>
@@ -352,11 +421,11 @@
                     <ul>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
-                            <a>Tai khoan</a>
+                            <a href="#thong_tin_tk">Tai khoan</a>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
-                            <a>Dia chi</a>
+                            <a href="#dia_chi_tk">Dia chi</a>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M160-200v-440 440-15 15Zm0 80q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v171q-18-13-38-22.5T800-508v-132H160v440h283q3 21 9 41t15 39H160Zm240-600h160v-80H400v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm20-208v-112h-40v128l86 86 28-28-74-74Z"/></svg>
@@ -399,9 +468,9 @@
             </ul>
         </nav>
 
-        <div id="setting-container">
+        <div id="setting-container">    
             <div class="taikhoan active">
-                <h1 class="title">THÔNG TIN TÀI KHOẢN</h1>
+                <h1 class="title" id="thong_tin_tk">THÔNG TIN TÀI KHOẢN</h1>
                 <ul>
                     <h2>Tai khoan</h2>
                     <label class="avatar" for="avt-file">
@@ -421,19 +490,30 @@
                         <span class="thongtin"></span>
                         <select id="gioitinh" onclick="getGender(this)">
                             <option value="null" selected="selected"  disabled="disabled">Chon gioi tinh</option>
-                            <option value="nam">Nam</option>
-                            <option value="nu">Nu</option>
-                            <option value="khac">Khac</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nu</option>
+                            <option value="Khác">Khac</option>
                         </select>
                     </li>
                     <li>
-                        <button>Thay đổi thông tin</button>
+                        <button onclick="editAccount()">Thay đổi thông tin</button>
                     </li>
                 </ul>
                 <ul>
                     <h2>Dia chi</h2>
-                    <li>
-                        <button>Them dia chi</button>
+                    <div></div>
+                    <li id="dia_chi_tk">
+                        <button onclick="createAddress()">Them dia chi</button>
+                        <form method="POST" id="dia_chi_form">
+                            <input type="text" id="dia_chi-name" name="name" autocomplete="off" placeholder=" ">
+                            <label for="dia_chi-name">Tên người nhận hàng</label>
+                            <input type="text" id="dia_chi-phone" name="phone" autocomplete="off" placeholder=" ">
+                            <label for="dia_chi-phone">Số điện thoại liên lạc</label>
+                            <input type="text" id="dia_chi-address" name="address" autocomplete="off" placeholder=" ">
+                            <label for="dia_chi-address">Địa chỉ giao hàng</label>
+                            
+                            <input type="submit" value="Tạo địa chỉ mới">
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -446,5 +526,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>
