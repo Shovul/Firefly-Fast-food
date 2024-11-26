@@ -1,3 +1,4 @@
+
 window.onload = function(e) {
   var url = window.location.href
   const goTo = url.split("?")
@@ -15,6 +16,7 @@ window.onload = function(e) {
     case "giohang":
       break
     default:
+      window.location.href = "index.html"
       createAccount()
       createMenu()  
   }
