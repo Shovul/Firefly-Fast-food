@@ -20,22 +20,126 @@ if (screen.width > 800) {
 }
 
 function toMenu() {
+  offGioHang()
   const active = document.getElementById("active")
   const menu = document.getElementsByClassName("dropdown-btn")
   document.getElementById("noidungtrangchu").innerHTML= ''
   document.getElementById("noidunglichsu").innerHTML= ''
   document.getElementById("noidungnguyenlieu").innerHTML= ''
+  document.getElementById("filter").style.display = 'flex'
+  document.getElementById("filter-list").style.display= 'grid'
   document.getElementsByClassName("slider")[0].style.display="block";
   document.getElementsByClassName("content")[0].style.display="block";
+
+  initializeMenu()
 
   active.id = ''
   menu[0].setAttribute('id', 'active')
 }
-function toMain() {
+// function toMain() {
+//   document.getElementById("filter").style.display = 'none'
+//   document.getElementById("filter-list").style.display= 'none'
+//   document.getElementsByClassName("slider")[0].style.display="none";
+//   document.getElementsByClassName("content")[0].style.display="none";
+//   document.getElementById("noidunglichsu").innerHTML= ''
+//   document.getElementById("noidungnguyenlieu").innerHTML= ''
+//   const trangchu = document.getElementById("noidungtrangchu");
+//         trangchu.innerHTML = `
+//         <div class="divtrangchu">
+//     <h1>Chào mừng đến với <span>Firefly Restaurant</span></h1>
+//     <h1>Thiên đường Ẩm Thực Nhanh Chóng và Tiện Lợi! </h1>
+//     <p class="modau">
+//         Chúng tôi tự hào mang đến cho bạn những bữa ăn ngon miệng, tiện lợi, và đầy đủ dinh dưỡng. 
+//         Từ những chiếc <strong>burger thơm ngon</strong>, <strong>gà rán giòn rụm</strong>, cho đến những 
+//         <strong>món ăn kèm hấp dẫn</strong> như khoai tây chiên, salad tươi, và nhiều hơn thế nữa. 
+//         Tất cả đều được chế biến từ những nguyên liệu chất lượng cao nhất.
+//     </p>
+//     <h2>Tại sao chọn chúng tôi?</h2>
+//     <ul>
+//         <li>🍔 <strong>Thực đơn đa dạng:</strong> Đáp ứng mọi khẩu vị với các món ăn quốc tế và sáng tạo.</li>
+//         <li>🍗 <strong>Hương vị tuyệt vời:</strong> Công thức chế biến độc quyền, mang lại trải nghiệm khó quên.</li>
+//         <li>🚀 <strong>Dịch vụ nhanh chóng:</strong> Đặt hàng online dễ dàng, giao hàng tận nơi chỉ trong tích tắc.</li>
+//         <li>💬 <strong>Ưu đãi đặc biệt:</strong> Nhiều chương trình khuyến mãi hấp dẫn đang chờ bạn khám phá!</li>
+//     </ul>
+//     <h2>Những món ăn được yêu thích nhất</h2>
+//     <ul>
+//         <li>🌟 <strong>Gà Rán Giòn Cay:</strong> Cú đấm vị giác hoàn hảo!</li>
+//         <li>🌟 <strong>Burger Phô Mai Tan Chảy:</strong> Đậm đà trong từng miếng cắn.</li>
+//         <li>🌟 <strong>Set Combo Gia Đình:</strong> Tiết kiệm hơn, vui vẻ hơn!</li>
+//     </ul>
+//     <p class="vechungtoi">
+//         Hãy ghé thăm <strong>Firefly Restaurant</strong> ngay hôm nay để thưởng thức những món ăn yêu thích của bạn! 
+//         Đặt hàng trực tuyến hoặc ghé qua cửa hàng gần nhất để trải nghiệm hương vị ẩm thực đỉnh cao!
+//     </p>
+//     <style>
+// .divtrangchu {
+//     padding: 30px;
+//     margin-left: 50px;
+// }
+// .divtrangchu h1 {
+//     font-size: 1.7rem;
+//     color: red;
+//     text-align: center;
+//     margin-bottom: 20px;
+// }   
+// .divtrangchu h1 span {
+//     color: orange;
+//     font-size: 1.5rem;
+//     text-align: center;
+
+// }
+// .divtrangchu .modau {
+//     font-size: 1.2rem;
+//     margin-bottom: 20px;
+// }
+// .divtrangchu h2 {
+//     font-size: 1.5rem;
+//     margin-top: 20px;
+//     color: brown;
+//     margin-left: 60px;
+
+// }
+// .divtrangchu ul {
+//     list-style: none;
+//     padding: 0;
+//     margin: 10px 0 20px 0;
+// }
+
+// .divtrangchu ul li {
+//     margin: 10px 0;
+//     font-size: 1.1rem;
+//     line-height: 1.8;
+// }
+
+// .divtrangchu ul li strong {
+//     color: #2ecc71;
+// }
+
+// .divtrangchu .vechungtoi {
+//     text-align: center;
+//     font-size: 1.1rem;
+//     margin-top: 20px;
+//     margin-left: 20px;
+//     color: #555;
+// }
+
+// </style>
+//             `;
+//   const active = document.getElementById("active")
+//   const main = document.getElementsByClassName("trang-chu")
+
+//   active.id = ''
+//   main[0].setAttribute('id', 'active')
+//   window.scrollTo(0, 0)
+// }
+function toIntroduction() {
+  offGioHang()
+  document.getElementById("filter").style.display = 'none'
+  document.getElementById("filter-list").style.display= 'none'
+  document.getElementById("noidungtrangchu").innerHTML= ''
   document.getElementsByClassName("slider")[0].style.display="none";
   document.getElementsByClassName("content")[0].style.display="none";
-  document.getElementById("noidunglichsu").innerHTML= ''
-  document.getElementById("noidungnguyenlieu").innerHTML= ''
+
   const trangchu = document.getElementById("noidungtrangchu");
         trangchu.innerHTML = `
         <div class="divtrangchu">
@@ -118,18 +222,6 @@ function toMain() {
 
 </style>
             `;
-  const active = document.getElementById("active")
-  const main = document.getElementsByClassName("trang-chu")
-
-  active.id = ''
-  main[0].setAttribute('id', 'active')
-  window.scrollTo(0, 0)
-}
-function toIntroduction() {
-  document.getElementById("noidungtrangchu").innerHTML= ''
-  document.getElementsByClassName("slider")[0].style.display="none";
-  document.getElementsByClassName("content")[0].style.display="none";
-
     const lichsu = document.getElementById("noidunglichsu");
     lichsu.innerHTML = `
     <div class="divlichsu">

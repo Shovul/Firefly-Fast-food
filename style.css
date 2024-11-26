@@ -32,13 +32,16 @@ button {
   font-weight: bold;
 }
 
-#blur-bg {
+.bg {
   display: none;
   position: fixed;
   inset: 0;
   height: 100%;
-  z-index: 1;
-  backdrop-filter: blur(1.1px);
+  z-index: 2;
+  /* backdrop-filter: blur(1px); */
+}
+#white.bg {
+  background-color: white;
 }
 
 
@@ -572,6 +575,7 @@ button {
   display: block;
 }
 #setting-container {
+  overflow-y: auto;
   box-shadow: 0 0 10px 3px var(--selected-dark);
   border-radius: 20px;
   margin: 40px;
@@ -795,6 +799,7 @@ button {
 /* Cai Menu lua thuc an */
 .content
 {
+  padding-bottom: 2%;
   overflow: hidden;
   background-color:rgb(255, 255, 255);
   > h2 {
@@ -1422,6 +1427,173 @@ button {
     border-radius: 8px;
   }
 }
+/* phan trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #ffa2a2;
+  border: none;
+  border-radius: 5px;
+}
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* gio hang */
+#giohang {
+  padding-bottom: 30vh;
+  display: none;
+}
+.container {
+  display: flex;
+  margin: 20px;
+}
+
+.products {
+  flex: 2;
+  border: 2px solid black;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.product-item.selected {
+  background-color: #f0f8ff;
+  border-left: 4px solid #4c4c9c;
+}
+
+.product-checkbox {
+  margin-right: 10px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.product-image {
+  width: 80px;
+  height: 100px;
+  background-color: #eee;
+  text-align: center;
+  line-height: 100px;
+  background-size:cover;
+  background-position:center; 
+  background-repeat: no-repeat;
+}
+
+.product-info {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.remove {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  align-self: center;
+  margin-left: 5px;
+}
+
+.summary {
+  flex: 1;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.summary p {
+  margin: 5px 0;
+}
+
+.summary-item {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.buy-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buy-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.buy-button button:hover {
+  background-color: #4c4c9c;
+  color: white;
+  transform: scale(1.05);
+}
+
+
+#shipping-form {
+  display: none;
+  max-width: 600px;
+  margin: 5vh auto;
+  background-color: #f9f9f9;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  height: fit-content;
+}
+#shipping-form > h2 {
+  text-align: center;
+}
+#shipping-form > label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+#shipping-form > input, #shipping-form > select, #shipping-form > button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#shipping-form > button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+#shipping-form > button:hover {
+  background-color: #0056b3;
+}
+.cart-button {
+  margin-top: 10px;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 5px;
+}
+.cart-button:hover {
+  background-color: #d32f2f;
+}
+
 
 /* responsive */
 @media (max-width:900px) {

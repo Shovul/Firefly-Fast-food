@@ -17,6 +17,7 @@
     <script src="script/chitiet.js" defer></script>
     <script src="script/autoAdd.js" defer></script>
     <script src="script/trangchu.js" defer></script>
+    <script src="script/giohang.js" defer></script>
 
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +25,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
 </head>
 <body>
-    <div id="blur-bg"></div>
-     
+    <div id="blur" class="bg"></div>
+    <div id="white" class="bg"></div>
+    
+    <!-- tao don hang -->
+    <form id="shipping-form">
+        <h2>Thông Tin Giao Hàng</h2>
+        <label for="name">Họ và Tên</label>
+        <input type="text" id="name" placeholder="Nhập họ và tên" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Nhập email" required>
+
+        <label for="phone">Số điện thoại</label>
+        <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
+
+        <label for="address">Địa chỉ</label>
+        <!-- <select id="address" name="province" required>
+        </select> -->
+        <input type="text" id="address" placeholder="Nhập địa chỉ, VD: 123 Đường abc" required>
+        <label for="province">Tỉnh/Thành</label>
+        <select id="province" required>
+            <option value="" selected disabled>Chọn tỉnh/thành</option>
+            <option value="Bắc Ninh">Bắc Ninh</option>
+            <option value="Hà Nội">Hà Nội</option>
+            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+        </select>
+
+        <label for="district">Quận/Huyện</label>
+        <select id="district" required>
+            <option value="" selected disabled>Chọn quận/huyện</option>
+        </select>
+
+        <label for="ward">Phường/Xã</label>
+        <select id="ward" required>
+            <option value="" selected disabled>Chọn phường/xã</option>
+        </select>
+
+        <button type="button" onclick="submitOrder()">Tiếp tục đến phương thức thanh toán</button>
+
+        <!-- Nút quay lại giỏ hàng -->
+        <button type="button" class="cart-button" onclick="goToCart()">Quay lại giỏ hàng</button>
+    </form>
+ 
     
     <!-- sidebar -->
     <nav id="sidebar" class="close">
@@ -36,14 +78,14 @@
                 </button>
             </li>
             <li>
-                <a class="trang-chu" onclick="toMain()">
+                <a class="trang-chu" href="index.html" onclick="toMain()" id="active">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
                     <span>Trang chu</span>
                 </a>
             </li>
 
             <li>
-                <button onclick=toggleSubmenu(this) class="dropdown-btn" id="active">
+                <button onclick=toggleSubmenu(this) class="dropdown-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M280-80v-366q-51-14-85.5-56T160-600v-280h80v280h40v-280h80v280h40v-280h80v280q0 56-34.5 98T360-446v366h-80Zm400 0v-320H560v-280q0-83 58.5-141.5T760-880v800h-80Z"/></svg>
                     <span>Menu</span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-360 280-560h400L480-360Z"/></svg>
@@ -83,7 +125,7 @@
                 <ul class="sub-menu">
                     <div>
                         <li>
-                            <a href="#thongtin" onclick="toIntroduction(1)">
+                            <a href="#noidungtrangchu" onclick="toIntroduction(1)">
                                 <span>Thong tin</span>
                             </a>
                         </li>
@@ -136,44 +178,71 @@
             </div>
         </div>
     </nav> 
+
+    
+    <!-- gio hang -->
+    <div id="giohang">
+        <!-- Phần nội dung chính chia thành 2 cột: danh sách sản phẩm và tóm tắt giỏ hàng -->
+        <div class="container">
+            <!-- Khu vực danh sách sản phẩm -->
+            <div class="products" id="product-list">
+                <!-- Nội dung được tạo động bởi JavaScript -->
+            </div>
+            
+            <!-- Khu vực tóm tắt giỏ hàng -->
+            <div class="summary">
+                <p><strong>Tổng tiền</strong></p>
+                <div id="summary-items">
+                    <!-- Danh sách sản phẩm đã chọn -->
+                </div>
+                <p><strong>Tổng cộng: <span id="total-price">0₫</span></strong></p> <!-- Tổng số tiền -->
+                <div class="buy-button">
+                    <button onclick="checkout()">Mua</button> <!-- Nút mua -->
+                </div>
+            </div>
+        </div>
+    </div>
     
     <ul id="filter-list">
         <div>
             <li>
-                <button onclick="">Burger</button>
+                <button>Tất cả</button>
             </li>
             <li>
-                <button onclick="">Spaghetti</button>
+                <button>Burger</button>
             </li>
             <li>
-                <button onclick="">Cơm</button>
+                <button>Spaghetti</button>
             </li>
             <li>
-                <button onclick="">Gà</button>
+                <button>Cơm</button>
             </li>
             <li>
-                <button onclick="">Khai vị</button>
+                <button>Gà</button>
             </li>
             <li>
-                <button onclick="">Nước ngọt</button>
+                <button>Khai vị</button>
             </li>
             <li>
-                <button onclick="">Cafe</button>
+                <button>Nước ngọt</button>
             </li>
             <li>
-                <button onclick="">Trà</button>
+                <button>Cafe</button>
             </li>
             <li>
-                <button onclick="">Smoothie</button>
+                <button>Trà</button>
             </li>
             <li>
-                <button onclick="">Kem</button>
+                <button>Smoothie</button>
             </li>
             <li>
-                <button onclick="">Bánh ngọt</button>
+                <button>Kem</button>
             </li>
             <li>
-                <button onclick="">Bánh kem</button>
+                <button>Bánh ngọt</button>
+            </li>
+            <li>
+                <button>Bánh kem</button>
             </li>
         </div>
     </ul>
@@ -219,7 +288,7 @@
     </div>
 
     
-
+<!-- quang cao -->
     <div id="slide-box">
         <div class="slider">
             <img src="images/Advertisement/x1600x504-1.jpg.pagespeed.ic.9cuGI5vJI3.webp">
@@ -234,11 +303,12 @@
             <a href="ad-image-4" class="btn"></a>
         </div>
     </div>
+    
+    <!-- menu, trang chu, ... -->
     <div id="noidungtrangchu" ></div>
     <div id="noidunglichsu"></div>
     <div id="noidungnguyenlieu"></div>
 
-    <!-- menu, trang chu, ... -->
     
     <div id="hienthongtinsp">
         <h2 id="Title">THÔNG TIN SẢN PHẨM</h2>
@@ -254,8 +324,8 @@
                     <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
                     <button class="button" onclick="increaseQuantity()">+</button>
                  </div>   
-                 <h4 id="themvaogio">
-                    <span>Thêm vào giỏ hàng</span>
+                 <h4 id="themvaogio" onclick="muaSP(this)">
+                    <span></span>
                     <span id="total-price"></span>
                 </h4>
                  <button id="quaylai" onclick="closeSP()"><h4>X</h4></button>
@@ -329,7 +399,6 @@
         </div>
     </div>
    
-
         
 
     <!-- menu de log in hien ra khi an nut sign in -->
@@ -440,7 +509,7 @@
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#FFFFFF"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
-                            <a href="#dia_chi_tk">Dia chi</a>
+                            <a href="#dia_chi_tk"  onclick="createAddress()">Dia chi</a>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M160-200v-440 440-15 15Zm0 80q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v171q-18-13-38-22.5T800-508v-132H160v440h283q3 21 9 41t15 39H160Zm240-600h160v-80H400v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm20-208v-112h-40v128l86 86 28-28-74-74Z"/></svg>
