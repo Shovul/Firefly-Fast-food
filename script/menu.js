@@ -23,6 +23,7 @@ function loadMenuByPage(type, dataList) {
   const endIndex = startIndex + ITEMS_PER_PAGE[type];
   const paginatedItems = dataList.slice(startIndex, endIndex);
 
+<<<<<<< HEAD
   // Xác định container để hiển thị sản phẩm
   const container = document.getElementById(`${type}-items`);
   container.innerHTML = ""; // Xóa sản phẩm cũ
@@ -34,14 +35,20 @@ function loadMenuByPage(type, dataList) {
     div.innerHTML = `
       <div>
           <img class="hinhanh" src ="${item.image}">
+=======
+    return `
+        <div>
+          <img class="hinhanh" src ="${item.image}" id="${item.id}" onclick="mochitiet(this)">
+>>>>>>> d528fa93fbdcb2a91428a1bdc0ead0de8a70e57b
         </div> 
         <div class="container-items"> <h3>${item.name}</h3></div>
-        <div class="container-items"> <b>${item.price}</b> </div>
+        <div class="container-items" style="background-color: var(--selected-dark); padding: 10px; border-radius: 20px; width: 50%; display: flex; justify-content: center"> ${item.price} </div>
         <div class="container">
-          <div class="container-items">
+          <div class="container-items" id="${item.id}" onclick="mochitiet(this)" style="cursor: pointer;">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
+            <span><b>Thêm vào giỏ</b></span>
           </div>
-          <div class="container-items" id="${item.id}" onclick="mochitiet(this)"><b>Chi tiết</b></div>
+          <div class="container-items" style="cursor: pointer;" id="${item.id}" onclick="mochitiet(this)"><b>Mua ngay</b></div>
         </div>
     `;
     container.appendChild(div);
