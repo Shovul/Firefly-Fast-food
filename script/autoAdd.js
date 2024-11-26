@@ -12,7 +12,8 @@ function createAccount() {
         avatar: "images/Icons/logo.png",
         status: "active",
         addresses: [],
-        basket: []
+        hoadon: [],
+        cart: []
       },
       admin2 = {
         id: 1,
@@ -24,7 +25,8 @@ function createAccount() {
         avatar: "images/Icons/logo.png",
         status: "active",
         addresses: [],
-        basket: []
+        hoadon: [],
+        cart: []
       }
     ]
     localStorage.setItem('accounts', JSON.stringify(accounts))
@@ -37,7 +39,7 @@ function createMenu() {
         id: 0,
         name: "Khoai tây",
         price: 20000,
-        type: "khoai",
+        type: "Khai vị",
         image: "images/food/french_fries.png",
         group: "Thức ăn",
         description: "khoai khoai khoai ngon ngon"
@@ -46,7 +48,7 @@ function createMenu() {
         id: 1,
         name: "Hamburger",
         price: 39000,
-        type: "burger",
+        type: "Burger",
         image: "images/food/burger.jpg",
         group: "Thức ăn",
         description: "hambuger hambuger hambuger ngon ngon"
@@ -55,7 +57,7 @@ function createMenu() {
         id: 2,
         name: "Cheese sticks",
         price: 29000,
-        type: "khoai",
+        type: "Khai vị",
         image: "images/food/cheese_sticks.jfif",
         group: "Thức ăn",
         description: "phmai phmai phmai ngon ngon"
@@ -64,7 +66,7 @@ function createMenu() {
         id: 3,
         name: "Coca cola",
         price: 15000,
-        type: "soda",
+        type: "Nước ngọt",
         image: "images/food/coca_cola.jfif",
         group: "Đồ uống",
         description: "coca coca coca ngon ngon"
@@ -73,7 +75,7 @@ function createMenu() {
         id: 4,
         name: "Cafe",
         price: 21000,
-        type: "coffee",
+        type: "Cafe",
         image: "images/food/coffee.jpg",
         group: "Đồ uống",
         description: "cafe cafe cafe ngon ngon"
@@ -82,7 +84,7 @@ function createMenu() {
         id: 5,
         name: "Bánh su",
         price: 20000,
-        type: "banh",
+        type: "Bánh ngọt",
         image: "images/food/cream_puff.jfif",
         group: "Tráng miệng",
         description: "su su su ngon ngon"
@@ -91,7 +93,7 @@ function createMenu() {
         id: 6,
         name: "Gà rán",
         price: 89000,
-        type: "ga",
+        type: "Gà",
         image: "images/food/fried_chicken.jpg",
         group: "Thức ăn",
         description: "ga ga ga ngon ngon"
@@ -100,7 +102,7 @@ function createMenu() {
         id: 7,
         name: "Kem ly",
         price: 28000,
-        type: "kem",
+        type: "Kem",
         image: "images/food/ice_creame.jpg",
         group: "Tráng miệng",
         description: "kem kem kem ngon ngon"
@@ -109,7 +111,7 @@ function createMenu() {
         id: 8,
         name: "Lemon cake",
         price: 49000,
-        type: "banh",
+        type: "Bánh kem",
         image: "images/food/lemon_cake.png",
         group: "Tráng miệng",
         description: "lemon lemon lemon ngon ngon"

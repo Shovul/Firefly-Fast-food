@@ -125,7 +125,8 @@ function signUpAcc() {
       avatar: null,
       status: active,
       addresses: [],
-      basket: []
+      hoadon: [],
+      cart: []
     }
 
     if (accounts === null) {
@@ -200,6 +201,7 @@ function logOut() {
   document.getElementById('profile').style.display = 'none'
   localStorage.removeItem('rememberAcc')
   document.querySelector(".admin").style.display = 'none'
+  window.location.href = "index.html";
 
   closeAccountbar()
 }
@@ -264,6 +266,7 @@ function showThongtin() {
       receiver.appendChild(newAddress)
       diaChiList.appendChild(receiver)
       if(address.status == 'choose') {
+        
         diaChiList.selectedIndex = address.id
       }
     })

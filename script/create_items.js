@@ -28,7 +28,7 @@ menu_form.addEventListener('submit', function(e) {
   var mon = {
     id: menu.length,
     name: food_name.value,
-    price: food_price.value,
+    price: parseInt(food_price.value),
     type: food_type.value,
     image: food_image,
     group: food_group.label,
@@ -113,7 +113,7 @@ menu_form.addEventListener('submit', function(e) {
 
 function openAddMenu() {
   const addMenu = document.getElementById('add_menu')
-  const bg = document.getElementById('blur-bg')
+  const bg = document.querySelector('#blur.bg')
   document.body.style.overflow = 'hidden'
   addMenu.style.transform = 'scale(1)'
   bg.style.display = 'block'
@@ -121,7 +121,7 @@ function openAddMenu() {
 
 function exitAddMenu() {
   const addMenu = document.getElementById('add_menu')
-  const bg = document.getElementById('blur-bg')
+  const bg = document.querySelector('#blur.bg')
   document.body.style.overflow = 'auto'
   const input = menu_form.querySelectorAll('input:not([type="submit"])')
   input.forEach(inputElement => {

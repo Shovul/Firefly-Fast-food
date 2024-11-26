@@ -1,3 +1,4 @@
+
 accounts = JSON.parse(localStorage.getItem('accounts'))
 remember = localStorage.getItem('rememberAcc')
 function showQLMenu() {
@@ -20,9 +21,8 @@ function showMenuList() {
       const listDelete = document.createElement('div')
       const listEdit = document.createElement('div')
     
-
       listName.innerHTML = items.name
-      listPrice.innerHTML = items.price
+      listPrice.innerHTML = items.price.toLocaleString()
       listPicture.style.backgroundImage = `url(${items.image})`
       listType.innerHTML = items.type
       listDelete.innerHTML = `
@@ -219,7 +219,7 @@ function changeInputAccounts(input) {
   input.placeholder = "Đã sửa"
 }
 function editAccount(current) {
-  const background = document.getElementById("blur-bg")
+  const background = document.querySelector('#blur.bg')
   background.style.display = 'block'
   const editMenu = document.getElementById("edit_account")
   editMenu.style.transform = 'scale(1)'
@@ -341,12 +341,13 @@ function openAddAccount() {
   const addAccount = document.getElementById("add_account")
   addAccount.style.transform = "scale(1)"
   document.body.style.overflow = 'hidden'
-  document.getElementById('blur-bg').style.display = "block"
+  document.querySelector('#blur.bg').style.display = "block"
 }
 function exitAddAccount() {
   document.getElementById("add_account").style.transform = "scale(0)"
   document.body.style.overflow = 'auto'
-  document.getElementById('blur-bg').style.display = "none"
+  document.querySelector('#blur.bg').style.display = "none"
+  
 }
 const addAccountForm = document.querySelector("#add_account > form")
 // let avatar_image
