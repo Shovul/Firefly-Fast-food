@@ -65,7 +65,7 @@ function createMenu() {
     item5 = {
       id: 4,
       name: "Cafe",
-      price: 21000,
+      price: 20000,
       type: "coffee",
       image: "images/food/coffee.jpg",
       group: "Đồ uống",
@@ -84,7 +84,7 @@ function createMenu() {
       id: 6,
       name: "Gà rán",
       price: 89000,
-      type: "fried chicken",
+      type: "fried chicken1",
       image: "images/food/fried_chicken.jpg",
       group: "Thức ăn",
       description: "ga ga ga ngon ngon"
@@ -106,7 +106,25 @@ function createMenu() {
       image: "images/food/lemon_cake.png",
       group: "Tráng miệng",
       description: "lemon lemon lemon ngon ngon"
-    }
+    },
+    item10={
+      id:9,
+      name:"Ga chien",
+      price: 45000,
+      type:"fired chicken2",
+      image:"images/Food/BJ.jpg",
+      group:"Thức ăn",
+      description:"Mon cua Phuc lam"
+    },
+    item11={
+      id:10,
+      name:"Ga chien",
+      price: 45000,
+      type:"fired chicken2",
+      image:"images/Food/BJ.jpg",
+      group:"Thức ăn",
+      description:"Mon cua Phuc lam"
+    },
   ]
   localStorage.setItem('menu', JSON.stringify(menu))
 }
