@@ -20,24 +20,24 @@ function offGioHang() {
 function displayProducts() {
   const productList = document.getElementById("product-list");
   productList.innerHTML = ""; // Xóa nội dung cũ
-  accounts[remember].cart.forEach((product, index) => {
-      // Tạo HTML cho mỗi sản phẩm
-      productList.innerHTML += `
-          <div class="product-item ${product.selected ? 'selected' : ''}">
-              <!-- Checkbox chọn sản phẩm -->
-              <input type="checkbox" class="product-checkbox" onchange="toggleSelect(${index})" ${product.selected ? 'checked' : ''} />
-              <div class="product-image" style="background-image: url(${product.image});"></div> <!-- Hình ảnh sản phẩm -->
-              <div class="product-info">
-                  <p>${product.name}</p> <!-- Tên sản phẩm -->
-                  <p>${product.price.toLocaleString()}₫</p> <!-- Giá sản phẩm -->
-                  <!-- Ô nhập số lượng -->
-                  <input type="number" value="${product.quantity}" min="1" onchange="editQuantity(${index}, this.value)" />
-              </div>
-              <!-- Nút xóa sản phẩm -->
-              <div class="remove" onclick="removeProduct(${index})">X</div>
-          </div>
-      `;
-  });
+    accounts[remember].cart.forEach((product, index) => {
+        // Tạo HTML cho mỗi sản phẩm
+        productList.innerHTML += `
+            <div class="product-item ${product.selected ? 'selected' : ''}">
+                <!-- Checkbox chọn sản phẩm -->
+                <input type="checkbox" class="product-checkbox" onchange="toggleSelect(${index})" ${product.selected ? 'checked' : ''} />
+                <div class="product-image" style="background-image: url(${product.image});"></div> <!-- Hình ảnh sản phẩm -->
+                <div class="product-info">
+                    <p>${product.name}</p> <!-- Tên sản phẩm -->
+                    <p>${product.price.toLocaleString()}₫</p> <!-- Giá sản phẩm -->
+                    <!-- Ô nhập số lượng -->
+                    <input type="number" value="${product.quantity}" min="1" onchange="editQuantity(${index}, this.value)" />
+                </div>
+                <!-- Nút xóa sản phẩm -->
+                <div class="remove" onclick="removeProduct(${index})">X</div>
+            </div>
+        `;
+    });
   calculateTotal(); // Tính lại tổng tiền
 }
 
@@ -71,13 +71,14 @@ function calculateTotal() {
   let totalPrice = 0;
 
   // Tính tổng tiền cho các sản phẩm được chọn
-  accounts[remember].cart.forEach(product => {
-      if (product.selected) {
-          const itemTotal = product.price * product.quantity;
-          totalPrice += itemTotal; // Cộng vào tổng tiền
-          summaryItems.innerHTML += `<div class="summary-item">${product.name}: ${itemTotal.toLocaleString()}₫</div>`;
-      }
-  });
+  
+    accounts[remember].cart.forEach(product => {
+        if (product.selected) {
+            const itemTotal = product.price * product.quantity;
+            totalPrice += itemTotal; // Cộng vào tổng tiền
+            summaryItems.innerHTML += `<div class="summary-item">${product.name}: ${itemTotal.toLocaleString()}₫</div>`;
+        }
+    });
   
   document.getElementById("total-price").innerText = `${totalPrice.toLocaleString()}₫`; // Cập nhật tổng tiền
 }

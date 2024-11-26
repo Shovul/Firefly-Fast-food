@@ -98,15 +98,16 @@ function muaSP(option) {
             selected: false
         }
     }
-    for(let i=0; i<accounts[remember].cart.length; i++) {
-        if(accounts[remember].cart[i].id === item.id) {
-            accounts[remember].cart[i].quantity += item.quantity
-            localStorage.setItem('accounts', JSON.stringify(accounts))
-            alert('Đã thêm ' + item.name + ' vào giỏ hàng')
-            closeSP()
-            return false
+        for(let i=0; i<accounts[remember].cart.length; i++) {
+            if(accounts[remember].cart[i].id === item.id) {
+                accounts[remember].cart[i].quantity += item.quantity
+                localStorage.setItem('accounts', JSON.stringify(accounts))
+                alert('Đã thêm ' + item.name + ' vào giỏ hàng')
+                closeSP()
+                return false
+            }
         }
-    }
+    console.log(accounts)
     accounts[remember].cart.push(item)
     localStorage.setItem('accounts', JSON.stringify(accounts))
     alert('Đã thêm ' + item.name + ' vào giỏ hàng')
