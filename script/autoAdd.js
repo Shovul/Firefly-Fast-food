@@ -41,7 +41,7 @@ function createMenu() {
         name: "Khoai tây",
         price: 20000,
         type: "Khai vị",
-        image: "images/food/french_fries.png",
+        image: "images/Food/french_fries.png",
         group: "Thức ăn",
         description: "khoai khoai khoai ngon ngon"
       },
@@ -50,7 +50,7 @@ function createMenu() {
         name: "Hamburger",
         price: 39000,
         type: "Burger",
-        image: "images/food/burger.jpg",
+        image: "images/Food/burger.jpg",
         group: "Thức ăn",
         description: "hambuger hambuger hambuger ngon ngon"
       },
@@ -59,7 +59,7 @@ function createMenu() {
         name: "Cheese sticks",
         price: 29000,
         type: "Khai vị",
-        image: "images/food/cheese_sticks.jfif",
+        image: "images/Food/cheese_sticks.jfif",
         group: "Thức ăn",
         description: "phmai phmai phmai ngon ngon"
       },
@@ -68,7 +68,7 @@ function createMenu() {
         name: "Coca cola",
         price: 15000,
         type: "Nước ngọt",
-        image: "images/food/coca_cola.jfif",
+        image: "images/Food/coca_cola.jfif",
         group: "Đồ uống",
         description: "coca coca coca ngon ngon"
       },
@@ -77,7 +77,7 @@ function createMenu() {
         name: "Cafe",
         price: 21000,
         type: "Cafe",
-        image: "images/food/coffee.jpg",
+        image: "images/Food/coffee.jpg",
         group: "Đồ uống",
         description: "cafe cafe cafe ngon ngon"
       },
@@ -86,7 +86,7 @@ function createMenu() {
         name: "Bánh su",
         price: 20000,
         type: "Bánh ngọt",
-        image: "images/food/cream_puff.jfif",
+        image: "images/Food/cream_puff.jfif",
         group: "Tráng miệng",
         description: "su su su ngon ngon"
       },
@@ -95,7 +95,7 @@ function createMenu() {
         name: "Gà rán",
         price: 89000,
         type: "Gà",
-        image: "images/food/fried_chicken.jpg",
+        image: "images/Food/fried_chicken.jpg",
         group: "Thức ăn",
         description: "ga ga ga ngon ngon"
       },
@@ -104,7 +104,7 @@ function createMenu() {
         name: "Kem ly",
         price: 28000,
         type: "Kem",
-        image: "images/food/ice_creame.jpg",
+        image: "images/Food/ice_creame.jpg",
         group: "Tráng miệng",
         description: "kem kem kem ngon ngon"
       },
@@ -113,7 +113,7 @@ function createMenu() {
         name: "Lemon cake",
         price: 49000,
         type: "Bánh kem",
-        image: "images/food/lemon_cake.png",
+        image: "images/Food/lemon_cake.png",
         group: "Tráng miệng",
         description: "lemon lemon lemon ngon ngon"
       }
