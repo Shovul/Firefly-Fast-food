@@ -1,24 +1,38 @@
-let menu = JSON.parse(localStorage.getItem('menu'))
+// Số sản phẩm tối đa trên mỗi trang
+const ITEMS_PER_PAGE = {
+  food: 6,      // 6 sản phẩm cho Thức ăn
+  drink: 3,     // 3 sản phẩm cho Đồ uống
+  dessert: 3,   // 3 sản phẩm cho Tráng miệng
+};
 
+let currentPage = {
+  food: 1,
+  drink: 1,
+  dessert: 1,
+};
 
-const menuDisplay = document.querySelector(".content")
+// Lấy dữ liệu menu từ localStorage
+let menu = JSON.parse(localStorage.getItem('menu')) || [];
+let foods = menu.filter(item => item.group === "Thức ăn");
+let drinks = menu.filter(item => item.group === "Đồ uống");
+let desserts = menu.filter(item => item.group === "Tráng miệng");
 
-if (menu !== null) {
-  var foods = menu.filter((food) => food.group == "Thức ăn")
-  var drinks = menu.filter((food) => food.group == "Đồ uống")
-  var desserts = menu.filter((food) => food.group == "Tráng miệng")
-  loadMenu(foods, drinks, desserts)
-}
-// var content = document.createElement('div')
-// content.classList = 'items'
-// menuDisplay.appendChild(content)
-// let count = 0;   
-function loadMenu(foodList, drinkList, dessertList) {
-  const category = menuDisplay.getElementsByClassName("items")
-  function addItems(item) {
+// Hàm hiển thị sản phẩm theo trang
+function loadMenuByPage(type, dataList) {
+  const startIndex = (currentPage[type] - 1) * ITEMS_PER_PAGE[type];
+  const endIndex = startIndex + ITEMS_PER_PAGE[type];
+  const paginatedItems = dataList.slice(startIndex, endIndex);
 
-    return `
-        <div>
+  // Xác định container để hiển thị sản phẩm
+  const container = document.getElementById(`${type}-items`);
+  container.innerHTML = ""; // Xóa sản phẩm cũ
+
+  // Hiển thị từng sản phẩm trong trang hiện tại
+  paginatedItems.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "items-content";
+    div.innerHTML = `
+      <div>
           <img class="hinhanh" src ="${item.image}">
         </div> 
         <div class="container-items"> <h3>${item.name}</h3></div>
@@ -29,38 +43,59 @@ function loadMenu(foodList, drinkList, dessertList) {
           </div>
           <div class="container-items" id="${item.id}" onclick="mochitiet(this)"><b>Chi tiết</b></div>
         </div>
-    `
-  }
-  foodList.forEach(food => {
-    // count++;
-
-    var item = document.createElement('div')
-    item.classList = 'items-content'
-    item.innerHTML = addItems(food)
-    category[0].appendChild(item);
+    `;
+    container.appendChild(div);
   });
 
-  // while(count%3 != 0) {
-  //   menuDisplay.firstElementChild.appendChild(document.createElement('div'))
-  //   count++
-  // }
-  // count = 0;
-  // menuDisplay.appendChild(content)
-  drinkList.forEach(drink => {
-    // count++
-    var item = document.createElement('div')
-    item.classList = 'items-content'
-    item.innerHTML = addItems(drink)
-    category[1].appendChild(item);
-  });
-  // while(count%3 != 0) {
-  //   menuDisplay.firstElementChild.appendChild(document.createElement('div'))
-  //   count++
-  // }
-  dessertList.forEach(dessert => {
-    var item = document.createElement('div')
-    item.classList = 'items-content'
-    item.innerHTML = addItems(dessert)
-    category[2].appendChild(item);
-  });
+  // Cập nhật phân trang
+  updatePagination(type, dataList);
 }
+
+// Hàm cập nhật thông tin phân trang
+function updatePagination(type, dataList) {
+  const totalPages = Math.ceil(dataList.length / ITEMS_PER_PAGE[type]);
+  const pageNumbers = document.getElementById(`${type}-page-numbers`);
+  pageNumbers.textContent = `Trang ${currentPage[type]} / ${totalPages}`;
+
+  // Điều khiển nút "Trang trước" và "Trang sau"
+  const prevButton = document.querySelector(`#${type}-pagination button:first-child`);
+  const nextButton = document.querySelector(`#${type}-pagination button:last-child`);
+
+  prevButton.disabled = currentPage[type] === 1;
+  nextButton.disabled = currentPage[type] === totalPages;
+}
+
+// Hàm xử lý chuyển trang
+function changePage(type, direction) {
+  const dataList = {
+    food: foods,
+    drink: drinks,
+    dessert: desserts,
+  }[type];
+
+  if (direction === "prev" && currentPage[type] > 1) {
+    currentPage[type]--;
+  } else if (direction === "next" && currentPage[type] < Math.ceil(dataList.length / ITEMS_PER_PAGE[type])) {
+    currentPage[type]++;
+  }
+
+  loadMenuByPage(type, dataList);
+}
+
+// Hàm xử lý khi bấm vào nút "Chi tiết"
+function viewDetails(itemId) {
+  const item = menu.find(i => i.id === itemId);
+  if (item) {
+    alert(`Thông tin chi tiết:\nTên: ${item.name}\nGiá: ${item.price} VND\nMô tả: ${item.description}`);
+  }
+}
+
+// Khởi tạo menu hiển thị
+function initializeMenu() {
+  loadMenuByPage("food", foods);
+  loadMenuByPage("drink", drinks);
+  loadMenuByPage("dessert", desserts);
+}
+
+// Gọi hàm khởi tạo
+initializeMenu();

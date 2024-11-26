@@ -106,7 +106,34 @@ function createMenu() {
       image: "images/food/lemon_cake.png",
       group: "Tráng miệng",
       description: "lemon lemon lemon ngon ngon"
-    }
+    },
+    item10={
+      id:9,
+      name:"Đùi gà chiên nước mắm",
+      price: 45000,
+      type:"fired chicken2",
+      image:"images/Food/BJ.jpg",
+      group:"Thức ăn",
+      description:"Mon cua Phuc lam"
+    },
+    item11={
+      id:10,
+      name:"Khoai lang lắc phô mai",
+      price:20000,
+      type:"khoailang",
+      image:"images/Food/khoailangjpg.jpg",
+      group:"Thức ăn",
+      description:"Mon ngon cua Phuc"
+    },
+    item12={
+      id:11,
+      name:"Khoai lang lắc phô mai",
+      price:20000,
+      type:"khoailang",
+      image:"images/Food/khoailangjpg.jpg",
+      group:"Thức ăn",
+      description:"Mon ngon cua Phuc"
+    },
   ]
   localStorage.setItem('menu', JSON.stringify(menu))
 }
