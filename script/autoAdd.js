@@ -9,7 +9,7 @@ function createAccount() {
         pass: "123456",
         phone: "0924501312",
         gender: null,
-        avatar: "/images/Icons/logo.png",
+        avatar: "images/Icons/logo.png",
         status: "active",
         addresses: [],
         basket: []
@@ -21,7 +21,7 @@ function createAccount() {
         pass: "123456",
         phone: "0776551132",
         gender: null,
-        avatar: "/images/Icons/logo.png",
+        avatar: "images/Icons/logo.png",
         status: "active",
         addresses: [],
         basket: []

@@ -370,7 +370,7 @@ addAccountForm.addEventListener('submit', function(e) {
     pass: addAccountForm["password"].value,
     phone: addAccountForm["phone"].value,
     gender: null,
-    avatar: "/images/Icons/default.svg",
+    avatar: "images/Icons/default.svg",
     status: "active",
     addresses: [],
     basket: []
