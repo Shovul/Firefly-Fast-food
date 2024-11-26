@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="blur-bg"></div>
-    
+     
     
     <!-- sidebar -->
     <nav id="sidebar" class="close">
@@ -261,15 +261,30 @@
 
     <div class="content">
         <div id="thucan">Thức Ăn</div>
-        <div class="items">
+        <div class="items" id="food-items"></div>
+        <div class="pagination" id="food-pagination">
+          <button onclick="changePage('food', 'prev')">Trang trước</button>
+          <span id="food-page-numbers"></span>
+          <button onclick="changePage('food', 'next')">Trang sau</button>
         </div>
+      
         <div id="douong">Nước Uống</div>
-        <div class="items">
+        <div class="items" id="drink-items"></div>
+        <div class="pagination" id="drink-pagination">
+          <button onclick="changePage('drink', 'prev')">Trang trước</button>
+          <span id="drink-page-numbers"></span>
+          <button onclick="changePage('drink', 'next')">Trang sau</button>
         </div>
-        <div id="trangmieng">Tráng miệng</div>
-        <div class="items">
+      
+        <div id="trangmieng">Tráng Miệng</div>
+        <div class="items" id="dessert-items"></div>
+        <div class="pagination" id="dessert-pagination">
+          <button onclick="changePage('dessert', 'prev')">Trang trước</button>
+          <span id="dessert-page-numbers"></span>
+          <button onclick="changePage('dessert', 'next')">Trang sau</button>
         </div>
-    </div>
+      </div>
+      
       <!-- Thong tin lien he  -->
     <div class="lienhe">
         <div class="container">
