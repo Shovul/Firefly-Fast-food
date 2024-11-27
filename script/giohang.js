@@ -98,14 +98,6 @@ openCheckOut()
 
 displayProducts();
 
-document.querySelector('#shipping-form #address').addEventListener('change', () => {
-  for(let i=0; i<accounts[remember].addresses.length; i++) {
-    if(accounts[remember].addresses[i].id == document.querySelector('#shipping-form #address').value) {
-      document.querySelector('#shipping-form #name').value = accounts[remember].addresses[i].name 
-      document.querySelector('#shipping-form #phone').value =accounts[remember].addresses[i].phone 
-    }
-  }
-})
 function createAddressOption(address) {
   const receiver = document.createElement('optgroup')
   receiver.setAttribute('label', address.name + ", " + address.phone)
@@ -119,22 +111,18 @@ function createAddressOption(address) {
 function showAddresses() {
   const form = document.getElementById('shipping-form')
   if(accounts[remember].addresses.length > 0) {
-    form.innerHTML = `
-        <h2>Thông Tin Giao Hàng</h2>
-        <label for="name">Họ và Tên</label>
-        <input type="text" id="name" placeholder="Nhập họ và tên" required>
+    form['email'].style.display = 'none'
+    form.querySelector('label[for="email"]').style.display = 'none'
+    form['address'].style.display = 'none'
+    form.querySelector('label[for="address"]').style.display = 'none'
+    form['district'].style.display = 'none'
+    form.querySelector('label[for="district"]').style.display = 'none'
+    form['ward'].style.display = 'none'
+    form.querySelector('label[for="ward"]').style.display = 'none'
+    form['province'].innerHTML = ''
+    form.querySelector('label[for="province"]').innerHTML = 'Địa chỉ'
+    form['cart-btn'].setAttribute('onclick', 'addToCart()')
 
-        <label for="phone">Số điện thoại</label>
-        <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
-
-        <label for="address">Địa chỉ</label>
-        <select id="address" name="province" required>
-        </select>
-        
-        <button type="button" onclick="submitOrder()">Tiếp tục đến phương thức thanh toán</button>
-
-        <button type="button" class="cart-button" onclick="goToCart()">Quay lại giỏ hàng</button>
-    `
     let addresses = form['province']
     let name = form['name']
     let phone = form['phone']
@@ -151,11 +139,60 @@ function showAddresses() {
 
   }
 }
+let addressSelect = document.querySelector('#shipping-form #province')
+
+addressSelect.addEventListener('change', () => {
+  for(let i=0; i<accounts[remember].addresses.length; i++) {
+    if(accounts[remember].addresses[i].id == addressSelect.value) {
+      document.getElementById('shipping-form')['name'].value = accounts[remember].addresses[i].name 
+      document.getElementById('shipping-form')['phone'].value =accounts[remember].addresses[i].phone 
+    }
+  }
+})
 function openCheckOut() {
   showAddresses()
   const shipForm = document.getElementById('shipping-form')
   shipForm.style.display = 'block'
   document.querySelector('.bg#white').style.display = 'block'
+}
+function addToCart() {
+  var currentdate = new Date();
+  var orderDate = "Thời gian đặt: " + currentdate.getDay() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + "-" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+  const form = document.getElementById('shipping-form')
+  const address = accounts[remember].addresses.filter(address => address.id == form['province'].value)
+
+  let selectedProducts = JSON.parse(localStorage.getItem('selectedProducts'))
+  let newHoaDon = {
+    address: address,
+    items: selectedProducts,
+    orderTime: orderDate,
+    arriveTime: calculateArrivalTime(orderDate.split("-")[1],Math.floor(Math.random() * 50)),
+    paymentMethod: form['thanh_toan'].value
+  }
+
+  accounts[remember].hoadon.push(newHoaDon)
+  for(let i=0; i<accounts[remember].cart.length; i++) {
+    for(let j=0; j<selectedProducts.length; j++) {
+      if(accounts[remember].cart[i].id == selectedProducts[j].id) {
+        accounts[remember].cart.splice(i, 1)
+      }
+    }
+  }
+
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+  localStorage.removeItem('selectedProducts') 
+  
+  alert(`Bạn đã đặt hàng thành công! Đơn hàng dự kiến sẽ đến lúc ${newHoaDon.arriveTime}`)
+
+  window.location.href = 'index.html'
+}
+function calculateArrivalTime(time, minutes) {
+  let updateTime = time.split(":")
+  updateTime[1] = parseInt(updateTime[1]) + minutes
+  updateTime[0] = parseInt(updateTime[0]) + Math.floor(parseInt(updateTime[1])/60)
+  updateTime[1] = parseInt(updateTime[1])%60
+
+  return updateTime[0] + ':' + updateTime[1] + ':' + updateTime[2]
 }
  // Giả lập danh sách quận/huyện/phường theo tỉnh/thành
  const districts = {
@@ -165,7 +202,11 @@ function openCheckOut() {
 };
 const wards = {
   "Quận 1": ["Phường 1", "Phường 2"],
-  "Cầu Giấy": ["Dịch Vọng", "Quan Hoa"],
+  "Quận 2": ["Phường 3", "Phường 4"],
+  "Quận 3": ["Phường 5", "Phường 6"],
+  "Cầu Giấy": ["Nghĩa Đô", "Nghĩa Tân"],
+  "Đống Đa": ["Quốc Tử Giám", "Văn Miếu"],
+  "Hoàn Kiếm": ["Dịch Vọng", "Quan Hoa"],
   "Thủ Đức": ["Linh Đông", "Hiệp Bình Chánh"]
 };
 
@@ -214,7 +255,42 @@ function submitOrder() {
       return;
   }
 
-  alert(`Đặt hàng thành công!\nThông tin giao hàng:\nHọ và tên: ${name}\nEmail: ${email}\nSố điện thoại: ${phone}\nĐịa chỉ: ${address}, ${ward.value}, ${district.value}, ${province.value}`);
+  fullAddress = address + ' ' + ward.value + ', '+ district.value + ', ' + province.value
+  // alert(`Đặt hàng thành công!\nThông tin giao hàng:\nHọ và tên: ${name}\nEmail: ${email}\nSố điện thoại: ${phone}\nĐịa chỉ: ${address}, ${ward.value}, ${district.value}, ${province.value}`);
+
+  var currentdate = new Date();
+  var orderDate = currentdate.getDay() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + "-" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+  const form = document.getElementById('shipping-form')
+
+  let selectedProducts = JSON.parse(localStorage.getItem('selectedProducts'))
+  let newHoaDon = {
+    address: {
+      name: name,
+      email: email,
+      phone: phone,
+      address: fullAddress
+    },
+    items: selectedProducts,
+    orderTime: orderDate,
+    arriveTime: calculateArrivalTime(orderDate.split("-")[1],Math.floor(Math.random() * 50)),
+    paymentMethod: form['thanh_toan'].value
+  }
+
+  accounts[remember].hoadon.push(newHoaDon)
+  for(let i=0; i<accounts[remember].cart.length; i++) {
+    for(let j=0; j<selectedProducts.length; j++) {
+      if(accounts[remember].cart[i].id == selectedProducts[j].id) {
+        accounts[remember].cart.splice(i, 1)
+      }
+    }
+  }
+
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+  localStorage.removeItem('selectedProducts') 
+  
+  alert(`Bạn đã đặt hàng thành công! Đơn hàng dự kiến sẽ đến lúc ${newHoaDon.arriveTime}`)
+
+  window.location.href = 'index.html'
 }
 
 // Điều hướng về trang giỏ hàng

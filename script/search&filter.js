@@ -97,3 +97,24 @@ filterList.forEach(button => {
 filterList[0].addEventListener('click', function() {
   initializeMenu();
 })
+filterList[filterList.length-1].addEventListener('click', function() {
+  const ranges = document.querySelectorAll('#filter-list > div > li > #price-range')
+  let from = parseInt(ranges[0].nextElementSibling.value)
+  let to = parseInt(ranges[1].nextElementSibling.value)
+  from = isNaN(from) ? 0 : from
+  to = isNaN(to) ? Number.MAX_SAFE_INTEGER : to
+
+  var newFoods = foods.filter((food) => food.price >= from && food.price <= to)
+  var newDrinks = drinks.filter((drink) => drink.price >= from && drink.price <= to)
+  var newDesserts = desserts.filter((dessert) => dessert.price >= from && dessert.price <= to)
+  console.log(newFoods)
+
+  removeCurrentMenu()
+  
+  loadMenuByPage("food", newFoods);
+  loadMenuByPage("drink", newDrinks);
+  loadMenuByPage("dessert", newDesserts);
+})
+
+function filterRanges() {
+}

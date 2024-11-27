@@ -1,6 +1,6 @@
 const sBar = document.getElementById('sidebar')
 
-if (screen.width > 800) {
+if (screen.width > 1100) {
   function toggleSubmenu(button) {
     button.nextElementSibling.classList.toggle('show');
     button.classList.toggle('rotate')
@@ -17,6 +17,15 @@ if (screen.width > 800) {
       ul.previousElementSibling.classList.remove('rotate');
     })
   }
+}
+else {
+  const subMenu = document.querySelectorAll('.sub-menu')
+  subMenu[0].addEventListener('click', () => {
+    toMenu()
+  })
+  subMenu[1].addEventListener('click', () => {
+    toIntroduction()
+  })
 }
 
 function toMenu() {
