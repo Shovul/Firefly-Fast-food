@@ -9,6 +9,14 @@ function showQLMenu() {
   menu.classList.add("active")
   showMenuList();
 }
+function showQLOrder() {
+  let order = document.querySelector(".order")
+  let active = document.querySelector(".active")
+
+  active.classList.remove("active")
+  order.classList.add("active")
+  showOrderList();
+}
 function showMenuList() {
   var menu_list = document.querySelector(".menu-list")
 

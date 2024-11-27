@@ -59,6 +59,7 @@
                 <div class="acc_title">Sửa</div>
             </div>
         </div>
+
         <div id="manage-box" class="menu">
             <div class="title">
                 <div>Quan ly <span>San Pham</span></div>
@@ -73,6 +74,18 @@
                 <div class="menu_title">Sửa</div>
             </div>
         </div>
+        
+        <div id="manage-box" class="order">
+            <div class="title">
+                <div>Quan ly <span>Hoa Don</span></div>
+            </div>
+            <div class="order-list">
+                <div class="order_title">Tên tài khoản</div>
+                <div class="order_title">Thông tin người nhận</div>
+                <div class="order_title">Danh sách món</div>
+                <div class="order_title">asd</div>
+            </div>
+        </div>
     </div>
     
     <div id="add_menu">
@@ -82,11 +95,11 @@
         <form action="POST" id="add-sp-form">
             <div id="left">
                 <label for="name" missing-input="Hãy điền tên món"></label>
-                <input type="text" name="name" autocomplete="off" placeholder="Điền tên món">
+                <input type="text" name="name" id="name" autocomplete="off" placeholder="Điền tên món">
                 <label for="price" missing-input="Hãy điền giá món"></label>
-                <input type="text" name="price" autocomplete="off" placeholder="Điền giá tiền">
+                <input type="text" id="price" name="price" autocomplete="off" placeholder="Điền giá tiền">
                 <label for="type" missing-input="Hãy chọn loại"></label>
-                <select name="type">
+                <select name="type" id="type">
                     <option value="" disabled selected>-- Chọn loại --</option>
                     <optgroup label="Thức ăn">
                         <option value="Burger">Burger</option>
@@ -114,7 +127,7 @@
                 <input id="image_input" type="file" name="image" accept="image/*" >
             </div>
             <div>
-                <label for="description" id="textarea-label" missing-input="Hãy ghi chú thông tin món"> 
+                <label for="food_description" id="textarea-label" missing-input="Hãy ghi chú thông tin món"> 
                 </label>
                 <textarea name="description" id="food_description"></textarea>
             </div>
@@ -201,7 +214,7 @@
         </div>
 
         <div id="avatar_image"></div>
-
+        
         <div class="btn"><button></button></div>
         <div class="exit btn" onclick="exitEditAccount()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z"/></svg></div>
     </div>
