@@ -327,7 +327,7 @@ input.addEventListener('change', function() {
 })
 
 function editAccount() {
-  const background = document.getElementById("blur-bg")
+  const background = document.querySelector(".bg#blur")
   background.style.display = 'block'
   const editMenu = document.getElementById("edit_account")
   editMenu.style.transform = 'scale(1)'

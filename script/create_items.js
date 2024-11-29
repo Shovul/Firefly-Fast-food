@@ -34,6 +34,7 @@ menu_form.addEventListener('submit', function(e) {
     group: food_group.label,
     description: food_text.value
   }
+
   if(mon.name === "") {
     food_name.previousSibling.previousSibling.style.transform = 'translateY(0)'
     food_name.previousSibling.previousSibling.style.opacity = 1 
@@ -43,7 +44,7 @@ menu_form.addEventListener('submit', function(e) {
     },2000)
     check = false
   }
-  if(mon.price === "") {
+  if(isNaN(mon.price)) {
     food_price.previousSibling.previousSibling.style.transform = 'translateY(0)'
     food_price.previousSibling.previousSibling.style.opacity = 1 
     window.setTimeout(function() {

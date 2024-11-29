@@ -13,6 +13,9 @@ window.onload = function(e) {
     case "qlmn":
       showQLMenu()
       break
+    case "qldh":
+      showQLOrder()
+      break
     case "giohang":
       showGioHang()
       break
