@@ -116,7 +116,79 @@ function createMenu() {
         image: "images/Food/lemon_cake.png",
         group: "Tráng miệng",
         description: "lemon lemon lemon ngon ngon"
-      }
+      },
+      item10 = {
+        id: 9,
+        name: "Salad cà chua",
+        price: 25000,
+        type: "Khai vị",
+        image: "images/Food/salad_tomato.png",
+        group: "Thức ăn",
+        description: "salad salad ngon ngon"
+      },
+      item11 = {
+        id: 10,
+        name: "Salad rau củ",
+        price: 25000,
+        type: "Khai vị",
+        image: "images/Food/salad_raucu.jpg",
+        group: "Thức ăn",
+        description: "salad salad ngon ngon ngon"
+      },
+      item12 = {
+        id: 11,
+        name: "Salad rau kèm trứng",
+        price: 30000,
+        type: "Khai vị",
+        image: "images/Food/salad_trung_rau.jpg",
+        group: "Thức ăn",
+        description: "salad salad salad ngon ngon ngon"
+      },
+      item13 = {
+        id: 12,
+        name: "Mango Smoothie",
+        price: 25000,
+        type: "Smoothie",
+        image: "images/Food/mango_smoothie.jpg",
+        group: "Đồ uống",
+        description: "sinh tố xoài ngon ngon"
+      },
+      item14 = {
+        id: 13,
+        name: "Avocado Smoothie",
+        price: 25000,
+        type: "Smoothie",
+        image: "images/Food/avocado_smoothie.jpg",
+        group: "Đồ uống",
+        description: "sinh tố bơ ngon ngon"
+      },
+      item15 = {
+        id: 14,
+        name: "Banana Smoothie",
+        price: 25000,
+        type: "Smoothie",
+        image: "images/Food/banana_smoothie.jpg",
+        group: "Đồ uống",
+        description: "sinh tố chuối ngon ngon"
+      },
+      item16 = {
+        id: 15,
+        name: "Strawberry Smoothie",
+        price: 30000,
+        type: "Smoothie",
+        image: "images/Food/str_smoothie.jpg",
+        group: "Đồ uống",
+        description: "sinh tố dâu ngon ngon"
+      },
+      item17 = {
+        id: 16,
+        name: "Nước suối",
+        price: 15000,
+        type: "Nước",
+        image: "images/Food/aquafina-500ml.jpg",
+        group: "Đồ uống",
+        description: "aquafina ngon ngon"
+      },
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
   }
