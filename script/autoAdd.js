@@ -116,6 +116,52 @@ function createMenu() {
         image: "images/Food/lemon_cake.png",
         group: "Tráng miệng",
         description: "lemon lemon lemon ngon ngon"
+      }
+      item18 = {
+        id: 18,
+        name: "Bánh su kem",
+        price: 29000,
+        type: "Bánh kem",
+        image: "images/Food/banh_su.png",
+        group: "Tráng miệng",
+        description: "Bánh Su Kem với lớp vỏ mềm mịn, nhân kem thơm béo"
+      }
+      item19 = {
+        id: 19,
+        name: "Bánh Phô Mai Caramel",
+        price: 35000,
+        type: "Bánh kem",
+        image: "images/Food/banh_caramel.png",
+        group: "Tráng miệng",
+        description: "Bánh Phô Mai Caramel mềm mịn, tan chảy với độ thơm béo của phô mai, thêm caramel bắt mắt và ngọt ngào"
+      }
+      item20 = {
+        id: 20,
+        name: "Bánh Croissant",
+        price: 29000,
+        type: "Bánh ngọt",
+        image: "images/Food/banh_Croissant.png",
+        group: "Tráng miệng",
+        description: "Bánh Croissant vỏ giòn thơm bơ, xốt mịn mềm tan"
+      }
+      item21 = {
+        id: 21,
+        name: "Bánh Tiramisu ",
+        price: 35000,
+        type: "Bánh kem",
+        image: "images/Food/banh_tiramisu.png",
+        group: "Tráng miệng",
+        description: "Bánh Tiramisu lạnh thơm mát với nguyên liệu ca-cao Việt Nam, thêm phô mai ít béo và hương thơm nhẹ nhàng của Rhum"
+      }
+      item22 = {
+        id: 22,
+        name: "Bánh Sữa Chua Phô Mai ",
+        price: 35000,
+        type: "Bánh kem",
+        image: "images/Food/banh_chesse.png",
+        group: "Tráng miệng",
+        description: "Bánh Sữa Chua Phô Mai lớp bánh mềm mịn, tan chảy với độ chua nhẹ nhàng của sữa chua cùng phô mai thơm béo"
+      }
       },
       item10 = {
         id: 9,

@@ -297,3 +297,36 @@ function submitOrder() {
 function goToCart() {
   window.location.href = "index.html?giohang"; // Điều hướng về trang giỏ hàng
 }
+function addToCart(itemId, quantity = 1) {
+  const menu = JSON.parse(localStorage.getItem('menu')); // Lấy menu từ localStorage
+  const accounts = JSON.parse(localStorage.getItem('accounts')); // Lấy danh sách tài khoản
+  const currentAccount = accounts[remember]; // Tài khoản hiện tại
+
+  // Tìm món ăn trong menu
+  const item = menu.find(product => product.id === itemId);
+  if (!item) {
+      alert("Món ăn không tồn tại!");
+      return;
+  }
+
+  // Kiểm tra nếu món ăn đã có trong giỏ hàng
+  const existingItem = currentAccount.cart.find(cartItem => cartItem.id === itemId);
+  if (existingItem) {
+      existingItem.quantity += quantity; // Tăng số lượng nếu đã tồn tại
+  } else {
+      // Thêm món ăn mới vào giỏ hàng
+      currentAccount.cart.push({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: quantity,
+          image: item.image,
+          selected: true // Mặc định chọn
+      });
+  }
+
+  // Lưu lại thay đổi vào localStorage
+  localStorage.setItem('accounts', JSON.stringify(accounts));
+  alert(`Đã thêm "${item.name}" vào giỏ hàng!`);
+  displayProducts(); // Cập nhật giao diện giỏ hàng (nếu cần)
+}
