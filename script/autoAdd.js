@@ -116,78 +116,32 @@ function createMenu() {
         image: "images/Food/lemon_cake.png",
         group: "Tráng miệng",
         description: "lemon lemon lemon ngon ngon"
-      }
-      item18 = {
-        id: 18,
-        name: "Bánh su kem",
-        price: 29000,
-        type: "Bánh kem",
-        image: "images/Food/banh_su.png",
-        group: "Tráng miệng",
-        description: "Bánh Su Kem với lớp vỏ mềm mịn, nhân kem thơm béo"
-      }
-      item19 = {
-        id: 19,
-        name: "Bánh Phô Mai Caramel",
-        price: 35000,
-        type: "Bánh kem",
-        image: "images/Food/banh_caramel.png",
-        group: "Tráng miệng",
-        description: "Bánh Phô Mai Caramel mềm mịn, tan chảy với độ thơm béo của phô mai, thêm caramel bắt mắt và ngọt ngào"
-      }
-      item20 = {
-        id: 20,
-        name: "Bánh Croissant",
-        price: 29000,
-        type: "Bánh ngọt",
-        image: "images/Food/banh_Croissant.png",
-        group: "Tráng miệng",
-        description: "Bánh Croissant vỏ giòn thơm bơ, xốt mịn mềm tan"
-      }
-      item21 = {
-        id: 21,
-        name: "Bánh Tiramisu ",
-        price: 35000,
-        type: "Bánh kem",
-        image: "images/Food/banh_tiramisu.png",
-        group: "Tráng miệng",
-        description: "Bánh Tiramisu lạnh thơm mát với nguyên liệu ca-cao Việt Nam, thêm phô mai ít béo và hương thơm nhẹ nhàng của Rhum"
-      }
-      item22 = {
-        id: 22,
-        name: "Bánh Sữa Chua Phô Mai ",
-        price: 35000,
-        type: "Bánh kem",
-        image: "images/Food/banh_chesse.png",
-        group: "Tráng miệng",
-        description: "Bánh Sữa Chua Phô Mai lớp bánh mềm mịn, tan chảy với độ chua nhẹ nhàng của sữa chua cùng phô mai thơm béo"
-      }
       },
       item10 = {
         id: 9,
         name: "Salad cà chua",
         price: 25000,
-        type: "Khai vị",
+        type: "Khai vị",
         image: "images/Food/salad_tomato.png",
-        group: "Thức ăn",
+        group: "Thức ăn",
         description: "salad salad ngon ngon"
       },
       item11 = {
         id: 10,
         name: "Salad rau củ",
         price: 25000,
-        type: "Khai vị",
+        type: "Khai vị",
         image: "images/Food/salad_raucu.jpg",
-        group: "Thức ăn",
+        group: "Thức ăn",
         description: "salad salad ngon ngon ngon"
       },
       item12 = {
         id: 11,
         name: "Salad rau kèm trứng",
         price: 30000,
-        type: "Khai vị",
+        type: "Khai vị",
         image: "images/Food/salad_trung_rau.jpg",
-        group: "Thức ăn",
+        group: "Thức ăn",
         description: "salad salad salad ngon ngon ngon"
       },
       item13 = {
@@ -196,7 +150,7 @@ function createMenu() {
         price: 25000,
         type: "Smoothie",
         image: "images/Food/mango_smoothie.jpg",
-        group: "Đồ uống",
+        group: "Đồ uống",
         description: "sinh tố xoài ngon ngon"
       },
       item14 = {
@@ -205,7 +159,7 @@ function createMenu() {
         price: 25000,
         type: "Smoothie",
         image: "images/Food/avocado_smoothie.jpg",
-        group: "Đồ uống",
+        group: "Đồ uống",
         description: "sinh tố bơ ngon ngon"
       },
       item15 = {
@@ -214,7 +168,7 @@ function createMenu() {
         price: 25000,
         type: "Smoothie",
         image: "images/Food/banana_smoothie.jpg",
-        group: "Đồ uống",
+        group: "Đồ uống",
         description: "sinh tố chuối ngon ngon"
       },
       item16 = {
@@ -223,7 +177,7 @@ function createMenu() {
         price: 30000,
         type: "Smoothie",
         image: "images/Food/str_smoothie.jpg",
-        group: "Đồ uống",
+        group: "Đồ uống",
         description: "sinh tố dâu ngon ngon"
       },
       item17 = {
@@ -232,8 +186,53 @@ function createMenu() {
         price: 15000,
         type: "Nước",
         image: "images/Food/aquafina-500ml.jpg",
-        group: "Đồ uống",
+        group: "Đồ uống",
         description: "aquafina ngon ngon"
+      },
+      item18 = {
+        id: 18,
+        name: "Bánh su kem",
+        price: 29000,
+        type: "Bánh kem",
+        image: "images/Food/banh_su.png",
+        group: "Tráng miệng",
+        description: "Bánh Su Kem với lớp vỏ mềm mịn, nhân kem thơm béo"
+      },
+      item19 = {
+        id: 19,
+        name: "Bánh Phô Mai Caramel",
+        price: 35000,
+        type: "Bánh kem",
+        image: "images/Food/banh_caramel.png",
+        group: "Tráng miệng",
+        description: "Bánh Phô Mai Caramel mềm mịn, tan chảy với độ thơm béo của phô mai, thêm caramel bắt mắt và ngọt ngào"
+      },
+      item20 = {
+        id: 20,
+        name: "Bánh Croissant",
+        price: 29000,
+        type: "Bánh ngọt",
+        image: "images/Food/banh_Croissant.png",
+        group: "Tráng miệng",
+        description: "Bánh Croissant vỏ giòn thơm bơ, xốt mịn mềm tan"
+      },
+      item21 = {
+        id: 21,
+        name: "Bánh Tiramisu ",
+        price: 35000,
+        type: "Bánh kem",
+        image: "images/Food/banh_tiramisu.png",
+        group: "Tráng miệng",
+        description: "Bánh Tiramisu lạnh thơm mát với nguyên liệu ca-cao Việt Nam, thêm phô mai ít béo và hương thơm nhẹ nhàng của Rhum"
+      },
+      item22 = {
+        id: 22,
+        name: "Bánh Sữa Chua Phô Mai ",
+        price: 35000,
+        type: "Bánh kem",
+        image: "images/Food/banh_chesse.png",
+        group: "Tráng miệng",
+        description: "Bánh Sữa Chua Phô Mai lớp bánh mềm mịn, tan chảy với độ chua nhẹ nhàng của sữa chua cùng phô mai thơm béo"
       },
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
