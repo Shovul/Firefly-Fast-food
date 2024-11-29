@@ -68,7 +68,7 @@ function signInAcc() {
 
   if (check) {
     for (let i=0; i<accounts.length; i++) {
-      if (name == accounts[i].name && pass === accounts[i].pass) {
+      if ((name === accounts[i].email || name === accounts[i].phone) && pass === accounts[i].pass) {
         localStorage.setItem('rememberAcc', i)
         removeWrongInput()
         removeInputValue()
@@ -461,3 +461,102 @@ createAddressForm.addEventListener('submit', (e) => {
   alert('Đã thêm địa chỉ')
   location.reload()
 })
+
+function getStatus(a) {
+  switch(a) {
+    case "a":
+      return "Chưa xử lý"
+      break
+    case "b":
+      return "Đang làm món"
+      break
+    case "c":
+      return "Đang giao"
+      break
+    case "d":
+      return "Đã giao"
+      break
+    default:
+      break
+  }
+}
+
+function showListDonHang(hoadon) {
+  const display = document.querySelector(".body-donhang")
+  
+  hoadon.forEach(hoaDon => {
+    if(hoaDon.status == "e") {
+      return false
+    }
+    let list = document.createElement('div')
+    list.innerHTML  = `
+      <div class="madon-ngaydat">
+          <div><b>Mã đơn hàng: </b>#${hoaDon.id}</div>
+          <div><b>Ngày đặt đơn: </b>${hoaDon.orderTime.split('-')[0]}</div>
+      </div>
+      <div class="thongtindon"><b>Tên khách hàng: </b>${hoaDon.info.name}</div>
+      <div class="thongtindon"><b>Thời gian đặt hàng: </b>${hoaDon.orderTime.split('-')[1]}</div>
+      <div class="thongtindon"><b>Thời gian dự kiến hoàn thành: </b>${hoaDon.arriveTime}</div>
+      <div class="thongtindon"><b>Tình trạng đơn hàng: </b>${getStatus(hoaDon.status)}</div>
+      <div class="thongtindon"><b>Tổng tiền </b>(${hoaDon.items.length} món) ${hoadonGetTotal(hoaDon.items).toLocaleString()}VNđ</div>
+      <div class="thongtindon">
+          <button id="${hoaDon.id}" onclick="hienChiTiet(this)">Chi tiết đơn hàng</button>
+      </div>
+    ` 
+    display.appendChild(list)
+  })
+  
+}
+function showDonHang() {
+  const donhang = document.getElementById('donhang_khachhang');
+  document.body.style.overflow = 'hidden'
+  donhang.style.display = 'block';
+
+  showListDonHang(accounts[remember].hoadon)
+}
+
+function dongDonHang(){
+  const donhang = document.getElementById('donhang_khachhang');
+  document.body.style.overflow = 'auto'
+  if (donhang) {
+      donhang.style.display = 'none';
+  }
+  window.location.href = "index.html"
+}
+
+// chi tiết đơn hàng
+function hienChiTiet(current) {
+  const hoadonID = current.id
+  const currentHoaDon = accounts[remember].hoadon[hoadonID]
+  const chitiet = document.getElementById('chitietdon')
+  const list = document.querySelector('#chitietdon>div>#container')
+  list.innerHTML = ''
+
+  if (chitiet) {
+      chitiet.style.display = 'block';
+      currentHoaDon.items.forEach(item => {
+        let newItem = document.createElement('div')
+        newItem.setAttribute('class', 'hienSP')
+        newItem.innerHTML = `
+            <div class="imgSP" style="background-image: url(${item.image})"></div>
+            <div class="ten-SL">
+                <h4 style="margin-bottom: 10px">${item.name}</h4>
+                <span><b>Số lương: </b>${item.quantity}</span>
+            </div>
+            <div class="gia">${item.price} VNđ</div>
+        `
+        list.appendChild(newItem)
+      })
+      list.nextElementSibling.innerHTML = `
+          <div style="margin-bottom: 15px; margin-left: 10px; margin-top: 20px;"><b>Phương thức thanh toán: </b>${currentHoaDon.paymentMethod}</div>
+          <div style="margin-bottom: 15px; margin-left: 10px;"><b>Tổng tiền: </b>${hoadonGetTotal(currentHoaDon.items).toLocaleString()}VNđ</div>
+      `
+  }
+}
+
+function dongChiTiet() {
+  const chitiet = document.getElementById('chitietdon');
+  if (chitiet) {
+      chitiet.style.display = 'none';
+  }
+}

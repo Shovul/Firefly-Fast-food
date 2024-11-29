@@ -19,11 +19,29 @@ window.onload = function(e) {
     case "giohang":
       showGioHang()
       break
+    case "donhang":
+      showDonHang()
+      break
     default:
       createAccount()
       createMenu()  
   }
 }
+
+window.addEventListener('click', (e) => {
+  if(document.querySelector('.bg#blur').contains(e.target)) {
+    closeOrderInfo() 
+  }
+})  
+
+function hoadonGetTotal(items) {
+  let sum = 0
+  items.forEach(item => {
+    sum += item.price * item.quantity    
+  })
+  return sum
+}
+
 function removePopup() {
   Array.from(document.getElementsByClassName('missing-input')).forEach((item) => {
     item.style.opacity = 0
