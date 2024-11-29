@@ -164,12 +164,15 @@ button {
     align-items: center;
   }
   > li > input {
-    height: 70%;
+    height: 50%;
     padding: 0 1%;
     margin-left: 10px;
     border-radius: 8px;
     outline: none;
     border: none;
+  }
+  button {
+    height: 100%;
   }
 }
 #filter-list.show {
@@ -177,7 +180,7 @@ button {
 }
 #filter-list > div > li > button{
   color: var(--text-color);
-  padding: 1rem;
+  padding: .8rem;
   background: none;
   border: none;
   font-weight: normal;
@@ -820,13 +823,95 @@ button {
   margin: 4px;
   color: var(--base-color);
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(3, .4fr) 1fr repeat(2, .5fr);
   div {
     padding: 8px;
     border: 1px solid black;
   }
+  .order_title {
+    text-align: center;
+  }
+  div > select {
+    width: 100%;
+  }
+  div > button {
+    background-color: var(--button-color);
+    width: 100%;
+    border: none;
+    height: 100%;
+    transition: .2s ease;
+    text-align: center;
+  }
+  div > button:hover {
+    transform: scale(1.025);
+    box-shadow: 0 0 5px var(--selected-dark);
+  }
 }
-
+#orderInfo {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  height: fit-content;
+  box-shadow: 0 0 5px 6px var(--selected-dark);
+  margin: auto;
+  width: 40vw;
+  padding: 2%;
+  border-radius: 6px;
+  transform: scale(0);
+  transition: .2s;
+  z-index: 3;
+  > div {
+    border-bottom: 3px solid var(--secondary-color);
+    padding: 4px 10px;
+    margin: 10px;
+  }
+  > div:last-of-type {
+    border: none;
+  }
+  > .time {
+    display: flex;
+    justify-content: space-between;
+  }
+  >.food_price {
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+  }
+  >.list-food {
+    display: grid;
+    height: 0;
+    transition: .4s ease-in-out;
+  }
+  >.list-food.show {
+    height: 300px;
+  }
+  >div>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  >div>ul>li {
+    width: 100%;
+    list-style: none;
+    padding: 6px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 20px;
+  }
+  .image {
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 1/1;
+  }
+  >h1 {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    padding: 2%;
+    margin-bottom: 2px;
+  }
+}
 
 /* Cai Menu lua thuc an */
 .content
@@ -864,7 +949,7 @@ button {
 {
   cursor: pointer;
   margin: 20px;
-  width: 20vw;
+  width: 25vw;
   aspect-ratio: 12/9;
   border-radius: 12px;
   border:3px solid #ffa2a2;
@@ -936,6 +1021,10 @@ button {
   width: fit-content;
   margin: 15px;
   
+}
+.lienhe div > div > img {
+  width: 50%;
+  object-fit: fill;
 }
 .lienhe .divbao
 {
@@ -1377,7 +1466,7 @@ button {
   transition: .5s ease-in-out;
   cursor: text;
 }
-#add_account > form > label::before, #add_menu > form label::before {;
+#add_account > form > label::before, #add_menu > form label::before {
   content: attr(missing-input);
   background-color: white;
   position: absolute;
@@ -1632,6 +1721,142 @@ button {
   background-color: #d32f2f;
 }
 
+#donhang_khachhang {
+  display: none;
+  inset: 0;
+  position: absolute;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+.donhang{
+  padding: 1%;
+  position: absolute;
+  inset: 0;
+  width: 50vw;
+  margin: auto;
+  background-color: #E7F5DC; 
+  box-shadow: 0 4px 8px black;
+  overflow: auto;
+}
+.tieude{
+   height: 30px;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+}
+.body-donhang > div {
+  border-bottom: 8px double black;
+}
+.madon-ngaydat{
+   height: fit-content;
+   display: flex;
+   justify-content: space-between;
+   margin: 10px;
+}
+.thongtindon{
+   margin: 10px;
+   height: fit-content;
+   >button {
+    background-color: var(--button-color);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    transition: .2s ease;
+   }
+   >button:hover {
+    transform: scale(1.05);
+    background-color: var(--button-selected);
+   }
+}
+.body-donhang{
+   height: fit-content;
+   background-color: rgb(255, 255, 173);
+   border: 1px solid black;
+}
+.button, .thoatchitiet{
+   background-color: rgb(225, 225, 225);
+   width: 20%;
+   aspect-ratio: 5/2;
+   margin-top: 1%;
+   text-align: center;
+   border-radius: 10px;
+}
+.button:hover{
+   background-color: rgb(192, 192, 192);
+}
+
+/* phần chi tiết hóa đơn */
+.model{
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   background-color: white;
+}
+.chitietdon{
+   width: 60vw;
+   padding: 2%;
+   height: fit-content;
+   margin: 10px auto;
+   background-color: rgb(255, 198, 93);
+   border-radius: 8px;
+}
+.Tieude{
+   height: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.hienSP{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+   margin: 5px;
+   border: 2px solid black;
+   border-radius: 8px;
+   background-color: rgb(247, 238, 255);
+   box-shadow: 0 4px 8px gray;
+}
+.imgSP{
+  width: 20%;
+  aspect-ratio: 1/1;
+   margin: 10px;
+  background-size: cover;
+  background-position: center;
+}
+.ten-SL{
+   /* width: 450px;
+   height: 150px; */
+   margin: 10px;
+   text-align: center;
+}
+.gia{
+   /* width: 170px;
+   height: 150px; */
+   width: 20%;
+   aspect-ratio: 1/1;
+   margin: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   box-shadow: 0 0 4px black;
+}
+.thoatchitiet{
+   width: 80px;
+   margin-bottom: 15px;
+   margin-left: 10px;
+   border-radius: 10px;
+}
+.thoatchitiet:hover{
+   background-color: rgb(192, 192, 192);
+}
+/* #chitietdon.model > div > #container {
+  height: inherit;
+  overflow-y: scroll;
+} */
+
 
 /* responsive */
 @media (max-width:1100px) {
@@ -1662,7 +1887,6 @@ button {
     ul li:first-child, ul > li > a > span, button > svg:last-child, button > span {
       display: none;
     }
-    
   }
   .navigation-bar {
     .option {
@@ -1691,7 +1915,6 @@ button {
       padding-right: 50px;
     }
   }
-  
   #setting-container .avatar {
     float: none;
     margin-bottom: 30px;
@@ -1722,6 +1945,13 @@ button {
       height: 30px;
       width: 30px;
     }
+  }
+  .content .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .navigation-bar {
+    gap: 0;
+    padding: 20px;
   }
 }
 

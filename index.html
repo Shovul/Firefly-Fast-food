@@ -295,6 +295,11 @@
                 </a>
             </li>
             <li>
+                <a href="index.html?donhang">
+                    <span>Don hang</span>
+                </a>
+            </li>
+            <li>
                 <a>
                     <span>Thong bao</span>
                 </a>
@@ -448,7 +453,7 @@
         <div class="frm-box">
             <form action=".php" onsubmit="" method="post" name="signin">
                 <div id="username-label" class="missing-input"></div>
-                <label for="username">Username</label>
+                <label for="username">Email hoặc Số điện thoại</label>
                 <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="username" onclick="inputFocus(this)">
                 
                 <div id="password-label" class="missing-input"></div>
@@ -456,7 +461,7 @@
                 <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="password" onclick="inputFocus(this)">
             </form>
             <button id="submit-btn" onclick="signInAcc()">Sign in</button>
-            <div class="wrongText" id="wrong-input"><i>*You have enter the incorrect username or password*</i></div>
+            <div class="wrongText" id="wrong-input"><i>*You have enter the incorrect email or phone number or password*</i></div>
 
             <p>Don't have an account? <button id="signup-btn" onclick="signUpMenu()">Sign up here</button></p>
 
@@ -640,6 +645,35 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- đơn hàng -->
+    <div id="donhang_khachhang">
+        <div class="donhang" id="donhang">
+            <div class="tieude">
+                <h3>ĐƠN HÀNG</h3>
+            </div>
+            <div class="body-donhang">
+                
+            </div>
+            <button class="button" onclick="dongDonHang()">thoát</button>
+        </div>
+
+        <!-- chi tiết hóa đơn -->
+        <div class="model" id="chitietdon" style="overflow : auto;">
+            <div class="chitietdon">
+                <div class="Tieude">
+                    <h3>CHI TIẾT ĐƠN HÀNG</h3>
+                </div>
+                <div style="display: flex; height: fit-content; justify-content: space-between;">
+                    <div style="height: fit-content; margin-left: 5px;"><b>Sản Phẩm</b></div>
+                    <div style="height: fit-content; margin-left: 5px;"><b>Thành Tiền</b></div>
+                </div>
+                <div id="container">
+                </div>
+                <div></div>
+                <button class="thoatchitiet" onclick="dongChiTiet()">Thoát</button>
+            </div>
+        </div>
+    </div> 
 </body>
 </html>
