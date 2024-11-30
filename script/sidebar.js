@@ -145,11 +145,12 @@ function toIntroduction() {
   offGioHang()
   document.getElementById("filter").style.display = 'none'
   document.getElementById("filter-list").style.display= 'none'
-  document.getElementById("noidungtrangchu").innerHTML= ''
+  // document.getElementById("noidungtrangchu").innerHTML= ''
   document.getElementsByClassName("slider")[0].style.display="none";
   document.getElementsByClassName("content")[0].style.display="none";
 
   const trangchu = document.getElementById("noidungtrangchu");
+  trangchu.style.display = 'block'
         trangchu.innerHTML = `
         <div class="divtrangchu">
     <h1>Chào mừng đến với <span>Firefly Restaurant</span></h1>
@@ -232,6 +233,7 @@ function toIntroduction() {
 </style>
             `;
     const lichsu = document.getElementById("noidunglichsu");
+    lichsu.style.display = 'block'
     lichsu.innerHTML = `
     <div class="divlichsu">
         <h2>Lịch Sử Phát Triển</h2>
@@ -272,6 +274,7 @@ color: #e67e22;
 </style>
     `;
       const nguyenlieu = document.getElementById("noidungnguyenlieu");
+      nguyenlieu.style.display = 'block'
       nguyenlieu.innerHTML = `
   <div class="divnguyenlieu">
       <h2>Nguyên Liệu Tươi Ngon </h2>

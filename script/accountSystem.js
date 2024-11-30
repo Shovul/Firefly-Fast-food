@@ -191,10 +191,12 @@ function signUpAcc() {
 function openAccountbar() {
   const accMenu = document.getElementById('account-menu')
   accMenu.classList.toggle('show')
+  document.querySelector(".bg#blur").style.display = 'block'
 }
 function closeAccountbar() {
   const accMenu = document.getElementById('account-menu')
   accMenu.classList.remove('show')
+  document.querySelector(".bg#blur").style.display = 'none'
 }
 function logOut() {
   document.getElementById('sign-in-btn').style.display = 'block'
@@ -232,6 +234,11 @@ function showThongtin() {
     thongtin[2].appendChild(phoneBtn)
     const phone = document.getElementById('phoneBtn')
     phone.addEventListener('focusout', function(){
+      for(let i=0; i<accounts.length; i++) {
+        if(accounts[i].phone == phone.value) {
+          return false
+        }
+      }
       if(Number(phone.value) != 0 && phone.value.length == 10) {
         accounts[remember].phone = phone.value
         localStorage.setItem('accounts', JSON.stringify(accounts))
@@ -266,12 +273,36 @@ function showThongtin() {
       receiver.appendChild(newAddress)
       diaChiList.appendChild(receiver)
       if(address.status == 'choose') {
-        
         diaChiList.selectedIndex = address.id
       }
     })
     const listPosition = document.querySelector('.taikhoan > ul > div')
+    const deleteButton = document.createElement('button')
+    deleteButton.setAttribute('id', 'deleteAddress')
+    deleteButton.setAttribute('onclick', 'deleteAddress()')
+    deleteButton.innerHTML = 'Xóa địa chỉ đang chọn'
     listPosition.appendChild(diaChiList)
+    listPosition.appendChild(deleteButton)
+  }
+}
+function deleteAddress() {
+  const addressSelect = document.getElementById('thongtin-diachi')
+  const addressSelected = document.querySelector('#thongtin-diachi option:checked')
+  accounts[remember].addresses.splice(addressSelected.value, 1)
+  for(let i=0; i<accounts[remember].addresses.length; i++) {
+    accounts[remember].addresses[i].id = i;
+  }
+  console.log(accounts[remember].addresses)
+  if(accounts[remember].addresses.length>0) {
+    accounts[remember].addresses[0].status = 'choose'
+  }
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+  const confirm = window.confirm("Xóa địa chỉ " + addressSelected.innerHTML + "?")
+  if(confirm) {
+    addressSelect.removeChild(addressSelected.parentElement)
+  }
+  if(addressSelect.innerHTML === "") {
+    addressSelect.parentElement.innerHTML = ''
   }
 }
 function selectCurrentAddress(thisAddress) {

@@ -16,6 +16,11 @@ function showQLOrder() {
   order.classList.add("active")
   showOrderList();
 }
+window.addEventListener('click', (e) => {
+  if(document.querySelector('.bg#blur').contains(e.target)) {
+    closeOrderInfo() 
+  }
+})  
 function showMenuList() {
   var menu_list = document.querySelector(".menu-list")
 

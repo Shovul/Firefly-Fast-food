@@ -121,7 +121,7 @@ function showAddresses() {
     form.querySelector('label[for="ward"]').style.display = 'none'
     form['province'].innerHTML = ''
     form.querySelector('label[for="province"]').innerHTML = 'Địa chỉ'
-    form['cart-btn'].setAttribute('onclick', 'addToCart()')
+    form['cart-btn'].setAttribute('onclick', 'addToHoaDon()')
 
     let addresses = form['province']
     let name = form['name']
@@ -155,7 +155,7 @@ function openCheckOut() {
   shipForm.style.display = 'block'
   document.querySelector('.bg#white').style.display = 'block'
 }
-function addToCart() {
+function addToHoaDon() {
   var currentdate = new Date();
   var orderDate = currentdate.getDay() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
@@ -312,6 +312,7 @@ function addToCart(itemId, quantity = 1) {
 
   // Tìm món ăn trong menu
   const item = menu.find(product => product.id === itemId);
+
   if (!item) {
       alert("Món ăn không tồn tại!");
       return;

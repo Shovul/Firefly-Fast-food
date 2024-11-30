@@ -138,17 +138,17 @@
                 <ul class="sub-menu">
                     <div>
                         <li>
-                            <a href="#noidungtrangchu" onclick="toIntroduction(1)">
+                            <a href="#noidungtrangchu" onclick="toIntroduction()">
                                 <span>Thong tin</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#noidunglichsu" onclick="toIntroduction(2)">
+                            <a href="#noidunglichsu" onclick="toIntroduction()">
                                 <span>Lich su</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#noidungnguyenlieu" onclick="toIntroduction(3)">
+                            <a href="#noidungnguyenlieu" onclick="toIntroduction()">
                                 <span>Nguyen lieu</span>
                             </a>
                         </li>
@@ -340,9 +340,11 @@
     </div>
     
     <!-- menu, trang chu, ... -->
-    <div id="noidungtrangchu" ></div>
-    <div id="noidunglichsu"></div>
-    <div id="noidungnguyenlieu"></div>
+    <div id="gioithieu">
+        <div id="noidungtrangchu"></div>
+        <div id="noidunglichsu"></div>
+        <div id="noidungnguyenlieu"></div>
+    </div>
 
     
     <div id="hienthongtinsp">
@@ -620,7 +622,7 @@
                 </ul>
                 <ul>
                     <h2 style="margin-left: 20px;">Dia chi</h2>
-                    <div></div>
+                    <div class="diachi_selector"></div>
                     <li id="dia_chi_tk">
                         <button onclick="createAddress()">Them dia chi</button>
                         <form method="POST" id="dia_chi_form">

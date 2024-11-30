@@ -1,4 +1,3 @@
-
 window.onload = function(e) {
   var url = window.location.href
   const goTo = url.split("?")
@@ -28,11 +27,6 @@ window.onload = function(e) {
   }
 }
 
-window.addEventListener('click', (e) => {
-  if(document.querySelector('.bg#blur').contains(e.target)) {
-    closeOrderInfo() 
-  }
-})  
 
 function hoadonGetTotal(items) {
   let sum = 0
