@@ -32,13 +32,16 @@ button {
   font-weight: bold;
 }
 
-#blur-bg {
+.bg {
   display: none;
   position: fixed;
   inset: 0;
   height: 100%;
-  z-index: 1;
-  backdrop-filter: blur(1.1px);
+  z-index: 2;
+  /* backdrop-filter: blur(1px); */
+}
+#white.bg {
+  background-color: white;
 }
 
 
@@ -48,6 +51,7 @@ button {
   overflow: hidden;
   z-index: 1;
   animation: sliding ease-in-out infinite;
+  display:block;
 }
 .slider img {
   /* animation: sliding 10s ease-in-out infinite; */
@@ -62,11 +66,9 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  padding-top: 0;
+  padding: 0 2rem;
   background-color: var(--base-color);
-  height: 18vh;
-  margin-bottom: 1rem;
+  height: 12vh;
 }
 .navigation-bar * {
   color: var(--text-color);
@@ -84,6 +86,7 @@ button {
     border-radius: 6px;
   }
   input {
+    width: 30vw;
     color: black;
     outline: none;
   }
@@ -99,6 +102,89 @@ button {
   button:active {
     transform: scale(0.8);
   }
+}
+#filter {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+#filter > .rotate {
+  > svg {
+    transform: rotate(180deg);
+  }
+}
+#filter:hover {
+  background-color: var(--selected-light);
+}
+#filter > button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-size: 1.2rem;
+  }
+  svg {
+    transition: .3s ease;
+    height: 2rem;
+    width: 2rem;
+    fill: white;
+  }
+}
+
+/* filter list */
+#filter-list {
+  transition: .5s ease;
+  margin-bottom: 1rem;
+  background-color: var(--secondary-color);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr 0fr;
+  list-style: none;
+  div {
+    display: grid;
+    grid-auto-flow: column;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+  label {
+    color: white
+  }
+}
+#filter-list > div:last-child {
+  > li {
+    display: flex;
+    align-items: center;
+  }
+  > li > input {
+    height: 70%;
+    padding: 0 1%;
+    margin-left: 10px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+  }
+}
+#filter-list.show {
+  grid-template-rows: 1fr 1fr;
+}
+#filter-list > div > li > button{
+  color: var(--text-color);
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-weight: normal;
+  width: 180px;
+}
+#filter-list > div > li > button:hover {
+  background-color: var(--selected-light);
 }
 
 /* home, menu, news, contact styling */
@@ -155,7 +241,6 @@ button {
 }
 #sidebar a{
   text-decoration: none;
-  color: black;
 }
 #sidebar #active {
   span {
@@ -179,6 +264,7 @@ button {
   color: var(--text-color);
 }
 #sidebar #close-btn {
+  display: flex;
   border-radius: .5rem;
   padding: .5rem;
   text-decoration: none;
@@ -229,6 +315,9 @@ button {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  >.admin>#sign-in-btn>svg{
+    display: none;
+  }
 }
 .account button{
   cursor: pointer;
@@ -491,6 +580,7 @@ button {
   background-color: var(--selected-dark);
 }
 #account-info {
+  overflow: scroll;
   z-index: 4;
   height: 100%;
   display: grid;
@@ -507,6 +597,7 @@ button {
   display: block;
 }
 #setting-container {
+  overflow-y: auto;
   box-shadow: 0 0 10px 3px var(--selected-dark);
   border-radius: 20px;
   margin: 40px;
@@ -518,6 +609,10 @@ button {
   }
   span {
     font-size: 1.2rem;
+    color: gray;
+  }
+  a {
+    text-decoration: none;
     color: gray;
   }
 }
@@ -595,8 +690,7 @@ button {
     border: 2px black solid;
     padding: 10px;
     position: relative;
-    left: -10px;
-    top: -8px;
+    margin-bottom: 10px;
     border-radius: 12px;
   }
   > li > span {
@@ -671,7 +765,7 @@ button {
   }
 }
 
-.menu .title {
+.menu .title, .tai_khoan .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -686,7 +780,7 @@ button {
     border: 1px solid black;
   }
 }
-.menu > .title > button {
+.menu > .title > button, .tai_khoan > .title > button{
   background: none;
   border: 3px solid var(--button-color);
   border-radius: 6px;
@@ -698,11 +792,11 @@ button {
     font-size: 1.5rem;
   }
 }
-.menu > .title > button:hover {
+.menu > .title > button:hover, .tai_khoan > .title > button:hover {
   border: 3px solid var(--text-color);
   color: var(--text-color);
 }
-.menu > .title > button::before {
+.menu > .title > button::before, .tai_khoan > .title > button::before{
   content: 'Them san pham';
   position: absolute;
   text-wrap: nowrap;
@@ -716,26 +810,40 @@ button {
   transition: .2s ease-in-out;
   /* transform-origin: left; */
 }
-.menu > .title > button:hover::before {
+.tai_khoan > .title > button::before {
+  content: 'Thêm tài khoản'
+}
+.menu > .title > button:hover::before, .tai_khoan > .title > button:hover::before {
   opacity: 1;
+}
+#manage-box .order-list {
+  margin: 4px;
+  color: var(--base-color);
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  div {
+    padding: 8px;
+    border: 1px solid black;
+  }
 }
 
 
 /* Cai Menu lua thuc an */
 .content
 {
+  padding-bottom: 2%;
   overflow: hidden;
   background-color:rgb(255, 255, 255);
   > h2 {
     padding: 20px;
     padding-bottom: 8px;
   }
+  display: block;
 }
 .content #thucan, .content #douong, .content #trangmieng {
   margin: 1rem;
   font-size: 1.5rem;
 }
-
 .content .items /* Table chua noi dung */
 {
   background-color: rgb(217, 206, 206);
@@ -746,7 +854,7 @@ button {
 .content .items-content /* noi dung */
 {
   background-color: rgb(255, 255, 255);
-  border:1px solid black;
+  border: 1px solid black;
   margin: 3px;
   display: flex;
   flex-direction: column;
@@ -754,11 +862,19 @@ button {
 }
 .content .items .hinhanh
 {
+  cursor: pointer;
   margin: 20px;
-  width: 300px;
+  width: 20vw;
   aspect-ratio: 12/9;
   border-radius: 12px;
   border:3px solid #ffa2a2;
+  /* object-fit: cover; */
+  background-size: cover;
+  background-position: center;
+  transition: .2s ease;
+}
+.content .items .hinhanh:hover {
+  transform: scale(1.2) translateY(-20px);
 }
 .items-content .container
 {
@@ -767,10 +883,22 @@ button {
 }
 .items-content .container-items
 {
+  cursor: default;
   display: flex;
   align-items: center;
   margin: 5px;
   padding:5px;  
+}
+.items-content .container > .container-items:first-child
+{
+  transition: .26s ease-in-out;
+  display: grid;
+  grid-template-columns: 40px 0fr;
+  gap: 0;
+  > span {
+    text-wrap: nowrap;
+    overflow: hidden;
+  }
 }
 .container-items > svg
 {
@@ -785,6 +913,10 @@ button {
 {
   background-color: var(--button-color);
 }
+.items-content .container > .container-items:first-child:hover {
+  grid-template-columns: 40px 1fr;
+}
+
 .lienhe
 {
   width:100%;
@@ -847,57 +979,18 @@ button {
   left: 43%;
   bottom: 30px;
 }
-@media (max-width:900px) {
-  #sidebar:not(.admin).close{
-    width: 100%;
-    z-index: 3;
-  }
-  #sidebar:not(.admin) {
-    height: 60px;
-    width: 100% ;
-    top: unset;
-    bottom: 0;
-    position: fixed;
-    padding: 0;
-    ul {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 50px;
-      align-items: center;
-      overflow-x: scroll;
-      justify-content: center;
-    }
-
-    > ul > li > a, li  {
-      width: 50px;
-    }
-
-    ul li:first-child, ul > li > a > span, button > svg:last-child, button > span {
-      display: none;
-    }
-    
-  }
-  .navigation-bar .option {
-    display: none;
-  }
-  .admin-page {
-    grid-template-columns: .2fr 1fr;
-    * {
-      font-size: .8rem;
-    }
-  }
-}
-
 /* tao sp menu */
-#add_menu {
+#add_menu, #edit_menu {
   background-color: var(--text-color);
-  display: none;
+  display: block;
+  transform: scale(0);
+  transition: .2s ease;
   border: 1px solid black;
   width: 45vw;
   height: fit-content;
   inset: 0;
   margin: auto;
-  position: absolute;
+  position: fixed;
   padding: 20px;
   z-index: 2;
   input[type = "submit"] {
@@ -923,10 +1016,10 @@ button {
     border: black solid 1px;
   }
 }
-#add_menu input[type = "submit"]:hover {
+#add_menu input[type = "submit"]:hover, #edit_menu input[type = "submit"]:hover {
   background-color: var(--button-selected);
 }
-#add_menu #left {
+#add_menu #left, #edit_menu #left {
   width: 45%;
   display: inline-flex;
   flex-direction: column;
@@ -936,7 +1029,7 @@ button {
     border-radius: 8px;
   }
 }
-#add_menu #exit_menu {
+#add_menu #exit_menu, #edit_menu #exit_menu {
   background: none;
   border: none;
   width: 46px;
@@ -947,10 +1040,10 @@ button {
   justify-content: center;
   align-items: center;
 }
-#add_menu #exit_menu:hover {
+#add_menu #exit_menu:hover, #edit_menu #exit_menu:hover {
   background-color: var(--selected-dark);
 }
-#add_menu #right {
+#add_menu #right-add, #edit_menu #right-edit {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -975,11 +1068,12 @@ button {
     width: 60px;
   }
 }
-#add_menu #right:hover {
+#add_menu #right-add:hover, #edit_menu #right-edit:hover {
   >svg {
     fill: var(--button-selected);
   }
 }
+
 .menu-list div:not(.menu_title) {
   line-height: 200px;
   background-size: contain;
@@ -1003,6 +1097,9 @@ button {
     overflow: hidden;
     padding: 10px;
     display: none;
+    h4 {
+      cursor: pointer;
+    }
 }
 #hienthongtinsp #Title
 {
@@ -1025,6 +1122,8 @@ button {
     border-radius: 10px;
     float: left;
     margin: 10px;
+    object-fit: cover;
+    background-position: center;
 }
 #hienthongtinsp #noidungsp
 {
@@ -1100,18 +1199,530 @@ button {
 {
     background-color: #F89B28;
 }
-
-@keyframes sliding {
-  0% {transform: translateX(0%);}
-  10% {transform: translateX(-100%);}
-  20% {transform: translateX(-100%);}
-  30% {transform: translateX(-200%);}
-  40% {transform: translateX(-200%);}
-  50% {transform: translateX(-200%);}
-  60% {transform: translateX(-300%);}
-  70% {transform: translateX(-300%);}
-  80% {transform: translateX(-300%);}
-  90% {transform: translateX(0%);}
-  100% {transform: translateX(0%);}
+.model
+{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+    display: none;
 }
+
+/* sua tai khoan */
+#edit_account {
+  display: grid;
+  transform: scale(0);
+  transition: .2s ease-out;
+  background-color: white;
+  border: 1px solid black;
+  padding: 26px;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
+  gap: 2rem;
+  z-index: 3;
+  grid-template-columns: 1fr, .5fr;
+  grid-template-rows: repeat(4, 1fr);
+  > div > input, >div>button {
+    padding: 6px;
+    background: none;
+    transition: .1s;
+  }
+  > div > input {
+    width: 80%;
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+  }
+  >div>button {
+    width: 20%;
+    background-color: var(--button-color);
+    border-radius: 0 8px 8px 0;
+  }
+  >div>button:hover {
+    background-color: var(--button-selected);
+  }
+  >div>button:active {
+    transform: scale(1.075);
+  }
+  .btn {
+    button {
+      width: 100%;
+      border-radius: 8px;
+    }
+    text-align: end;
+    padding: 3px;
+  }
+}
+/* tao tai khoan */
+#add_account {
+  z-index: 3;
+  background-color: white;
+  position: fixed;
+  width: 30vw;
+  height: fit-content;
+  inset: 0;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid black;
+  transform: scale(0);
+  transition: .2s ease;
+  > .exit.btn {
+    text-align: end;
+  }
+}
+#add_account > form {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  > input {
+    padding: 8px;
+    width: 80%;
+    border-radius: 4px;
+  }
+  /* >#avatar{
+    display: none;
+  } */
+  /* label:last-of-type {
+    width: 30%;
+    aspect-ratio: 1/1;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  } */
+  >:last-child {
+    background-color: var(--button-color);
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 1px 1px 10px var(--selected-dark);
+    width: 50%;
+    margin-top: 20px;
+  }
+  >:last-child:hover {
+    background-color: var(--button-selected);
+  }
+}
+/* #add_account > form label:last-of-type > svg {
+  height: 40px;
+  width: 40px;
+}
+#add_account > form label:last-of-type:hover {
+  border-color: var(--button-selected);
+  svg {
+    fill: var(--button-selected)
+  }
+} */
+#add_account > .exit.btn > svg {
+  height: 46px;
+  width: 46px;
+  padding: 8px;
+  border-radius: 8px;
+}
+#add_account > .exit.btn > svg:hover {
+  background-color: var(--selected-dark);
+}
+
+#edit_account .exit.btn > svg{
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+}
+#edit_account .exit.btn > svg:hover{
+  background-color: var(--selected-dark);
+}
+#edit_account .exit.btn, #add_account .exit.btn {
+  grid-column: 2/2;
+  grid-row: 1/1;
+}
+#edit_account #avatar_image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  grid-column: 2/2;
+  grid-row: 2/4;
+  position: relative;
+  border: 1px solid black;
+}
+#edit_account #avatar_image::after{
+  content:'Xóa ảnh?';
+  position: absolute;
+  background-color: white;
+  padding: 6px;
+  border-radius: 50px;
+  box-shadow: 2px 2px 10px var(--selected-dark);
+  left: 20%;
+  bottom: 50%;
+  transition: .2s ease-in-out;
+  transform: translateY(20px);
+  opacity: 0;
+}
+#edit_account #avatar_image:hover::after{
+  opacity: 1;
+  transform: translateY(10px);
+}
+#add_account > form > label, #add_menu > form label {
+  position: relative;
+  transform: translateY(-15px);
+  opacity: 0;
+  transition: .5s ease-in-out;
+  cursor: text;
+}
+#add_account > form > label::before, #add_menu > form label::before {;
+  content: attr(missing-input);
+  background-color: white;
+  position: absolute;
+  padding: 10px 20px;
+  width: fit-content;
+  left: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--selected-dark);
+}
+#edit_account.current {
+  display: grid;
+  grid-template-columns: 1fr .5fr;
+  grid-template-rows: repeat(5, 1fr) ;
+}
+#edit_account.current .exit.btn {
+  grid-column: 2/2;
+  grid-row: 1/5;
+}
+#edit_account.current > div > select {
+  padding: 4.5px;
+  border: 2px solid black;
+  width: 70%;
+  border-radius: 8px 0 0 8px;
+}
+#add_menu > form > div > input[type = 'submit'] {
+  margin-top: 40px;
+}
+
+/* them dia chi */
+#dia_chi_tk {
+  display: grid;
+  width: 50%;
+  grid-template-rows: .1fr 0fr;
+  transition: .2s ease-in-out;
+}
+#dia_chi_tk.show {
+  grid-template-rows: .1fr 1fr;
+}
+#dia_chi_form {
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  border-bottom: 1px solid black;
+  >input {
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 19px;
+  }
+  >input:last-child {
+    background-color: var(--button-color);
+    border: none;
+    margin-bottom: 10px;
+    color: #f9f9f9;
+    transition: .2s ease-in-out;
+  }
+  >input:last-child:hover {
+    background-color: var(--button-selected);
+    color: black;
+  }
+  >input:last-child:active {
+    transform: scale(.95);
+  }
+  >label {
+    position: relative;
+    transform: translate(10px, -150%);
+    background-color: white;
+    width: fit-content;
+    padding: 0 10px;
+    transition: .4s ease;
+    cursor: text;
+    color: var(--secondary-color);
+  }
+  >input:focus + label, >input:not(:placeholder-shown) + label {
+    transform: translate(20px, -300%);
+  }
+}
+#setting-container .taikhoan ul:last-child{
+  > * {
+    margin: 10px;
+    margin-left: 0;
+  }
+  > div > select {
+    width: 50%;
+    padding: 10px;
+    border-radius: 8px;
+  }
+}
+/* phan trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #ffa2a2;
+  border: none;
+  border-radius: 5px;
+}
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* gio hang */
+#giohang {
+  padding-bottom: 30vh;
+  display: none;
+}
+.container {
+  display: flex;
+  margin: 20px;
+}
+
+.products {
+  flex: 2;
+  border: 2px solid black;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.product-item.selected {
+  background-color: #f0f8ff;
+  border-left: 4px solid #4c4c9c;
+}
+
+.product-checkbox {
+  margin-right: 10px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.product-image {
+  width: 80px;
+  height: 100px;
+  background-color: #eee;
+  text-align: center;
+  line-height: 100px;
+  background-size:cover;
+  background-position:center; 
+  background-repeat: no-repeat;
+}
+
+.product-info {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.remove {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  align-self: center;
+  margin-left: 5px;
+}
+
+.summary {
+  flex: 1;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.summary p {
+  margin: 5px 0;
+}
+
+.summary-item {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.buy-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buy-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.buy-button button:hover {
+  background-color: #4c4c9c;
+  color: white;
+  transform: scale(1.05);
+}
+
+
+#shipping-form {
+  display: none;
+  max-width: 600px;
+  margin: 5vh auto;
+  background-color: #f9f9f9;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  height: fit-content;
+}
+#shipping-form > h2 {
+  text-align: center;
+}
+#shipping-form > label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+#shipping-form > input, #shipping-form > select, #shipping-form > button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#shipping-form > button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+#shipping-form > button:hover {
+  background-color: #0056b3;
+}
+.cart-button {
+  margin-top: 10px;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 5px;
+}
+.cart-button:hover {
+  background-color: #d32f2f;
+}
+
+
+/* responsive */
+@media (max-width:1100px) {
+  #sidebar:not(.admin).close{
+    width: 100%;
+    z-index: 3;
+  }
+  #sidebar:not(.admin) {
+    height: 60px;
+    width: 100% ;
+    top: unset;
+    bottom: 0;
+    position: fixed;
+    padding: 0;
+    ul {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 50px;
+      align-items: center;
+      overflow-x: scroll;
+      justify-content: center;
+    }
+
+    > ul > li > a, li  {
+      width: 50px;
+    }
+
+    ul li:first-child, ul > li > a > span, button > svg:last-child, button > span {
+      display: none;
+    }
+    
+  }
+  .navigation-bar {
+    .option {
+    display: none;
+    }
+    #logo {
+      display: none;
+    }
+  }
+  .admin-page {
+    grid-template-columns: .2fr 1fr;
+    * {
+      font-size: .8rem;
+    }
+  }
+  #account-info {
+    grid-template-columns: 30vw 1fr;
+    > #nav-thongtin {
+      margin-right: 0;
+      margin-left: 10%;
+    }
+    > #setting-container {
+      margin-left: 0;
+      margin-right: 10%;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+  
+  #setting-container .avatar {
+    float: none;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width:800px) {
+  #filter {
+    display: none;
+  }
+  #filter-list {
+    grid-template-rows: 1fr 1fr;
+    button {
+      padding: 2%;
+    } 
+    input {
+      width: 50%;
+    }
+  }
+  .account > .admin > #sign-in-btn {
+    padding: 10px;
+    border-radius: 10px;
+    > span {
+      display: none;
+    }
+    > svg {
+      display: block;
+      fill: white;
+      height: 30px;
+      width: 30px;
+    }
+  }
+}
+
 

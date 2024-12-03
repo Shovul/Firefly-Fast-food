@@ -13,13 +13,16 @@
     <script src="script/sidebar.js" defer></script>
     <script src="script/create_items.js" defer></script>
     <script src="script/admin.js" defer></script>
+    <script src="script/autoAdd.js" defer></script>
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
 </head>
 <body>
-    <div id="blur-bg"></div>
+    <div id="blur" class="bg"></div>
+    <div id="white" class="bg"></div>
+    
     <div class="admin-page">
         <div id="sidebar" class="admin">
             <ul id="admin-nav">
@@ -34,12 +37,16 @@
                 <li>
                     <a href="admin.html?qlmn">Quan ly menu</a>
                 </li>
+                <li>
+                    <a href="admin.html?qldh">Quan ly đơn hàng</a>
+                </li>
             </ul>
         </div>
         
         <div id="manage-box" class="tai_khoan active">
             <div class="title">
-                Quan ly <span>Tai khoan</span>
+                <div>Quan ly <span>Tai khoan</span></div>
+                <button onclick="openAddAccount()"><p>+</p></button>
             </div>
 
             <div class="account-list">
@@ -52,6 +59,7 @@
                 <div class="acc_title">Sửa</div>
             </div>
         </div>
+
         <div id="manage-box" class="menu">
             <div class="title">
                 <div>Quan ly <span>San Pham</span></div>
@@ -66,45 +74,149 @@
                 <div class="menu_title">Sửa</div>
             </div>
         </div>
+        
+        <div id="manage-box" class="order">
+            <div class="title">
+                <div>Quan ly <span>Hoa Don</span></div>
+            </div>
+            <div class="order-list">
+                <div class="order_title">Tên tài khoản</div>
+                <div class="order_title">Thông tin người nhận</div>
+                <div class="order_title">Danh sách món</div>
+                <div class="order_title">asd</div>
+            </div>
+        </div>
     </div>
     
     <div id="add_menu">
         <button id="exit_menu" onclick="exitAddMenu()">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
         </button>
-        <form action="POST" id="sp-form">
+        <form action="POST" id="add-sp-form">
             <div id="left">
-                <input type="text" name="name" autocomplete="off" placeholder="Điền tên món">
-                <input type="text" name="price" autocomplete="off" placeholder="Điền giá tiền">
-                <select name="type" id="">
+                <label for="name" missing-input="Hãy điền tên món"></label>
+                <input type="text" name="name" id="name" autocomplete="off" placeholder="Điền tên món">
+                <label for="price" missing-input="Hãy điền giá món"></label>
+                <input type="text" id="price" name="price" autocomplete="off" placeholder="Điền giá tiền">
+                <label for="type" missing-input="Hãy chọn loại"></label>
+                <select name="type" id="type">
                     <option value="" disabled selected>-- Chọn loại --</option>
                     <optgroup label="Thức ăn">
-                        <option value="burger">Burger</option>
-                        <option value="khoai">French fries</option>
-                        <option value="ga">Fried chicken</option>
+                        <option value="Burger">Burger</option>
+                        <option value="Spaghetti">Spaghetti</option>
+                        <option value="Cơm">Cơm</option>
+                        <option value="Gà">Gà</option>
+                        <option value="Khai vị">Khai vị</option>
                     </optgroup>
                     <optgroup label="Đồ uống">
-                        <option value="soda">Soda</option>
-                        <option value="cafe">Coffee</option>
-                        <option value="tra">Tea</option>
+                        <option value="Nước ngọt">Nước ngọt</option>
+                        <option value="Cafe">Cafe</option>
+                        <option value="Trà">Trà</option>
+                        <option value="Smoothie">Smoothie</option>
                     </optgroup>
                     <optgroup label="Tráng miệng">
-                        <option value="kem">Ice cream</option>
-                        <option value="banh">Pie</option>
+                        <option value="Kem">Kem</option>
+                        <option value="Bánh">Bánh</option>
+                        <option value="Bánh kem">Bánh kem</option>
                     </optgroup>
                 </select>
             </div>
-            <div id="right" for="image_input">
+            <div id="right-add" for="image_input">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>
-                <label for="image_input"></label>
-                <input id="image_input" type="file" name="image" accept="image/*">
+                <label for="image_input" missing-input="Hãy chọn một hình ảnh"></label>
+                <input id="image_input" type="file" name="image" accept="image/*" >
             </div>
-            <textarea name="description" id="food_description"></textarea>
+            <div>
+                <label for="food_description" id="textarea-label" missing-input="Hãy ghi chú thông tin món"> 
+                </label>
+                <textarea name="description" id="food_description"></textarea>
+            </div>
 
             <div>
                 <input type="submit" name="submit-bnt">
             </div>
         </form>
+    </div>
+
+    <div id="edit_menu">
+        <button id="exit_menu" onclick="exitEditMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        </button>
+        <form action="POST" id="edit-sp-form">
+            <div id="left">
+                <input type="text" name="name" autocomplete="off" placeholder="hello">
+                <input type="text" name="price" autocomplete="off">
+                <select name="type" id="">
+                    <option value="" disabled selected>-- Chọn loại --</option>
+                    <optgroup label="Thức ăn">
+                        <option value="Burger">Burger</option>
+                        <option value="Spaghetti">Spaghetti</option>
+                        <option value="Cơm">Cơm</option>
+                        <option value="Gà">Gà</option>
+                        <option value="Khai vị">Khai vị</option>
+                    </optgroup>
+                    <optgroup label="Đồ uống">
+                        <option value="Nước ngọt">Nước ngọt</option>
+                        <option value="Cafe">Cafe</option>
+                        <option value="Trà">Trà</option>
+                        <option value="Smoothie">Smoothie</option>
+                    </optgroup>
+                    <optgroup label="Tráng miệng">
+                        <option value="Kem">Kem</option>
+                        <option value="Bánh">Bánh</option>
+                        <option value="Bánh kem">Bánh kem</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div id="right-edit" for="image_input">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>
+                <label for="image_edit"></label>
+                <input id="image_edit" type="file" name="image" accept="image/*">
+            </div>
+                <textarea name="description" id="food_description"></textarea>
+            <div>
+                <input type="submit" name="submit-bnt" value="Thay đổi">
+            </div>
+        </form>
+    </div>
+    
+    <div id="add_account">
+        <div class="exit btn" onclick="exitAddAccount()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z"/></svg></div>
+        <form method="POST">
+            <label for="name" missing-input="Hãy điền tên khách hàng"></label>
+            <input type="text" autocomplete="off" name="name" class="add_input" placeholder="Nhập tên tài khách hàng">
+            <label for="email" missing-input="Hãy điền email khách hàng"></label>
+            <input type="text" autocomplete="off" name="email" class="add_input" placeholder="Nhập email khách hàng">
+            <label for="password" missing-input="Hãy điền mật khẩu"></label>
+            <input type="text" autocomplete="off" name="password" class="add_input" placeholder="Nhập mật khẩu">
+            <label for="phone" missing-input="Hãy điền số điện thoại khách hàng"></label>
+            <input type="text" autocomplete="off" name="phone" class="add_input" placeholder="Nhập số điện thoại khách hàng">
+            <!-- <label for="avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>
+            </label><input type="file" id="avatar" name="avatar"> -->
+            <input type="submit" value="Tạo">
+        </form>
+        
+    </div>
+
+    <div id="edit_account">
+        <div>
+            <input type="text"><button>Đổi</button>
+        </div>
+        <div>
+            <input type="text"><button>Đổi</button>
+        </div>
+        <div>
+            <input type="text"><button>Đổi</button>
+        </div>
+        <div>
+            <input type="tel"><button>Đổi</button>
+        </div>
+
+        <div id="avatar_image"></div>
+        
+        <div class="btn"><button></button></div>
+        <div class="exit btn" onclick="exitEditAccount()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z"/></svg></div>
     </div>
 </body>
 </html>

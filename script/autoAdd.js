@@ -65,7 +65,7 @@ function createMenu() {
     item5 = {
       id: 4,
       name: "Cafe",
-      price: 21000,
+      price: 20000,
       type: "coffee",
       image: "images/food/coffee.jpg",
       group: "Đồ uống",
@@ -84,7 +84,7 @@ function createMenu() {
       id: 6,
       name: "Gà rán",
       price: 89000,
-      type: "fried chicken",
+      type: "fried chicken1",
       image: "images/food/fried_chicken.jpg",
       group: "Thức ăn",
       description: "ga ga ga ngon ngon"
@@ -106,7 +106,52 @@ function createMenu() {
       image: "images/food/lemon_cake.png",
       group: "Tráng miệng",
       description: "lemon lemon lemon ngon ngon"
-    }
+    },
+    item10={
+      id:9,
+      name:"Khoai lang lắc phô mai",
+      price: 35000,
+      type:"khoai lang",
+      image:"images/Food/khoailang.jpg",
+      group:"Thức ăn",
+      description:"Mon cua Phuc lam"
+    },
+    item11={
+      id:10,
+      name:"Cánh gà chiên",
+      price: 45000,
+      type:"fired chicken2",
+      image:"images/Food/canhga.jpg",
+      group:"Thức ăn",
+      description:"Mon cua Phuc lam"
+    },
+    item12 = {
+      id: 11,
+      name: "7-up",
+      price: 12000,
+      type: "nuocngot",
+      image: "images/Food/7up.png",
+      group: "Đồ uống",
+      description: "uốn 7 up đê"
+    },
+    item13 = {
+      id: 12,
+      name: "Nước suối",
+      price: 8000,
+      type: "nuoc suoi",
+      image: "images/Food/suoi.png",
+      group: "Đồ uống",
+      description: "uốn healthy"
+    },
+    item11={
+      id:10,
+      name:"Cơm gà cháy tỏi",
+      price: 45000,
+      type:"fired chicken3",
+      image:"images/Food/comga.jpg",
+      group:"Thức ăn",
+      description:"Mon cua Phuc lam"
+    },
   ]
   localStorage.setItem('menu', JSON.stringify(menu))
 }

@@ -1,3 +1,4 @@
+
 window.onload = function(e) {
   var url = window.location.href
   const goTo = url.split("?")
@@ -12,11 +13,15 @@ window.onload = function(e) {
     case "qlmn":
       showQLMenu()
       break
+    case "qldh":
+      showQLOrder()
+      break
     case "giohang":
+      showGioHang()
       break
     default:
       createAccount()
-      createMenu() 
+      createMenu()  
   }
 }
 function removePopup() {
@@ -34,7 +39,7 @@ function removePopup() {
 
 function signInMenu() {
   let menu = document.getElementById("signin");
-  let bg = document.getElementById("blur-bg");
+  let bg = document.querySelector('#blur.bg');
 
   bg.style.display = "block";
   menu.style.opacity = 1;
@@ -46,7 +51,7 @@ function signInMenu() {
 
 function exitSignin() {
   let menu = document.getElementById("signin");
-  let bg = document.getElementById("blur-bg");
+  let bg = document.querySelector('#blur.bg');
 
   document.forms["signin"]["username"].value = "";
   document.forms["signin"]["password"].value = "";
@@ -60,7 +65,7 @@ function exitSignin() {
 }
 function exitSignup() {
   let menu = document.getElementById("signup");
-  let bg = document.getElementById("blur-bg");
+  let bg = document.querySelector('#blur.bg');
   
   document.forms["signup"]["username"].value = ""
   document.forms["signup"]["email"].value = ""

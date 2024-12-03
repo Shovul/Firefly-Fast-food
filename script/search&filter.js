@@ -22,29 +22,50 @@ function normalize(str) {
 
 function searchUp() {
   removeCurrentMenu()
-  countMenuItems = 0;
+  // countMenuItems = 0;
   if (search.value == '') {
-    loadMenu(foods, drinks, desserts)
+    loadMenuByPage("food", foods);
+    loadMenuByPage("drink", drinks);
+    loadMenuByPage("dessert", desserts);
+    // loadMenu(foods, drinks, desserts)
     return false
   }
   var newFoods = foods.filter((food) => normalize(food.name).includes(normalize(search.value)))
   var newDrinks = drinks.filter((food) => normalize(food.name).includes(normalize(search.value)))
   var newDesserts = desserts.filter((food) => normalize(food.name).includes(normalize(search.value)))
 
-  loadMenu(newFoods, newDrinks, newDesserts)
+  loadMenuByPage("food", newFoods);
+  loadMenuByPage("drink", newDrinks);
+  loadMenuByPage("dessert", newDesserts);
+  // loadMenu(newFoods, newDrinks, newDesserts)
   search.value = ''
 }
 function removeCurrentMenu() {
   menuDisplay.innerHTML = `
-    <div id="thucan">Thức Ăn</div>
-    <div class="items">
-    </div>
-    <div id="douong">Nước Uống</div>
-    <div class="items">
-    </div>
-    <div id="trangmieng">Tráng miệng</div>
-    <div class="items">
-    </div>
+        <div id="thucan">Thức Ăn</div>
+        <div class="items" id="food-items"></div>
+        <div class="pagination" id="food-pagination">
+          <button onclick="changePage('food', 'prev')">Trang trước</button>
+          <span id="food-page-numbers"></span>
+          <button onclick="changePage('food', 'next')">Trang sau</button>
+        </div>
+      
+        <div id="douong">Nước Uống</div>
+        <div class="items" id="drink-items"></div>
+        <div class="pagination" id="drink-pagination">
+          <button onclick="changePage('drink', 'prev')">Trang trước</button>
+          <span id="drink-page-numbers"></span>
+          <button onclick="changePage('drink', 'next')">Trang sau</button>
+        </div>
+      
+        <div id="trangmieng">Tráng Miệng</div>
+        <div class="items" id="dessert-items"></div>
+        <div class="pagination" id="dessert-pagination">
+          <button onclick="changePage('dessert', 'prev')">Trang trước</button>
+          <span id="dessert-page-numbers"></span>
+          <button onclick="changePage('dessert', 'next')">Trang sau</button>
+        </div>
+      </div>
   `
 }
 search.addEventListener("keyup", function(e) {
@@ -52,3 +73,48 @@ search.addEventListener("keyup", function(e) {
     searchUp()
   }
 })
+
+function openFilterList(button) {
+  const filterList = document.getElementById('filter-list')
+  filterList.classList.toggle('show')
+  button.classList.toggle('rotate')
+}
+
+const filterList = document.querySelectorAll('#filter-list > div > li > button')
+filterList.forEach(button => {
+  button.addEventListener('click', function() {
+  var newFoods = foods.filter((food) => food.type.includes(button.textContent))
+  var newDrinks = drinks.filter((food) =>(food.type).includes(button.textContent))
+  var newDesserts = desserts.filter((food) =>(food.type).includes(button.textContent))
+
+  removeCurrentMenu()
+  
+  loadMenuByPage("food", newFoods);
+  loadMenuByPage("drink", newDrinks);
+  loadMenuByPage("dessert", newDesserts);
+  })
+})
+filterList[0].addEventListener('click', function() {
+  initializeMenu();
+})
+filterList[filterList.length-1].addEventListener('click', function() {
+  const ranges = document.querySelectorAll('#filter-list > div > li > #price-range')
+  let from = parseInt(ranges[0].nextElementSibling.value)
+  let to = parseInt(ranges[1].nextElementSibling.value)
+  from = isNaN(from) ? 0 : from
+  to = isNaN(to) ? Number.MAX_SAFE_INTEGER : to
+
+  var newFoods = foods.filter((food) => food.price >= from && food.price <= to)
+  var newDrinks = drinks.filter((drink) => drink.price >= from && drink.price <= to)
+  var newDesserts = desserts.filter((dessert) => dessert.price >= from && dessert.price <= to)
+  console.log(newFoods)
+
+  removeCurrentMenu()
+  
+  loadMenuByPage("food", newFoods);
+  loadMenuByPage("drink", newDrinks);
+  loadMenuByPage("dessert", newDesserts);
+})
+
+function filterRanges() {
+}
