@@ -1,4 +1,3 @@
-
 window.onload = function(e) {
   var url = window.location.href
   const goTo = url.split("?")
@@ -19,11 +18,24 @@ window.onload = function(e) {
     case "giohang":
       showGioHang()
       break
+    case "donhang":
+      showDonHang()
+      break
     default:
       createAccount()
       createMenu()  
   }
 }
+
+
+function hoadonGetTotal(items) {
+  let sum = 0
+  items.forEach(item => {
+    sum += item.price * item.quantity    
+  })
+  return sum
+}
+
 function removePopup() {
   Array.from(document.getElementsByClassName('missing-input')).forEach((item) => {
     item.style.opacity = 0

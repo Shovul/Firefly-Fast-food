@@ -1,4 +1,3 @@
-
 accounts = JSON.parse(localStorage.getItem('accounts'))
 remember = localStorage.getItem('rememberAcc')
 function showQLMenu() {
@@ -17,6 +16,11 @@ function showQLOrder() {
   order.classList.add("active")
   showOrderList();
 }
+window.addEventListener('click', (e) => {
+  if(document.querySelector('.bg#blur').contains(e.target)) {
+    closeOrderInfo() 
+  }
+})  
 function showMenuList() {
   var menu_list = document.querySelector(".menu-list")
 
@@ -110,6 +114,261 @@ function showAccountList() {
 
   });
 } 
+
+function showOrderList() {
+  const container = document.querySelector('.order-list')
+  container.innerHTML = `
+    <div class="order_title">Mã người dùng</div>
+    <div class="order_title">Tên tài khoản</div>
+    <div class="order_title" style="cursor: pointer;" onclick="sortOrder(this)">Thời gian đặt</div>
+    <div class="order_title">Địa chỉ</div>
+    <div class="order_title" style="cursor: pointer;" onclick="sortOrder(this)">Trạng thái</div>
+    <div class="order_title">Chi tiết hóa đơn</div>
+    `
+
+  accounts.forEach(account => {
+    account.hoadon.forEach(order => {
+      const accId = document.createElement('div')
+      const accName = document.createElement('div')
+      const orderTime = document.createElement('div')
+      const address = document.createElement('div')
+      const status = document.createElement('div')
+      const info = document.createElement('div')
+      accId.innerHTML = `${account.id}`
+      accName.innerHTML = `${account.name}`
+      orderTime.innerHTML = `${order.orderTime}`
+      address.innerHTML = `${order.info.address}`
+      status.innerHTML = `
+          <select class="${account.id}" id="${order.id}" onchange="changeValue(this)">
+            <option value="a">Chưa xử lý</option>
+            <option value="b">Đang làm món</option>
+            <option value="c">Đang giao</option>
+            <option value="d">Đã giao</option>
+            <option value="e">Đã nhận hàng</option>
+            <option value="f">Hủy đơn</option>
+          </select>
+      `
+      status.firstElementChild.value = order.status
+      info.innerHTML = `<button class="${account.id}" id="${order.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`
+
+      container.appendChild(accId)
+      container.appendChild(accName)
+      container.appendChild(orderTime)
+      container.appendChild(address)
+      container.appendChild(status)
+      container.appendChild(info)
+    })
+  })
+}
+function changeValue(acc) {
+  switch(acc.value) {
+    case "a":
+      accounts[acc.classList].hoadon[acc.id].status = "a"
+      break
+    case "b":
+      accounts[acc.classList].hoadon[acc.id].status = "b"
+      break
+    case "c":
+      accounts[acc.classList].hoadon[acc.id].status = "c"
+      break
+    case "d":
+      accounts[acc.classList].hoadon[acc.id].status = "d"
+      break
+    case "e":
+      accounts[acc.classList].hoadon[acc.id].status = "e"
+      break
+    case "f":
+      accounts[acc.classList].hoadon[acc.id].status = "f"
+      break
+
+    default:
+      break
+  }
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+}
+function calculateTotalTime(time) {
+  getTime = time.split(':')
+  return getTime[0] * 3600 + getTime[1] * 60 + getTime[2]
+}
+function compareTime(a, b) {
+  time1 = a.split("-")
+  time2 = b.split("-")
+  date1 = time1[0].split("/")
+  date2 = time2[0].split("/")
+
+  if(date1[2] < date2[2]) {
+    return -1
+  }
+  if(date1[1] < date2[1]) {
+    return -1
+  }
+  if(date1[0] < date2[0]) {
+    return -1
+  }
+  return calculateTotalTime(time1[1]) < calculateTotalTime(time2[1]) ? -1 : 1
+}
+function sortOrder(sort) {
+  const sortBy = sort.textContent
+  const container = document.querySelector('.order-list')
+  container.innerHTML = `
+    <div class="order_title">Mã người dùng</div>
+    <div class="order_title">Tên tài khoản</div>
+    <div class="order_title" style="cursor: pointer;" onclick="sortOrder(this)">Thời gian đặt</div>
+    <div class="order_title">Địa chỉ</div>
+    <div class="order_title" style="cursor: pointer;" onclick="sortOrder(this)">Trạng thái</div>
+    <div class="order_title">Chi tiết hóa đơn</div>
+    `
+    
+  if(sortBy == "Trạng thái") {
+    let list = []
+    accounts.forEach(account => {
+      account.hoadon.forEach(order => {
+        order.accountID = account.id
+        list.push(order)
+      });
+    })
+    list = list.sort((a, b) => {
+      return a.status < b.status ? -1 : 1;
+    })
+    
+    list.forEach(item => {
+      const accId = document.createElement('div')
+      const accName = document.createElement('div')
+      const orderTime = document.createElement('div')
+      const address = document.createElement('div')
+      const status = document.createElement('div')
+      const info = document.createElement('div')
+      accId.innerHTML = `${item.id}`
+      accName.innerHTML = `${accounts[item.accountID].name}`
+      orderTime.innerHTML = `${item.orderTime}`
+      address.innerHTML = `${item.info.address}`
+      status.innerHTML = `
+          <select class="${item.accountID}" id="${item.id}" onchange="changeValue(this)">
+            <option value="a">Chưa xử lý</option>
+            <option value="b">Đang làm món</option>
+            <option value="c">Đang giao</option>
+            <option value="d">Đã giao</option>
+            <option value="e">Đã nhận hàng</option>
+          </select>
+      `
+      status.firstElementChild.value = item.status
+      info.innerHTML = `<button class="${item.accountID}" id="${item.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`
+
+      container.appendChild(accId)
+      container.appendChild(accName)
+      container.appendChild(orderTime)
+      container.appendChild(address)
+      container.appendChild(status)
+      container.appendChild(info)
+    })
+  }
+  else {
+    let list = []
+    accounts.forEach(account => {
+      account.hoadon.forEach(order => {
+        order.accountID = account.id
+        list.push(order)
+      });
+    })
+    list = list.sort((a, b) => {
+      return compareTime(a.orderTime, b.orderTime)
+    })
+    list.forEach(item => {
+      const accId = document.createElement('div')
+      const accName = document.createElement('div')
+      const orderTime = document.createElement('div')
+      const address = document.createElement('div')
+      const status = document.createElement('div')
+      const info = document.createElement('div')
+      accId.innerHTML = `${item.id}`
+      accName.innerHTML = `${accounts[item.accountID].name}`
+      orderTime.innerHTML = `${item.orderTime}`
+      address.innerHTML = `${item.info.address}`
+      status.innerHTML = `
+          <select class="${item.accountID}" id="${item.id}" onchange="changeValue(this)">
+            <option value="a">Chưa xử lý</option>
+            <option value="b">Đang làm món</option>
+            <option value="c">Đang giao</option>
+            <option value="d">Đã giao</option>
+            <option value="e">Đã nhận hàng</option>
+          </select>
+      `
+      status.firstElementChild.value = item.status
+      info.innerHTML = `<button class="${item.accountID}" id="${item.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`
+
+      container.appendChild(accId)
+      container.appendChild(accName)
+      container.appendChild(orderTime)
+      container.appendChild(address)
+      container.appendChild(status)
+      container.appendChild(info)
+    })
+  }
+}
+
+const orderInfo = document.getElementById('orderInfo')
+function closeOrderInfo() {
+  orderInfo.style.transform = 'scale(0)'
+  document.querySelector('.bg#blur').style.display = 'none'
+}
+function createHoadonItem(items) {
+  let display = document.createElement('ul')
+
+  items.forEach(item => {
+    let list = document.createElement('li')
+    list.innerHTML = `
+        <div class="image" style="background-image: url(${item.image});"></div>
+        <div>
+            <div>${item.name}</div>
+            <div>${item.quantity}</div>
+            <div>${item.price}</div>
+        </div>
+    `
+    display.appendChild(list)
+  })
+  console.log(display)
+  return display
+}
+
+function showOrderInfo(acc) {
+  accID = acc.classList
+  orderID = acc.id
+  order = accounts[accID].hoadon[orderID]
+
+  document.querySelector('.bg#blur').style.display = 'block'
+  orderInfo.style.transform = 'scale(1)'
+
+  orderInfo.innerHTML = `
+        <h1>
+          <span>Người nhận: ${order.info.name}</span>
+          <span>Ngày đặt: ${order.orderTime.split("-")[0]}</span>
+        </h1>
+        <div>
+            <div><b>Số điện thoại:</b> ${order.info.phone}</div>
+            <div><b>Địa chỉ:</b> ${order.info.address}</div>
+        </div>
+        <div><b>Phương thức trả:</b> ${order.paymentMethod}</div>
+        <div class="time">
+            <span><b>Thời gian đặt:</b> ${order.orderTime.split("-")[1]}</span>
+            <span><b>Thời gian dự kiến tới:</b> ${order.arriveTime}</span>
+        </div>
+        <div class="food_price" onclick="showOrderFood()">
+            <span>Sản phẩm</span>
+            <span>Tổng số tiền: ${hoadonGetTotal(order.items).toLocaleString()} VNđ</span>
+        </div>
+        <div class="list-food">
+        </div>
+        <select name="status" id="status">
+            <option value="a">Đang xử lý</option>
+            <option value="b">Đang làm món</option>
+            <option value="c">Đang giao</option>    
+            <option value="d">Đã giao</option>
+            <option value="e">Đã nhận hàng</option>
+            <option value="f">Hủy đơn</option>
+        </select>
+  `
+  document.querySelector('.list-food').appendChild(createHoadonItem(order.items))
+}
 function showTaikhoan() {
   let taikhoan = document.querySelector(".tai_khoan")
   let active = document.querySelector(".active")
@@ -382,7 +641,8 @@ addAccountForm.addEventListener('submit', function(e) {
     avatar: "images/Icons/default.svg",
     status: "active",
     addresses: [],
-    basket: []
+    hoadon: [],
+    cart: []
   }
   if (newAccount.name == "" || newAccount.name == null) {
     addAccountForm["name"].previousSibling.previousSibling.style.transform = 'translateY(0)'
@@ -462,3 +722,8 @@ addAccountForm.addEventListener('submit', function(e) {
     location.reload()
   }
 })
+
+function showOrderFood() {
+  document.getElementsByClassName('list-food')[0].classList.toggle('show')
+}
+

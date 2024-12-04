@@ -116,5 +116,13 @@ filterList[filterList.length-1].addEventListener('click', function() {
   loadMenuByPage("dessert", newDesserts);
 })
 
+window.addEventListener('click', (e) => {
+  if(document.querySelector('.bg#blur').contains(e.target)) {
+    closeAccountbar() 
+    exitSignin()
+    exitSignup()
+  }
+})  
+
 function filterRanges() {
 }

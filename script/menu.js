@@ -81,7 +81,8 @@ let currentPage = {
 };
 
 // Lấy dữ liệu menu từ localStorage
-let menu = JSON.parse(localStorage.getItem('menu')) || [];
+let menu = JSON.parse(localStorage.getItem('menu'));
+
 let foods = menu.filter(item => item.group === "Thức ăn");
 let drinks = menu.filter(item => item.group === "Đồ uống");
 let desserts = menu.filter(item => item.group === "Tráng miệng");

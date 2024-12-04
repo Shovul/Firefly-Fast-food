@@ -68,7 +68,7 @@ function signInAcc() {
 
   if (check) {
     for (let i=0; i<accounts.length; i++) {
-      if (name == accounts[i].name && pass === accounts[i].pass) {
+      if ((name === accounts[i].email || name === accounts[i].phone) && pass === accounts[i].pass) {
         localStorage.setItem('rememberAcc', i)
         removeWrongInput()
         removeInputValue()
@@ -191,10 +191,12 @@ function signUpAcc() {
 function openAccountbar() {
   const accMenu = document.getElementById('account-menu')
   accMenu.classList.toggle('show')
+  document.querySelector(".bg#blur").style.display = 'block'
 }
 function closeAccountbar() {
   const accMenu = document.getElementById('account-menu')
   accMenu.classList.remove('show')
+  document.querySelector(".bg#blur").style.display = 'none'
 }
 function logOut() {
   document.getElementById('sign-in-btn').style.display = 'block'
@@ -232,6 +234,11 @@ function showThongtin() {
     thongtin[2].appendChild(phoneBtn)
     const phone = document.getElementById('phoneBtn')
     phone.addEventListener('focusout', function(){
+      for(let i=0; i<accounts.length; i++) {
+        if(accounts[i].phone == phone.value) {
+          return false
+        }
+      }
       if(Number(phone.value) != 0 && phone.value.length == 10) {
         accounts[remember].phone = phone.value
         localStorage.setItem('accounts', JSON.stringify(accounts))
@@ -266,12 +273,36 @@ function showThongtin() {
       receiver.appendChild(newAddress)
       diaChiList.appendChild(receiver)
       if(address.status == 'choose') {
-        
         diaChiList.selectedIndex = address.id
       }
     })
     const listPosition = document.querySelector('.taikhoan > ul > div')
+    const deleteButton = document.createElement('button')
+    deleteButton.setAttribute('id', 'deleteAddress')
+    deleteButton.setAttribute('onclick', 'deleteAddress()')
+    deleteButton.innerHTML = 'Xóa địa chỉ đang chọn'
     listPosition.appendChild(diaChiList)
+    listPosition.appendChild(deleteButton)
+  }
+}
+function deleteAddress() {
+  const addressSelect = document.getElementById('thongtin-diachi')
+  const addressSelected = document.querySelector('#thongtin-diachi option:checked')
+  accounts[remember].addresses.splice(addressSelected.value, 1)
+  for(let i=0; i<accounts[remember].addresses.length; i++) {
+    accounts[remember].addresses[i].id = i;
+  }
+  console.log(accounts[remember].addresses)
+  if(accounts[remember].addresses.length>0) {
+    accounts[remember].addresses[0].status = 'choose'
+  }
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+  const confirm = window.confirm("Xóa địa chỉ " + addressSelected.innerHTML + "?")
+  if(confirm) {
+    addressSelect.removeChild(addressSelected.parentElement)
+  }
+  if(addressSelect.innerHTML === "") {
+    addressSelect.parentElement.innerHTML = ''
   }
 }
 function selectCurrentAddress(thisAddress) {
@@ -461,3 +492,102 @@ createAddressForm.addEventListener('submit', (e) => {
   alert('Đã thêm địa chỉ')
   location.reload()
 })
+
+function getStatus(a) {
+  switch(a) {
+    case "a":
+      return "Chưa xử lý"
+      break
+    case "b":
+      return "Đang làm món"
+      break
+    case "c":
+      return "Đang giao"
+      break
+    case "d":
+      return "Đã giao"
+      break
+    default:
+      break
+  }
+}
+
+function showListDonHang(hoadon) {
+  const display = document.querySelector(".body-donhang")
+  
+  hoadon.forEach(hoaDon => {
+    if(hoaDon.status == "e") {
+      return false
+    }
+    let list = document.createElement('div')
+    list.innerHTML  = `
+      <div class="madon-ngaydat">
+          <div><b>Mã đơn hàng: </b>#${hoaDon.id}</div>
+          <div><b>Ngày đặt đơn: </b>${hoaDon.orderTime.split('-')[0]}</div>
+      </div>
+      <div class="thongtindon"><b>Tên khách hàng: </b>${hoaDon.info.name}</div>
+      <div class="thongtindon"><b>Thời gian đặt hàng: </b>${hoaDon.orderTime.split('-')[1]}</div>
+      <div class="thongtindon"><b>Thời gian dự kiến hoàn thành: </b>${hoaDon.arriveTime}</div>
+      <div class="thongtindon"><b>Tình trạng đơn hàng: </b>${getStatus(hoaDon.status)}</div>
+      <div class="thongtindon"><b>Tổng tiền </b>(${hoaDon.items.length} món) ${hoadonGetTotal(hoaDon.items).toLocaleString()}VNđ</div>
+      <div class="thongtindon">
+          <button id="${hoaDon.id}" onclick="hienChiTiet(this)">Chi tiết đơn hàng</button>
+      </div>
+    ` 
+    display.appendChild(list)
+  })
+  
+}
+function showDonHang() {
+  const donhang = document.getElementById('donhang_khachhang');
+  document.body.style.overflow = 'hidden'
+  donhang.style.display = 'block';
+
+  showListDonHang(accounts[remember].hoadon)
+}
+
+function dongDonHang(){
+  const donhang = document.getElementById('donhang_khachhang');
+  document.body.style.overflow = 'auto'
+  if (donhang) {
+      donhang.style.display = 'none';
+  }
+  window.location.href = "index.html"
+}
+
+// chi tiết đơn hàng
+function hienChiTiet(current) {
+  const hoadonID = current.id
+  const currentHoaDon = accounts[remember].hoadon[hoadonID]
+  const chitiet = document.getElementById('chitietdon')
+  const list = document.querySelector('#chitietdon>div>#container')
+  list.innerHTML = ''
+
+  if (chitiet) {
+      chitiet.style.display = 'block';
+      currentHoaDon.items.forEach(item => {
+        let newItem = document.createElement('div')
+        newItem.setAttribute('class', 'hienSP')
+        newItem.innerHTML = `
+            <div class="imgSP" style="background-image: url(${item.image})"></div>
+            <div class="ten-SL">
+                <h4 style="margin-bottom: 10px">${item.name}</h4>
+                <span><b>Số lương: </b>${item.quantity}</span>
+            </div>
+            <div class="gia">${item.price} VNđ</div>
+        `
+        list.appendChild(newItem)
+      })
+      list.nextElementSibling.innerHTML = `
+          <div style="margin-bottom: 15px; margin-left: 10px; margin-top: 20px;"><b>Phương thức thanh toán: </b>${currentHoaDon.paymentMethod}</div>
+          <div style="margin-bottom: 15px; margin-left: 10px;"><b>Tổng tiền: </b>${hoadonGetTotal(currentHoaDon.items).toLocaleString()}VNđ</div>
+      `
+  }
+}
+
+function dongChiTiet() {
+  const chitiet = document.getElementById('chitietdon');
+  if (chitiet) {
+      chitiet.style.display = 'none';
+  }
+}

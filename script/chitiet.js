@@ -8,10 +8,10 @@ function mochitiet(item){
     let option = document.getElementById('themvaogio')
     
     if(item.classList.contains('muaNgay')) {
-        option.firstElementChild.innerHTML = 'Mua ngay'
+        option.firstElementChild.innerHTML = '<span>Mua ngay</span>'
     }
     else {
-        option.firstElementChild.innerHTML = 'Thêm vào giỏ hàng'
+        option.firstElementChild.innerHTML = '<span>Thêm vào giỏ hàng</span>'
     }
 
     var getItem = item.id
