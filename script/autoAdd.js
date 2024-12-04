@@ -43,7 +43,7 @@ function createMenu() {
         type: "Khai vị",
         image: "images/Food/french_fries.png",
         group: "Thức ăn",
-        description: "khoai khoai khoai ngon ngon"
+        description: "Khoai tây chiên – giòn rụm bên ngoài, mềm mịn bên trong, được chế biến từ khoai tây tươi ngon nhất và hoàn hảo cho mọi bữa ăn!"
       },
       item2 = {
         id: 1,
@@ -52,7 +52,7 @@ function createMenu() {
         type: "Burger",
         image: "images/Food/burger.jpg",
         group: "Thức ăn",
-        description: "hambuger hambuger hambuger ngon ngon"
+        description: "Hamburger – sự kết hợp hoàn hảo giữa bánh mì mềm mại, nhân thịt đậm đà, rau tươi giòn và sốt đặc biệt, mang đến hương vị khó quên!"
       },
       item3 = {
         id: 2,
@@ -61,7 +61,7 @@ function createMenu() {
         type: "Khai vị",
         image: "images/Food/cheese_sticks.jfif",
         group: "Thức ăn",
-        description: "phmai phmai phmai ngon ngon"
+        description: "Cheese sticks – phô mai que vàng giòn, tan chảy bên trong, mang đến hương vị béo ngậy và hấp dẫn trong từng miếng cắn!"
       },
       item4 = {
         id: 3,
@@ -70,7 +70,7 @@ function createMenu() {
         type: "Nước ngọt",
         image: "images/Food/coca_cola.jfif",
         group: "Đồ uống",
-        description: "coca coca coca ngon ngon"
+        description: "Coca-Cola – thức uống giải khát sảng khoái, với hương vị độc đáo và cảm giác mát lạnh đầy năng lượng!"
       },
       item5 = {
         id: 4,
@@ -79,7 +79,7 @@ function createMenu() {
         type: "Cafe",
         image: "images/Food/coffee.jpg",
         group: "Đồ uống",
-        description: "cafe cafe cafe ngon ngon"
+        description: "Cà phê – hương vị đậm đà, thơm nồng, mang đến nguồn năng lượng tỉnh táo và cảm giác thư thái cho ngày mới!"
       },
       item6 = {
         id: 5,
@@ -88,7 +88,7 @@ function createMenu() {
         type: "Bánh ngọt",
         image: "images/Food/cream_puff.jfif",
         group: "Tráng miệng",
-        description: "su su su ngon ngon"
+        description: "Bánh su – lớp vỏ mềm mịn hòa quyện cùng nhân kem béo ngậy, tạo nên hương vị ngọt ngào khó cưỡng"
       },
       item7 = {
         id: 6,
@@ -97,7 +97,7 @@ function createMenu() {
         type: "Gà",
         image: "images/Food/fried_chicken.jpg",
         group: "Thức ăn",
-        description: "ga ga ga ngon ngon"
+        description: "Gà rán – lớp vỏ vàng giòn rụm, thịt gà mềm mọng nước, đậm đà hương vị, mang đến trải nghiệm ngon miệng khó quên!"
       },
       item8 = {
         id: 7,
@@ -106,7 +106,7 @@ function createMenu() {
         type: "Kem",
         image: "images/Food/ice_creame.jpg",
         group: "Tráng miệng",
-        description: "kem kem kem ngon ngon"
+        description: "Kem ly – mát lạnh, mịn màng, hòa quyện hương vị ngọt ngào, mang lại cảm giác sảng khoái trong từng muỗng!"
       },
       item9 = {
         id: 8,
@@ -115,7 +115,7 @@ function createMenu() {
         type: "Bánh kem",
         image: "images/Food/lemon_cake.png",
         group: "Tráng miệng",
-        description: "lemon lemon lemon ngon ngon"
+        description: "Lemon cake – bánh chanh mềm mịn, hương chanh tươi mát hòa quyện cùng vị ngọt dịu, tạo nên món tráng miệng thơm ngon khó cưỡng!"
       }
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
