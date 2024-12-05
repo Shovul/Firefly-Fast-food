@@ -21,6 +21,11 @@ function normalize(str) {
 }
 
 function searchUp() {
+  currentPage = {
+    food: 1,
+    drink: 1,
+    dessert: 1,
+  };
   removeCurrentMenu()
   // countMenuItems = 0;
   if (search.value == '') {
@@ -81,20 +86,64 @@ function openFilterList(button) {
 }
 
 const filterList = document.querySelectorAll('#filter-list > div > li > button')
-filterList.forEach(button => {
-  button.addEventListener('click', function() {
-  var newFoods = foods.filter((food) => food.type.includes(button.textContent))
-  var newDrinks = drinks.filter((food) =>(food.type).includes(button.textContent))
-  var newDesserts = desserts.filter((food) =>(food.type).includes(button.textContent))
+let keyWord = []
 
-  removeCurrentMenu()
-  
-  loadMenuByPage("food", newFoods);
-  loadMenuByPage("drink", newDrinks);
-  loadMenuByPage("dessert", newDesserts);
+for(let i=1; i<filterList.length-1; i++) {
+  filterList[i].addEventListener('click', function() {
+    filterList[i].classList.toggle('show')
+    const ranges = document.querySelectorAll('#filter-list > div > li > #price-range')
+    ranges[0].nextElementSibling.value = ''
+    ranges[1].nextElementSibling.value = ''
+
+    if(keyWord.includes(filterList[i].textContent)) {
+      keyWord.splice(keyWord.indexOf(filterList[i].textContent),1)
+      if(keyWord.length === 0) {
+        initializeMenu()
+        return false
+      }
+    }
+    else keyWord.push(filterList[i].textContent)
+
+    var newFoods = foods.filter((food) => {
+      for(let i=0; i<keyWord.length; i++) {
+        if(food.type.includes(keyWord[i])) {
+          return true
+        }
+      }
+    })
+    var newDrinks = drinks.filter((drink) => {
+      for(let i=0; i<keyWord.length; i++) {
+        if(drink.type.includes(keyWord[i])) {
+          return true
+        }      
+      }
+    })
+    var newDesserts = desserts.filter((dessert) => {
+      for(let i=0; i<keyWord.length; i++) {
+        if(dessert.type.includes(keyWord[i])) {
+          return true
+        }      
+      }
+    })
+
+    currentPage = {
+      food: 1,
+      drink: 1,
+      dessert: 1,
+    };
+    removeCurrentMenu()
+    
+    loadMenuByPage("food", newFoods);
+    loadMenuByPage("drink", newDrinks);
+    loadMenuByPage("dessert", newDesserts);
   })
-})
+}
 filterList[0].addEventListener('click', function() {
+  filterList.forEach(button => button.classList.remove('show'))
+  keyWord = [];
+  const ranges = document.querySelectorAll('#filter-list > div > li > #price-range')
+  ranges[0].nextElementSibling.value = ''
+  ranges[1].nextElementSibling.value = ''
   initializeMenu();
 })
 filterList[filterList.length-1].addEventListener('click', function() {
@@ -104,10 +153,42 @@ filterList[filterList.length-1].addEventListener('click', function() {
   from = isNaN(from) ? 0 : from
   to = isNaN(to) ? Number.MAX_SAFE_INTEGER : to
 
-  var newFoods = foods.filter((food) => food.price >= from && food.price <= to)
-  var newDrinks = drinks.filter((drink) => drink.price >= from && drink.price <= to)
-  var newDesserts = desserts.filter((dessert) => dessert.price >= from && dessert.price <= to)
-  console.log(newFoods)
+  if(keyWord.length > 0) {
+    var newFoods = foods.filter((food) => {
+      for(let i=0; i<keyWord.length; i++) {
+        if(food.type.includes(keyWord[i]) && (food.price >= from && food.price <= to)) {
+          return true
+        }
+      }
+    })
+    currentPage = {
+      food: 1,
+      drink: 1,
+      dessert: 1,
+    };
+    var newDrinks = drinks.filter((drink) => {
+      for(let i=0; i<keyWord.length; i++) {
+        if(drink.type.includes(keyWord[i]) && drink.price >= from && drink.price <= to) {
+          return true
+        }      
+      }
+    })
+    var newDesserts = desserts.filter((dessert) => {
+      for(let i=0; i<keyWord.length; i++) {
+        if(dessert.type.includes(keyWord[i]) && dessert.price >= from && dessert.price <= to) {
+          return true
+        }      
+      }
+    })
+    console.log(newFoods)
+  }
+  else {
+    var newFoods = foods.filter((food) => food.price >= from && food.price <= to)
+    var newDrinks = drinks.filter((drink) => drink.price >= from && drink.price <= to)
+    var newDesserts = desserts.filter((dessert) => dessert.price >= from && dessert.price <= to)
+  }
+
+  
 
   removeCurrentMenu()
   
@@ -115,6 +196,14 @@ filterList[filterList.length-1].addEventListener('click', function() {
   loadMenuByPage("drink", newDrinks);
   loadMenuByPage("dessert", newDesserts);
 })
+
+window.addEventListener('click', (e) => {
+  if(document.querySelector('.bg#blur').contains(e.target)) {
+    closeAccountbar() 
+    exitSignin()
+    exitSignup()
+  }
+})  
 
 function filterRanges() {
 }

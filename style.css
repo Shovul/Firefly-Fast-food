@@ -164,12 +164,15 @@ button {
     align-items: center;
   }
   > li > input {
-    height: 70%;
+    height: 50%;
     padding: 0 1%;
     margin-left: 10px;
     border-radius: 8px;
     outline: none;
     border: none;
+  }
+  button {
+    height: 100%;
   }
 }
 #filter-list.show {
@@ -177,7 +180,7 @@ button {
 }
 #filter-list > div > li > button{
   color: var(--text-color);
-  padding: 1rem;
+  padding: .8rem;
   background: none;
   border: none;
   font-weight: normal;
@@ -185,6 +188,14 @@ button {
 }
 #filter-list > div > li > button:hover {
   background-color: var(--selected-light);
+}
+
+#filter-list > div > li > button.show {
+  background-color: #EE6B6E;
+  color: var(--button-selected);
+}
+#filter-list > div > li > button.show:hover {
+  background-color: #DE0A26;;
 }
 
 /* home, menu, news, contact styling */
@@ -315,6 +326,9 @@ button {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  >.admin>#sign-in-btn {
+    text-wrap: nowrap;
+  }
   >.admin>#sign-in-btn>svg{
     display: none;
   }
@@ -335,6 +349,7 @@ button {
   cursor: pointer;
 }
 #account-menu {
+  z-index: 2;
   border-left: 0 solid var(--base-color);
   background-color: var(--base-color);
   width: 0;
@@ -389,6 +404,22 @@ button {
 }
 #account-menu > ul > li:first-child {
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  >span {
+    background-color: var(--highlight);
+    color: var(--base-color);
+    padding: 8px;
+    border-radius: 30px;
+    transition: 1s;
+    overflow: hidden;
+  }
+  >button {
+    min-width: 40px;
+    min-height: 40px;
+  }
 }
 
 /* menu login */
@@ -598,11 +629,14 @@ button {
 }
 #setting-container {
   overflow-y: auto;
+  scrollbar-gutter: stable;
   box-shadow: 0 0 10px 3px var(--selected-dark);
   border-radius: 20px;
   margin: 40px;
 }
 #nav-thongtin {
+  overflow: hidden;
+  text-wrap: nowrap;
   margin: 40px;
   ul {
     list-style: none;
@@ -629,6 +663,22 @@ button {
 }
 #nav-thongtin > ul > li > ul > li:hover {
   background-color: var(--selected-dark);
+}
+.diachi_selector {
+  display: flex;
+  gap: 1rem;
+  >button {
+    flex: 0.5;
+    border-radius: 8px;
+    background-color: var(--button-color);
+    border: none;
+    padding: 10px;
+    transition: .2s;
+  }
+  >button:hover {
+    transform: scale(1.025);
+    background-color: var(--button-selected);
+  }
 }
 #setting-container {
   padding: 30px 100px;
@@ -820,13 +870,95 @@ button {
   margin: 4px;
   color: var(--base-color);
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(3, .4fr) 1fr repeat(2, .5fr);
   div {
     padding: 8px;
     border: 1px solid black;
   }
+  .order_title {
+    text-align: center;
+  }
+  div > select {
+    width: 100%;
+  }
+  div > button {
+    background-color: var(--button-color);
+    width: 100%;
+    border: none;
+    height: 100%;
+    transition: .2s ease;
+    text-align: center;
+  }
+  div > button:hover {
+    transform: scale(1.025);
+    box-shadow: 0 0 5px var(--selected-dark);
+  }
 }
-
+#orderInfo {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  height: fit-content;
+  box-shadow: 0 0 5px 6px var(--selected-dark);
+  margin: auto;
+  width: 40vw;
+  padding: 2%;
+  border-radius: 6px;
+  transform: scale(0);
+  transition: .2s;
+  z-index: 3;
+  > div {
+    border-bottom: 3px solid var(--secondary-color);
+    padding: 4px 10px;
+    margin: 10px;
+  }
+  > div:last-of-type {
+    border: none;
+  }
+  > .time {
+    display: flex;
+    justify-content: space-between;
+  }
+  >.food_price {
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+  }
+  >.list-food {
+    display: grid;
+    height: 0;
+    transition: .4s ease-in-out;
+  }
+  >.list-food.show {
+    height: 300px;
+  }
+  >div>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  >div>ul>li {
+    width: 100%;
+    list-style: none;
+    padding: 6px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 20px;
+  }
+  .image {
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 1/1;
+  }
+  >h1 {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    padding: 2%;
+    margin-bottom: 2px;
+  }
+}
 
 /* Cai Menu lua thuc an */
 .content
@@ -834,11 +966,11 @@ button {
   padding-bottom: 2%;
   overflow: hidden;
   background-color:rgb(255, 255, 255);
+  display: block;
   > h2 {
     padding: 20px;
     padding-bottom: 8px;
   }
-  display: block;
 }
 .content #thucan, .content #douong, .content #trangmieng {
   margin: 1rem;
@@ -864,12 +996,11 @@ button {
 {
   cursor: pointer;
   margin: 20px;
-  width: 20vw;
+  width: 25vw;
   aspect-ratio: 12/9;
   border-radius: 12px;
   border:3px solid #ffa2a2;
-  /* object-fit: cover; */
-  background-size: cover;
+  object-fit: cover;
   background-position: center;
   transition: .2s ease;
 }
@@ -937,6 +1068,10 @@ button {
   margin: 15px;
   
 }
+.lienhe div > div > img {
+  width: 50%;
+  object-fit: fill;
+}
 .lienhe .divbao
 {
   width:100%;
@@ -974,9 +1109,10 @@ button {
 }
 .lienhe #bocongthuong
 {
-  height: 100px;
+  margin-top: 2rem;
+  width: 30vw;
   position: absolute;
-  left: 43%;
+  right: 10vw;
   bottom: 30px;
 }
 /* tao sp menu */
@@ -1075,10 +1211,19 @@ button {
 }
 
 .menu-list div:not(.menu_title) {
-  line-height: 200px;
+  line-height: 20vh;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#gioithieu {
+  display: flex;
+  flex-direction: column;
+}
+#noidungtrangchu, #noidunglichsu, #noidungnguyenlieu {
+  border-top: 10px double black;
+  display: none;
 }
 
 /* chi tiết sản phẩm */
@@ -1086,10 +1231,10 @@ button {
 {
     position: fixed;
     z-index: 3;
-    width: 40vw;
+    width: 50vw;
     inset: 0;
     margin: auto;
-    height: 270px;
+    height: fit-content;
     border: 1px solid black;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -1111,7 +1256,7 @@ button {
 #hienthongtinsp #body
 {
     width: 100%;
-    height: 200px;
+    height: fit-content;
     display: flex;
 }
 #hienthongtinsp #chen-hinh
@@ -1128,7 +1273,7 @@ button {
 #hienthongtinsp #noidungsp
 {
     width: 70%;
-    height: 180px;
+    height: fit-content;
     float: left;
     margin: 10px;
 }
@@ -1209,7 +1354,31 @@ button {
     background-color: gray;
     display: none;
 }
-
+#divbao-lichsumuahang
+    {
+    width:60%;
+    background-color:#F2DDDC;
+    border: 3px solid black;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+    #lichsumuahang
+    {
+        display:flex;
+        flex-wrap:wrap;    
+        text-align:center;
+        justify-content: center;
+    }
+    #noidungmuahang
+    {
+        background-color:#F4E7F8;
+    }
+    #noidungmuahang #noidung
+    {
+        margin:10px;
+        margin-bottom:10px;
+        padding: 10px;
+    }
 /* sua tai khoan */
 #edit_account {
   display: grid;
@@ -1377,7 +1546,7 @@ button {
   transition: .5s ease-in-out;
   cursor: text;
 }
-#add_account > form > label::before, #add_menu > form label::before {;
+#add_account > form > label::before, #add_menu > form label::before {
   content: attr(missing-input);
   background-color: white;
   position: absolute;
@@ -1409,7 +1578,7 @@ button {
 /* them dia chi */
 #dia_chi_tk {
   display: grid;
-  width: 50%;
+  width: 60%;
   grid-template-rows: .1fr 0fr;
   transition: .2s ease-in-out;
 }
@@ -1489,10 +1658,10 @@ button {
 #giohang {
   padding-bottom: 30vh;
   display: none;
-}
-.container {
-  display: flex;
-  margin: 20px;
+  .container {
+    display: flex;
+    margin: 20px;
+  }
 }
 
 .products {
@@ -1524,7 +1693,7 @@ button {
 }
 
 .product-image {
-  width: 80px;
+  aspect-ratio: 1 / 1;
   height: 100px;
   background-color: #eee;
   text-align: center;
@@ -1563,6 +1732,7 @@ button {
 }
 
 .buy-button {
+  width: 100%;
   text-align: center;
   margin-top: 20px;
 }
@@ -1586,13 +1756,42 @@ button {
   max-width: 600px;
   margin: 5vh auto;
   background-color: #f9f9f9;
-  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
   position: absolute;
   z-index: 2;
   inset: 0;
+  padding: 30px;
   height: fit-content;
+}
+#shipping-form > #switch-btn {
+ display: grid;
+ grid-template-columns: 1fr .5fr 1fr;
+ margin-bottom: 30px;
+ >button {
+  background-color: #d1d1d1;
+  border: none;
+  padding: 10px;
+  transition: .2s ease-in-out;
+ }
+ >button:hover {
+  background-color: #a79e9e;
+ }
+ >button:first-child {
+  grid-column: 1 / 3;
+  grid-row: 1 / 1;
+  border-radius: 0 30px 30px 0;
+ }
+ >button:last-child {
+  grid-column: 2 / 4;
+  grid-row: 1 / 1;
+  border-radius: 30px 0 0 30px;
+ }
+ >button.active {
+  z-index: 1;
+  background-color: var(--highlight);
+  transform: scaleY(1.1);
+ }
 }
 #shipping-form > h2 {
   text-align: center;
@@ -1632,6 +1831,142 @@ button {
   background-color: #d32f2f;
 }
 
+#donhang_khachhang {
+  display: none;
+  inset: 0;
+  position: absolute;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+.donhang{
+  padding: 1%;
+  position: absolute;
+  inset: 0;
+  width: 50vw;
+  margin: auto;
+  background-color: #E7F5DC; 
+  box-shadow: 0 4px 8px black;
+  overflow: auto;
+}
+.tieude{
+   height: 30px;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+}
+.body-donhang > div {
+  border-bottom: 8px double black;
+}
+.madon-ngaydat{
+   height: fit-content;
+   display: flex;
+   justify-content: space-between;
+   margin: 10px;
+}
+.thongtindon{
+   margin: 10px;
+   height: fit-content;
+   >button {
+    background-color: var(--button-color);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    transition: .2s ease;
+   }
+   >button:hover {
+    transform: scale(1.05);
+    background-color: var(--button-selected);
+   }
+}
+.body-donhang{
+   height: fit-content;
+   background-color: rgb(255, 255, 173);
+   border: 1px solid black;
+}
+.button, .thoatchitiet{
+   background-color: rgb(225, 225, 225);
+   width: 20%;
+   aspect-ratio: 5/2;
+   margin-top: 1%;
+   text-align: center;
+   border-radius: 10px;
+}
+.button:hover{
+   background-color: rgb(192, 192, 192);
+}
+
+/* phần chi tiết hóa đơn */
+.model{
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   background-color: white;
+}
+.chitietdon{
+   width: 60vw;
+   padding: 2%;
+   height: fit-content;
+   margin: 10px auto;
+   background-color: rgb(255, 198, 93);
+   border-radius: 8px;
+}
+.Tieude{
+   height: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.hienSP{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+   margin: 5px;
+   border: 2px solid black;
+   border-radius: 8px;
+   background-color: rgb(247, 238, 255);
+   box-shadow: 0 4px 8px gray;
+}
+.imgSP{
+  width: 20%;
+  aspect-ratio: 1/1;
+   margin: 10px;
+  background-size: cover;
+  background-position: center;
+}
+.ten-SL{
+   /* width: 450px;
+   height: 150px; */
+   margin: 10px;
+   text-align: center;
+}
+.gia{
+   /* width: 170px;
+   height: 150px; */
+   width: 20%;
+   aspect-ratio: 1/1;
+   margin: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   box-shadow: 0 0 4px black;
+}
+.thoatchitiet{
+   width: 80px;
+   margin-bottom: 15px;
+   margin-left: 10px;
+   border-radius: 10px;
+}
+.thoatchitiet:hover{
+   background-color: rgb(192, 192, 192);
+}
+/* #chitietdon.model > div > #container {
+  height: inherit;
+  overflow-y: scroll;
+} */
+
 
 /* responsive */
 @media (max-width:1100px) {
@@ -1662,7 +1997,6 @@ button {
     ul li:first-child, ul > li > a > span, button > svg:last-child, button > span {
       display: none;
     }
-    
   }
   .navigation-bar {
     .option {
@@ -1691,24 +2025,118 @@ button {
       padding-right: 50px;
     }
   }
-  
+  #dia_chi_tk {
+    width: 100%;
+  }
   #setting-container .avatar {
     float: none;
     margin-bottom: 30px;
   }
+  .menu-list div:not(.menu_title) {
+    line-height: 100%;
+  }
+  .admin-page {
+    grid-template-columns: 100vw;
+  }
+  .admin#sidebar {
+    width: 100vw;
+    height: fit-content;
+    padding: 10px;
+    li {
+      margin: 0;
+      padding: 0;
+    }
+    >#admin-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      overflow-y: auto;
+      flex-wrap: nowrap;
+    }
+    >#admin-nav>li:first-child {
+      margin-bottom: 0;
+    }
+  }
+  #manage-box {
+    width: 100vw;
+    >.account-list {
+      overflow-y: auto;
+    }
+    >.title {
+      padding: 8px;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    * {
+      font-size: 1rem;
+    }
+  }
+  #giohang .container {
+    flex-direction: column;
+    width: 90%;
+    > * {
+      width: 100%;
+    }
+  }
+  .product-info>input {
+    width: 70%;
+  }
 }
 @media (max-width:800px) {
+  #nav-thongtin > ul > li > ul > li >svg {
+    display: none;
+  }
+  #account-info > #setting-container {
+    padding-left: 10px;
+  }
+  .items-content .container > .container-items:first-child:hover
+  {
+    grid-template-columns: 30px 0fr;
+  }
+  .items-content .container > .container-items:first-child {
+    grid-template-columns: 30px 0fr;
+  }
+  .content .items-content, .content .container-items {
+    margin: 0;
+    text-wrap: nowrap;
+    font-size: 1rem;
+  }
+  .content svg {
+    width: 24px;
+    height: 24px;
+  }
+  body > * {
+    font-size: 1rem;
+  }
+  #themvaogio > span > span {
+    display: none;
+  }
+  #hienthongtinsp {
+    width: 100vw;
+  }
   #filter {
     display: none;
   }
   #filter-list {
     grid-template-rows: 1fr 1fr;
-    button {
-      padding: 2%;
+    >div > li > button {
+      width: 100px;
+      height: 100%;
     } 
     input {
       width: 50%;
     }
+  }
+  .product-item {
+    >.product-image {
+      width: 20%;
+      min-width: 80px;
+      aspect-ratio: 1 / 1;
+    }
+    overflow-x: auto;
   }
   .account > .admin > #sign-in-btn {
     padding: 10px;
@@ -1722,6 +2150,24 @@ button {
       height: 30px;
       width: 30px;
     }
+  }
+  .content .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .navigation-bar {
+    gap: 0;
+    padding: 20px;
+  }
+}
+@media (max-width:400px) {
+  .content .items {
+    grid-template-columns: 1fr;
+    .hinhanh {
+      width: 60vw;
+    }
+  }
+  .navigation-bar {
+    gap: 0;
   }
 }
 

@@ -18,6 +18,8 @@
     <script src="script/autoAdd.js" defer></script>
     <script src="script/trangchu.js" defer></script>
     <script src="script/giohang.js" defer></script>
+    <script src="script/lichsumuahang.js"></script>
+
 
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +32,10 @@
     
     <!-- tao don hang -->
     <form id="shipping-form">
+        <div id="switch-btn">
+            <button class="active" type="button" onclick="newAddress()">Tạo địa chỉ</button>
+            <button type="button" onclick="oldAddress()">Dùng địa chỉ có sẵn</button>
+        </div>
         <h2>Thông Tin Giao Hàng</h2>
         <label for="name">Họ và Tên</label>
         <input type="text" id="name" placeholder="Nhập họ và tên" required>
@@ -138,17 +144,17 @@
                 <ul class="sub-menu">
                     <div>
                         <li>
-                            <a href="#noidungtrangchu" onclick="toIntroduction(1)">
+                            <a href="#noidungtrangchu" onclick="toIntroduction()">
                                 <span>Thong tin</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#noidunglichsu" onclick="toIntroduction(2)">
+                            <a href="#noidunglichsu" onclick="toIntroduction()">
                                 <span>Lich su</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#noidungnguyenlieu" onclick="toIntroduction(3)">
+                            <a href="#noidungnguyenlieu" onclick="toIntroduction()">
                                 <span>Nguyen lieu</span>
                             </a>
                         </li>
@@ -283,6 +289,7 @@
                 <button onclick="closeAccountbar()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>    
                 </button>
+                <span></span>
             </li>
             <li>
                 <a href="index.html?tttk">
@@ -292,6 +299,11 @@
             <li>
                 <a href="index.html?giohang">
                     <span>Gio hang</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html?donhang">
+                    <span>Don hang</span>
                 </a>
             </li>
             <li>
@@ -335,9 +347,11 @@
     </div>
     
     <!-- menu, trang chu, ... -->
-    <div id="noidungtrangchu" ></div>
-    <div id="noidunglichsu"></div>
-    <div id="noidungnguyenlieu"></div>
+    <div id="gioithieu">
+        <div id="noidungtrangchu"></div>
+        <div id="noidunglichsu"></div>
+        <div id="noidungnguyenlieu"></div>
+    </div>
 
     
     <div id="hienthongtinsp">
@@ -448,7 +462,7 @@
         <div class="frm-box">
             <form action=".php" onsubmit="" method="post" name="signin">
                 <div id="username-label" class="missing-input"></div>
-                <label for="username">Username</label>
+                <label for="username">Email hoặc Số điện thoại</label>
                 <input type="text" placeholder="Enter your username" class="username input" autocomplete="off" name="username" onclick="inputFocus(this)">
                 
                 <div id="password-label" class="missing-input"></div>
@@ -456,7 +470,7 @@
                 <input type="password" placeholder="Enter your password" class="password input" autocomplete="off" name="password" onclick="inputFocus(this)">
             </form>
             <button id="submit-btn" onclick="signInAcc()">Sign in</button>
-            <div class="wrongText" id="wrong-input"><i>*You have enter the incorrect username or password*</i></div>
+            <div class="wrongText" id="wrong-input"><i>*You have enter the incorrect email or phone number or password*</i></div>
 
             <p>Don't have an account? <button id="signup-btn" onclick="signUpMenu()">Sign up here</button></p>
 
@@ -543,7 +557,11 @@
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M160-200v-440 440-15 15Zm0 80q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v171q-18-13-38-22.5T800-508v-132H160v440h283q3 21 9 41t15 39H160Zm240-600h160v-80H400v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm20-208v-112h-40v128l86 86 28-28-74-74Z"/></svg>
-                            <a href ="" >Lich su mua hang</a>
+                            <a href ="#lichsumuahang" onclick="">Lich su mua hang</a>
+                            
+                            
+                            
+
                         </li>
                     </ul>
                 </li>
@@ -615,7 +633,7 @@
                 </ul>
                 <ul>
                     <h2 style="margin-left: 20px;">Dia chi</h2>
-                    <div></div>
+                    <div class="diachi_selector"></div>
                     <li id="dia_chi_tk">
                         <button onclick="createAddress()">Them dia chi</button>
                         <form method="POST" id="dia_chi_form">
@@ -630,6 +648,12 @@
                         </form>
                     </li>
                 </ul>
+                <div id="divbao-lichsumuahang"> 
+                        <div id="lichsumuahang"><h3>Lịch sử mua hàng</h3></div>
+                        <div id="noidungmuahang"> Đây là lịch sử mua hàng của bạn
+                        </div>
+                    <button id="thoat" onclick="donglichsu()">Thoát</button>
+                </div>
             </div>
 
             <div class="caidat">
@@ -640,6 +664,44 @@
             </div>
         </div>
     </div>
+
+    <!-- đơn hàng -->
+    <div id="donhang_khachhang">
+        <div class="donhang" id="donhang">
+            <div class="tieude">
+                <h3>ĐƠN HÀNG</h3>
+            </div>
+            <div class="body-donhang">
+                <!-- Thêm phần thống kê vào container riêng -->
+                <div id="thongke-muahang">
+                    <h4>Thống kê mua hàng</h4>
+                    <div id="tongtien">Tổng tiền: 0 VND</div>
+                    <div id="tongsoluong">Tổng số sản phẩm: 0</div>
+                    <div id="thongke-theo-ngay">Thống kê theo ngày: </div>
+                    <div id="thongke-theo-thang">Thống kê theo tháng: </div>
+                </div>
+            </div>
+            <button class="button" onclick="dongDonHang()">Thoát</button>
+        </div>
+    </div>
     
-</body>
+        <!-- chi tiết hóa đơn -->
+        <div class="model" id="chitietdon" style="overflow : auto;">
+            <div class="chitietdon">
+                <div class="Tieude">
+                    <h3>CHI TIẾT ĐƠN HÀNG</h3>
+                </div>
+                <div style="display: flex; height: fit-content; justify-content: space-between;">
+                    <div style="height: fit-content; margin-left: 5px;"><b>Sản Phẩm</b></div>
+                    <div style="height: fit-content; margin-left: 5px;"><b>Thành Tiền</b></div>
+                </div>
+                <div id="container">
+                </div>
+                <button class="thoatchitiet" onclick="dongChiTiet()">Thoát</button>
+            </div>
+        </div>
+    </div>
+    
+    
+</body> 
 </html>
