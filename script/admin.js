@@ -310,6 +310,7 @@ const orderInfo = document.getElementById('orderInfo')
 function closeOrderInfo() {
   orderInfo.style.transform = 'scale(0)'
   document.querySelector('.bg#blur').style.display = 'none'
+  location.reload()
 }
 function createHoadonItem(items) {
   let display = document.createElement('ul')
@@ -358,8 +359,8 @@ function showOrderInfo(acc) {
         </div>
         <div class="list-food">
         </div>
-        <select name="status" id="status">
-            <option value="a">Đang xử lý</option>
+        <select name="status" id="${order.id}" class="${order.accountID}" onchange="changeValue(this)">
+            <option value="a">Chưa xử lý</option>
             <option value="b">Đang làm món</option>
             <option value="c">Đang giao</option>    
             <option value="d">Đã giao</option>
@@ -367,6 +368,7 @@ function showOrderInfo(acc) {
             <option value="f">Hủy đơn</option>
         </select>
   `
+  document.querySelector("#orderInfo > select").value = order.status
   document.querySelector('.list-food').appendChild(createHoadonItem(order.items))
 }
 function showTaikhoan() {

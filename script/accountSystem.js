@@ -7,6 +7,8 @@
 let accounts = JSON.parse(localStorage.getItem('accounts'))
 let remember = localStorage.getItem('rememberAcc')
 
+document.querySelector('#account-menu > ul > li:first-child > span').innerHTML = accounts[remember].name
+
 if (remember != null && window.location.href.split('?')[1] != "qltk" && window.location.href.split('?')[1] != "qlmn") {
   removeSigninBtn()
   adminActive();
@@ -439,7 +441,7 @@ function editAccount() {
         if(accounts[i].phone == input[3].value) {
           alert('Số điện thoại bị trùng')
           input[3].focus()
-          return false
+        return false
         }
       }
       accounts[getAccount].phone = input[3].value
@@ -591,3 +593,55 @@ function dongChiTiet() {
       chitiet.style.display = 'none';
   }
 }
+function capNhatThongKe() {
+  if (!account || !account.hoadon) {
+      console.log("Không có hóa đơn nào.");
+      return;
+  }
+
+  // Khởi tạo các thống kê
+  let tongTien = 0;
+  let tongSoLuong = 0;
+
+  let thongKeTheoNgay = {};
+  let thongKeTheoThang = {};
+
+  account.hoadon.forEach(hoaDon => {
+      if (hoaDon.status === 'e') { // Đảm bảo là đơn hàng đã nhận
+          hoaDon.items.forEach(item => {
+              tongTien += item.price * item.quantity;
+              tongSoLuong += item.quantity;
+          });
+
+          // Thống kê theo ngày
+          const ngay = new Date(hoaDon.orderTime);
+          const ngayString = `${ngay.getDate()}/${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
+          thongKeTheoNgay[ngayString] = (thongKeTheoNgay[ngayString] || 0) + 1;
+
+          // Thống kê theo tháng
+          const thangString = `${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
+          thongKeTheoThang[thangString] = (thongKeTheoThang[thangString] || 0) + 1;
+      }
+  });
+
+  // Hiển thị thống kê
+  document.getElementById("tongtien").innerText = `Tổng tiền: ${tongTien} VND`;
+  document.getElementById("tongsoluong").innerText = `Tổng số sản phẩm: ${tongSoLuong}`;
+  
+  // Hiển thị thống kê theo ngày
+  let thongKeNgayText = '';
+  for (let ngay in thongKeTheoNgay) {
+      thongKeNgayText += `${ngay}: ${thongKeTheoNgay[ngay]} đơn hàng<br>`;
+  }
+  document.getElementById("thongke-theo-ngay").innerHTML = `Thống kê theo ngày:<br>${thongKeNgayText}`;
+  
+  // Hiển thị thống kê theo tháng
+  let thongKeThangText = '';
+  for (let thang in thongKeTheoThang) {
+      thongKeThangText += `${thang}: ${thongKeTheoThang[thang]} đơn hàng<br>`;
+  }
+  document.getElementById("thongke-theo-thang").innerHTML = `Thống kê theo tháng:<br>${thongKeThangText}`;
+}
+
+// Gọi hàm này sau khi đã xác thực và lấy dữ liệu từ localStorage
+capNhatThongKe();

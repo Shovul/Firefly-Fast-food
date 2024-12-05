@@ -24,9 +24,9 @@ function displayProducts() {
     accounts[remember].cart.forEach((product, index) => {
         // Tạo HTML cho mỗi sản phẩm
         productList.innerHTML += `
-            <div class="product-item ${product.selected ? 'selected' : ''}">
+            <label class="product-item ${product.selected ? 'selected' : ''}" for="product${product.id}">
                 <!-- Checkbox chọn sản phẩm -->
-                <input type="checkbox" class="product-checkbox" onchange="toggleSelect(${index})" ${product.selected ? 'checked' : ''} />
+                <input type="checkbox" class="product-checkbox" id="product${product.id}" onchange="toggleSelect(${index})" ${product.selected ? 'checked' : ''} />
                 <div class="product-image" style="background-image: url(${product.image});"></div> <!-- Hình ảnh sản phẩm -->
                 <div class="product-info">
                     <p>${product.name}</p> <!-- Tên sản phẩm -->
@@ -36,7 +36,7 @@ function displayProducts() {
                 </div>
                 <!-- Nút xóa sản phẩm -->
                 <div class="remove" onclick="removeProduct(${index})">X</div>
-            </div>
+            </label>
         `;
     });
   calculateTotal(); // Tính lại tổng tiền
@@ -97,7 +97,56 @@ localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
 openCheckOut()
 }
 
+function newAddress() {
+  const form = document.getElementById('shipping-form')
+  form['email'].style.display = 'block'
+  form.querySelector('label[for="email"]').style.display = 'block'
+  form['address'].style.display = 'block'
+  form.querySelector('label[for="address"]').style.display = 'block'
+  form['district'].style.display = 'block'
+  form.querySelector('label[for="district"]').style.display = 'block'
+  form['ward'].style.display = 'block'
+  form.querySelector('label[for="ward"]').style.display = 'block'
+  form['province'].innerHTML = `
+    <option value="" selected disabled>Chọn tỉnh/thành</option>
+    <option value="Bắc Ninh">Bắc Ninh</option>
+    <option value="Hà Nội">Hà Nội</option>
+    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+  `
+  form['cart-btn'].setAttribute('onclick', 'submitOrder()')
+  document.getElementById("switch-btn").firstElementChild.classList.add('active')
+  document.getElementById("switch-btn").lastElementChild.classList.remove('active')
+}
+function oldAddress() {
+  const form = document.getElementById('shipping-form')
+  form['email'].style.display = 'none'
+  form.querySelector('label[for="email"]').style.display = 'none'
+  form['address'].style.display = 'none'
+  form.querySelector('label[for="address"]').style.display = 'none'
+  form['district'].style.display = 'none'
+  form.querySelector('label[for="district"]').style.display = 'none'
+  form['ward'].style.display = 'none'
+  form.querySelector('label[for="ward"]').style.display = 'none'
+  form['province'].innerHTML = ''
+  form.querySelector('label[for="province"]').innerHTML = 'Địa chỉ'
+  form['cart-btn'].setAttribute('onclick', 'addToHoaDon()')
 
+  let addresses = form['province']
+  let name = form['name']
+  let phone = form['phone']
+  name.setAttribute('readonly', true)
+  phone.setAttribute('readonly', true)
+  accounts[remember].addresses.forEach(address => {
+    addresses.appendChild(createAddressOption(address))
+    if(address.status == 'choose') {
+      addresses.selectedIndex = address.id
+      name.value = address.name
+      phone.value = address.phone
+    }
+  })
+  document.getElementById("switch-btn").lastElementChild.classList.add('active')
+  document.getElementById("switch-btn").firstElementChild.classList.remove('active')
+}
 function createAddressOption(address) {
   const receiver = document.createElement('optgroup')
   receiver.setAttribute('label', address.name + ", " + address.phone)
@@ -126,6 +175,8 @@ function showAddresses() {
     let addresses = form['province']
     let name = form['name']
     let phone = form['phone']
+    name.setAttribute('readonly', true)
+    phone.setAttribute('readonly', true)
     accounts[remember].addresses.forEach(address => {
       addresses.appendChild(createAddressOption(address))
       if(address.status == 'choose') {
@@ -134,9 +185,8 @@ function showAddresses() {
         phone.value = address.phone
       }
     })
-  }
-  else {
-
+    document.getElementById("switch-btn").lastElementChild.classList.add('active')
+    document.getElementById("switch-btn").firstElementChild.classList.remove('active')
   }
 }
 let addressSelect = document.querySelector('#shipping-form #province')
@@ -156,11 +206,20 @@ function openCheckOut() {
   document.querySelector('.bg#white').style.display = 'block'
 }
 function addToHoaDon() {
+  if(accounts[remember].addresses.length === 0) {
+    alert('Chưa có địa chỉ')
+    return false
+  } 
+  const form = document.getElementById('shipping-form')
+  if(form['thanh_toan'].value == 'Thẻ ngân hàng' || form['thanh_toan'].value == 'Thẻ tín dụng') {
+    
+    return false
+  }
+
   var currentdate = new Date();
   var orderDate = currentdate.getDay() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
 
-  const form = document.getElementById('shipping-form')
   const address = accounts[remember].addresses.filter(address => address.id == form['province'].value)
 
 

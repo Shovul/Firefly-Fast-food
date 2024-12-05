@@ -70,8 +70,8 @@ const menuDisplay = document.querySelector(".content")
 // Số sản phẩm tối đa trên mỗi trang
 const ITEMS_PER_PAGE = {
   food: 6,      // 6 sản phẩm cho Thức ăn
-  drink: 3,     // 3 sản phẩm cho Đồ uống
-  dessert: 3,   // 3 sản phẩm cho Tráng miệng
+  drink: 6,     // 3 sản phẩm cho Đồ uống
+  dessert: 6,   // 3 sản phẩm cho Tráng miệng
 };
 
 let currentPage = {

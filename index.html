@@ -32,6 +32,10 @@
     
     <!-- tao don hang -->
     <form id="shipping-form">
+        <div id="switch-btn">
+            <button class="active" type="button" onclick="newAddress()">Tạo địa chỉ</button>
+            <button type="button" onclick="oldAddress()">Dùng địa chỉ có sẵn</button>
+        </div>
         <h2>Thông Tin Giao Hàng</h2>
         <label for="name">Họ và Tên</label>
         <input type="text" id="name" placeholder="Nhập họ và tên" required>
@@ -285,6 +289,7 @@
                 <button onclick="closeAccountbar()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>    
                 </button>
+                <span></span>
             </li>
             <li>
                 <a href="index.html?tttk">
@@ -667,11 +672,19 @@
                 <h3>ĐƠN HÀNG</h3>
             </div>
             <div class="body-donhang">
-                
+                <!-- Thêm phần thống kê vào container riêng -->
+                <div id="thongke-muahang">
+                    <h4>Thống kê mua hàng</h4>
+                    <div id="tongtien">Tổng tiền: 0 VND</div>
+                    <div id="tongsoluong">Tổng số sản phẩm: 0</div>
+                    <div id="thongke-theo-ngay">Thống kê theo ngày: </div>
+                    <div id="thongke-theo-thang">Thống kê theo tháng: </div>
+                </div>
             </div>
-            <button class="button" onclick="dongDonHang()">thoát</button>
+            <button class="button" onclick="dongDonHang()">Thoát</button>
         </div>
-
+    </div>
+    
         <!-- chi tiết hóa đơn -->
         <div class="model" id="chitietdon" style="overflow : auto;">
             <div class="chitietdon">
@@ -684,10 +697,11 @@
                 </div>
                 <div id="container">
                 </div>
-                <div></div>
                 <button class="thoatchitiet" onclick="dongChiTiet()">Thoát</button>
             </div>
         </div>
-    </div> 
-</body>
+    </div>
+    
+    
+</body> 
 </html>
