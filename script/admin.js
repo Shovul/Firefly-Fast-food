@@ -116,7 +116,7 @@ function showAccountList() {
 } 
 
 function showOrderList() {
-  const container = document.querySelector('.order-list')
+  const container = document.querySelector('.order-list');
   container.innerHTML = `
     <div class="order_title">Mã người dùng</div>
     <div class="order_title">Tên tài khoản</div>
@@ -124,22 +124,25 @@ function showOrderList() {
     <div class="order_title">Địa chỉ</div>
     <div class="order_title" style="cursor: pointer;" onclick="sortOrder(this)">Trạng thái</div>
     <div class="order_title">Chi tiết hóa đơn</div>
-    `
+  `;
 
-  accounts.forEach(account => {
-    account.hoadon.forEach(order => {
-      const accId = document.createElement('div')
-      const accName = document.createElement('div')
-      const orderTime = document.createElement('div')
-      const address = document.createElement('div')
-      const status = document.createElement('div')
-      const info = document.createElement('div')
-      accId.innerHTML = `${account.id}`
-      accName.innerHTML = `${account.name}`
-      orderTime.innerHTML = `${order.orderTime}`
-      address.innerHTML = `${order.info.address}`
+  accounts.forEach((account, accountIndex) => {
+    account.hoadon.forEach((order, orderIndex) => {
+      const accId = document.createElement('div');
+      const accName = document.createElement('div');
+      const orderTime = document.createElement('div');
+      const address = document.createElement('div');
+      const status = document.createElement('div');
+      const info = document.createElement('div');
+
+      accId.innerHTML = `${account.id}`;
+      accName.innerHTML = `${account.name}`;
+      orderTime.innerHTML = `${new Date(order.orderTime).toLocaleString()}`;  // Định dạng thời gian cho dễ đọc
+      address.innerHTML = `${order.info.address}`;
+
+      // Tạo select trạng thái với giá trị mặc định
       status.innerHTML = `
-          <select class="${account.id}" id="${order.id}" onchange="changeValue(this)">
+          <select class="status-select" id="${order.id}" onchange="changeValue(this, ${accountIndex}, ${orderIndex})">
             <option value="a">Chưa xử lý</option>
             <option value="b">Đang làm món</option>
             <option value="c">Đang giao</option>
@@ -147,19 +150,22 @@ function showOrderList() {
             <option value="e">Đã nhận hàng</option>
             <option value="f">Hủy đơn</option>
           </select>
-      `
-      status.firstElementChild.value = order.status
-      info.innerHTML = `<button class="${account.id}" id="${order.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`
+      `;
+      status.querySelector('select').value = order.status;  // Thiết lập giá trị ban đầu cho select
 
-      container.appendChild(accId)
-      container.appendChild(accName)
-      container.appendChild(orderTime)
-      container.appendChild(address)
-      container.appendChild(status)
-      container.appendChild(info)
-    })
-  })
+      info.innerHTML = `<button class="info-btn" id="${order.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`;
+
+      // Thêm các phần tử vào container
+      container.appendChild(accId);
+      container.appendChild(accName);
+      container.appendChild(orderTime);
+      container.appendChild(address);
+      container.appendChild(status);
+      container.appendChild(info);
+    });
+  });
 }
+
 function changeValue(acc) {
   switch(acc.value) {
     case "a":
