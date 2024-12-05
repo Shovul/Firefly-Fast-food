@@ -126,7 +126,11 @@ function loadMenuByPage(type, dataList) {
 function updatePagination(type, dataList) {
   let totalPages = Math.ceil(dataList.length / ITEMS_PER_PAGE[type]);
   if(totalPages === 0) {
-    totalPages = 1;
+    totalPages = 1; 
+    return
+  }
+  if(totalPages === 1) {
+    document.querySelector(`#${type}-pagination`).style.display = 'none'
   }
   const pageNumbers = document.getElementById(`${type}-page-numbers`);
   pageNumbers.textContent = `Trang ${currentPage[type]} / ${totalPages}`;
@@ -142,6 +146,7 @@ function updatePagination(type, dataList) {
 
 // Hàm xử lý chuyển trang
 function changePage(type, direction) {
+  document.getElementById(`${type}-items`).previousElementSibling.scrollIntoView()
   const dataList = {
     food: foods,
     drink: drinks,
