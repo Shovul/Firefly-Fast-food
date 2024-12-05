@@ -594,9 +594,10 @@ function dongChiTiet() {
   }
 }
 function capNhatThongKe() {
-  if (!account || !account.hoadon) {
-      console.log("Không có hóa đơn nào.");
-      return;
+  // Kiểm tra xem có tài khoản và hóa đơn không
+  if (!accounts || !Array.isArray(accounts)) {
+    console.log("Không có tài khoản.");
+    return;
   }
 
   // Khởi tạo các thống kê
@@ -606,11 +607,15 @@ function capNhatThongKe() {
   let thongKeTheoNgay = {};
   let thongKeTheoThang = {};
 
-  account.hoadon.forEach(hoaDon => {
-      if (hoaDon.status === 'e') { // Đảm bảo là đơn hàng đã nhận
+  // Lặp qua tất cả các tài khoản
+  accounts.forEach(account => {
+    // Kiểm tra nếu tài khoản có hóa đơn
+    if (account.hoadon && Array.isArray(account.hoadon)) {
+      account.hoadon.forEach(hoaDon => {
+        if (hoaDon.status === 'e') { // Đảm bảo là đơn hàng đã nhận
           hoaDon.items.forEach(item => {
-              tongTien += item.price * item.quantity;
-              tongSoLuong += item.quantity;
+            tongTien += item.price * item.quantity;
+            tongSoLuong += item.quantity;
           });
 
           // Thống kê theo ngày
@@ -621,7 +626,9 @@ function capNhatThongKe() {
           // Thống kê theo tháng
           const thangString = `${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
           thongKeTheoThang[thangString] = (thongKeTheoThang[thangString] || 0) + 1;
-      }
+        }
+      });
+    }
   });
 
   // Hiển thị thống kê
@@ -631,17 +638,14 @@ function capNhatThongKe() {
   // Hiển thị thống kê theo ngày
   let thongKeNgayText = '';
   for (let ngay in thongKeTheoNgay) {
-      thongKeNgayText += `${ngay}: ${thongKeTheoNgay[ngay]} đơn hàng<br>`;
+    thongKeNgayText += `${ngay}: ${thongKeTheoNgay[ngay]} đơn hàng<br>`;
   }
   document.getElementById("thongke-theo-ngay").innerHTML = `Thống kê theo ngày:<br>${thongKeNgayText}`;
   
   // Hiển thị thống kê theo tháng
   let thongKeThangText = '';
   for (let thang in thongKeTheoThang) {
-      thongKeThangText += `${thang}: ${thongKeTheoThang[thang]} đơn hàng<br>`;
+    thongKeThangText += `${thang}: ${thongKeTheoThang[thang]} đơn hàng<br>`;
   }
   document.getElementById("thongke-theo-thang").innerHTML = `Thống kê theo tháng:<br>${thongKeThangText}`;
 }
-
-// Gọi hàm này sau khi đã xác thực và lấy dữ liệu từ localStorage
-capNhatThongKe();
