@@ -7,6 +7,8 @@
 let accounts = JSON.parse(localStorage.getItem('accounts'))
 let remember = localStorage.getItem('rememberAcc')
 
+document.querySelector('#account-menu > ul > li:first-child > span').innerHTML = accounts[remember].name
+
 if (remember != null && window.location.href.split('?')[1] != "qltk" && window.location.href.split('?')[1] != "qlmn") {
   removeSigninBtn()
   adminActive();
@@ -439,7 +441,7 @@ function editAccount() {
         if(accounts[i].phone == input[3].value) {
           alert('Số điện thoại bị trùng')
           input[3].focus()
-          return false
+        return false
         }
       }
       accounts[getAccount].phone = input[3].value
