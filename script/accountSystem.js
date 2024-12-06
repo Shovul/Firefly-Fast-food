@@ -72,6 +72,7 @@ function signInAcc() {
     for (let i=0; i<accounts.length; i++) {
       if ((name === accounts[i].email || name === accounts[i].phone) && pass === accounts[i].pass) {
         localStorage.setItem('rememberAcc', i)
+        kiemtraTK(accounts[i])
         removeWrongInput()
         removeInputValue()
         removeSigninBtn()
@@ -653,26 +654,35 @@ function capNhatThongKe() {
 
 function kiemtraTK(account) {
   if (account.status === "ban") { 
+    // Thông báo tài khoản bị khóa
     alert("Tài khoản đã bị khóa. Bạn không thể sử dụng tài khoản này.");
-    // Vô hiệu hóa các chức năng giao diện
-    document.body.style.pointerEvents = "none";
-    document.body.style.opacity = "0.5";
-    document.body.style.overflow = "hidden";
-    return false;
+    
+    // Hiển thị hộp thoại hỏi người dùng có muốn đăng xuất không
+    const confirmLogout = confirm("Bạn có muốn đăng xuất không?");
+    
+    if (confirmLogout) {
+      // Thực hiện đăng xuất tài khoản
+      logoutAccount();  // Gọi hàm đăng xuất (tạo hàm này ở phần khác của mã)
+
+      // Thực hiện các thay đổi trên giao diện (ví dụ: vô hiệu hóa giao diện)
+      document.body.style.pointerEvents = "none";
+      document.body.style.opacity = "0.5";
+      document.body.style.overflow = "hidden";
+
+      alert("Bạn đã được đăng xuất.");
+    }
+    
+    return false;  // Ngừng xử lý tiếp
   }
-  return true;
+  return true;  // Nếu tài khoản không bị khóa, tiếp tục
 }
 
-// Xử lý khi tải trang
-window.onload = function() {
-  const url = window.location.href;
-  const goTo = url.split("?")[1] || ""; // Lấy tham số sau dấu '?'
-
-  const account = accounts[remember]; // Lấy tài khoản cần kiểm tra
-
-  // Kiểm tra tài khoản trước khi thực hiện các thao tác khác
-  if (!kiemtraTK(account)) {
-    console.log("Tài khoản bị khóa! Không thể tiếp tục thao tác!");
-    return; // Ngăn không thực hiện tiếp
-  }
+// Hàm đăng xuất (có thể tùy chỉnh thêm)
+function logoutAccount() {
+  // Thực hiện đăng xuất ở đây, ví dụ như xóa cookie, localStorage, sessionStorage, hoặc chuyển hướng đến trang đăng nhập
+  console.log("Đăng xuất tài khoản");
+  // Ví dụ: Xóa thông tin tài khoản khỏi localStorage
+  localStorage.removeItem("rememberAcc");
+  // Chuyển hướng đến trang đăng nhập
+  window.location.href = "index.html";  // Đổi thành đường dẫn trang đăng nhập của bạn
 }

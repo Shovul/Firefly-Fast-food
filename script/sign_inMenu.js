@@ -36,6 +36,7 @@ window.onload = function(e) {
     default:
       createAccount()
       createMenu()  
+      if(remember != null)
       kiemtraTK(accounts[remember])
   }
 }
