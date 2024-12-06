@@ -16,9 +16,27 @@ function showQLOrder() {
   order.classList.add("active")
   showOrderList();
 }
+function showTKKhachHang() {
+  let customers = document.querySelector(".customers-stats")
+  let active = document.querySelector(".active")
+
+  active.classList.remove("active")
+  customers.classList.add("active")
+  showListKhachHang()
+}
+function showTKMatHang() {
+  let items = document.querySelector(".items-stats")
+  let active = document.querySelector(".active")
+
+  active.classList.remove("active")
+  items.classList.add("active")
+  listThongKeSanPham()
+}
 window.addEventListener('click', (e) => {
   if(document.querySelector('.bg#blur').contains(e.target)) {
     closeOrderInfo() 
+    closeHoaDonSP()
+    closeHoaDonTK()
   }
 })  
 function showMenuList() {
@@ -126,8 +144,8 @@ function showOrderList() {
     <div class="order_title">Chi tiết hóa đơn</div>
   `;
 
-  accounts.forEach((account, accountIndex) => {
-    account.hoadon.forEach((order, orderIndex) => {
+  accounts.forEach(account => {
+    account.hoadon.forEach(order => {
       const accId = document.createElement('div');
       const accName = document.createElement('div');
       const orderTime = document.createElement('div');
@@ -142,7 +160,7 @@ function showOrderList() {
 
       // Tạo select trạng thái với giá trị mặc định
       status.innerHTML = `
-          <select class="status-select" id="${order.id}" onchange="changeValue(this, ${accountIndex}, ${orderIndex})">
+          <select class="${account.id}" id="${order.id}" onchange="changeValue(this)">
             <option value="a">Chưa xử lý</option>
             <option value="b">Đang làm món</option>
             <option value="c">Đang giao</option>
@@ -153,7 +171,7 @@ function showOrderList() {
       `;
       status.querySelector('select').value = order.status;  // Thiết lập giá trị ban đầu cho select
 
-      info.innerHTML = `<button class="info-btn" id="${order.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`;
+      info.innerHTML = `<button class="${account.id}" id="${order.id}" onclick="showOrderInfo(this)">Xem thông tin</button>`;
 
       // Thêm các phần tử vào container
       container.appendChild(accId);
@@ -212,6 +230,21 @@ function compareTime(a, b) {
     return -1
   }
   return calculateTotalTime(time1[1]) < calculateTotalTime(time2[1]) ? -1 : 1
+}
+function compareDate(a, b) {
+  date1 = a.split("/")
+  date2 = b.split("-")
+
+  if(date1[2] < date2[0]) {
+    return -1
+  }
+  if(date1[1] < date2[1]) {
+    return -1
+  }
+  if(date1[0] < date2[2]) {
+    return -1
+  }
+  return 1
 }
 function sortOrder(sort) {
   const sortBy = sort.textContent
@@ -314,9 +347,12 @@ function sortOrder(sort) {
 
 const orderInfo = document.getElementById('orderInfo')
 function closeOrderInfo() {
-  orderInfo.style.transform = 'scale(0)'
-  document.querySelector('.bg#blur').style.display = 'none'
-  location.reload()
+  if(location.href.split('?')[1] === 'qldh') {
+    orderInfo.style.transform = 'scale(0)'
+    document.querySelector('.bg#blur').style.display = 'none'
+    document.body.style.overflow = 'auto'
+    location.reload()
+  }
 }
 function createHoadonItem(items) {
   let display = document.createElement('ul')
@@ -333,7 +369,6 @@ function createHoadonItem(items) {
     `
     display.appendChild(list)
   })
-  console.log(display)
   return display
 }
 
@@ -343,6 +378,7 @@ function showOrderInfo(acc) {
   order = accounts[accID].hoadon[orderID]
 
   document.querySelector('.bg#blur').style.display = 'block'
+  document.body.style.overflow = 'hidden'
   orderInfo.style.transform = 'scale(1)'
 
   orderInfo.innerHTML = `
@@ -438,7 +474,7 @@ function exitEditMenu() {
   document.body.style.overflow = 'auto'
   document.getElementById("right-edit").style.background = 'none'
   document.getElementById("right-edit").style.backgroundRepeat = 'no-repeat'
-  document.getElementById("right-edit").style.backgroundSize = 'cover'
+  document.getElementById("right-edit").style.backgroundpze = 'cover'
   document.getElementById("right-edit").style.backgroundPosition = 'center'
   document.getElementById("right-edit").firstElementChild.style.display = 'block'
 }
@@ -735,3 +771,309 @@ function showOrderFood() {
   document.getElementsByClassName('list-food')[0].classList.toggle('show')
 }
 
+let foodStats = []
+menu.forEach(food => {
+  const newFood = {
+    id: food.id,
+    name: food.name,
+    quantity: 0,
+    total: 0,
+    hoadonList: []
+  }
+  foodStats.push(newFood)
+})
+
+function listThongKeSanPham() {
+  menu.forEach(food => {
+    accounts.forEach(account => {
+      account.hoadon.forEach(order => {
+        if(order.status === 'e') {
+          order.items.forEach(item => {
+            if(food.id === item.id) {
+              foodStats[foodStats.findIndex(foodStat => foodStat.id == item.id)].quantity += item.quantity
+              foodStats[foodStats.findIndex(foodStat => foodStat.id == item.id)].total += item.quantity*item.price
+              foodStats[foodStats.findIndex(foodStat => foodStat.id == item.id)].hoadonList.push(order)
+            }
+          })
+        }
+      })
+    })  
+  });
+  const container = document.getElementsByClassName('items-stats-list')[0]
+  foodStats.forEach(stat => {
+    const itemID = document.createElement('div')
+    const itemName = document.createElement('div')
+    const soldQuantity = document.createElement('div')
+    const revenue = document.createElement('div')
+    const check = document.createElement('div')
+    itemID.innerHTML = `${stat.id}`
+    itemName.innerHTML = `${stat.name}`
+    soldQuantity.innerHTML = `${stat.quantity}`
+    revenue.innerHTML = `${stat.total.toLocaleString()}` + (stat.total === 0 ? '' : "VND")
+    check.innerHTML = `<button onclick="showHoaDonSP(${stat.id})">Xem</button>`
+
+    container.appendChild(itemID)
+    container.appendChild(itemName)
+    container.appendChild(soldQuantity)
+    container.appendChild(revenue)
+    container.appendChild(check)
+  })
+  let mostRev = 0
+  let leastRev = 0
+  let mostBought = 0
+  let leastBought = 0
+  for(let i=1; i<foodStats.length; i++) {
+    if(foodStats[mostRev].total < foodStats[i].total) {
+      mostRev = i
+    }
+    if(foodStats[leastRev].total > foodStats[i].total) {
+      leastRev = i
+    }
+    if(foodStats[mostBought].quantity < foodStats[i].quantity) {
+      mostBought = i
+    }
+    if(foodStats[leastBought].quantity > foodStats[i].quantity) {
+      leastBought = i
+    }
+  }
+  const ranks = document.querySelectorAll('.items-stats > #ranking > div')
+  ranks[0].innerHTML += foodStats[mostRev].name + ", " + foodStats[mostRev].total.toLocaleString() + (foodStats[mostRev].total.total === 0 ? '' : "VND")
+  ranks[1].innerHTML += foodStats[leastRev].name + ", " + foodStats[leastRev].total.toLocaleString() + (foodStats[leastRev].total === 0 ? '' : "VND")
+  ranks[2].innerHTML += foodStats[mostBought].name + ", " + foodStats[mostBought].quantity
+  ranks[3].innerHTML += foodStats[leastBought].name + ", " + foodStats[leastBought].quantity
+}
+function showHoaDonSP(id) {
+  document.getElementById('hoadonSP').style.transform = 'scale(1)'
+  const list = document.querySelector('#hoadonSP>.container')
+
+  document.querySelector('.bg#blur').style.display = 'block'
+  document.body.style.overflow = 'hidden'
+
+  foodStats[id].hoadonList.forEach((order, index) => {
+    if(order.status === 'e') {
+      const orders = document.createElement('div')
+      orders.classList.add('order')
+      orders.innerHTML = `
+          <h1>
+              <span>Người nhận: ${order.info.name}</span>
+              <span>Ngày đặt: ${order.orderTime.split("-")[0]}</span>
+            </h1>
+            <div>
+                <div><b>Số điện thoại:</b> ${order.info.phone}</div>
+                <div><b>Địa chỉ:</b> ${order.info.address}</div>
+            </div>
+            <div><b>Phương thức trả:</b> ${order.paymentMethod}</div>
+            <div class="time">
+                <span><b>Thời gian đặt:</b> ${order.orderTime.split("-")[1]}</span>
+                <span><b>Thời gian dự kiến tới:</b> ${order.arriveTime}</span>
+            </div>
+            <div class="food_price" onclick="showCurrentOrderFood(${id}, ${index})">
+                <span>Sản phẩm</span>
+                <span>Tổng số tiền: ${hoadonGetTotal(order.items).toLocaleString()} VNđ</span>
+            </div>
+            <div class="list-food">
+            </div>
+      `
+      list.appendChild(orders)
+    }
+  })
+}
+function closeHoaDonSP() {
+  if(location.href.split('?')[1] == 'tkmh') {
+    document.getElementById('hoadonSP').style.transform = 'scale(0)'
+    document.body.style.overflow = 'auto'
+    document.querySelector('.bg#blur').style.display = 'none'
+    document.querySelector('#hoadonSP>.container').innerHTML = ''
+  }
+}
+function showCurrentOrderFood(itemID, orderID) {
+  const order = document.querySelectorAll('#hoadonSP > .container > .order > .list-food')
+  order[orderID].classList.toggle('show')
+  
+  const list = createHoadonItem(foodStats[itemID].hoadonList[orderID].items)
+  order[orderID].innerHTML = `
+    <ul>${list.innerHTML}</ul>
+  `
+}
+function showCurrentCustomerOrder(accountID, orderID, index) {
+  const order = document.querySelectorAll('#hoadonSP > .container > .order > .list-food')
+  order[index].classList.toggle('show')
+  
+  const list = createHoadonItem(accounts[accountID].hoadon[orderID].items)
+  order[index].innerHTML = `
+    <ul>${list.innerHTML}</ul>
+  `
+}
+function calculateCustomerRev(hoadon) {
+  let sum = 0
+  hoadon.forEach(order => {
+    sum += hoadonGetTotal(order.items)
+  });
+  return sum
+}
+const date = document.querySelector('.customers-stats form')
+let from = date['from']
+// let to = date['to']
+from.addEventListener('change', () => {
+  showListKhachHang()
+})
+// to.addEventListener('change', () => {
+//   showListKhachHang()
+// })
+
+function showListKhachHang() {
+  if(from.value === '') {
+    const container = document.getElementsByClassName('customers-stats-list')[0]
+    container.innerHTML = ''
+    accounts.forEach(account => {
+      let filterHoaDon = account.hoadon.filter(order => order.status === 'e')
+      
+      const accountID = document.createElement('div')
+      const accountName = document.createElement('div')
+      const quantity = document.createElement('div')
+      const revenue = document.createElement('div')
+      const check = document.createElement('div')
+      accountID.innerHTML = `${account.id}`
+      accountName.innerHTML = `${account.name}`
+      quantity.innerHTML = `${filterHoaDon.length}`
+      revenue.innerHTML = `${calculateCustomerRev(filterHoaDon).toLocaleString()}` + (calculateCustomerRev(filterHoaDon)=== 0 ? '' : "VND")
+      check.innerHTML = `<button onclick="showHoaDonTK(${account.id})">Xem</button>`
+
+      container.appendChild(accountID)
+      container.appendChild(accountName)
+      container.appendChild(quantity)
+      container.appendChild(revenue)
+      container.appendChild(check)
+    })
+    let mostRev = 0
+    let leastRev = 0
+    for(let i=1; i<accounts.length; i++) {
+      if(calculateCustomerRev(accounts[mostRev].hoadon) < calculateCustomerRev(accounts[i].hoadon)) {
+        mostRev = i
+      }
+      if(calculateCustomerRev(accounts[leastRev].hoadon) > calculateCustomerRev(accounts[i].hoadon)) {
+        leastRev = i
+      }
+    }
+    const ranks = document.querySelectorAll('.customers-stats > #ranking > div')
+    ranks[0].innerHTML = "Doanh thu nhiều nhất: " + accounts[mostRev].name + ", " + calculateCustomerRev(accounts[mostRev].hoadon)
+    ranks[1].innerHTML = "Doanh thu ít nhất: " + accounts[leastRev].name + ", " + calculateCustomerRev(accounts[leastRev].hoadon)
+  }
+  else {
+    const date = new Date()
+    let fromDate = from.value !== '' ? from.value : (date.getDay() + '-' + (parseInt(date.getMonth())+1) + '-' + date.getFullYear())
+    // let toDate = to.value !== '' ? to.value : (date.getDay() + '/' + (parseInt(date.getMonth())+1) + '/' + date.getFullYear())
+    const container = document.getElementsByClassName('customers-stats-list')[0]
+    container.innerHTML = ''
+    accounts.forEach(account => {
+      let filterHoaDon = []
+      for(let i=0; i<account.hoadon.length; i++) {
+        if(account.hoadon[i].status === 'e') {
+          let flag = true
+          date1 = account.hoadon[i].orderTime.split('-')[0].split("/")
+          date2 = fromDate.split("-")
+
+          if(date1[2] < parseInt(date2[0])) {
+            flag = false
+          }
+          if(date1[1] < parseInt(date2[1])) {
+            flag = false
+          }
+          if(date1[0] < parseInt(date2[2])) {
+            flag = false
+          }
+          if(flag) {
+            filterHoaDon.push(account.hoadon[i])
+          }
+        }
+      }
+      const accountID = document.createElement('div')
+      const accountName = document.createElement('div')
+      const quantity = document.createElement('div')
+      const revenue = document.createElement('div')
+      const check = document.createElement('div')
+      accountID.innerHTML = `${account.id}`
+      accountName.innerHTML = `${account.name}`
+      quantity.innerHTML = `${filterHoaDon.length}`
+      revenue.innerHTML = `${calculateCustomerRev(filterHoaDon).toLocaleString()}` + (calculateCustomerRev(filterHoaDon)=== 0 ? '' : "VND")
+      check.innerHTML = `<button onclick="showHoaDonTK(${account.id})">Xem</button>`
+
+      container.appendChild(accountID)
+      container.appendChild(accountName)
+      container.appendChild(quantity)
+      container.appendChild(revenue)
+      container.appendChild(check)
+    })
+    let mostRev = 0
+    let leastRev = 0
+    for(let i=1; i<accounts.length; i++) {
+      if(calculateCustomerRev(accounts[mostRev].hoadon) < calculateCustomerRev(accounts[i].hoadon)) {
+        mostRev = i
+      }
+      if(calculateCustomerRev(accounts[leastRev].hoadon) > calculateCustomerRev(accounts[i].hoadon)) {
+        leastRev = i
+      }
+    }
+    const ranks = document.querySelectorAll('.customers-stats > #ranking > div')
+    ranks[0].innerHTML = "Doanh thu nhiều nhất: " + accounts[mostRev].name + ", " + calculateCustomerRev(accounts[mostRev].hoadon)
+    ranks[1].innerHTML = "Doanh thu ít nhất: " + accounts[leastRev].name + ", " + calculateCustomerRev(accounts[leastRev].hoadon)
+  }
+}
+function showHoaDonTK(id) {
+  document.getElementById('hoadonSP').style.transform = 'scale(1)'
+  const list = document.querySelector('#hoadonSP>.container')
+  list.innerHTML = ''
+  document.querySelector('.bg#blur').style.display = 'block'
+  document.body.style.overflow = 'hidden'
+
+  let i = 0
+  accounts[id].hoadon.forEach((order, index) => {
+    if(order.status === "e") {
+      const date = new Date()
+      let fromDate = from.value !== '' ? from.value : '0-0-0'
+      date1 = order.orderTime.split('-')[0].split("/")
+      date2 = fromDate.split("-")
+
+      if(date1[2] < parseInt(date2[0])) {
+      }
+      else if(date1[1] < parseInt(date2[1])) {
+      }
+      else if(date1[0] < parseInt(date2[2])) {
+      }
+      else {
+        const orders = document.createElement('div')
+        orders.classList.add('order')
+        orders.innerHTML = `
+            <h1>
+                <span>Người nhận: ${order.info.name}</span>
+                <span>Ngày đặt: ${order.orderTime.split("-")[0]}</span>
+              </h1>
+              <div>
+                  <div><b>Số điện thoại:</b> ${order.info.phone}</div>
+                  <div><b>Địa chỉ:</b> ${order.info.address}</div>
+              </div>
+              <div><b>Phương thức trả:</b> ${order.paymentMethod}</div>
+              <div class="time">
+                  <span><b>Thời gian đặt:</b> ${order.orderTime.split("-")[1]}</span>
+                  <span><b>Thời gian dự kiến tới:</b> ${order.arriveTime}</span>
+              </div>
+              <div class="food_price" onclick="showCurrentCustomerOrder(${id}, ${index}, ${i})">
+                  <span>Sản phẩm</span>
+                  <span>Tổng số tiền: ${hoadonGetTotal(order.items).toLocaleString()} VNđ</span>
+              </div>
+              <div class="list-food">
+              </div>
+        `
+        list.appendChild(orders)
+        i++
+      }
+    }
+  })
+}
+function closeHoaDonTK() {
+  if(location.href.split('?')[1] === 'tkkh') {
+    document.getElementById('hoadonSP').style.transform = 'scale(0)'
+    document.querySelector('.bg#blur').style.display = 'none'
+    document.body.style.overflow = 'auto'
+  }
+}

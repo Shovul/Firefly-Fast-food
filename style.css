@@ -770,6 +770,9 @@ button {
 .admin#sidebar {
   margin: 10px;
   padding: 30px 12px;
+  > ul > li:not(:first-child) {
+    margin: 10px 0;
+  }
 }
 #manage-box {
   border: 1px solid var(--secondary-color);
@@ -783,9 +786,11 @@ button {
   }
   .title {
     background-color: var(--secondary-color);
-    height: fit-content;
+    height: 10vh;
     padding: 30px;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 #admin-nav > li:first-child {
@@ -865,6 +870,170 @@ button {
 }
 .menu > .title > button:hover::before, .tai_khoan > .title > button:hover::before {
   opacity: 1;
+}
+.items-stats-list {
+  margin: 4px;
+  color: var(--base-color);
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 0.7fr 0.7fr 0.5fr;
+  div {
+    padding: 10px;
+    border: 1px solid black;
+  }
+  .items_stats_title {
+    text-align: center;
+  }
+  >div>button {
+    background-color: var(--button-color);
+    width: 100%;
+    border: none;
+    height: 100%;
+    transition: .2s ease;
+    text-align: center;
+    padding: 5px;
+  }
+  div > button:hover {
+    transform: scale(1.025);
+    box-shadow: 0 0 5px var(--selected-dark);
+  }
+} 
+.customers-stats-list {
+  div {
+    padding: 10px;
+    border: 1px solid black;
+  }
+  .items_stats_title {
+    text-align: center;
+  }
+  >div>button {
+    background-color: var(--button-color);
+    width: 100%;
+    border: none;
+    height: 100%;
+    transition: .2s ease;
+    text-align: center;
+    padding: 5px;
+  }
+  div > button:hover {
+    transform: scale(1.025);
+    box-shadow: 0 0 5px var(--selected-dark);
+  }
+}
+.items-stats > #ranking, .customers-stats > #ranking{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  color: var(--base-color);
+  margin: 10px;
+  > div {
+    border: 2px solid black;
+    padding: 10px;
+  }
+}
+#hoadonSP {
+  /* background-color: black; */
+  transform: scale(0);
+  transition: .2s ease;
+  inset: 0;
+  margin: auto;
+  position: fixed;
+  color: black;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px 5px var(--selected-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 86vh;
+  width: 60vw;
+  z-index: 3;
+}
+#hoadonSP > .container{
+  height: inherit;
+  width: 100%;
+  overflow-y: auto;
+  >.order {
+    border-bottom: 2px black double;
+    margin-bottom: 10px;
+  }
+  >.order > div {
+    border-bottom: 3px solid var(--secondary-color);
+    padding: 4px 10px;
+    margin: 10px;
+  }
+  >.order > div:last-of-type {
+    border: none;
+  }
+  >.order > .time {
+    display: flex;
+    justify-content: space-between;
+  }
+  >.order >.food_price {
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+  }
+  >.order >.list-food {
+    display: grid;
+    height: 0;
+    transition: .4s ease-in-out;
+  }
+  >.order >.list-food.show {
+    height: 300px;
+  }
+  >.order >div>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  >.order >div>ul>li {
+    width: 100%;
+    list-style: none;
+    padding: 6px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 20px;
+  }
+  >.order .image {
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 1/1;
+  }
+  >.order >h1 {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--base-color);
+    color: var(--text-color); 
+    padding: 2%;
+    margin-bottom: 2px;
+  }
+}
+/* .customers-stats > .title > div:last-child{
+  width: auto;
+  overflow: hidden;
+} */
+.customers-stats form > input {
+  padding: 8px;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  margin-left: 1rem;
+  width: 100%;
+}
+.customers-stats-list {
+  margin: 4px;
+  color: var(--base-color);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 0.5fr;
+  div {
+    padding: 8px;
+    border: 1px solid black;
+  }
+  .customers_stats_title {
+    text-align: center;
+  }
 }
 #manage-box .order-list {
   margin: 4px;
@@ -1766,7 +1935,7 @@ button {
 }
 #shipping-form > #switch-btn {
  display: grid;
- grid-template-columns: 1fr .5fr 1fr;
+ grid-template-columns: 1fr .2fr 1fr;
  margin-bottom: 30px;
  >button {
   background-color: #d1d1d1;
@@ -1790,7 +1959,6 @@ button {
  >button.active {
   z-index: 1;
   background-color: var(--highlight);
-  transform: scaleY(1.1);
  }
 }
 #shipping-form > h2 {
@@ -1844,6 +2012,7 @@ button {
   position: absolute;
   inset: 0;
   width: 50vw;
+  height: 90%;
   margin: auto;
   background-color: #E7F5DC; 
   box-shadow: 0 4px 8px black;
@@ -1886,8 +2055,7 @@ button {
 }
 .button, .thoatchitiet{
    background-color: rgb(225, 225, 225);
-   width: 20%;
-   aspect-ratio: 5/2;
+   padding: 8px 20px;
    margin-top: 1%;
    text-align: center;
    border-radius: 10px;
@@ -2057,9 +2225,12 @@ button {
       margin-bottom: 0;
     }
   }
+  .donhang {
+    width: 80%;
+  }
   #manage-box {
     width: 100vw;
-    >.account-list {
+    >.account-list, .menu-list, .order-list, .items-stats-list, .customers_stats_title {
       overflow-y: auto;
     }
     >.title {

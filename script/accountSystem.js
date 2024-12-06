@@ -7,9 +7,9 @@
 let accounts = JSON.parse(localStorage.getItem('accounts'))
 let remember = localStorage.getItem('rememberAcc')
 
-document.querySelector('#account-menu > ul > li:first-child > span').innerHTML = accounts[remember].name
 
 if (remember != null && window.location.href.split('?')[1] != "qltk" && window.location.href.split('?')[1] != "qlmn") {
+  document.querySelector('#account-menu > ul > li:first-child > span').innerHTML = accounts[remember].name
   removeSigninBtn()
   adminActive();
 }
@@ -546,6 +546,7 @@ function showDonHang() {
   donhang.style.display = 'block';
 
   showListDonHang(accounts[remember].hoadon)
+  capNhatThongKe();
 }
 
 function dongDonHang(){
@@ -574,7 +575,7 @@ function hienChiTiet(current) {
             <div class="imgSP" style="background-image: url(${item.image})"></div>
             <div class="ten-SL">
                 <h4 style="margin-bottom: 10px">${item.name}</h4>
-                <span><b>Số lượ ng: </b>${item.quantity}</span>
+                <span><b>Số lượng: </b>${item.quantity}</span>
             </div>
             <div class="gia">${item.price} VNđ</div>
         `

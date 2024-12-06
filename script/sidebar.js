@@ -18,15 +18,15 @@ if (screen.width > 1100) {
     })
   }
 }
-else {
-  const subMenu = document.querySelectorAll('.sub-menu')
-  subMenu[0].addEventListener('click', () => {
-    toMenu()
-  })
-  subMenu[1].addEventListener('click', () => {
-    toIntroduction()
-  })
-}
+// else {
+//   const subMenu = document.querySelectorAll('.sub-menu')
+//   subMenu[0].addEventListener('click', () => {
+//     toMenu()
+//   })
+//   subMenu[1].addEventListener('click', () => {
+//     toIntroduction()
+//   })
+// }
 
 function toMenu() {
   offGioHang()
