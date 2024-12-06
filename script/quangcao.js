@@ -30,4 +30,4 @@ buttons.forEach((btn, index) => {
 setInterval(autoSlide, 3000);
 window.onload = function () {
     showSlide(currentIndex);
-};
+};  
