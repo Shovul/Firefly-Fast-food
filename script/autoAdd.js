@@ -190,7 +190,7 @@ function createMenu() {
         description: "Nước suối Aquafina tinh khiết, được lọc qua quy trình hiện đại, mang đến sự tươi mát và an toàn tuyệt đối cho sức khỏe"
       },
       item18 = {
-        id: 18,
+        id: 17,
         name: "Bánh su kem",
         price: 29000,
         type: "Bánh kem",
@@ -199,7 +199,7 @@ function createMenu() {
         description: "Bánh Su Kem với lớp vỏ mềm mịn, nhân kem thơm béo"
       },
       item19 = {
-        id: 19,
+        id: 18,
         name: "Bánh Phô Mai Caramel",
         price: 35000,
         type: "Bánh kem",
@@ -208,7 +208,7 @@ function createMenu() {
         description: "Bánh Phô Mai Caramel mềm mịn, tan chảy với độ thơm béo của phô mai, thêm caramel bắt mắt và ngọt ngào"
       },
       item20 = {
-        id: 20,
+        id: 19,
         name: "Bánh Croissant",
         price: 29000,
         type: "Bánh ngọt",
@@ -217,7 +217,7 @@ function createMenu() {
         description: "Bánh Croissant vỏ giòn thơm bơ, xốt mịn mềm tan"
       },
       item21 = {
-        id: 21,
+        id: 20,
         name: "Bánh Tiramisu ",
         price: 35000,
         type: "Bánh kem",
@@ -226,7 +226,7 @@ function createMenu() {
         description: "Bánh Tiramisu lạnh thơm mát với nguyên liệu ca-cao Việt Nam, thêm phô mai ít béo và hương thơm nhẹ nhàng của Rhum"
       },
       item22 = {
-        id: 22,
+        id: 21,
         name: "Bánh Sữa Chua Phô Mai ",
         price: 35000,
         type: "Bánh kem",
@@ -234,6 +234,43 @@ function createMenu() {
         group: "Tráng miệng",
         description: "Bánh Sữa Chua Phô Mai lớp bánh mềm mịn, tan chảy với độ chua nhẹ nhàng của sữa chua cùng phô mai thơm béo"
       },
+      item23 = {
+        id: 22,
+        name: "Trà tiên nhân",
+        price: 24000,
+        type: "Trà",
+        image: "images/Food/TraTienNhan.PNG",
+        group: "Đồ uống",
+        description: "Thức uống vớ vẩn cực kỳ không tốt cho sức khỏe, nhưng uống vào sẽ nở nụ cười bí ẩn"
+      },
+      item24 = {
+        id: 23,
+        name: "Trà xoài",
+        price: 24000,
+        type: "Trà",
+        image: "images/Food/tra_xoai.png",
+        group: "Đồ uống",
+        description: "Trà xoài – sự hòa quyện giữa trà thơm thanh mát và vị xoài nhiệt đới ngọt ngào, mang đến thức uống tươi mới và sảng khoái cho mọi thời điểm!"
+      },
+      item25 = {
+        id: 24,
+        name: "Trà tắc",
+        price: 24000,
+        type: "Trà",
+        image: "images/Food/tra_tac.png",
+        group: "Đồ uống",
+        description: "Trà tắc – hương vị chua nhẹ của tắc hòa quyện cùng trà thanh mát, tạo nên thức uống giải khát thơm ngon và đầy sảng khoái!"
+      },
+      item26 = {
+        id: 25,
+        name: "Trà dâu",
+        price: 24000,
+        type: "Trà",
+        image: "images/Food/tra_dau.png",
+        group: "Đồ uống",
+        description: "Trà dâu – vị ngọt dịu và chua nhẹ từ dâu tươi kết hợp cùng trà thanh mát, mang đến thức uống hấp dẫn và tươi mới khó cưỡng!"
+      },
+      
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
   }

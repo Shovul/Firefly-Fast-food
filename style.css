@@ -46,18 +46,50 @@ button {
 
 
 /* advertisment slider */
-#slide-box .slider {
-  white-space: nowrap;
+
+
+/* Slider container */
+#slide-box {
+  position: relative;
+  max-width: 100%;
   overflow: hidden;
-  z-index: 1;
-  animation: sliding ease-in-out infinite;
-  display:block;
+  margin: auto;
 }
+
+/* Slider track */
+.slider {
+  display: flex;
+  width: 100%; /* 4 ảnh -> 100% mỗi ảnh */
+  transition: transform 0.5s ease-in-out; /* Hiệu ứng mượt */
+}
+
+/* Slider images */
 .slider img {
-  /* animation: sliding 10s ease-in-out infinite; */
-  height: 50vh;
   width: 100%;
-  object-fit: cover;
+  flex-shrink: 0; /* Giữ nguyên kích thước ảnh */
+}
+
+/* Navigation buttons */
+.nav-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn .btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-btn .btn.active {
+  background-color: white; /* Nút được chọn */
 }
 
 
@@ -1358,6 +1390,7 @@ button {
     {
     width:50%;
     border-radius: 8px;
+    display:block;
 }
     #lichsumuahang
     {

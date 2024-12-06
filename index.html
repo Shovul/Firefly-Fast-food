@@ -18,7 +18,8 @@
     <script src="script/autoAdd.js" defer></script>
     <script src="script/trangchu.js" defer></script>
     <script src="script/giohang.js" defer></script>
-    <script src="script/lichsumuahang.js"></script>
+    <script src="script/lichsumuahang.js" defer></script>
+    <script src="script/quangcao.js"defer>  </script>
 
 
 
@@ -30,7 +31,7 @@
     <div id="blur" class="bg"></div>
     <div id="white" class="bg"></div>
     
-    <!-- tao don hang -->
+
     <form id="shipping-form" class="shipping-form">
         <!-- Nút chuyển đổi tạo hoặc sử dụng địa chỉ -->
         <div id="switch-btn">
@@ -53,7 +54,7 @@
     
         <label for="province" class="shipping-form-label">Tỉnh/Thành:</label>
         <select id="province" class="shipping-form-select" required>
-            <option value="" selected disabled>Chọn tỉnh/thành</option>
+          <option value="" selected disabled>Chọn tỉnh/thành</option>
             <option value="Hà Nội">Hà Nội</option>
             <option value="Hồ Chí Minh">Hồ Chí Minh</option>
             <option value="Hải Phòng">Hải Phòng</option>
@@ -306,7 +307,6 @@
                 <button onclick="closeAccountbar()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>    
                 </button>
-                <span></span>
             </li>
             <li>
                 <a href="index.html?tttk">
@@ -356,10 +356,10 @@
             <img src="images/Advertisement/xWeb-value.jpg.pagespeed.ic.5GlFsD9vWU.webp">
         </div>
         <div class="nav-btn">
-            <a href="ad-image-1" class="btn"></a>
-            <a href="ad-image-2" class="btn"></a>
-            <a href="ad-image-3" class="btn"></a>
-            <a href="ad-image-4" class="btn"></a>
+            <a class="btn"></a>
+            <a class="btn"></a>
+            <a class="btn"></a>
+            <a class="btn"></a>
         </div>
     </div>
     
@@ -689,6 +689,11 @@
                 <h3>ĐƠN HÀNG</h3>
             </div>
             <div class="body-donhang">
+
+            </div>
+            <button class="button" onclick="dongDonHang()">thoát</button>
+        </div>
+
                 <!-- Thêm phần thống kê theo ngày, tháng -->
                 <div id="thongke-muahang">
                     <h4>Thông kê mua hàng</h4>
@@ -713,32 +718,14 @@
                 </div>
                 <div id="container">
                 </div>
+                <div></div>
                 <button class="thoatchitiet" onclick="dongChiTiet()">Thoát</button>
             </div>
         </div>
+
+    </div> 
+
     </div>
     
-
-    <script>
-    document.querySelectorAll('input[name="thanh_toan"]').forEach((radio) => {
-    radio.addEventListener("change", function () {
-        const cardInfo = document.getElementById("thanh_toan_card_info");
-        if (this.id === "thanh_toan_card") {
-            cardInfo.style.display = "block";
-        } else {
-            cardInfo.style.display = "none";
-        }
-    });
-});
-
-function submitOrder() {
-    alert("Đơn hàng của bạn đã được xác nhận!");
-}
-
-function goToCart() {
-    alert("Quay lại giỏ hàng!");
-}
-
-        </script>
 </body>
 </html>

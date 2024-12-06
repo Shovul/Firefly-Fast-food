@@ -1,4 +1,5 @@
 function donglichsu() {
+
   const lsmh = document.getElementById("noidungmuahang");
   lsmh.innerHTML = "<p>Đây là lịch sử mua hàng của bạn</p>";
 }
@@ -19,7 +20,6 @@ function capNhatLichSu() {
       if (hoaDon.status === "e") {
         const orderDiv = document.createElement("div");
         orderDiv.classList.add("order-item");
-        
         orderDiv.innerHTML = `
         <div style="margin: 10px;">
           <div><b>Mã đơn hàng:</b> #${hoaDon.id}</div>
@@ -30,6 +30,7 @@ function capNhatLichSu() {
           <div><b>Phương thức thanh toán:</b> ${hoaDon.paymentMethod}</div>
           <div><b>Tình trạng:</b> Đã nhận hàng</div>
           <div style="border-bottom: 3px solid black"><b</b></div>
+
         </div> 
         `;
         lsmh.appendChild(orderDiv);
