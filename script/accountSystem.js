@@ -574,7 +574,7 @@ function hienChiTiet(current) {
             <div class="imgSP" style="background-image: url(${item.image})"></div>
             <div class="ten-SL">
                 <h4 style="margin-bottom: 10px">${item.name}</h4>
-                <span><b>Số lương: </b>${item.quantity}</span>
+                <span><b>Số lượ ng: </b>${item.quantity}</span>
             </div>
             <div class="gia">${item.price} VNđ</div>
         `

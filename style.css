@@ -1356,28 +1356,24 @@ button {
 }
 #divbao-lichsumuahang
     {
-    width:60%;
-    background-color:#F2DDDC;
-    border: 3px solid black;
-    margin: 0 auto;
+    width:50%;
     border-radius: 8px;
 }
     #lichsumuahang
     {
+
         display:flex;
-        flex-wrap:wrap;    
         text-align:center;
-        justify-content: center;
-    }
+        
+        
+      }
     #noidungmuahang
     {
-        background-color:#F4E7F8;
-    }
-    #noidungmuahang #noidung
-    {
-        margin:10px;
-        margin-bottom:10px;
-        padding: 10px;
+        margin: 10px;   
+        border: 3px solid black;
+        border-radius:2%;
+
+
     }
 /* sua tai khoan */
 #edit_account {
