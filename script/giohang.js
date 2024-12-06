@@ -223,7 +223,7 @@ function addToHoaDon() {
   }
 
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + currentdate.parseInt(getMonth())+1 + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = currentdate.getDay() + "/" + (parseInt(currentdate.getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
 
   const address = accounts[remember].addresses.filter(address => address.id == form['province'].value)
@@ -260,10 +260,11 @@ function calculateArrivalTime(time, minutes) {
   updateTime[1] = parseInt(updateTime[1]) + minutes
   updateTime[0] = parseInt(updateTime[0]) + Math.floor(parseInt(updateTime[1])/60)
   updateTime[1] = parseInt(updateTime[1])%60
-  const newTime = (updateTime[0]<10 ? '0' + updateTime[0] : updateTime[0]) + ':' + (updateTime[1]<10 ? '0' + updateTime[1] : updateTime[1]) + ':' + (updateTime[2]<10 ? '0' + updateTime[2] : updateTime[2])
+  const newTime = (updateTime[0]<10 ? '0' + updateTime[0] : updateTime[0]) + ':' + (updateTime[1]<10 ? '0' + updateTime[1] : updateTime[1]) + ':' + updateTime[2]
 
   return newTime
 }
+
  // Hàm cập nhật Quận/Huyện khi chọn Tỉnh/Thành
  const data = {
   "Hà Nội": {
@@ -392,7 +393,7 @@ function submitOrder() {
 
   // lay thoi gian hien tai
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + currentdate.parseInt(getMonth())+1 + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = currentdate.getDay() + "/" + (parseInt(currentdate.getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
   const form = document.getElementById('shipping-form')
 
@@ -467,3 +468,14 @@ function addToCart(itemId, quantity = 1) {
   alert(`Đã thêm "${item.name}" vào giỏ hàng!`);
   displayProducts(); // Cập nhật giao diện giỏ hàng (nếu cần)
 }
+
+document.querySelectorAll('input[name="thanh_toan"]').forEach((radio) => {
+  radio.addEventListener("change", function () {
+      const cardInfo = document.getElementById("thanh_toan_card_info");
+      if (this.id === "thanh_toan_card") {
+          cardInfo.style.display = "block";
+      } else {
+          cardInfo.style.display = "none";
+      }
+  });
+});
