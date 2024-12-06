@@ -593,59 +593,58 @@ function dongChiTiet() {
       chitiet.style.display = 'none';
   }
 }
+// Hàm cập nhật thống kê mua hàng
 function capNhatThongKe() {
-  // Kiểm tra xem có tài khoản và hóa đơn không
-  if (!accounts || !Array.isArray(accounts)) {
-    console.log("Không có tài khoản.");
-    return;
+  const accounts = JSON.parse(localStorage.getItem('accounts')); // Lấy dữ liệu từ localStorage
+
+  if (!accounts || accounts.length === 0) {
+      console.log("Không có dữ liệu người dùng.");
+      return;
   }
 
-  // Khởi tạo các thống kê
   let tongTien = 0;
   let tongSoLuong = 0;
-
   let thongKeTheoNgay = {};
   let thongKeTheoThang = {};
 
-  // Lặp qua tất cả các tài khoản
+  console.log("Dữ liệu tài khoản:", accounts);
+
   accounts.forEach(account => {
-    // Kiểm tra nếu tài khoản có hóa đơn
-    if (account.hoadon && Array.isArray(account.hoadon)) {
       account.hoadon.forEach(hoaDon => {
-        if (hoaDon.status === 'e') { // Đảm bảo là đơn hàng đã nhận
-          hoaDon.items.forEach(item => {
-            tongTien += item.price * item.quantity;
-            tongSoLuong += item.quantity;
-          });
+          console.log("Xử lý hóa đơn:", hoaDon);
 
-          // Thống kê theo ngày
-          const ngay = new Date(hoaDon.orderTime);
-          const ngayString = `${ngay.getDate()}/${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
-          thongKeTheoNgay[ngayString] = (thongKeTheoNgay[ngayString] || 0) + 1;
+          if (hoaDon.status === 'a') { // Chỉ tính các đơn hàng chưa xử lý
+              hoaDon.items.forEach(item => {
+                  tongTien += item.price * item.quantity;
+                  tongSoLuong += item.quantity;
+              });
 
-          // Thống kê theo tháng
-          const thangString = `${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
-          thongKeTheoThang[thangString] = (thongKeTheoThang[thangString] || 0) + 1;
-        }
+              const ngay = new Date(hoaDon.orderTime);
+              const ngayString = `${ngay.getDate()}/${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
+              thongKeTheoNgay[ngayString] = (thongKeTheoNgay[ngayString] || 0) + 1;
+
+              const thangString = `${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
+              thongKeTheoThang[thangString] = (thongKeTheoThang[thangString] || 0) + 1;
+          }
       });
-    }
   });
+
+  console.log("Thống kê theo ngày:", thongKeTheoNgay);
+  console.log("Thống kê theo tháng:", thongKeTheoThang);
 
   // Hiển thị thống kê
   document.getElementById("tongtien").innerText = `Tổng tiền: ${tongTien} VND`;
   document.getElementById("tongsoluong").innerText = `Tổng số sản phẩm: ${tongSoLuong}`;
-  
-  // Hiển thị thống kê theo ngày
+
   let thongKeNgayText = '';
   for (let ngay in thongKeTheoNgay) {
-    thongKeNgayText += `${ngay}: ${thongKeTheoNgay[ngay]} đơn hàng<br>`;
+      thongKeNgayText += `${ngay}: ${thongKeTheoNgay[ngay]} đơn hàng<br>`;
   }
   document.getElementById("thongke-theo-ngay").innerHTML = `Thống kê theo ngày:<br>${thongKeNgayText}`;
-  
-  // Hiển thị thống kê theo tháng
+
   let thongKeThangText = '';
   for (let thang in thongKeTheoThang) {
-    thongKeThangText += `${thang}: ${thongKeTheoThang[thang]} đơn hàng<br>`;
+      thongKeThangText += `${thang}: ${thongKeTheoThang[thang]} đơn hàng<br>`;
   }
   document.getElementById("thongke-theo-thang").innerHTML = `Thống kê theo tháng:<br>${thongKeThangText}`;
 }
