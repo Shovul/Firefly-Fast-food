@@ -1,7 +1,7 @@
 function donglichsu() {
-    document.getElementById("divbao-lichsumuahang").style.display="none";
+  const lsmh = document.getElementById("noidungmuahang");
+  lsmh.innerHTML = "<p>Đây là lịch sử mua hàng của bạn</p>";
 }
-
 function capNhatLichSu() {
     const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
     const currentAccount = accounts[remember];
