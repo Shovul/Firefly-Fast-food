@@ -773,16 +773,44 @@ function showOrderFood() {
 
 let foodStats = []
 menu.forEach(food => {
-  const newFood = {
-    id: food.id,
-    name: food.name,
-    quantity: 0,
-    total: 0,
-    hoadonList: []
-  }
+  const newFood = food
+  newFood.quantity = 0
+  newFood.total = 0
+  newFood.hoadonList = []
   foodStats.push(newFood)
 })
 
+function findBestSeller(list) {
+  let mostBought = 0
+  let secondBought = 0
+  let thirdBought = 0
+
+  for(let i=0; i<list.length; i++) {
+    if(list[mostBought].quantity < list[i].quantity) {
+      mostBought = i
+    }
+  }
+  if(list[mostBought].quantity != 0)
+    menu[list[mostBought].id].rank = 1
+  list.splice(mostBought, 1)
+  for(let i=0; i<list.length; i++) {
+    if(list[secondBought].quantity < list[i].quantity) {
+      secondBought = i
+    }
+  }
+  if(list[secondBought].quantity != 0)
+    menu[list[secondBought].id].rank = 2
+  list.splice(secondBought, 1)
+  for(let i=0; i<list.length; i++) {
+    if(list[thirdBought].quantity < list[i].quantity) {
+      thirdBought = i
+    }
+  }
+  if(list[thirdBought].quantity != 0)
+    menu[list[thirdBought].id].rank = 3
+
+  localStorage.setItem('menu', JSON.stringify(menu))
+}
 function listThongKeSanPham() {
   menu.forEach(food => {
     accounts.forEach(account => {
@@ -841,6 +869,15 @@ function listThongKeSanPham() {
   ranks[1].innerHTML += foodStats[leastRev].name + ", " + foodStats[leastRev].total.toLocaleString() + (foodStats[leastRev].total === 0 ? '' : "VND")
   ranks[2].innerHTML += foodStats[mostBought].name + ", " + foodStats[mostBought].quantity
   ranks[3].innerHTML += foodStats[leastBought].name + ", " + foodStats[leastBought].quantity
+
+  menu.map(item => delete item.rank)
+  const foods = foodStats.filter(foods => foods.group == 'Thức ăn')
+  const drinks = foodStats.filter(foods => foods.group == 'Đồ uống')
+  const desserts = foodStats.filter(foods => foods.group == 'Tráng miệng')
+  
+  findBestSeller(foods)
+  findBestSeller(drinks)
+  findBestSeller(desserts)
 }
 function showHoaDonSP(id) {
   document.getElementById('hoadonSP').style.transform = 'scale(1)'
@@ -1029,7 +1066,6 @@ function showHoaDonTK(id) {
   let i = 0
   accounts[id].hoadon.forEach((order, index) => {
     if(order.status === "e") {
-      const date = new Date()
       let fromDate = from.value !== '' ? from.value : '0-0-0'
       date1 = order.orderTime.split('-')[0].split("/")
       date2 = fromDate.split("-")

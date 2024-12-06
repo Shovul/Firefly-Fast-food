@@ -92,7 +92,7 @@ function loadMenuByPage(type, dataList) {
   const startIndex = (currentPage[type] - 1) * ITEMS_PER_PAGE[type];
   const endIndex = startIndex + ITEMS_PER_PAGE[type];
   const paginatedItems = dataList.slice(startIndex, endIndex);
-
+  document.querySelector(`#${type}-pagination`).style.display = 'flex'
   // Xác định container để hiển thị sản phẩm
   const container = document.getElementById(`${type}-items`);
   container.innerHTML = ""; // Xóa sản phẩm cũ
@@ -101,8 +101,11 @@ function loadMenuByPage(type, dataList) {
   paginatedItems.forEach(item => {
     const div = document.createElement("div");
     div.className = "items-content";
+    if(item.rank != null) {
+      div.classList.add('rank')
+    }
     div.innerHTML = `
-     <div>
+        <div>
           <img class="hinhanh" src ="${item.image}" id="${item.id}" onclick="mochitiet(this)">
         </div> 
         <div class="container-items"> <h3>${item.name}</h3></div>
