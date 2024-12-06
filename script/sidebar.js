@@ -1,22 +1,26 @@
 const sBar = document.getElementById('sidebar')
 
-if (screen.width > 1100) {
-  function toggleSubmenu(button) {
-    button.nextElementSibling.classList.toggle('show');
-    button.classList.toggle('rotate')
-    if (sBar.classList.contains('close')) {
-      sBar.classList.remove('close');
-    }
+function toggleSubmenu(button) {
+  if(!button.nextElementSibling.classList.contains('show')) {
+    closeAllSubmenu()
   }
-
-  function toggleSidebar() {
-    sBar.classList.toggle('close');
-
-    Array.from(sBar.getElementsByClassName('show')).forEach(ul => {
-      ul.classList.remove('show');
-      ul.previousElementSibling.classList.remove('rotate');
-    })
+  button.nextElementSibling.classList.toggle('show');
+  button.classList.toggle('rotate')
+  if (sBar.classList.contains('close')) {
+    sBar.classList.remove('close');
   }
+}
+
+function toggleSidebar() {
+  sBar.classList.toggle('close');
+
+  closeAllSubmenu()
+}
+function closeAllSubmenu() {
+  Array.from(sBar.getElementsByClassName('show')).forEach(ul => {
+    ul.classList.remove('show');
+    ul.previousElementSibling.classList.remove('rotate');
+  })
 }
 // else {
 //   const subMenu = document.querySelectorAll('.sub-menu')
@@ -32,9 +36,9 @@ function toMenu() {
   offGioHang()
   const active = document.getElementById("active")
   const menu = document.getElementsByClassName("dropdown-btn")
-  document.getElementById("noidungtrangchu").innerHTML= ''
-  document.getElementById("noidunglichsu").innerHTML= ''
-  document.getElementById("noidungnguyenlieu").innerHTML= ''
+  document.getElementById("noidungtrangchu").style.display = 'none'
+  document.getElementById("noidunglichsu").style.display = 'none'
+  document.getElementById("noidungnguyenlieu").style.display = 'none'
   document.getElementById("filter").style.display = 'flex'
   document.getElementById("filter-list").style.display= 'grid'
   document.getElementsByClassName("slider")[0].style.display="flex";

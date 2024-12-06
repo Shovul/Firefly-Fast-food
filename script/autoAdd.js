@@ -27,6 +27,81 @@ function createAccount() {
         addresses: [],
         hoadon: [],
         cart: []
+      },
+      account2 = {
+        id: 2,
+        name: "phuc",
+        email: "phuc@gmail.com",
+        pass: "123456",
+        phone: "1111111111",
+        gender: 'Nam',
+        avatar: "images/Icons/logo.png",
+        status: "active",
+        addresses: [],
+        hoadon: [
+          {arriveTime: "16:53:15",
+          id: 0,
+          info: {id: 0, name: "sang", phone: "0924201311", address: "123/123", status: "choose"},
+          items: [ 
+            {id: 1, name: "Hamburger", price: 39000, quantity: 1, image: "images/Food/burger.jpg", selected: true}
+          ],
+          orderTime: "5/111/2024-16:24:15",
+          paymentMethod: "Tiền mặt",
+          status: "e"}
+        ],
+        cart: []
+      },
+      account3 = {
+        id: 3,
+        name: "nu",
+        email: "nu@gmail.com",
+        pass: "123456",
+        phone: "2222222222",
+        gender: 'Nữ',
+        avatar: "images/Icons/logo.png",
+        status: "active",
+        addresses: [],
+        hoadon: [],
+        cart: []
+      },
+      account4 = {
+        id: 4,
+        name: "sang",
+        email: "sang@gmail.com",
+        pass: "123456",
+        phone: "3333333333",
+        gender: 'Nam',
+        avatar: "images/Icons/logo.png",
+        status: "active",
+        addresses: [],
+        hoadon: [],
+        cart: []
+      },
+      account5 = {
+        id: 5,
+        name: "phuong",
+        email: "phuong@gmail.com",
+        pass: "123456",
+        phone: "4444444444",
+        gender: 'Nữ',
+        avatar: "images/Icons/logo.png",
+        status: "active",
+        addresses: [],
+        hoadon: [],
+        cart: []
+      },
+      account6 = {
+        id: 6,
+        name: "huy",
+        email: "huy@gmail.com",
+        pass: "123456",
+        phone: "5555555555",
+        gender: 'Nam',
+        avatar: "images/Icons/logo.png",
+        status: "active",
+        addresses: [],
+        hoadon: [],
+        cart: []
       }
     ]
     localStorage.setItem('accounts', JSON.stringify(accounts))

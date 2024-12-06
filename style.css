@@ -16,6 +16,7 @@
 }
 html {
   scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 * {
   box-sizing: border-box;
@@ -334,7 +335,6 @@ button {
   display: grid;
   grid-template-rows: 0fr;
   transition: .3s ease-in-out;
-
   > div {
     overflow: hidden;
   }
@@ -697,10 +697,11 @@ button {
   background-color: var(--selected-dark);
 }
 .diachi_selector {
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr .5fr;
+  width: 80%;
+  gap: 1rem;  
   >button {
-    flex: 0.5;
     border-radius: 8px;
     background-color: var(--button-color);
     border: none;
@@ -1205,6 +1206,20 @@ button {
   background-position: center;
   transition: .2s ease;
 }
+.items > .items-content {
+  position: relative;
+}
+.items > .items-content.rank::after {
+  content: '';
+  width: 20%;
+  aspect-ratio: 1 / 1;
+  background-image: url('/images/Icons/best-seller.png') ;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  left: 2%;
+  bottom: 2%;
+}
 .content .items .hinhanh:hover {
   transform: scale(1.2) translateY(-20px);
 }
@@ -1496,6 +1511,7 @@ button {
     border: none;
     height: 35px;
     aspect-ratio: 1/1;
+    color: black;
 }
 #hienthongtinsp .button:hover {
   background-color: var(--selected-dark);
@@ -1556,27 +1572,35 @@ button {
     display: none;
 }
 #divbao-lichsumuahang
-    {
-    width:50%;
+{
+    width: 80%;
     border-radius: 8px;
-    display:block;
-}
-    #lichsumuahang
-    {
-
-        display:flex;
-        text-align:center;
-        
-        
-      }
-    #noidungmuahang
-    {
-        margin: 10px;   
-        border: 3px solid black;
-        border-radius:2%;
-
-
+    button  {
+      background-color: var(--button-color);
+      border-radius: 8px;
+      padding: 8px;
+      border: none;
+      margin-right: 8px;
+      transition: .2s ease;
     }
+    button:hover {
+      background-color: var(--button-selected);
+      transform: scale(1.02);
+    }
+}
+#lichsumuahang
+{
+    display:flex;
+    text-align:center;
+}
+#noidungmuahang
+{ 
+    margin-bottom: 10px;   
+    border: 3px solid black;
+    padding: 10px;
+    border-radius: 8px;
+    transition: .3s ease;
+}
 /* sua tai khoan */
 #edit_account {
   display: grid;
@@ -1776,11 +1800,11 @@ button {
 /* them dia chi */
 #dia_chi_tk {
   display: grid;
-  width: 60%;
+  width: 80%;
   grid-template-rows: .1fr 0fr;
   transition: .2s ease-in-out;
   >button {
-    margin-top: 16px;
+    margin-top: 18px;
   }
 }
 #dia_chi_tk.show {
@@ -2046,7 +2070,7 @@ button {
   width: 50vw;
   height: 90%;
   margin: auto;
-  background-color: #E7F5DC; 
+  background-color: #FBFFF1; 
   box-shadow: 0 4px 8px black;
   overflow: auto;
 }
@@ -2057,7 +2081,22 @@ button {
    justify-content: center;
 }
 .body-donhang > div {
-  border-bottom: 8px double black;
+  border-bottom: 20px double #FBFFF1;
+  background-color: #3066BE;
+  padding: 20px;
+  border-radius: 0 30px 0 0;
+  color: white;
+}
+#thongke-muahang {
+  background-color: #3C3744;
+  color: #FBFFF1;
+  border: 2px solid #FBFFF1;
+  margin-bottom: 10px;
+  border-radius: 30px 30px 30px 0;
+  padding: 10px;
+  > * {
+    margin: 10px;
+  }
 }
 .madon-ngaydat{
    height: fit-content;
@@ -2082,18 +2121,21 @@ button {
 }
 .body-donhang{
    height: fit-content;
-   background-color: rgb(255, 255, 173);
-   border: 1px solid black;
 }
 .button, .thoatchitiet{
-   background-color: rgb(225, 225, 225);
-   padding: 8px 20px;
+   background-color: #090C9B;
+   color: rgb(255, 215, 215);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 12px 20px;
    margin-top: 1%;
    text-align: center;
    border-radius: 10px;
+   border: none;
 }
-.button:hover{
-   background-color: rgb(192, 192, 192);
+.button:hover, .thoatchitiet{
+   background-color: #2427cb;
 }
 
 /* phần chi tiết hóa đơn */
@@ -2162,218 +2204,6 @@ button {
 .thoatchitiet:hover{
    background-color: rgb(192, 192, 192);
 }
-/* #chitietdon.model > div > #container {
-  height: inherit;
-  overflow-y: scroll;
-} */
-
-
-/* responsive */
-@media (max-width:1100px) {
-  #sidebar:not(.admin).close{
-    width: 100%;
-    z-index: 3;
-  }
-  #sidebar:not(.admin) {
-    height: 60px;
-    width: 100% ;
-    top: unset;
-    bottom: 0;
-    position: fixed;
-    padding: 0;
-    ul {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 50px;
-      align-items: center;
-      overflow-x: scroll;
-      justify-content: center;
-    }
-
-    > ul > li > a, li  {
-      width: 50px;
-    }
-
-    ul li:first-child, ul > li > a > span, button > svg:last-child, button > span {
-      display: none;
-    }
-  }
-  .navigation-bar {
-    .option {
-    display: none;
-    }
-    #logo {
-      display: none;
-    }
-  }
-  .admin-page {
-    grid-template-columns: .2fr 1fr;
-    * {
-      font-size: .8rem;
-    }
-  }
-  #account-info {
-    grid-template-columns: 30vw 1fr;
-    > #nav-thongtin {
-      margin-right: 0;
-      margin-left: 10%;
-    }
-    > #setting-container {
-      margin-left: 0;
-      margin-right: 10%;
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-  }
-  #dia_chi_tk {
-    width: 100%;
-  }
-  #setting-container .avatar {
-    float: none;
-    margin-bottom: 30px;
-  }
-  .menu-list div:not(.menu_title) {
-    line-height: 100%;
-  }
-  .admin-page {
-    grid-template-columns: 100vw;
-  }
-  .admin#sidebar {
-    width: 100vw;
-    height: fit-content;
-    padding: 10px;
-    li {
-      margin: 0;
-      padding: 0;
-    }
-    >#admin-nav {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      overflow-y: auto;
-      flex-wrap: nowrap;
-    }
-    >#admin-nav>li:first-child {
-      margin-bottom: 0;
-    }
-  }
-  .donhang {
-    width: 80%;
-  }
-  #manage-box {
-    width: 100vw;
-    >.account-list, .menu-list, .order-list, .items-stats-list, .customers_stats_title {
-      overflow-y: auto;
-    }
-    >.title {
-      padding: 8px;
-    }
-  }
-  .content {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    * {
-      font-size: 1rem;
-    }
-  }
-  #giohang .container {
-    flex-direction: column;
-    width: 90%;
-    > * {
-      width: 100%;
-    }
-  }
-  .product-info>input {
-    width: 70%;
-  }
-}
-@media (max-width:800px) {
-  #nav-thongtin > ul > li > ul > li >svg {
-    display: none;
-  }
-  #account-info > #setting-container {
-    padding-left: 10px;
-  }
-  .items-content .container > .container-items:first-child:hover
-  {
-    grid-template-columns: 30px 0fr;
-  }
-  .items-content .container > .container-items:first-child {
-    grid-template-columns: 30px 0fr;
-  }
-  .content .items-content, .content .container-items {
-    margin: 0;
-    text-wrap: nowrap;
-    font-size: 1rem;
-  }
-  .content svg {
-    width: 24px;
-    height: 24px;
-  }
-  body > * {
-    font-size: 1rem;
-  }
-  #themvaogio > span > span {
-    display: none;
-  }
-  #hienthongtinsp {
-    width: 100vw;
-  }
-  #filter {
-    display: none;
-  }
-  #filter-list {
-    grid-template-rows: 1fr 1fr;
-    >div > li > button {
-      width: 100px;
-      height: 100%;
-    } 
-    input {
-      width: 50%;
-    }
-  }
-  .product-item {
-    >.product-image {
-      width: 20%;
-      min-width: 80px;
-      aspect-ratio: 1 / 1;
-    }
-    overflow-x: auto;
-  }
-  .account > .admin > #sign-in-btn {
-    padding: 10px;
-    border-radius: 10px;
-    > span {
-      display: none;
-    }
-    > svg {
-      display: block;
-      fill: white;
-      height: 30px;
-      width: 30px;
-    }
-  }
-  .content .items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .navigation-bar {
-    gap: 0;
-    padding: 20px;
-  }
-}
-@media (max-width:400px) {
-  .content .items {
-    grid-template-columns: 1fr;
-    .hinhanh {
-      width: 60vw;
-    }
-  }
-  .navigation-bar {
-    gap: 0;
-  }
-}
-
 
 .shipping-form {
   max-width: 600px;
@@ -2459,15 +2289,289 @@ input[type="month"]:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.floating-icon-giohang{
+.floating-icon-giohang {
+  display: flex;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 1;
+  background-color: rgb(239, 117, 117);
+  padding: 5px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(200%);
+  transition: .5s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.floating-icon-giohang img {
-  width: 50px;
-  height: 50px;
+.floating-icon-giohang:hover {
+  transform: translateY(-10px) scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+.floating-icon-giohang > svg {
+  width: 80px;
+  height: 80px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 50%;
+  padding: 20px;
+  border: 3px solid white;
+}
+/* #chitietdon.model > div > #container {
+  height: inherit;
+  overflow-y: scroll;
+} */
+
+
+/* responsive */
+@media (max-width:1100px) {
+  #sidebar:not(.admin).close{
+    width: 100%;
+  }
+  #sidebar:not(.admin) {
+    height: 60px;
+    width: 100% ;
+    top: unset;
+    bottom: 0;
+    z-index: 3;
+    position: fixed;
+    padding: 0;
+    justify-content: start;
+    ul {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 50px;
+      align-items: center;
+      overflow-x: scroll;
+      justify-content: center;
+    }
+
+    > ul > li > a, li  {
+      width: 50px;
+    }
+
+    ul > li > a > span, button > svg:last-child, button > span {
+      display: none;
+    }
+    ul li .sub-menu {
+      position: fixed;
+      z-index: 3;  
+      left: 0;
+      height: auto;
+      bottom: 60px;
+      width: 100%;
+      background-color: var(--secondary-color);
+      grid-template-columns: 1fr;
+      >div {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        overflow-x: auto;
+      }
+      >div li {
+        width: auto;
+      }
+      >div li span {
+        padding: 0 20px;
+      }
+    }
+  }
+  .search button {
+    display: none;
+  }
+  .navigation-bar {
+    .option {
+    display: none;
+    }
+    #logo {
+      display: none;
+    }
+  }
+  .floating-icon-giohang {
+    bottom: 120px;
+    > svg {
+      height: 50px;
+      width: 50px;
+      padding: 6px;
+    }
+  }
+  .admin-page {
+    grid-template-columns: .2fr 1fr;
+    * {
+      font-size: .8rem;
+    }
+  }
+  #account-info {
+    grid-template-columns: 30vw 1fr;
+    > #nav-thongtin {
+      margin-right: 0;
+      margin-left: 10%;
+    }
+    > #setting-container {
+      margin-left: 0;
+      margin-right: 10%;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+  #dia_chi_tk {
+    width: 100%;
+  }
+  #setting-container .avatar {
+    float: none;
+    margin-bottom: 30px;
+  }
+  .menu-list div:not(.menu_title) {
+    line-height: 100%;
+  }
+  .admin-page {
+    grid-template-columns: 100vw;
+  }
+  .admin#sidebar {
+    width: 100vw;
+    height: fit-content;
+    padding: 10px;
+    li {
+      margin: 0;
+      padding: 0;
+    }
+    >#admin-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      overflow-y: auto;
+      flex-wrap: nowrap;
+    }
+    >#admin-nav>li:first-child {
+      margin-bottom: 0;
+    }
+  }
+  .donhang {
+    width: 80%;
+  }
+  #manage-box {
+    width: 100vw;
+    >.account-list, .menu-list, .order-list, .items-stats-list, .customers_stats_title {
+      overflow-y: auto;
+    }
+    >.title {
+      padding: 8px;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    * {
+      font-size: 1rem;
+    }
+  }
+  #giohang .container {
+    flex-direction: column;
+    width: 90%;
+    > * {
+      width: 100%;
+    }
+  }
+  .product-info>input {
+    width: 70%;
+  }
+}
+@media (max-width:800px) {
+  #manage-box.customers-stats > .title {
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: start;
+    height: auto;
+    >div {
+      margin-top: 10px;
+    }
+    input {
+      margin: 0;
+    }
+  }
+  #nav-thongtin > ul > li > ul > li >svg {
+    display: none;
+  }
+  #account-info > #setting-container {
+    padding-left: 10px;
+  }
+  .items-content .container > .container-items:first-child:hover
+  {
+    grid-template-columns: 30px 0fr;
+  }
+  .items-content .container > .container-items:first-child {
+    grid-template-columns: 30px 0fr;
+  }
+  .content .items-content, .content .container-items {
+    margin: 0;
+    text-wrap: nowrap;
+    font-size: 1rem;
+  }
+  .content svg {
+    width: 24px;
+    height: 24px;
+  }
+  body > * {
+    font-size: 1rem;
+  }
+  #themvaogio > span > span {
+    display: none;
+  }
+  #hienthongtinsp {
+    width: 100vw;
+  }
+  #filter {
+    display: none;
+  }
+  #filter-list {
+    grid-template-rows: 1fr 1fr;
+    >div > li > button {
+      width: 100px;
+      height: 100%;
+    } 
+    input {
+      width: 50%;
+    }
+  }
+  .product-item {
+    >.product-image {
+      width: 20%;
+      min-width: 80px;
+      aspect-ratio: 1 / 1;
+    }
+    overflow-x: auto;
+  }
+  .account > .admin > #sign-in-btn {
+    padding: 10px;
+    border-radius: 10px;
+    > span {
+      display: none;
+    }
+    > svg {
+      display: block;
+      fill: white;
+      height: 30px;
+      width: 30px;
+    }
+  }
+  .content .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .navigation-bar {
+    gap: 0;
+    padding: 20px;
+  }
+}
+@media (max-width:400px) {
+  .content .items {
+    grid-template-columns: 1fr;
+    .hinhanh {
+      width: 60vw;
+    }
+  }
+  .navigation-bar {
+    gap: 0;
+  }
 }
