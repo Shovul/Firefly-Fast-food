@@ -4,7 +4,6 @@ function donglichsu() {
 
 function capNhatLichSu() {
     const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-    // const remember = localStorage.getItem('rememberAcc'); // Tải tài khoản nhớ
     const currentAccount = accounts[remember];
   
     if (!currentAccount) {
@@ -17,12 +16,12 @@ function capNhatLichSu() {
   
     for (let i = 0; i < currentAccount.hoadon.length; i++) {
       const hoaDon = currentAccount.hoadon[i];
-  
-      if (hoaDon.status == "e") {
+      if (hoaDon.status === "e") {
         const orderDiv = document.createElement("div");
         orderDiv.classList.add("order-item");
         
         orderDiv.innerHTML = `
+        <div style="margin: 10px;">
           <div><b>Mã đơn hàng:</b> #${hoaDon.id}</div>
           <div><b>Tên khách hàng:</b> ${hoaDon.info.name}</div>
           <div><b>Email:</b> ${hoaDon.info.email}</div>
@@ -30,11 +29,13 @@ function capNhatLichSu() {
           <div><b>Thời gian đặt:</b> ${hoaDon.orderTime}</div>
           <div><b>Phương thức thanh toán:</b> ${hoaDon.paymentMethod}</div>
           <div><b>Tình trạng:</b> Đã nhận hàng</div>
+          <div style="border-bottom: 3px solid black"><b</b></div>
+        </div> 
         `;
-        lsmh.appendChild(orderDiv); // 
+        lsmh.appendChild(orderDiv);
       }
     }
   }
-    window.onload = function() {
+window.onload = function() {
     capNhatLichSu();
   };
