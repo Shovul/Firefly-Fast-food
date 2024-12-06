@@ -183,7 +183,7 @@ function createMenu() {
         id: 16,
         name: "Nước suối",
         price: 15000,
-        type: "Nước",
+        type: "Nước ngọt",
         image: "images/Food/aquafina-500ml.jpg",
         group: "Đồ uống",
         description: "Nước suối Aquafina tinh khiết, được lọc qua quy trình hiện đại, mang đến sự tươi mát và an toàn tuyệt đối cho sức khỏe"
@@ -236,7 +236,7 @@ function createMenu() {
       item23 = {
         id: 22,
         name: "Trà tiên nhân",
-        price: 24000,
+        price: 30000,
         type: "Trà",
         image: "images/Food/TraTienNhan.PNG",
         group: "Đồ uống",
@@ -245,7 +245,7 @@ function createMenu() {
       item24 = {
         id: 23,
         name: "Trà xoài",
-        price: 24000,
+        price: 28000,
         type: "Trà",
         image: "images/Food/tra_xoai.png",
         group: "Đồ uống",
@@ -254,7 +254,7 @@ function createMenu() {
       item25 = {
         id: 24,
         name: "Trà tắc",
-        price: 24000,
+        price: 29000,
         type: "Trà",
         image: "images/Food/tra_tac.png",
         group: "Đồ uống",
@@ -272,7 +272,7 @@ function createMenu() {
       item27 = {
         id: 26,
         name: "Spaghetti Chicken",
-        price: 30000,
+        price: 24000,
         type: "Spaghetti",
         image: "images/Food/spaghetti_chicken.png",
         group: "Thức ăn",
@@ -281,7 +281,7 @@ function createMenu() {
       item28 = {
         id: 27,
         name: "Spaghetti Bò",
-        price: 30000,
+        price: 49000,
         type: "Spaghetti",
         image: "images/Food/spaghetti_bo.jpeg",
         group: "Thức ăn",
@@ -293,7 +293,7 @@ function createMenu() {
         price: 14000,
         type: "Khai vị",
         image: "images/Food/khoailang.jpg",
-        group: "Thức ăn",
+        group: "Tráng miệng",
         description: "Khoai lang – hương vị ngọt tự nhiên, mềm bùi, giàu dinh dưỡng, là lựa chọn hoàn hảo cho bữa ăn nhẹ lành mạnh và thơm ngon!"
       },
       item30 = {
@@ -326,7 +326,7 @@ function createMenu() {
       item33 = {
         id: 32,
         name: "Kem Socola",
-        price: 10000,
+        price: 12000,
         type: "Kem",
         image: "images/Food/kem socola.jpg",
         group: "Tráng miệng",
@@ -335,7 +335,7 @@ function createMenu() {
       item34 = {
         id: 33,
         name: "Gà sốt me",
-        price: 30000,
+        price: 37000,
         type: "Gà",
         image: "images/Food/ga_sotme.PNG",
         group: "Thức ăn",
@@ -344,7 +344,7 @@ function createMenu() {
       item35 = {
         id: 34,
         name: "Gà chiên giòn",
-        price: 30000,
+        price: 33000,
         type: "Gà",
         image: "images/Food/ga_chien.png",
         group: "Thức ăn",
@@ -353,7 +353,7 @@ function createMenu() {
       item36 = {
         id: 35,
         name: "Dừa cà phê",
-        price: 20000,
+        price: 21000,
         type: "Cafe",
         image: "images/Food/dua_cafe.jpg",
         group: "Thức uống",
@@ -362,8 +362,8 @@ function createMenu() {
       item37 = {
         id: 36,
         name: "Chocolate Cupcakes",
-        price: 20000,
-        type: "Khai vị",
+        price: 26000,
+        type: "Bánh kem",
         image: "images/Food/chocolate-cupcakes.jpg",
         group: "Tráng miệng",
         description: "Chocolate Cupcakes – những chiếc bánh cupcake mềm mại, phủ lớp socola ngọt ngào, thơm lừng, tạo nên món tráng miệng hoàn hảo cho mọi tín đồ yêu thích socola!"
@@ -371,7 +371,7 @@ function createMenu() {
       item38 = {
         id: 37,
         name: "Cơm gà",
-        price: 35000,
+        price: 45000,
         type: "Cơm",
         image: "images/Food/com_ga.jpg",
         group: "Thức ăn",
@@ -380,7 +380,7 @@ function createMenu() {
       item39 = {
         id: 38,
         name: "Cơm bò",
-        price: 35000,
+        price: 45000,
         type: "Cơm",
         image: "images/Food/com_bo.png",
         group: "Thức ăn",
@@ -389,7 +389,7 @@ function createMenu() {
       item40 = {
         id: 39,
         name: "Cánh gà rán",
-        price: 35000,
+        price: 55000,
         type: "Gà",
         image: "images/Food/canhga.jpg",
         group: "Thức ăn",
@@ -399,7 +399,7 @@ function createMenu() {
         id: 40,
         name: "Cà phê sữa",
         price: 15000,
-        type: "cafe",
+        type: "Cafe",
         image: "images/Food/caffe_sua.PNG",
         group: "Thức uống",
         description: "Cà phê sữa – sự kết hợp hoàn hảo giữa cà phê đậm đà và sữa ngọt mịn, mang đến một thức uống thơm ngon, đầy năng lượng cho ngày mới!" 
@@ -408,7 +408,7 @@ function createMenu() {
         id: 41,
         name: "Cà phê đen đá",
         price: 15000,
-        type: "cafe",
+        type: "Cafe",
         image: "images/Food/caffe_denda.PNG",
         group: "Thức uống",
         description: "Cà phê đen đá – hương vị đậm đà, mạnh mẽ của cà phê nguyên chất, kết hợp với đá mát lạnh, mang đến sự sảng khoái và tỉnh táo trong từng ngụm!" 
@@ -416,8 +416,8 @@ function createMenu() {
       item43 = {
         id: 42,
         name: "Cacao",
-        price: 15000,
-        type: "Cacao",
+        price: 20000,
+        type: "Cafe",
         image: "images/Food/cacao.png",
         group: "Thức uống",
         description: "Cacao – hương vị đậm đà, ngọt ngào từ cacao nguyên chất, mang đến một thức uống ấm áp, thơm lừng và đầy năng lượng, lý tưởng cho những ngày se lạnh!" 
@@ -426,20 +426,103 @@ function createMenu() {
         id: 43,
         name: "Bánh bao chiên",
         price: 25000,
-        type: "Bánh bao",
+        type: "Khai vị",
         image: "images/Food/banhbaochien.jpg",
-        group: "Tráng miệng",
+        group: "Thức ăn",
         description: "Bánh bao chiên – lớp vỏ bánh giòn rụm, bên trong nhân thịt, nấm và gia vị thơm ngon, tạo nên món ăn vặt hấp dẫn, đầy đủ hương vị!" 
       },
       item45 = {
         id: 44,
         name: "Bánh chuối",
         price: 15000,
-        type: "Khai vị",
+        type: "Bánh ngọt",
         image: "images/Food/banh_chuoi.png",
         group: "Tráng miệng",
         description: "Bánh chuối – sự kết hợp ngọt ngào giữa chuối chín mềm và lớp bột thơm lừng, tạo nên món bánh mềm mịn, béo ngậy và đầy hương vị tự nhiên của chuối!" 
+      },
+      item46 = {
+        id: 45,
+        name: "Burger Chicken",
+        price: 45000,
+        type: "Burger",
+        image: "images/Food/burger_chicken.jpg",
+        group: "Thức ăn",
+        description: "Burger gà – chiếc bánh mì mềm mại, kèm miếng gà chiên giòn, rau tươi và sốt đặc biệt, mang đến hương vị thơm ngon, đậm đà trong từng miếng cắn!" 
+      },
+      item47 = {
+        id: 46,
+        name: "Burger Rau",
+        price: 37000,
+        type: "Burger",
+        image: "images/Food/burger_rau.jpg",
+        group: "Thức ăn",
+        description: "Burger rau – sự kết hợp tươi mát của rau xanh giòn, cùng với sốt nhẹ nhàng và bánh mì mềm mại, tạo nên món ăn lành mạnh, ngon miệng và đầy dinh dưỡng!" 
+      },
+      item48 = {
+        id: 47,
+        name: "Burger thập cẩm",
+        price: 57000,
+        type: "Burger",
+        image: "images/Food/burger_thapcam.png",
+        group: "Thức ăn",
+        description: "Hamburger thập cẩm – sự kết hợp hoàn hảo giữa thịt bò, thịt gà, phô mai, rau tươi và sốt đặc biệt, mang đến hương vị phong phú, đầy đủ và hấp dẫn trong mỗi miếng cắn!" 
+      },
+      item49 = {
+        id: 48,
+        name: "Nước rau má",
+        price: 17000,
+        type: "Smoothie",
+        image: "images/Food/rau_ma.png",
+        group: "Thức uống",
+        description: "Nước rau má – thức uống mát lạnh, thanh khiết, có vị ngọt nhẹ và hơi đắng đặc trưng, giúp giải nhiệt, thanh lọc cơ thể và bổ dưỡng cho sức khỏe!" 
+      },
+      item50 = {
+        id: 49,
+        name: "Spaghetti sốt cà chua",
+        price: 34000,
+        type: "Spaghetti",
+        image: "images/Food/m_jolly_-_6_7-compressed_1.jpg",
+        group: "Thức ăn",
+        description: "Spaghetti sốt cà chua – sợi mì Ý mềm mại kết hợp với sốt cà chua tươi ngon, đậm đà và thơm phức, mang đến một món ăn đơn giản nhưng đầy hấp dẫn!" 
+      },
+      item51 = {
+        id: 50,
+        name: "Coca Cola",
+        price: 15000,
+        type: "Nước ngọt",
+        image: "images/Food/coca_cola.jfif",
+        group: "Thức uống",
+        description: "Coca – thức uống giải khát nổi tiếng với vị ngọt, sảng khoái và bọt nước đặc trưng, mang lại cảm giác tươi mới và đầy năng lượng!" 
+      },
+      item52 = {
+        id: 51,
+        name: "Mirinda cam",
+        price: 15000,
+        type: "Nước ngọt",
+        image: "images/Food/mirinda.png",
+        group: "Thức uống",
+        description: "Mirinda cam – thức uống giải khát có vị cam tươi mát, ngọt ngào và sảng khoái, mang đến cảm giác tươi mới trong từng ngụm!" 
+      },
+      item53 = {
+        id: 52,
+        name: "7 Up",
+        price: 15000,
+        type: "Nước ngọt",
+        image: "images/Food/7up.png",
+        group: "Thức uống",
+        description: "7UP – nước giải khát vị chanh tươi mát, sảng khoái, với hương vị nhẹ nhàng và bọt nước đặc trưng, mang đến sự sảng khoái trong từng ngụm!" 
+      },
+      item54 = {
+        id: 53,
+        name: "Pepsi",
+        price: 15000,
+        type: "Nước ngọt",
+        image: "images/Food/pepsi.png",
+        group: "Thức uống",
+        description: "Pepsi – thức uống giải khát với vị ngọt đặc trưng, sảng khoái và bọt nước tươi mát, mang đến cảm giác đầy năng lượng và thư giãn trong mỗi lần thưởng thức!" 
       }
+
+
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
   }
