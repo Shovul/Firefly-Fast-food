@@ -37,7 +37,7 @@ function toMenu() {
   document.getElementById("noidungnguyenlieu").innerHTML= ''
   document.getElementById("filter").style.display = 'flex'
   document.getElementById("filter-list").style.display= 'grid'
-  document.getElementsByClassName("slider")[0].style.display="block";
+  document.getElementsByClassName("slider")[0].style.display="flex";
   document.getElementsByClassName("content")[0].style.display="block";
 
   initializeMenu()

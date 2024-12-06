@@ -60,7 +60,7 @@ button {
 .slider {
   display: flex;
   width: 100%; /* 4 ảnh -> 100% mỗi ảnh */
-  transition: transform 0.5s ease-in-out; /* Hiệu ứng mượt */
+  transition: 0.5s ease-in-out; /* Hiệu ứng mượt */
 }
 
 /* Slider images */
