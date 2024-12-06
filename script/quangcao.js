@@ -28,6 +28,6 @@ buttons.forEach((btn, index) => {
 
 // Bắt đầu slider
 setInterval(autoSlide, 3000);
-window.onload = function () {
-    showSlide(currentIndex);
-};  
+// window.onload = function () {
+//     showSlide(currentIndex);
+// };  

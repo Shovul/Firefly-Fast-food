@@ -223,7 +223,7 @@ function addToHoaDon() {
   }
 
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + currentdate.(parseInt(getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = currentdate.getDay() + "/" + currentdate.parseInt(getMonth())+1 + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
 
   const address = accounts[remember].addresses.filter(address => address.id == form['province'].value)
@@ -392,7 +392,7 @@ function submitOrder() {
 
   // lay thoi gian hien tai
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + currentdate.(parseInt(getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = currentdate.getDay() + "/" + currentdate.parseInt(getMonth())+1 + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
   const form = document.getElementById('shipping-form')
 

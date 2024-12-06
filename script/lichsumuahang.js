@@ -37,6 +37,6 @@ function capNhatLichSu() {
       }
     }
   }
-window.onload = function() {
-    capNhatLichSu();
-  };
+// window.onload = function() {
+//     capNhatLichSu();
+//   };

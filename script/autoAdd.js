@@ -1,4 +1,3 @@
-
 function createAccount() {
   if(localStorage.getItem('accounts') == null) {
     localStorage.setItem('rememberAcc', 0)
@@ -274,7 +273,7 @@ function createMenu() {
         id: 26,
         name: "Spaghetti Chicken",
         price: 30000,
-        type: "Mì ý",
+        type: "Spaghetti",
         image: "images/Food/spaghetti_chicken.png",
         group: "Thức ăn",
         description: "Spaghetti Chicken – sợi mì Ý dai ngon hòa quyện cùng sốt đậm đà và thịt gà mềm mọng, tạo nên món ăn thơm ngon đầy hấp dẫn"
@@ -283,7 +282,7 @@ function createMenu() {
         id: 27,
         name: "Spaghetti Bò",
         price: 30000,
-        type: "Mì ý",
+        type: "Spaghetti",
         image: "images/Food/spaghetti_bo.jpeg",
         group: "Thức ăn",
         description: "Spaghetti bò – món ăn kinh điển với sợi mì Ý mềm mịn, hòa quyện cùng sốt bò bằm đậm vị, tạo nên trải nghiệm ẩm thực đầy cuốn hút!"
@@ -440,7 +439,7 @@ function createMenu() {
         image: "images/Food/banh_chuoi.png",
         group: "Tráng miệng",
         description: "Bánh chuối – sự kết hợp ngọt ngào giữa chuối chín mềm và lớp bột thơm lừng, tạo nên món bánh mềm mịn, béo ngậy và đầy hương vị tự nhiên của chuối!" 
-      },
+      }
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
   }
