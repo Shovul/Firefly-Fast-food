@@ -653,26 +653,40 @@ function capNhatThongKe() {
 
 function kiemtraTK(account) {
   if (account.status === "ban") { 
+    // Thông báo tài khoản bị khóa
     alert("Tài khoản đã bị khóa. Bạn không thể sử dụng tài khoản này.");
-    // Vô hiệu hóa các chức năng giao diện
-    document.body.style.pointerEvents = "none";
-    document.body.style.opacity = "0.5";
-    document.body.style.overflow = "hidden";
+    
+    // Hiển thị hộp thoại hỏi người dùng có muốn đăng xuất không
+    const confirmLogout = confirm("Bạn có muốn đăng xuất không?");
+    
+    if (confirmLogout) {
+      // Thực hiện đăng xuất tài khoản
+      logoutAccount();
+
+      // Thông báo
+      alert("Bạn đã được đăng xuất.");
+    } else {
+      // Nếu không đăng xuất, vô hiệu hóa giao diện
+      disableInterface();
+      alert("Tài khoản bị khóa. Bạn không thể tiếp tục thao tác.");
+    }
+    
     return false;
   }
   return true;
 }
 
-// Xử lý khi tải trang
-// window.onload = function() {
-//   const url = window.location.href;
-//   const goTo = url.split("?")[1] || ""; // Lấy tham số sau dấu '?'
+// Hàm đăng xuất
+function logoutAccount() {
+  console.log("Đăng xuất tài khoản");
+  localStorage.removeItem("rememberAcc");
+  window.location.href = "index.html";
+}
 
-//   const account = accounts[remember]; // Lấy tài khoản cần kiểm tra
-
-//   // Kiểm tra tài khoản trước khi thực hiện các thao tác khác
-//   if (!kiemtraTK(account)) {
-//     console.log("Tài khoản bị khóa! Không thể tiếp tục thao tác!");
-//     return; // Ngăn không thực hiện tiếp
-//   }
-// }
+// Hàm vô hiệu hóa giao diện
+function disableInterface() {
+  document.body.style.pointerEvents = "none";
+  document.body.style.opacity = "0.5";
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+}
