@@ -270,7 +270,177 @@ function createMenu() {
         group: "Đồ uống",
         description: "Trà dâu – vị ngọt dịu và chua nhẹ từ dâu tươi kết hợp cùng trà thanh mát, mang đến thức uống hấp dẫn và tươi mới khó cưỡng!"
       },
-      
+      item27 = {
+        id: 26,
+        name: "Spaghetti Chicken",
+        price: 30000,
+        type: "Mì ý",
+        image: "images/Food/spaghetti_chicken.png",
+        group: "Thức ăn",
+        description: "Spaghetti Chicken – sợi mì Ý dai ngon hòa quyện cùng sốt đậm đà và thịt gà mềm mọng, tạo nên món ăn thơm ngon đầy hấp dẫn"
+      },
+      item28 = {
+        id: 27,
+        name: "Spaghetti Bò",
+        price: 30000,
+        type: "Mì ý",
+        image: "images/Food/spaghetti_bo.jpeg",
+        group: "Thức ăn",
+        description: "Spaghetti bò – món ăn kinh điển với sợi mì Ý mềm mịn, hòa quyện cùng sốt bò bằm đậm vị, tạo nên trải nghiệm ẩm thực đầy cuốn hút!"
+      },
+      item29 = {
+        id: 28,
+        name: "Khoai Lang",
+        price: 14000,
+        type: "Khai vị",
+        image: "images/Food/khoailang.jpg",
+        group: "Thức ăn",
+        description: "Khoai lang – hương vị ngọt tự nhiên, mềm bùi, giàu dinh dưỡng, là lựa chọn hoàn hảo cho bữa ăn nhẹ lành mạnh và thơm ngon!"
+      },
+      item30 = {
+        id: 29,
+        name: "Kem bơ Đà Lạt",
+        price: 15000,
+        type: "Kem",
+        image: "images/Food/kem-bo-da-lat.jpg",
+        group: "Tráng miệng",
+        description: "Kem bơ Đà Lạt – sự hòa quyện hoàn hảo giữa kem mát lạnh và bơ tươi béo ngậy, mang đến hương vị ngọt ngào, thơm ngon đặc trưng của vùng cao nguyên!"
+      },
+      item31 = {
+        id: 30,
+        name: "Kem Vani",
+        price: 5000,
+        type: "Kem",
+        image: "images/Food/kem_vani.png",
+        group: "Tráng miệng",
+        description: "Kem vani – hương vị ngọt dịu, thơm mát, với độ mịn màng tan chảy trong miệng, mang đến cảm giác sảng khoái trong từng muỗng!"
+      },
+      item32 = {
+        id: 31,
+        name: "Kem Cuộn",
+        price: 15000,
+        type: "Kem",
+        image: "images/Food/kem_cuon.jpg",
+        group: "Tráng miệng",
+        description: "Kem cuộn – món tráng miệng độc đáo với lớp kem mát lạnh được cuộn lại cùng các topping thơm ngon, mang đến trải nghiệm thú vị và đầy hấp dẫn!"
+      },
+      item33 = {
+        id: 32,
+        name: "Kem Socola",
+        price: 10000,
+        type: "Kem",
+        image: "images/Food/kem socola.jpg",
+        group: "Tráng miệng",
+        description: "Kem sô-cô-la – hương vị đậm đà, béo ngậy của sô-cô-la hòa quyện cùng kem mịn màng, tạo nên món tráng miệng ngọt ngào khó cưỡng!"
+      },
+      item34 = {
+        id: 33,
+        name: "Gà sốt me",
+        price: 30000,
+        type: "Gà",
+        image: "images/Food/ga_sotme.PNG",
+        group: "Thức ăn",
+        description: "Gà sốt me – món ăn đậm đà với thịt gà mềm mại, được phủ lớp sốt me chua ngọt đặc trưng, mang đến hương vị thú vị và khó quên! !"
+      },
+      item35 = {
+        id: 34,
+        name: "Gà chiên giòn",
+        price: 30000,
+        type: "Gà",
+        image: "images/Food/ga_chien.png",
+        group: "Thức ăn",
+        description: "Gà chiên giòn – lớp vỏ giòn rụm, vàng ươm, bên trong thịt gà mềm mọng, đậm đà hương vị, là món ăn hấp dẫn không thể bỏ qua!!"
+      },
+      item36 = {
+        id: 35,
+        name: "Dừa cà phê",
+        price: 20000,
+        type: "Cafe",
+        image: "images/Food/dua_cafe.jpg",
+        group: "Thức uống",
+        description: "Dừa cà phê – sự kết hợp độc đáo giữa nước dừa tươi mát lạnh và hương vị cà phê đậm đà, mang đến thức uống mới lạ, sảng khoái và đầy hấp dẫn!"
+      },
+      item37 = {
+        id: 36,
+        name: "Chocolate Cupcakes",
+        price: 20000,
+        type: "Khai vị",
+        image: "images/Food/chocolate-cupcakes.jpg",
+        group: "Tráng miệng",
+        description: "Chocolate Cupcakes – những chiếc bánh cupcake mềm mại, phủ lớp socola ngọt ngào, thơm lừng, tạo nên món tráng miệng hoàn hảo cho mọi tín đồ yêu thích socola!"
+      },
+      item38 = {
+        id: 37,
+        name: "Cơm gà",
+        price: 35000,
+        type: "Cơm",
+        image: "images/Food/com_ga.jpg",
+        group: "Thức ăn",
+        description: "Cơm gà – món ăn đơn giản nhưng đầy đậm đà, với cơm mềm dẻo, thịt gà thơm ngon, hòa quyện cùng gia vị đặc trưng, mang đến bữa ăn ngon miệng và bổ dưỡng!"
+      }, 
+      item39 = {
+        id: 38,
+        name: "Cơm bò",
+        price: 35000,
+        type: "Cơm",
+        image: "images/Food/com_bo.png",
+        group: "Thức ăn",
+        description: "Cơm bò – cơm dẻo thơm kết hợp với thịt bò xào mềm, đậm đà hương vị, tạo nên một món ăn ngon miệng và đầy đủ dinh dưỡng!"
+      }, 
+      item40 = {
+        id: 39,
+        name: "Cánh gà rán",
+        price: 35000,
+        type: "Gà",
+        image: "images/Food/canhga.jpg",
+        group: "Thức ăn",
+        description: "Cánh gà – món ăn hấp dẫn với lớp vỏ giòn rụm, thịt gà mềm ngọt, thấm đẫm gia vị đậm đà, mang đến hương vị tuyệt vời trong từng miếng cắn!!"
+      },
+       item41 = {
+        id: 40,
+        name: "Cà phê sữa",
+        price: 15000,
+        type: "cafe",
+        image: "images/Food/caffe_sua.PNG",
+        group: "Thức uống",
+        description: "Cà phê sữa – sự kết hợp hoàn hảo giữa cà phê đậm đà và sữa ngọt mịn, mang đến một thức uống thơm ngon, đầy năng lượng cho ngày mới!" 
+      },
+      item42 = {
+        id: 41,
+        name: "Cà phê đen đá",
+        price: 15000,
+        type: "cafe",
+        image: "images/Food/caffe_denda.PNG",
+        group: "Thức uống",
+        description: "Cà phê đen đá – hương vị đậm đà, mạnh mẽ của cà phê nguyên chất, kết hợp với đá mát lạnh, mang đến sự sảng khoái và tỉnh táo trong từng ngụm!" 
+      },
+      item43 = {
+        id: 42,
+        name: "Cacao",
+        price: 15000,
+        type: "Cacao",
+        image: "images/Food/cacao.png",
+        group: "Thức uống",
+        description: "Cacao – hương vị đậm đà, ngọt ngào từ cacao nguyên chất, mang đến một thức uống ấm áp, thơm lừng và đầy năng lượng, lý tưởng cho những ngày se lạnh!" 
+      },
+      item44 = {
+        id: 43,
+        name: "Bánh bao chiên",
+        price: 25000,
+        type: "Bánh bao",
+        image: "images/Food/banhbaochien.jpg",
+        group: "Tráng miệng",
+        description: "Bánh bao chiên – lớp vỏ bánh giòn rụm, bên trong nhân thịt, nấm và gia vị thơm ngon, tạo nên món ăn vặt hấp dẫn, đầy đủ hương vị!" 
+      },
+      item45 = {
+        id: 44,
+        name: "Bánh chuối",
+        price: 15000,
+        type: "Khai vị",
+        image: "images/Food/banh_chuoi.png",
+        group: "Tráng miệng",
+        description: "Bánh chuối – sự kết hợp ngọt ngào giữa chuối chín mềm và lớp bột thơm lừng, tạo nên món bánh mềm mịn, béo ngậy và đầy hương vị tự nhiên của chuối!" 
+      },
     ]
     localStorage.setItem('menu', JSON.stringify(menu))
   }
