@@ -664,15 +664,15 @@ function kiemtraTK(account) {
 }
 
 // Xử lý khi tải trang
-window.onload = function() {
-  const url = window.location.href;
-  const goTo = url.split("?")[1] || ""; // Lấy tham số sau dấu '?'
+// window.onload = function() {
+//   const url = window.location.href;
+//   const goTo = url.split("?")[1] || ""; // Lấy tham số sau dấu '?'
 
-  const account = accounts[remember]; // Lấy tài khoản cần kiểm tra
+//   const account = accounts[remember]; // Lấy tài khoản cần kiểm tra
 
-  // Kiểm tra tài khoản trước khi thực hiện các thao tác khác
-  if (!kiemtraTK(account)) {
-    console.log("Tài khoản bị khóa! Không thể tiếp tục thao tác!");
-    return; // Ngăn không thực hiện tiếp
-  }
-}
+//   // Kiểm tra tài khoản trước khi thực hiện các thao tác khác
+//   if (!kiemtraTK(account)) {
+//     console.log("Tài khoản bị khóa! Không thể tiếp tục thao tác!");
+//     return; // Ngăn không thực hiện tiếp
+//   }
+// }

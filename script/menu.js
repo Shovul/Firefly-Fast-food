@@ -126,7 +126,7 @@ function loadMenuByPage(type, dataList) {
 function updatePagination(type, dataList) {
   let totalPages = Math.ceil(dataList.length / ITEMS_PER_PAGE[type]);
   if(totalPages === 0) {
-    totalPages = 1; 
+    document.querySelector(`#${type}-pagination`).style.display = 'none'
     return
   }
   if(totalPages === 1) {
