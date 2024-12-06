@@ -124,7 +124,7 @@ function createMenu() {
         type: "Khai vị",
         image: "images/Food/salad_tomato.png",
         group: "Thức ăn",
-        description: "salad salad ngon ngon"
+        description: "Salad cà chua tươi mát, kết hợp vị ngọt thanh của cà chua chín mọng với dầu ô liu và rau thơm, mang đến món ăn nhẹ nhàng, bổ dưỡng và đầy hấp dẫn"
       },
       item11 = {
         id: 10,
@@ -133,7 +133,7 @@ function createMenu() {
         type: "Khai vị",
         image: "images/Food/salad_raucu.jpg",
         group: "Thức ăn",
-        description: "salad salad ngon ngon ngon"
+        description: "Salad rau củ tươi ngon, kết hợp đa dạng các loại rau củ giòn ngọt và sốt thanh nhẹ, mang đến món ăn bổ dưỡng và tràn đầy sức sống"
       },
       item12 = {
         id: 11,
@@ -142,7 +142,7 @@ function createMenu() {
         type: "Khai vị",
         image: "images/Food/salad_trung_rau.jpg",
         group: "Thức ăn",
-        description: "salad salad salad ngon ngon ngon"
+        description: "Salad rau tươi kết hợp trứng luộc béo bùi, hòa quyện cùng sốt thanh nhẹ, tạo nên món ăn đơn giản mà đầy dinh dưỡng"
       },
       item13 = {
         id: 12,
@@ -151,7 +151,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/mango_smoothie.jpg",
         group: "Đồ uống",
-        description: "sinh tố xoài ngon ngon"
+        description: "Mango smoothie mát lạnh, hòa quyện vị ngọt thơm tự nhiên của xoài chín cùng sự béo mịn của sữa, mang đến ly thức uống sảng khoái và đầy dinh dưỡng"
       },
       item14 = {
         id: 13,
@@ -160,7 +160,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/avocado_smoothie.jpg",
         group: "Đồ uống",
-        description: "sinh tố bơ ngon ngon"
+        description: "Avocado smoothie béo mịn, kết hợp vị thơm ngậy của bơ tươi với sự ngọt dịu nhẹ nhàng, mang đến thức uống bổ dưỡng và đầy năng lượng"
       },
       item15 = {
         id: 14,
@@ -169,7 +169,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/banana_smoothie.jpg",
         group: "Đồ uống",
-        description: "sinh tố chuối ngon ngon"
+        description: "Banana smoothie ngọt dịu, hòa quyện vị thơm đặc trưng của chuối chín cùng độ mịn màng của sữa, là lựa chọn lý tưởng cho một thức uống giàu năng lượng"
       },
       item16 = {
         id: 15,
@@ -178,7 +178,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/str_smoothie.jpg",
         group: "Đồ uống",
-        description: "sinh tố dâu ngon ngon"
+        description: "Strawberry smoothie chua ngọt hài hòa, kết hợp vị tươi mát của dâu tây chín mọng và sự mịn màng của sữa, mang đến thức uống sảng khoái và bổ dưỡng"
       },
       item17 = {
         id: 16,
@@ -187,7 +187,7 @@ function createMenu() {
         type: "Nước",
         image: "images/Food/aquafina-500ml.jpg",
         group: "Đồ uống",
-        description: "aquafina ngon ngon"
+        description: "Nước suối Aquafina tinh khiết, được lọc qua quy trình hiện đại, mang đến sự tươi mát và an toàn tuyệt đối cho sức khỏe"
       },
       item18 = {
         id: 18,
