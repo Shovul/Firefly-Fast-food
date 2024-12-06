@@ -31,25 +31,30 @@
     <div id="blur" class="bg"></div>
     <div id="white" class="bg"></div>
     
-    <!-- tao don hang -->
-    <form id="shipping-form">
-        <h2>Thông Tin Giao Hàng</h2>
-        <label for="name">Họ và Tên</label>
-        <input type="text" id="name" placeholder="Nhập họ và tên" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Nhập email" required>
-
-        <label for="phone">Số điện thoại</label>
-        <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
-
-        <label for="address">Địa chỉ</label>
-        <!-- <select id="address" name="province" required>
-        </select> -->
-        <input type="text" id="address" placeholder="Nhập địa chỉ, VD: 123 Đường abc" required>
-        <label for="province">Tỉnh/Thành</label>
-        <select id="province" required>
-            <option value="" selected disabled>Chọn tỉnh/thành</option>
+    <form id="shipping-form" class="shipping-form">
+        <!-- Nút chuyển đổi tạo hoặc sử dụng địa chỉ -->
+        <div id="switch-btn">
+            <button class="active" type="button" onclick="newAddress()">Tạo địa chỉ</button>
+            <button type="button" onclick="oldAddress()">Dùng địa chỉ có sẵn</button>
+        </div>
+    
+        <h2 class="shipping-form-title">Thông Tin Giao Hàng</h2>
+        <label for="name" class="shipping-form-label">Họ và Tên</label>
+        <input type="text" id="name" class="shipping-form-input" placeholder="Nhập họ và tên" required>
+    
+        <label for="email" class="shipping-form-label">Email</label>
+        <input type="email" id="email" class="shipping-form-input" placeholder="Nhập email" required>
+    
+        <label for="phone" class="shipping-form-label">Số điện thoại</label>
+        <input type="tel" id="phone" class="shipping-form-input" placeholder="Nhập số điện thoại" required>
+    
+        <label for="address" class="shipping-form-label">Địa chỉ</label>
+        <input type="text" id="address" class="shipping-form-input" placeholder="Nhập địa chỉ, VD: 123 Đường abc" required>
+    
+        <label for="province" class="shipping-form-label">Tỉnh/Thành:</label>
+        <select id="province" class="shipping-form-select" required>
+          <option value="" selected disabled>Chọn tỉnh/thành</option>
             <option value="Hà Nội">Hà Nội</option>
             <option value="Hồ Chí Minh">Hồ Chí Minh</option>
             <option value="Hải Phòng">Hải Phòng</option>
@@ -684,13 +689,11 @@
                 <h3>ĐƠN HÀNG</h3>
             </div>
             <div class="body-donhang">
-<<<<<<< HEAD
-                
+
             </div>
             <button class="button" onclick="dongDonHang()">thoát</button>
         </div>
 
-=======
                 <!-- Thêm phần thống kê theo ngày, tháng -->
                 <div id="thongke-muahang">
                     <h4>Thông kê mua hàng</h4>
@@ -703,7 +706,6 @@
             <button class="button" onclick="dongDonHang()">thoát</button>
         </div>
     
->>>>>>> 4633b28ff24535582cb79ba386094283415fc56b
         <!-- chi tiết hóa đơn -->
         <div class="model" id="chitietdon" style="overflow : auto;">
             <div class="chitietdon">
@@ -720,33 +722,10 @@
                 <button class="thoatchitiet" onclick="dongChiTiet()">Thoát</button>
             </div>
         </div>
-<<<<<<< HEAD
+
     </div> 
-=======
+
     </div>
     
-
-    <script>
-    document.querySelectorAll('input[name="thanh_toan"]').forEach((radio) => {
-    radio.addEventListener("change", function () {
-        const cardInfo = document.getElementById("thanh_toan_card_info");
-        if (this.id === "thanh_toan_card") {
-            cardInfo.style.display = "block";
-        } else {
-            cardInfo.style.display = "none";
-        }
-    });
-});
-
-function submitOrder() {
-    alert("Đơn hàng của bạn đã được xác nhận!");
-}
-
-function goToCart() {
-    alert("Quay lại giỏ hàng!");
-}
-
-        </script>
->>>>>>> 4633b28ff24535582cb79ba386094283415fc56b
 </body>
 </html>
