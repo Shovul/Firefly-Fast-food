@@ -204,6 +204,3 @@ window.addEventListener('click', (e) => {
     exitSignup()
   }
 })  
-
-function filterRanges() {
-}

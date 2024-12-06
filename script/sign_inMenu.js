@@ -15,6 +15,12 @@ window.onload = function(e) {
     case "qldh":
       showQLOrder()
       break
+    case "tkmh":
+      showTKMatHang()
+      break
+    case "tkkh":
+      showTKKhachHang()
+      break
     case "giohang":
       showGioHang()
       break

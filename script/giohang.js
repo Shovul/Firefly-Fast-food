@@ -107,6 +107,10 @@ function newAddress() {
   form.querySelector('label[for="district"]').style.display = 'block'
   form['ward'].style.display = 'block'
   form.querySelector('label[for="ward"]').style.display = 'block'
+  let name = form['name']
+  let phone = form['phone']
+  name.readOnly = false
+  phone.readOnly = false
   form['province'].innerHTML = `
     <option value="" selected disabled>Chọn tỉnh/thành</option>
     <option value="Bắc Ninh">Bắc Ninh</option>
@@ -134,8 +138,10 @@ function oldAddress() {
   let addresses = form['province']
   let name = form['name']
   let phone = form['phone']
-  name.setAttribute('readonly', true)
-  phone.setAttribute('readonly', true)
+  name.value = ''
+  phone.value = ''
+  name.setAttribute('readonly', false)
+  phone.setAttribute('readonly', false)
   accounts[remember].addresses.forEach(address => {
     addresses.appendChild(createAddressOption(address))
     if(address.status == 'choose') {
@@ -217,7 +223,7 @@ function addToHoaDon() {
   }
 
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = currentdate.getDay() + "/" + currentdate.(parseInt(getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
 
   const address = accounts[remember].addresses.filter(address => address.id == form['province'].value)
@@ -254,8 +260,9 @@ function calculateArrivalTime(time, minutes) {
   updateTime[1] = parseInt(updateTime[1]) + minutes
   updateTime[0] = parseInt(updateTime[0]) + Math.floor(parseInt(updateTime[1])/60)
   updateTime[1] = parseInt(updateTime[1])%60
+  const newTime = (updateTime[0]<10 ? '0' + updateTime[0] : updateTime[0]) + ':' + (updateTime[1]<10 ? '0' + updateTime[1] : updateTime[1]) + ':' + (updateTime[2]<10 ? '0' + updateTime[2] : updateTime[2])
 
-  return updateTime[0] + ':' + updateTime[1] + ':' + updateTime[2]
+  return newTime
 }
  // Hàm cập nhật Quận/Huyện khi chọn Tỉnh/Thành
  const data = {
@@ -385,7 +392,7 @@ function submitOrder() {
 
   // lay thoi gian hien tai
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = currentdate.getDay() + "/" + currentdate.(parseInt(getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
 
   const form = document.getElementById('shipping-form')
 
