@@ -5,25 +5,32 @@ window.onload = function(e) {
   switch(goTo[1]) {
     case "tttk": 
       showThongtin()
+      kiemtraTK(accounts[remember])
       break
     case "qltk":
       showTaikhoan()
+      kiemtraTK(accounts[remember])
       break
     case "qlmn":
       showQLMenu()
+      kiemtraTK(accounts[remember])
       break
     case "qldh":
       showQLOrder()
+      kiemtraTK(accounts[remember])
       break
     case "giohang":
       showGioHang()
+      kiemtraTK(accounts[remember])
       break
     case "donhang":
       showDonHang()
+      kiemtraTK(accounts[remember])
       break
     default:
       createAccount()
       createMenu()  
+      kiemtraTK(accounts[remember])
   }
 }
 

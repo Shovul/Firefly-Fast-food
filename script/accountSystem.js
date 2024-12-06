@@ -649,3 +649,30 @@ function capNhatThongKe() {
   }
   document.getElementById("thongke-theo-thang").innerHTML = `Thống kê theo tháng:<br>${thongKeThangText}`;
 }
+
+
+function kiemtraTK(account) {
+  if (account.status === "ban") { 
+    alert("Tài khoản đã bị khóa. Bạn không thể sử dụng tài khoản này.");
+    // Vô hiệu hóa các chức năng giao diện
+    document.body.style.pointerEvents = "none";
+    document.body.style.opacity = "0.5";
+    document.body.style.overflow = "hidden";
+    return false;
+  }
+  return true;
+}
+
+// Xử lý khi tải trang
+window.onload = function() {
+  const url = window.location.href;
+  const goTo = url.split("?")[1] || ""; // Lấy tham số sau dấu '?'
+
+  const account = accounts[remember]; // Lấy tài khoản cần kiểm tra
+
+  // Kiểm tra tài khoản trước khi thực hiện các thao tác khác
+  if (!kiemtraTK(account)) {
+    console.log("Tài khoản bị khóa! Không thể tiếp tục thao tác!");
+    return; // Ngăn không thực hiện tiếp
+  }
+}
