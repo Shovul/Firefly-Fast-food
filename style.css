@@ -46,18 +46,50 @@ button {
 
 
 /* advertisment slider */
-#slide-box .slider {
-  white-space: nowrap;
+
+
+/* Slider container */
+#slide-box {
+  position: relative;
+  max-width: 100%;
   overflow: hidden;
-  z-index: 1;
-  animation: sliding ease-in-out infinite;
-  display:block;
+  margin: auto;
 }
+
+/* Slider track */
+.slider {
+  display: flex;
+  width: 100%; /* 4 ảnh -> 100% mỗi ảnh */
+  transition: transform 0.5s ease-in-out; /* Hiệu ứng mượt */
+}
+
+/* Slider images */
 .slider img {
-  /* animation: sliding 10s ease-in-out infinite; */
-  height: 50vh;
   width: 100%;
-  object-fit: cover;
+  flex-shrink: 0; /* Giữ nguyên kích thước ảnh */
+}
+
+/* Navigation buttons */
+.nav-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn .btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-btn .btn.active {
+  background-color: white; /* Nút được chọn */
 }
 
 
@@ -1356,29 +1388,25 @@ button {
 }
 #divbao-lichsumuahang
     {
-    width:60%;
-    background-color:#F2DDDC;
-    border: 3px solid black;
-    margin: 0 auto;
+    width:50%;
     border-radius: 8px;
     display:block;
 }
     #lichsumuahang
     {
+
         display:flex;
-        flex-wrap:wrap;    
         text-align:center;
-        justify-content: center;
-    }
+        
+        
+      }
     #noidungmuahang
     {
-        background-color:#F4E7F8;
-    }
-    #noidungmuahang #noidung
-    {
-        margin:10px;
-        margin-bottom:10px;
-        padding: 10px;
+        margin: 10px;   
+        border: 3px solid black;
+        border-radius:2%;
+
+
     }
 /* sua tai khoan */
 #edit_account {
@@ -2173,3 +2201,86 @@ button {
 }
 
 
+.shipping-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.shipping-form-label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+  color: #555;
+}
+
+.shipping-form-input, .shipping-form-select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.shipping-form-input:focus, .shipping-form-select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.shipping-form-button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.shipping-form-button:hover {
+  background-color: #0056b3;
+}
+
+.shipping-form-back-btn {
+  background-color: #6c757d;
+}
+
+.shipping-form-back-btn:hover {
+  background-color: #5a6268;
+}
+
+.shipping-form-card-info {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+input[type="month"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="month"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
