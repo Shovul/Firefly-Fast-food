@@ -662,27 +662,32 @@ function kiemtraTK(account) {
     
     if (confirmLogout) {
       // Thực hiện đăng xuất tài khoản
-      logoutAccount();  // Gọi hàm đăng xuất (tạo hàm này ở phần khác của mã)
+      logoutAccount();
 
-      // Thực hiện các thay đổi trên giao diện (ví dụ: vô hiệu hóa giao diện)
-      document.body.style.pointerEvents = "none";
-      document.body.style.opacity = "0.5";
-      document.body.style.overflow = "hidden";
-
+      // Thông báo
       alert("Bạn đã được đăng xuất.");
+    } else {
+      // Nếu không đăng xuất, vô hiệu hóa giao diện
+      disableInterface();
+      alert("Tài khoản bị khóa. Bạn không thể tiếp tục thao tác.");
     }
     
-    return false;  // Ngừng xử lý tiếp
+    return false;
   }
-  return true;  // Nếu tài khoản không bị khóa, tiếp tục
+  return true;
 }
 
-// Hàm đăng xuất (có thể tùy chỉnh thêm)
+// Hàm đăng xuất
 function logoutAccount() {
-  // Thực hiện đăng xuất ở đây, ví dụ như xóa cookie, localStorage, sessionStorage, hoặc chuyển hướng đến trang đăng nhập
   console.log("Đăng xuất tài khoản");
-  // Ví dụ: Xóa thông tin tài khoản khỏi localStorage
   localStorage.removeItem("rememberAcc");
-  // Chuyển hướng đến trang đăng nhập
-  window.location.href = "index.html";  // Đổi thành đường dẫn trang đăng nhập của bạn
+  window.location.href = "index.html";
+}
+// Hàm vô hiệu hóa giao diện
+function disableInterface() {
+
+  document.body.style.pointerEvents = "none";
+  document.body.style.opacity = "0.5";
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
 }
