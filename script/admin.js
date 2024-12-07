@@ -37,6 +37,8 @@ window.addEventListener('click', (e) => {
     closeOrderInfo() 
     closeHoaDonSP()
     closeHoaDonTK()
+    exitEditAccount()
+    exitEditMenu()
   }
 })  
 function showMenuList() {
@@ -93,16 +95,6 @@ function showAccountList() {
     const listDelete = document.createElement('div')
     const listEdit = document.createElement('div')
 
-    if(account.status == 'ban') {
-      listName.style.backgroundColor = '#FF003F'
-      listEmail.style.backgroundColor = '#FF003F'
-      listPass.style.backgroundColor = '#FF003F'
-      listPhone.style.backgroundColor = '#FF003F'
-      listGender.style.backgroundColor = '#FF003F'
-      listDelete.style.backgroundColor = '#FF003F'
-      listEdit.style.backgroundColor = '#FF003F'
-    }
-
     listName.innerHTML = account.name
     listEmail.innerHTML = account.email
     listPass.innerHTML = account.pass
@@ -118,6 +110,27 @@ function showAccountList() {
     listEdit.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg>
     `
+
+    
+    if(account.status == 'ban') {
+      listName.innerHTML += ' (BANNED)'
+      listName.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listEmail.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listPass.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listPhone.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listGender.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listDelete.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listEdit.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+
+      listName.style.color = '#800000'
+      listEmail.style.color = '#800000'
+      listPass.style.color = '#800000'
+      listPhone.style.color = '#800000'
+      listGender.style.color = '#800000'
+      listDelete.style.color = '#800000'
+      listEdit.style.color = '#800000'
+    }
+
     listEdit.setAttribute('class', 'list_edit')
     listEdit.setAttribute('id', account.id)
     listEdit.setAttribute('onclick', 'editAccount(this)')
@@ -451,6 +464,7 @@ function deleteFood(items) {
 function editMenu(item) {
   const getItem = item.id
   const editMenu = document.getElementById("edit_menu")
+  document.querySelector('.bg#blur').style.display = 'block'
   document.body.style.overflow = 'hidden'
   editMenu.style.transform = "scale(1)"
   const editForm = editMenu.lastElementChild
@@ -471,6 +485,7 @@ function exitEditMenu() {
   editMenu.style.transform = "scale(0)"
   const editForm = editMenu.lastElementChild
   editForm["name"].value = ""
+  document.querySelector('.bg#blur').style.display = 'none'
   document.body.style.overflow = 'auto'
   document.getElementById("right-edit").style.background = 'none'
   document.getElementById("right-edit").style.backgroundRepeat = 'no-repeat'
@@ -532,6 +547,7 @@ function changeInputAccounts(input) {
 function editAccount(current) {
   const background = document.querySelector('#blur.bg')
   background.style.display = 'block'
+  document.body.style.overflow = 'hidden'
   const editMenu = document.getElementById("edit_account")
   editMenu.style.transform = 'scale(1)'
   const button = document.querySelectorAll("#edit_account>div>button")
@@ -646,6 +662,7 @@ function editAccount(current) {
 function exitEditAccount() {
   let editMenu = document.getElementById("edit_account")
   editMenu.style.transform = 'scale(0)'
+  document.body.style.overflow = 'auto'
   location.reload()
 }
 function openAddAccount() {

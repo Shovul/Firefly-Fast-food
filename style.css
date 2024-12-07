@@ -1213,7 +1213,7 @@ button {
   content: '';
   width: 20%;
   aspect-ratio: 1 / 1;
-  background-image: url('/images/Icons/best-seller.png') ;
+  background-image: url('images/Icons/best-seller.png') ;
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -1285,7 +1285,7 @@ button {
   
 }
 .lienhe div > div > img {
-  width: 50%;
+  aspect-ratio: 1 / 1;
   object-fit: fill;
 }
 .lienhe .divbao
@@ -1641,7 +1641,7 @@ button {
   }
   .btn {
     button {
-      width: 100%;
+      width: auto;
       border-radius: 8px;
     }
     text-align: end;
@@ -1722,7 +1722,7 @@ button {
 }
 
 #edit_account .exit.btn > svg{
-  height: 40px;
+  height: 40px; 
   width: 40px;
   border-radius: 10px;
 }
@@ -2062,6 +2062,7 @@ button {
   background-color: white;
   height: 100%;
   width: 100%;
+  z-index: 10;
 }
 .donhang{
   padding: 1%;
@@ -2401,6 +2402,9 @@ input[type="month"]:focus {
       font-size: .8rem;
     }
   }
+  .chitietdon {
+    width: 90vw;
+  }
   #account-info {
     grid-template-columns: 30vw 1fr;
     > #nav-thongtin {
@@ -2447,7 +2451,7 @@ input[type="month"]:focus {
     }
   }
   .donhang {
-    width: 80%;
+    width: 90%;
   }
   #manage-box {
     width: 100vw;
@@ -2457,6 +2461,19 @@ input[type="month"]:focus {
     >.title {
       padding: 8px;
     }
+  }
+  #orderInfo, #add_menu, #edit_menu, #add_account, #edit_account, #hoadonSP {
+    width: 100vw;
+  }
+  #add_menu, #edit_menu, #edit_account {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-auto-flow: column;
+  }
+  #edit_account #avatar_image {
+    grid-column: unset;
+    grid-row: unset;
+    width: 30%;
   }
   .content {
     display: flex;

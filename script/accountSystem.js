@@ -682,7 +682,7 @@ function logoutAccount() {
   console.log("Đăng xuất tài khoản");
   localStorage.removeItem("rememberAcc");
   window.location.href = "index.html";
-
+}
 // Hàm vô hiệu hóa giao diện
 function disableInterface() {
 
@@ -690,7 +690,7 @@ function disableInterface() {
   document.body.style.opacity = "0.5";
   document.documentElement.style.overflow = "hidden";
   document.body.style.overflow = "hidden";
-
+}
 
 // Hàm vô hiệu hóa giao diện
 function disableInterface() {
