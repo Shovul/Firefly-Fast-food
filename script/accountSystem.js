@@ -72,6 +72,7 @@ function signInAcc() {
     for (let i=0; i<accounts.length; i++) {
       if ((name === accounts[i].email || name === accounts[i].phone) && pass === accounts[i].pass) {
         localStorage.setItem('rememberAcc', i)
+        kiemtraTK(accounts[i])
         removeWrongInput()
         removeInputValue()
         removeSigninBtn()
@@ -681,7 +682,15 @@ function logoutAccount() {
   console.log("Đăng xuất tài khoản");
   localStorage.removeItem("rememberAcc");
   window.location.href = "index.html";
-}
+
+// Hàm vô hiệu hóa giao diện
+function disableInterface() {
+
+  document.body.style.pointerEvents = "none";
+  document.body.style.opacity = "0.5";
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+
 
 // Hàm vô hiệu hóa giao diện
 function disableInterface() {
