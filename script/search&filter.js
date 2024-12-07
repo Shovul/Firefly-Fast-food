@@ -202,5 +202,6 @@ window.addEventListener('click', (e) => {
     closeAccountbar() 
     exitSignin()
     exitSignup()
+    closeSP()
   }
 })  

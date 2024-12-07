@@ -519,7 +519,7 @@ function showListDonHang(hoadon) {
   const display = document.querySelector(".body-donhang")
   
   hoadon.forEach(hoaDon => {
-    if(hoaDon.status == "e") {
+    if(hoaDon.status == "e" || hoaDon.status == "f") {
       return false
     }
     let list = document.createElement('div')
@@ -615,13 +615,13 @@ function capNhatThongKe() {
       account.hoadon.forEach(hoaDon => {
           console.log("Xử lý hóa đơn:", hoaDon);
 
-          if (hoaDon.status === 'a') { // Chỉ tính các đơn hàng chưa xử lý
+          if (hoaDon.status !== 'e' && hoaDon.status !== 'f') { // Chỉ tính các đơn hàng chưa xử lý
               hoaDon.items.forEach(item => {
                   tongTien += item.price * item.quantity;
                   tongSoLuong += item.quantity;
               });
 
-              const ngay = new Date(hoaDon.orderTime);
+              const ngay = new Date();
               const ngayString = `${ngay.getDate()}/${ngay.getMonth() + 1}/${ngay.getFullYear()}`;
               thongKeTheoNgay[ngayString] = (thongKeTheoNgay[ngayString] || 0) + 1;
 
@@ -635,7 +635,7 @@ function capNhatThongKe() {
   console.log("Thống kê theo tháng:", thongKeTheoThang);
 
   // Hiển thị thống kê
-  document.getElementById("tongtien").innerText = `Tổng tiền: ${tongTien} VND`;
+  document.getElementById("tongtien").innerText = `Tổng tiền: ${tongTien.toLocaleString()} VND`;
   document.getElementById("tongsoluong").innerText = `Tổng số sản phẩm: ${tongSoLuong}`;
 
   let thongKeNgayText = '';
@@ -682,10 +682,18 @@ function logoutAccount() {
   console.log("Đăng xuất tài khoản");
   localStorage.removeItem("rememberAcc");
   window.location.href = "index.html";
-}
+
 // Hàm vô hiệu hóa giao diện
 function disableInterface() {
 
+  document.body.style.pointerEvents = "none";
+  document.body.style.opacity = "0.5";
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+
+
+// Hàm vô hiệu hóa giao diện
+function disableInterface() {
   document.body.style.pointerEvents = "none";
   document.body.style.opacity = "0.5";
   document.documentElement.style.overflow = "hidden";
