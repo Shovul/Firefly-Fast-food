@@ -10,6 +10,7 @@
   --highlight: #ffa2a2;
   --selected-light: rgba(255, 255, 255, 0.25);
   --selected-dark: rgba(0, 0, 0, 0.15);
+  --white-color: white;
 
   --base-font: 'Roboto';
   --emp-font: 'Poppins';
@@ -42,7 +43,7 @@ button {
   /* backdrop-filter: blur(1px); */
 }
 #white.bg {
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 
@@ -458,19 +459,18 @@ button {
 /* box chua bang sign in */
 .box {
   opacity: 0;
-  z-index: 2;
+  z-index: 3;
   display: block;
   position: fixed;
   inset: 0px;
   width: fit-content;
   height: fit-content;
   margin: auto;
-  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
+  box-shadow: 2px 2px 10px 2px var(--selected-dark);
+  border-radius: 12px;
   padding: 30px 10px;
   background-color: #ebebeb;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   transform: translateY(150%);
   transition: .3s ease;
   /* popup */
@@ -488,7 +488,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3.5rem;
+  margin: 3rem;
   width: 300px;
   > p {
     font-size: .9rem;
@@ -650,7 +650,7 @@ button {
   grid-template-columns: 310px 1fr;
   position: fixed;
   inset: 0;
-  background-color: white;
+  background-color: var(--white-color);
   display: none;
 }
 #setting-container > div {
@@ -978,7 +978,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: var(--white-color);
   height: 86vh;
   width: 60vw;
   z-index: 3;
@@ -1099,7 +1099,7 @@ button {
 #orderInfo {
   position: absolute;
   inset: 0;
-  background-color: white;
+  background-color: var(--white-color);
   height: fit-content;
   box-shadow: 0 0 5px 6px var(--selected-dark);
   margin: auto;
@@ -1167,28 +1167,38 @@ button {
 {
   padding-bottom: 2%;
   overflow: hidden;
-  background-color:rgb(255, 255, 255);
   display: block;
+  /* margin: 15px; */
   > h2 {
-    padding: 20px;
     padding-bottom: 8px;
   }
 }
 .content #thucan, .content #douong, .content #trangmieng {
-  margin: 1rem;
+  margin-top: 10px;
   font-size: 1.5rem;
+  background-color: rgb(233, 63, 63);
+  padding: 15px;
+  width: fit-content;
+  text-align: center;
+  color: var(--text-color);
+  border-radius: 5px 5px 0 0;
+  font-weight: 250;
 }
 .content .items /* Table chua noi dung */
 {
-  background-color: rgb(217, 206, 206);
+  background-color: rgb(233, 63, 63);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 5px;
+  gap: 5px;
+  padding: 10px;
+  /* border-radius: 6px; */
 }
 .content .items-content /* noi dung */
 {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid black;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  /* border: 1px solid black; */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.512);
   margin: 3px;
   display: flex;
   flex-direction: column;
@@ -1198,7 +1208,7 @@ button {
 {
   cursor: pointer;
   margin: 20px;
-  width: 25vw;
+  width: 20vw;
   aspect-ratio: 12/9;
   border-radius: 12px;
   border:3px solid #ffa2a2;
@@ -1294,14 +1304,18 @@ button {
   display:flex;
   flex-wrap:wrap;
   justify-content:space-between;
-
 }
 .lienhe .container1
 {
   margin-top: 30px;
   margin-left: 50px;
   width: fit-content; 
-  padding: 30px;
+  padding: 0 30px;
+  >div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 .lienhe .container1 .items
 {
@@ -1312,6 +1326,9 @@ button {
   margin-top: 30px;
   margin-left: 50px;
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .lienhe .container2 .items
 {
@@ -1325,11 +1342,10 @@ button {
 }
 .lienhe #bocongthuong
 {
-  margin-top: 2rem;
-  width: 30vw;
-  position: absolute;
-  right: 10vw;
-  bottom: 30px;
+  float: right;
+  width: 20vw;
+  object-fit: contain;
+  margin-right: 10%;
 }
 /* tao sp menu */
 #add_menu, #edit_menu {
@@ -1606,7 +1622,7 @@ button {
   display: grid;
   transform: scale(0);
   transition: .2s ease-out;
-  background-color: white;
+  background-color: var(--white-color);
   border: 1px solid black;
   padding: 26px;
   position: fixed;
@@ -1651,7 +1667,7 @@ button {
 /* tao tai khoan */
 #add_account {
   z-index: 3;
-  background-color: white;
+  background-color: var(--white-color);
   position: fixed;
   width: 30vw;
   height: fit-content;
@@ -1867,12 +1883,15 @@ button {
   margin-top: 10px;
 }
 .pagination button {
-  margin: 0 5px;
-  padding: 5px 10px;
+  margin: 0 10px;
+  padding: 10px 15px;
   cursor: pointer;
   background-color: #ffa2a2;
   border: none;
   border-radius: 5px;
+}
+.pagination button:not(:disabled):hover {
+  transform: scale(1.025);
 }
 .pagination button:disabled {
   background-color: #ccc;
@@ -2059,7 +2078,7 @@ button {
   display: none;
   inset: 0;
   position: absolute;
-  background-color: white;
+  background-color: var(--white-color);
   height: 100%;
   width: 100%;
   z-index: 10;
@@ -2106,6 +2125,8 @@ button {
    margin: 10px;
 }
 .thongtindon{
+  display: flex;
+  gap: 10px;
    margin: 10px;
    height: fit-content;
    >button {
@@ -2122,6 +2143,35 @@ button {
 }
 .body-donhang{
    height: fit-content;
+} 
+.body-donhang .process-display > ul{
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  >li > svg {
+    fill: var(--white-color);
+    height: 40px;
+    width: 40px;
+  }
+}
+.body-donhang .process-display > ul > li {
+  display: flex;
+  align-items: center;
+  > span {
+    height: 3px;
+    margin: 0 8px;
+    background-color: var(--white-color);
+    width: 80%;
+    border-radius: 50px;
+  }
+  svg.active {
+    fill: #fab73d;
+    filter: drop-shadow(3px 3px 3px var(--selected-light));
+  }
+  span.active {
+    background-color: 	#fab73d;
+  }
 }
 .button, .thoatchitiet{
    background-color: #090C9B;
@@ -2146,7 +2196,7 @@ button {
    left: 0;
    bottom: 0;
    right: 0;
-   background-color: white;
+   background-color: var(--white-color);
 }
 .chitietdon{
    width: 60vw;
@@ -2311,11 +2361,12 @@ input[type="month"]:focus {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 .floating-icon-giohang > svg {
+  fill: white;
   width: 80px;
   height: 80px;
   cursor: pointer;
   border-radius: 50%;
-  padding: 20px;
+  padding: 15px;
   border: 3px solid white;
 }
 /* #chitietdon.model > div > #container {
@@ -2590,5 +2641,8 @@ input[type="month"]:focus {
   }
   .navigation-bar {
     gap: 0;
+  }
+  .box {
+    width: 100%;
   }
 }

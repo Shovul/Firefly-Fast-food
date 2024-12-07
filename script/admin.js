@@ -233,13 +233,13 @@ function compareTime(a, b) {
   date1 = time1[0].split("/")
   date2 = time2[0].split("/")
 
-  if(date1[2] < date2[2]) {
+  if(date1[2] > date2[2]) {
     return -1
   }
-  if(date1[1] < date2[1]) {
+  if(date1[0] > date2[0]) {
     return -1
   }
-  if(date1[0] < date2[0]) {
+  if(date1[1] > date2[1]) {
     return -1
   }
   return calculateTotalTime(time1[1]) < calculateTotalTime(time2[1]) ? -1 : 1
@@ -325,6 +325,7 @@ function sortOrder(sort) {
     list = list.sort((a, b) => {
       return compareTime(a.orderTime, b.orderTime)
     })
+    console.log(list)
     list.forEach(item => {
       const accId = document.createElement('div')
       const accName = document.createElement('div')
@@ -663,7 +664,7 @@ function exitEditAccount() {
   let editMenu = document.getElementById("edit_account")
   editMenu.style.transform = 'scale(0)'
   document.body.style.overflow = 'auto'
-  location.reload()
+  // location.reload()
 }
 function openAddAccount() {
   const addAccount = document.getElementById("add_account")
@@ -1010,7 +1011,7 @@ function showListKhachHang() {
       }
     }
     const ranks = document.querySelectorAll('.customers-stats > #ranking > div')
-    ranks[0].innerHTML = "Doanh thu nhiều nhất: " + accounts[mostRev].name + ", " + calculateCustomerRev(accounts[mostRev].hoadon)
+    ranks[0].innerHTML = "Doanh thu nhiều nhất: " + accounts[mostRev].name + ", " + calculateCustomerRev(accounts[mostRev].hoadon).toLocaleString() + 'VNĐ'
     ranks[1].innerHTML = "Doanh thu ít nhất: " + accounts[leastRev].name + ", " + calculateCustomerRev(accounts[leastRev].hoadon)
   }
   else {
@@ -1069,8 +1070,8 @@ function showListKhachHang() {
       }
     }
     const ranks = document.querySelectorAll('.customers-stats > #ranking > div')
-    ranks[0].innerHTML = "Doanh thu nhiều nhất: " + accounts[mostRev].name + ", " + calculateCustomerRev(accounts[mostRev].hoadon)
-    ranks[1].innerHTML = "Doanh thu ít nhất: " + accounts[leastRev].name + ", " + calculateCustomerRev(accounts[leastRev].hoadon)
+    ranks[0].innerHTML = "Doanh thu nhiều nhất: " + accounts[mostRev].name + ", " + calculateCustomerRev(accounts[mostRev].hoadon).toLocaleString() + "VNĐ"
+    ranks[1].innerHTML = "Doanh thu ít nhất: " + accounts[leastRev].name + ", " + calculateCustomerRev(accounts[leastRev].hoadon).toLocaleString() + "VNĐ"
   }
 }
 function showHoaDonTK(id) {

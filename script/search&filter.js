@@ -39,6 +39,7 @@ function searchUp() {
   var newDrinks = drinks.filter((food) => normalize(food.name).includes(normalize(search.value)))
   var newDesserts = desserts.filter((food) => normalize(food.name).includes(normalize(search.value)))
 
+
   loadMenuByPage("food", newFoods);
   loadMenuByPage("drink", newDrinks);
   loadMenuByPage("dessert", newDesserts);

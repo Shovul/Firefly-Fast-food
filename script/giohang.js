@@ -1,3 +1,16 @@
+window.addEventListener('scroll', function() {
+  if(window.scrollY > 500 && (window.location.href.split('?')[1] == null || window.location.href.split('#')[1] != null)) {
+      document.getElementsByClassName('floating-icon-giohang')[0].style.transform = 'translateX(0)'
+    document.getElementsByClassName("dropdown-btn")[0].id = 'active'
+    document.querySelector('.trang-chu').removeAttribute('id')
+  }
+  else {
+    document.getElementsByClassName('floating-icon-giohang')[0].style.transform = 'translateX(200%)'
+    document.getElementsByClassName("dropdown-btn")[0].removeAttribute('id')
+    document.querySelector('.trang-chu').id = 'active'
+  }
+})
+
 function showGioHang() {
   document.getElementById('giohang').style.display = 'block'
   document.getElementById("filter").style.display = 'none'
@@ -223,7 +236,7 @@ function addToHoaDon() {
   }
 
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + (parseInt(currentdate.getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = `${currentdate.getDate()}/${currentdate.getMonth()+1}/${currentdate.getFullYear()}-${(currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours())}:${(currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes())}:${(currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds())}`
 
 
   const address = accounts[remember].addresses.filter(address => address.id == form['province'].value)
@@ -235,10 +248,20 @@ function addToHoaDon() {
     info: address[0],
     items: selectedProducts,
     orderTime: orderDate,
+    card: 'none',
     arriveTime: calculateArrivalTime(orderDate.split("-")[1],Math.floor(Math.random() * 50)),
     paymentMethod: form['thanh_toan'].value,
     status: 'a'
   }
+  if(newHoaDon.paymentMethod === 'Card') {
+    newHoaDon.card = {
+      owner: form['owner'].value,
+      cvv: form['cvv'].value,
+      number: form['number'].value,
+      expired: form['expired'].value
+    }
+  }  
+
   accounts[remember].hoadon.push(newHoaDon)
   for(let i=0; i<accounts[remember].cart.length; i++) {
     for(let j=0; j<selectedProducts.length; j++) {
@@ -254,6 +277,30 @@ function addToHoaDon() {
   alert(`Bạn đã đặt hàng thành công! Đơn hàng dự kiến sẽ đến lúc ${newHoaDon.arriveTime}`)
 
   window.location.href = 'index.html'
+}
+function themGio(foodID) {
+  const food = menu[foodID.id]
+  let item = {
+      id: food.id,
+      name: food.name,
+      price: food.price,
+      quantity: 1,
+      image: food.image,
+      selected: false
+  }
+  for(let i=0; i<accounts[remember].cart.length; i++) {
+      if(accounts[remember].cart[i].id === item.id) {
+          accounts[remember].cart[i].quantity += item.quantity
+          localStorage.setItem('accounts', JSON.stringify(accounts))
+          alert('Đã thêm ' + item.name + ' vào giỏ hàng')
+          closeSP()
+          return false
+      }
+  }
+  console.log(accounts)
+  accounts[remember].cart.push(item)
+  localStorage.setItem('accounts', JSON.stringify(accounts))
+  alert('Đã thêm ' + item.name + ' vào giỏ hàng')
 }
 function calculateArrivalTime(time, minutes) {
   let updateTime = time.split(":")
@@ -393,7 +440,7 @@ function submitOrder() {
 
   // lay thoi gian hien tai
   var currentdate = new Date();
-  var orderDate = currentdate.getDay() + "/" + (parseInt(currentdate.getMonth())+1) + "/" + currentdate.getFullYear() + "-" + (currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours()) + ":" + (currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes()) + ":" + (currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds());
+  var orderDate = `${currentdate.getMonth()+1}/${currentdate.getDate()}/${currentdate.getFullYear()}-${(currentdate.getHours()<10 ? '0' + currentdate.getHours() : currentdate.getHours())}:${(currentdate.getMinutes()<10 ? '0' + currentdate.getMinutes() : currentdate.getMinutes())}:${(currentdate.getSeconds()<10 ? '0' + currentdate.getSeconds() : currentdate.getSeconds())}`;
 
   const form = document.getElementById('shipping-form')
 
@@ -406,11 +453,20 @@ function submitOrder() {
       phone: phone,
       address: fullAddress
     },
+    card: 'none', 
     items: selectedProducts,
     orderTime: orderDate,
     arriveTime: calculateArrivalTime(orderDate.split("-")[1],Math.floor(Math.random() * 50)),
     paymentMethod: form['thanh_toan'].value,
     status: 'a'
+  }
+  if(newHoaDon.paymentMethod === 'Card') {
+    newHoaDon.card = {
+      owner: form['owner'].value,
+      cvv: form['cvv'].value,
+      number: form['number'].value,
+      expired: form['expired'].value
+    }
   }
 
   accounts[remember].hoadon.push(newHoaDon)

@@ -84,29 +84,23 @@ function muaSP(option) {
     const mua = option.firstElementChild.innerHTML
     const quantity = Math.ceil(totalPrice/pricePerItem)
     const food = menu[option.classList]
-    let item
-    if(mua === 'Mua ngay') {
-        alert('mua ngay')
+    let item = {
+        id: food.id,
+        name: food.name,
+        price: food.price,
+        quantity: quantity,
+        image: food.image,
+        selected: false
     }
-    else {
-        item = {
-            id: food.id,
-            name: food.name,
-            price: food.price,
-            quantity: quantity,
-            image: food.image,
-            selected: false
+    for(let i=0; i<accounts[remember].cart.length; i++) {
+        if(accounts[remember].cart[i].id === item.id) {
+            accounts[remember].cart[i].quantity += item.quantity
+            localStorage.setItem('accounts', JSON.stringify(accounts))
+            alert('Đã thêm ' + item.name + ' vào giỏ hàng')
+            closeSP()
+            return false
         }
     }
-        for(let i=0; i<accounts[remember].cart.length; i++) {
-            if(accounts[remember].cart[i].id === item.id) {
-                accounts[remember].cart[i].quantity += item.quantity
-                localStorage.setItem('accounts', JSON.stringify(accounts))
-                alert('Đã thêm ' + item.name + ' vào giỏ hàng')
-                closeSP()
-                return false
-            }
-        }
     console.log(accounts)
     accounts[remember].cart.push(item)
     localStorage.setItem('accounts', JSON.stringify(accounts))

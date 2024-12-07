@@ -42,14 +42,7 @@ window.onload = function(e) {
 }
 // alert()
 // window.location.href.split('/')[window.location.href.split('/').length-1]
-window.addEventListener('scroll', function() {
-  if(window.scrollY > 500 && window.location.href.split('?')[1] == null) {
-      document.getElementsByClassName('floating-icon-giohang')[0].style.transform = 'translateX(0)'
-  }
-  else {
-    document.getElementsByClassName('floating-icon-giohang')[0].style.transform = 'translateX(200%)'
-  }
-})
+
 
 function hoadonGetTotal(items) {
   let sum = 0
