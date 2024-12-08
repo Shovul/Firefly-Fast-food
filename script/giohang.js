@@ -125,10 +125,15 @@ function newAddress() {
   name.readOnly = false
   phone.readOnly = false
   form['province'].innerHTML = `
-    <option value="" selected disabled>Chọn tỉnh/thành</option>
-    <option value="Bắc Ninh">Bắc Ninh</option>
-    <option value="Hà Nội">Hà Nội</option>
-    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+          <option value="" selected disabled>Chọn tỉnh/thành</option>
+            <option value="Hà Nội">Hà Nội</option>
+            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+            <option value="Hải Phòng">Hải Phòng</option>
+            <option value="Đà Lạt">Đà Lạt</option>
+            <option value="Bắc Giang">Bắc Giang</option>
+            <option value="Thanh Hóa">Thanh Hóa</option>
+            <option value="Đồng Nai">Đồng Nai</option>
+            <option value="Quảng Ninh">Quảng Ninh</option>
   `
   form['cart-btn'].setAttribute('onclick', 'submitOrder()')
   document.getElementById("switch-btn").firstElementChild.classList.add('active')

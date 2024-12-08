@@ -83,9 +83,12 @@ let currentPage = {
 // Lấy dữ liệu menu từ localStorage
 let menu = JSON.parse(localStorage.getItem('menu'));
 
-let foods = menu.filter(item => item.group === "Thức ăn");
-let drinks = menu.filter(item => item.group === "Đồ uống");
-let desserts = menu.filter(item => item.group === "Tráng miệng");
+getMenu()
+function getMenu() {
+  foods = menu.filter(item => item.group === "Thức ăn");
+  drinks = menu.filter(item => item.group === "Đồ uống");
+  desserts = menu.filter(item => item.group === "Tráng miệng");
+}
 
 // Hàm hiển thị sản phẩm theo trang
 function loadMenuByPage(type, dataList) {
@@ -146,15 +149,22 @@ function updatePagination(type, dataList) {
   prevButton.disabled = currentPage[type] === 1;
   nextButton.disabled = currentPage[type] === totalPages;
 }
-
+let beingFilter = false
 // Hàm xử lý chuyển trang
 function changePage(type, direction) {
   document.getElementById(`${type}-items`).previousElementSibling.scrollIntoView()
-  const dataList = {
+  let dataList = {
     food: foods,
     drink: drinks,
     dessert: desserts,
   }[type];
+  if(beingFilter) {
+    dataList = {
+      food: newFoods,
+      drink: newDrinks,
+      dessert: newDesserts,
+    }[type];
+  }
 
   if (direction === "prev" && currentPage[type] > 1) {
     currentPage[type]--;

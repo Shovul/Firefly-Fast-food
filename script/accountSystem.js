@@ -15,7 +15,7 @@ if (remember != null && window.location.href.split('?')[1] != "qltk" && window.l
 }
 
 function adminActive() {
-  if (accounts[remember].status === 'admin') {
+  if (accounts[remember].status !== 'khach') {
     removeSigninBtn()
     document.querySelector(".admin").style.display = 'block'
   }
@@ -70,7 +70,7 @@ function signInAcc() {
 
   if (check) {
     for (let i=0; i<accounts.length; i++) {
-      if ((name === accounts[i].email || name === accounts[i].phone) && pass === accounts[i].pass) {
+      if ((name.trim() === accounts[i].email || name === accounts[i].phone) && pass === accounts[i].pass) {
         localStorage.setItem('rememberAcc', i)
         kiemtraTK(accounts[i])
         removeWrongInput()
@@ -120,7 +120,7 @@ function signUpAcc() {
   if (check) {
     const pAccount = {
       id: accounts.length,
-      name: name,
+      name: name.trim(),
       email: email,
       pass: pass,
       phone: null,

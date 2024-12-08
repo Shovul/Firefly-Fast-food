@@ -1,3 +1,4 @@
+
 window.onload = function(e) {
   var url = window.location.href
   const goTo = url.split("?")
@@ -8,21 +9,38 @@ window.onload = function(e) {
       kiemtraTK(accounts[remember])
       break
     case "qltk":
+      if(accounts[remember].status != 'admin' && accounts[remember].status != 'taikhoan') {
+        alert("Tài khoản không có quyển vào")
+        return false
+      }
       showTaikhoan()
-      kiemtraTK(accounts[remember])
       break
     case "qlmn":
+      if(accounts[remember].status != 'admin' && accounts[remember].status != 'menu') {
+        alert("Tài khoản không có quyển vào")
+        return false
+      }
       showQLMenu()
-      kiemtraTK(accounts[remember])
       break
     case "qldh":
+      if(accounts[remember].status != 'admin' && accounts[remember].status != 'hoadon') {
+        alert("Tài khoản không có quyển vào")
+        return false
+      }
       showQLOrder()
-      kiemtraTK(accounts[remember])
       break
     case "tkmh":
+      if(accounts[remember].status != 'admin' && accounts[remember].status != 'thongke') {
+        alert("Tài khoản không có quyển vào")
+        return false
+      }
       showTKMatHang()
       break
     case "tkkh":
+      if(accounts[remember].status != 'admin' && accounts[remember].status != 'thongke') {
+        alert("Tài khoản không có quyển vào")
+        return false
+      }
       showTKKhachHang()
       break
     case "giohang":

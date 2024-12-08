@@ -827,9 +827,22 @@ button {
   }
 }
 #admin-nav > li:first-child {
-  width: fit-content;
   padding: 6px;
+  display: flex;
+  align-items: center;
   border-radius: 8px;
+  justify-content: space-between;
+  >span {
+    text-align: center;
+    width: 100%;
+    color: black;
+    background-color: var(--highlight);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  >a {
+    width: fit-content;
+  }
 }
 #manage-box:not(.active) {
   display: none;
@@ -838,7 +851,7 @@ button {
   margin: 4px;
   color: var(--base-color);
   display: grid;
-  grid-template-columns: repeat(5, 1fr) repeat(2,0.5fr);
+  grid-template-columns: repeat(6, 1fr) repeat(2,0.5fr);
   div {
     padding: 8px;
     border: 1px solid black;
@@ -1680,6 +1693,11 @@ button {
   > .exit.btn {
     text-align: end;
   }
+}
+#add_account #chucvu-choose {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
 }
 #add_account > form {
   display: flex;

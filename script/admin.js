@@ -1,5 +1,6 @@
 accounts = JSON.parse(localStorage.getItem('accounts'))
 remember = localStorage.getItem('rememberAcc')
+document.querySelector('.admin-page > #sidebar > #admin-nav > li > span').innerHTML = accounts[remember].name
 function showQLMenu() {
   let menu = document.querySelector(".menu")
   let active = document.querySelector(".active")
@@ -37,6 +38,8 @@ window.addEventListener('click', (e) => {
     closeOrderInfo() 
     closeHoaDonSP()
     closeHoaDonTK()
+    exitAddAccount()
+    exitAddMenu()
     exitEditAccount()
     exitEditMenu()
   }
@@ -82,7 +85,24 @@ function showMenuList() {
   }
 }
 
-
+function getRole(status) {
+  switch(status) {
+    case 'khach':
+      return "Khách hàng"
+    case 'admin':
+      return "Admin"
+    case 'taikhoan':
+      return "Quản lý tài khoản"
+    case 'menu':
+      return "Quản lý menu"
+    case 'hoadon':
+      return "Quản lý hóa đơn"
+    case 'thongke':
+      return "Quản lý thống kê"
+    case 'ban':
+      return "Đã bị khóa"
+  }
+}
 function showAccountList() {
   var accList = document.querySelector(".account-list")
 
@@ -92,6 +112,7 @@ function showAccountList() {
     const listPass = document.createElement('div')
     const listPhone = document.createElement('div')
     const listGender = document.createElement('div')
+    const listRole = document.createElement('div')
     const listDelete = document.createElement('div')
     const listEdit = document.createElement('div')
 
@@ -100,6 +121,7 @@ function showAccountList() {
     listPass.innerHTML = account.pass
     listPhone.innerHTML = account.phone
     listGender.innerHTML = account.gender
+    listRole.innerHTML = getRole(account.status)
     listDelete.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
       ` 
@@ -119,6 +141,7 @@ function showAccountList() {
       listPass.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
       listPhone.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
       listGender.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
+      listRole.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
       listDelete.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
       listEdit.style.background = 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)'
 
@@ -127,6 +150,7 @@ function showAccountList() {
       listPass.style.color = '#800000'
       listPhone.style.color = '#800000'
       listGender.style.color = '#800000'
+      listRole.style.color = '#800000'
       listDelete.style.color = '#800000'
       listEdit.style.color = '#800000'
     }
@@ -140,6 +164,7 @@ function showAccountList() {
     accList.appendChild(listPass)
     accList.appendChild(listPhone)
     accList.appendChild(listGender)
+    accList.appendChild(listRole)
     accList.appendChild(listDelete)
     accList.appendChild(listEdit)
 
@@ -233,14 +258,14 @@ function compareTime(a, b) {
   date1 = time1[0].split("/")
   date2 = time2[0].split("/")
 
-  if(date1[2] > date2[2]) {
-    return -1
+  if(date1[2] < date2[2]) {
+    return -1 
   }
   if(date1[0] > date2[0]) {
-    return -1
+    return 1
   }
   if(date1[1] > date2[1]) {
-    return -1
+    return 1
   }
   return calculateTotalTime(time1[1]) < calculateTotalTime(time2[1]) ? -1 : 1
 }
@@ -323,7 +348,7 @@ function sortOrder(sort) {
       });
     })
     list = list.sort((a, b) => {
-      return compareTime(a.orderTime, b.orderTime)
+      return Date.parse(a) - Date.parse(b)
     })
     console.log(list)
     list.forEach(item => {
@@ -701,7 +726,7 @@ addAccountForm.addEventListener('submit', function(e) {
     phone: addAccountForm["phone"].value,
     gender: null,
     avatar: "images/Icons/default.svg",
-    status: "active",
+    status: addAccountForm["chucvu"].value,
     addresses: [],
     hoadon: [],
     cart: []
@@ -1017,6 +1042,7 @@ function showListKhachHang() {
   else {
     const date = new Date()
     let fromDate = from.value !== '' ? from.value : (date.getDay() + '-' + (parseInt(date.getMonth())+1) + '-' + date.getFullYear())
+  
     // let toDate = to.value !== '' ? to.value : (date.getDay() + '/' + (parseInt(date.getMonth())+1) + '/' + date.getFullYear())
     const container = document.getElementsByClassName('customers-stats-list')[0]
     container.innerHTML = ''
@@ -1024,20 +1050,10 @@ function showListKhachHang() {
       let filterHoaDon = []
       for(let i=0; i<account.hoadon.length; i++) {
         if(account.hoadon[i].status === 'e') {
-          let flag = true
-          date1 = account.hoadon[i].orderTime.split('-')[0].split("/")
-          date2 = fromDate.split("-")
+          let date1 = Date.parse(account.hoadon[i].orderTime.split('-')[0])
+          let date2 = Date.parse(fromDate)
 
-          if(date1[2] < parseInt(date2[0])) {
-            flag = false
-          }
-          if(date1[1] < parseInt(date2[1])) {
-            flag = false
-          }
-          if(date1[0] < parseInt(date2[2])) {
-            flag = false
-          }
-          if(flag) {
+          if(date1 > date2) {
             filterHoaDon.push(account.hoadon[i])
           }
         }
@@ -1084,17 +1100,11 @@ function showHoaDonTK(id) {
   let i = 0
   accounts[id].hoadon.forEach((order, index) => {
     if(order.status === "e") {
-      let fromDate = from.value !== '' ? from.value : '0-0-0'
-      date1 = order.orderTime.split('-')[0].split("/")
-      date2 = fromDate.split("-")
+      let fromDate = from.value
+      let date1 = Date.parse(order.orderTime.split('-')[0])
+      let date2 = fromDate !== '' ? Date.parse(fromDate) : 0
 
-      if(date1[2] < parseInt(date2[0])) {
-      }
-      else if(date1[1] < parseInt(date2[1])) {
-      }
-      else if(date1[0] < parseInt(date2[2])) {
-      }
-      else {
+      if(date1 > date2) {
         const orders = document.createElement('div')
         orders.classList.add('order')
         orders.innerHTML = `

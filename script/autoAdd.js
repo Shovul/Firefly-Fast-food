@@ -250,7 +250,8 @@ function createAccount() {
                 {id: 1, name: "Hamburger", price: 39000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/burger.jpg", selected: true},
                 {id: 22, name: "Trà tiên nhân", price: 30000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/TraTienNhan.PNG", selected: true},
                 {id: 23, name: "Trà xoài", price: 28000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_xoai.png", selected: true},
-                {id: 24, name: "Trà tắc", price: 29000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_tac.png", selected: true}
+                {id: 24, name: "Trà tắc", price: 29000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_tac.png", selected: true},
+                {id: 35, name: "Dừa cà phê", price: 21000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/dua_cafe.jpg", selected: true}
               ],
               orderTime: "5/28/2025-10:56:39",
               paymentMethod: "Tiền mặt",
@@ -306,7 +307,15 @@ function createAccount() {
               {id: 31, name: "Kem Cuộn", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem_cuon.jpg", selected: true},
               {id: 32, name: "Kem Socola", price: 12000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem socola.jpg", selected: true},
               {id: 36, name: "Chocolate Cupcakes", price: 26000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/chocolate-cupcakes.jpg", selected: true},
-              {id: 44, name: "Bánh chuối", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banh_chuoi.png", selected: true}
+              {id: 44, name: "Bánh chuối", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banh_chuoi.png", selected: true},
+              {id: 40, name: "Cà phê sữa", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/caffe_sua.PNG", selected: true},
+              {id: 41, name: "Cà phê đen đá", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/caffe_denda.PNG", selected: true},
+              {id: 42, name: "Cacao", price: 20000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/cacao.png", selected: true},
+              {id: 48, name: "Nước rau má", price: 17000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/rau_ma.png", selected: true},
+              {id: 50, name: "Coca Cola", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/coca_cola.jfif", selected: true},
+              {id: 51, name: "Mirinda cam", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/mirinda.png", selected: true},
+              {id: 52, name: "7 Up", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/7up.png", selected: true},
+              {id: 53, name: "Pepsi", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/pepsi.png", selected: true}
             ],
             orderTime: "4/25/2025-17:22:34",
             paymentMethod: "Tiền mặt",
