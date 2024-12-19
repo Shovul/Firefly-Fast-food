@@ -48,7 +48,7 @@ function createAccount() {
             {id: 17, name: "Bánh su kem", price: 29000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banh_su.png", selected: true},
             {id: 18, name: "Bánh Phô Mai Caramel", price: 35000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banh_caramel.png", selected: true}
           ],
-          orderTime: "5/11/2024-16:24:15",
+          orderTime: "12/6/2024-16:24:15",
           paymentMethod: "Card",
           status: "e"},
           {arriveTime: "11:35:45",
@@ -64,7 +64,7 @@ function createAccount() {
               {id: 10, name: "Salad rau củ", price: 25000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/salad_raucu.jpg", selected: true},
               {id: 11, name: "Salad rau kèm trứng", price: 30000, quantity: Math.floor(Math.random()*10)+2,image: "images/Food/salad_trung_rau.jpg", selected: true}
             ],
-            orderTime: "6/12/2024-11:15:45",
+            orderTime: "12/6/2024-11:15:45",
             paymentMethod: "Tiền mặt",
             status: "e"},
             {arriveTime: "09:42:12",
@@ -80,7 +80,7 @@ function createAccount() {
               {id: 37, name: "Cơm gà", price: 45000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/com_ga.jpg", selected: true},
               {id: 38, name: "Cơm bò", price: 45000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/com_bo.png", selected: true}
             ],
-            orderTime: "7/15/2024-09:32:10",
+            orderTime: "11/15/2024-09:32:10",
             paymentMethod: "Card",
             status: "e"},
             {arriveTime: "15:10:39",
@@ -96,7 +96,7 @@ function createAccount() {
                 {id: 47, name: "Burger thập cẩm", price: 57000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/burger_thapcam.png", selected: true},
                 {id: 49, name: "Spaghetti sốt cà chua", price: 34000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/m_jolly_-_6_7-compressed_1.jpg", selected: true}
               ],
-              orderTime: "8/16/2024-14:54:03",
+              orderTime: "12/6/2024-14:54:03",
               paymentMethod: "Tiền mặt",
               status: "e"},
         ],
@@ -125,7 +125,7 @@ function createAccount() {
             {id: 14, name: "Banana Smoothie", price: 25000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banana_smoothie.jpg", selected: true},
             {id: 15, name: "Strawberry Smoothie", price: 30000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/str_smoothie.jpg", selected: true}
           ],
-          orderTime: "9/17/2024-18:05:22",
+          orderTime: "12/5/2024-18:05:22",
           paymentMethod: "Card",
           status: "e"},
           {arriveTime: "07:56:52",
@@ -142,7 +142,7 @@ function createAccount() {
               {id: 5, name: "Bánh su", price: 20000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/cream_puff.jfif", selected: true},
               {id: 7, name: "Kem ly", price: 28000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/ice_creame.jpg", selected: true}
             ],
-            orderTime: "10/18/2024-07:21:37",
+            orderTime: "11/18/2024-07:21:37",
             paymentMethod: "Tiền mặt",
             status: "e"},
             {arriveTime: "17:53:51",
@@ -156,11 +156,11 @@ function createAccount() {
               {id: 29, name: "Kem bơ Đà Lạt", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem-bo-da-lat.jpg", selected: true},
               {id: 30, name: "Kem Vani", price: 5000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem_vani.png", selected: true},
               {id: 31, name: "Kem Cuộn", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem_cuon.jpg", selected: true},
-              {id: 32, name: "Kem Socola", price: 12000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem socola.jpg", selected: true},
+              {id: 32, name: "Kem Socola", price: 12000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/kem_socola.jpg", selected: true},
               {id: 36, name: "Chocolate Cupcakes", price: 26000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/chocolate-cupcakes.jpg", selected: true},
               {id: 44, name: "Bánh chuối", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banh_chuoi.png", selected: true}
             ],
-            orderTime: "4/24/2025-17:22:34",
+            orderTime: "11/24/2024-17:22:34",
             paymentMethod: "Card",
             status: "e"},
             {arriveTime: "20:41:48",
@@ -178,7 +178,7 @@ function createAccount() {
                 {id: 25, name: "Trà dâu", price: 24000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_dau.png", selected: true},
                 {id: 5, name: "Bánh su", price: 20000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/cream_puff.jfif", selected: true}
               ],
-              orderTime: "5/25/2025-20:10:58",
+              orderTime: "12/5/2024-20:10:58",
               paymentMethod: "Tiền mặt",
               status: "e"},
             ],
@@ -204,7 +204,7 @@ function createAccount() {
             {id: 9, name: "Salad cà chua", price: 25000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/salad_tomato.png", selected: true},
             {id: 10, name: "Salad rau củ", price: 25000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/salad_raucu.jpg", selected: true}
           ],
-          orderTime: "6/26/2025-06:29:47",
+          orderTime: "11/12/2024-06:29:47",
           paymentMethod: "Card",
           status: "e"},
           {arriveTime: "13:03:39",
@@ -227,7 +227,7 @@ function createAccount() {
               {id: 22, name: "Trà tiên nhân", price: 30000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/TraTienNhan.PNG", selected: true},
               {id: 23, name: "Trà xoài", price: 28000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_xoai.png", selected: true}
             ],
-            orderTime: "7/27/2025-12:44:55",
+            orderTime: "7/27/2024-12:44:55",
             paymentMethod: "Tiền mặt",
             status: "e"},
             {arriveTime: "11:34:57",
@@ -239,7 +239,7 @@ function createAccount() {
               {id: 22, name: "Trà tiên nhân", price: 30000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/TraTienNhan.PNG", selected: true},
               {id: 23, name: "Trà xoài", price: 28000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_xoai.png", selected: true}
             ],
-            orderTime: "8/28/2025-10:56:39",
+            orderTime: "12/6/2024-10:56:39",
             paymentMethod: "Card",
             status: "e"},
             {arriveTime: "11:13:39",
@@ -253,7 +253,7 @@ function createAccount() {
                 {id: 24, name: "Trà tắc", price: 29000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/tra_tac.png", selected: true},
                 {id: 35, name: "Dừa cà phê", price: 21000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/dua_cafe.jpg", selected: true}
               ],
-              orderTime: "5/28/2025-10:56:39",
+              orderTime: "12/5/2024-10:56:39",
               paymentMethod: "Tiền mặt",
               status: "e"},
             ],
@@ -296,7 +296,7 @@ function createAccount() {
             {id: 20, name: "Bánh Tiramisu ", price: 35000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/banh_tiramisu.png", selected: true},
             {id: 21, name: "Bánh Sữa Chua Phô Mai ", price: 35000, quantity: Math.floor(Math.random()*10)+2, image:"images/Food/banh_chesse.png", selected: true}
           ],
-          orderTime: "4/24/2025-16:24:15",
+          orderTime: "11/24/2024-16:24:15",
           paymentMethod: "Card",
           status: "e"},
           {arriveTime: "17:52:34",
@@ -317,7 +317,7 @@ function createAccount() {
               {id: 52, name: "7 Up", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/7up.png", selected: true},
               {id: 53, name: "Pepsi", price: 15000, quantity: Math.floor(Math.random()*10)+2, image: "images/Food/pepsi.png", selected: true}
             ],
-            orderTime: "4/25/2025-17:22:34",
+            orderTime: "12/5/2024-17:22:34",
             paymentMethod: "Tiền mặt",
             status: "e"}
             ],
@@ -364,7 +364,7 @@ function createMenu() {
         type: "Nước ngọt",
         image: "images/Food/coca_cola.jfif",
         group: "Đồ uống",
-        description: "Coca-Cola – thức uống giải khát sảng khoái, với hương vị độc đáo và cảm giác mát lạnh đầy năng lượng!"
+        description: "Coca-Cola – Đồ uống giải khát sảng khoái, với hương vị độc đáo và cảm giác mát lạnh đầy năng lượng!"
       },
       item5 = {
         id: 4,
@@ -445,7 +445,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/mango_smoothie.jpg",
         group: "Đồ uống",
-        description: "Mango smoothie mát lạnh, hòa quyện vị ngọt thơm tự nhiên của xoài chín cùng sự béo mịn của sữa, mang đến ly thức uống sảng khoái và đầy dinh dưỡng"
+        description: "Mango smoothie mát lạnh, hòa quyện vị ngọt thơm tự nhiên của xoài chín cùng sự béo mịn của sữa, mang đến ly Đồ uống sảng khoái và đầy dinh dưỡng"
       },
       item14 = {
         id: 13,
@@ -454,7 +454,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/avocado_smoothie.jpg",
         group: "Đồ uống",
-        description: "Avocado smoothie béo mịn, kết hợp vị thơm ngậy của bơ tươi với sự ngọt dịu nhẹ nhàng, mang đến thức uống bổ dưỡng và đầy năng lượng"
+        description: "Avocado smoothie béo mịn, kết hợp vị thơm ngậy của bơ tươi với sự ngọt dịu nhẹ nhàng, mang đến Đồ uống bổ dưỡng và đầy năng lượng"
       },
       item15 = {
         id: 14,
@@ -463,7 +463,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/banana_smoothie.jpg",
         group: "Đồ uống",
-        description: "Banana smoothie ngọt dịu, hòa quyện vị thơm đặc trưng của chuối chín cùng độ mịn màng của sữa, là lựa chọn lý tưởng cho một thức uống giàu năng lượng"
+        description: "Banana smoothie ngọt dịu, hòa quyện vị thơm đặc trưng của chuối chín cùng độ mịn màng của sữa, là lựa chọn lý tưởng cho một Đồ uống giàu năng lượng"
       },
       item16 = {
         id: 15,
@@ -472,7 +472,7 @@ function createMenu() {
         type: "Smoothie",
         image: "images/Food/str_smoothie.jpg",
         group: "Đồ uống",
-        description: "Strawberry smoothie chua ngọt hài hòa, kết hợp vị tươi mát của dâu tây chín mọng và sự mịn màng của sữa, mang đến thức uống sảng khoái và bổ dưỡng"
+        description: "Strawberry smoothie chua ngọt hài hòa, kết hợp vị tươi mát của dâu tây chín mọng và sự mịn màng của sữa, mang đến Đồ uống sảng khoái và bổ dưỡng"
       },
       item17 = {
         id: 16,
@@ -535,7 +535,7 @@ function createMenu() {
         type: "Trà",
         image: "images/Food/TraTienNhan.PNG",
         group: "Đồ uống",
-        description: "Thức uống vớ vẩn cực kỳ không tốt cho sức khỏe, nhưng uống vào sẽ nở nụ cười bí ẩn"
+        description: "Đồ uống vớ vẩn cực kỳ không tốt cho sức khỏe, nhưng uống vào sẽ nở nụ cười bí ẩn"
       },
       item24 = {
         id: 23,
@@ -544,7 +544,7 @@ function createMenu() {
         type: "Trà",
         image: "images/Food/tra_xoai.png",
         group: "Đồ uống",
-        description: "Trà xoài – sự hòa quyện giữa trà thơm thanh mát và vị xoài nhiệt đới ngọt ngào, mang đến thức uống tươi mới và sảng khoái cho mọi thời điểm!"
+        description: "Trà xoài – sự hòa quyện giữa trà thơm thanh mát và vị xoài nhiệt đới ngọt ngào, mang đến Đồ uống tươi mới và sảng khoái cho mọi thời điểm!"
       },
       item25 = {
         id: 24,
@@ -553,7 +553,7 @@ function createMenu() {
         type: "Trà",
         image: "images/Food/tra_tac.png",
         group: "Đồ uống",
-        description: "Trà tắc – hương vị chua nhẹ của tắc hòa quyện cùng trà thanh mát, tạo nên thức uống giải khát thơm ngon và đầy sảng khoái!"
+        description: "Trà tắc – hương vị chua nhẹ của tắc hòa quyện cùng trà thanh mát, tạo nên Đồ uống giải khát thơm ngon và đầy sảng khoái!"
       },
       item26 = {
         id: 25,
@@ -562,7 +562,7 @@ function createMenu() {
         type: "Trà",
         image: "images/Food/tra_dau.png",
         group: "Đồ uống",
-        description: "Trà dâu – vị ngọt dịu và chua nhẹ từ dâu tươi kết hợp cùng trà thanh mát, mang đến thức uống hấp dẫn và tươi mới khó cưỡng!"
+        description: "Trà dâu – vị ngọt dịu và chua nhẹ từ dâu tươi kết hợp cùng trà thanh mát, mang đến Đồ uống hấp dẫn và tươi mới khó cưỡng!"
       },
       item27 = {
         id: 26,
@@ -588,7 +588,7 @@ function createMenu() {
         price: 14000,
         type: "Khai vị",
         image: "images/Food/khoailang.jpg",
-        group: "Tráng miệng",
+        group: "Thức ăn",
         description: "Khoai lang – hương vị ngọt tự nhiên, mềm bùi, giàu dinh dưỡng, là lựa chọn hoàn hảo cho bữa ăn nhẹ lành mạnh và thơm ngon!"
       },
       item30 = {
@@ -623,7 +623,7 @@ function createMenu() {
         name: "Kem Socola",
         price: 12000,
         type: "Kem",
-        image: "images/Food/kem socola.jpg",
+        image: "images/Food/kem_socola.jpg",
         group: "Tráng miệng",
         description: "Kem sô-cô-la – hương vị đậm đà, béo ngậy của sô-cô-la hòa quyện cùng kem mịn màng, tạo nên món tráng miệng ngọt ngào khó cưỡng!"
       },
@@ -651,8 +651,8 @@ function createMenu() {
         price: 21000,
         type: "Cafe",
         image: "images/Food/dua_cafe.jpg",
-        group: "Thức uống",
-        description: "Dừa cà phê – sự kết hợp độc đáo giữa nước dừa tươi mát lạnh và hương vị cà phê đậm đà, mang đến thức uống mới lạ, sảng khoái và đầy hấp dẫn!"
+        group: "Đồ uống",
+        description: "Dừa cà phê – sự kết hợp độc đáo giữa nước dừa tươi mát lạnh và hương vị cà phê đậm đà, mang đến Đồ uống mới lạ, sảng khoái và đầy hấp dẫn!"
       },
       item37 = {
         id: 36,
@@ -696,8 +696,8 @@ function createMenu() {
         price: 15000,
         type: "Cafe",
         image: "images/Food/caffe_sua.PNG",
-        group: "Thức uống",
-        description: "Cà phê sữa – sự kết hợp hoàn hảo giữa cà phê đậm đà và sữa ngọt mịn, mang đến một thức uống thơm ngon, đầy năng lượng cho ngày mới!" 
+        group: "Đồ uống",
+        description: "Cà phê sữa – sự kết hợp hoàn hảo giữa cà phê đậm đà và sữa ngọt mịn, mang đến một Đồ uống thơm ngon, đầy năng lượng cho ngày mới!" 
       },
       item42 = {
         id: 41,
@@ -705,7 +705,7 @@ function createMenu() {
         price: 15000,
         type: "Cafe",
         image: "images/Food/caffe_denda.PNG",
-        group: "Thức uống",
+        group: "Đồ uống",
         description: "Cà phê đen đá – hương vị đậm đà, mạnh mẽ của cà phê nguyên chất, kết hợp với đá mát lạnh, mang đến sự sảng khoái và tỉnh táo trong từng ngụm!" 
       },
       item43 = {
@@ -714,8 +714,8 @@ function createMenu() {
         price: 20000,
         type: "Cafe",
         image: "images/Food/cacao.png",
-        group: "Thức uống",
-        description: "Cacao – hương vị đậm đà, ngọt ngào từ cacao nguyên chất, mang đến một thức uống ấm áp, thơm lừng và đầy năng lượng, lý tưởng cho những ngày se lạnh!" 
+        group: "Đồ uống",
+        description: "Cacao – hương vị đậm đà, ngọt ngào từ cacao nguyên chất, mang đến một Đồ uống ấm áp, thơm lừng và đầy năng lượng, lý tưởng cho những ngày se lạnh!" 
       },
       item44 = {
         id: 43,
@@ -768,8 +768,8 @@ function createMenu() {
         price: 17000,
         type: "Smoothie",
         image: "images/Food/rau_ma.png",
-        group: "Thức uống",
-        description: "Nước rau má – thức uống mát lạnh, thanh khiết, có vị ngọt nhẹ và hơi đắng đặc trưng, giúp giải nhiệt, thanh lọc cơ thể và bổ dưỡng cho sức khỏe!" 
+        group: "Đồ uống",
+        description: "Nước rau má – Đồ uống mát lạnh, thanh khiết, có vị ngọt nhẹ và hơi đắng đặc trưng, giúp giải nhiệt, thanh lọc cơ thể và bổ dưỡng cho sức khỏe!" 
       },
       item50 = {
         id: 49,
@@ -786,8 +786,8 @@ function createMenu() {
         price: 15000,
         type: "Nước ngọt",
         image: "images/Food/coca_cola.jfif",
-        group: "Thức uống",
-        description: "Coca – thức uống giải khát nổi tiếng với vị ngọt, sảng khoái và bọt nước đặc trưng, mang lại cảm giác tươi mới và đầy năng lượng!" 
+        group: "Đồ uống",
+        description: "Coca – Đồ uống giải khát nổi tiếng với vị ngọt, sảng khoái và bọt nước đặc trưng, mang lại cảm giác tươi mới và đầy năng lượng!" 
       },
       item52 = {
         id: 51,
@@ -795,8 +795,8 @@ function createMenu() {
         price: 15000,
         type: "Nước ngọt",
         image: "images/Food/mirinda.png",
-        group: "Thức uống",
-        description: "Mirinda cam – thức uống giải khát có vị cam tươi mát, ngọt ngào và sảng khoái, mang đến cảm giác tươi mới trong từng ngụm!" 
+        group: "Đồ uống",
+        description: "Mirinda cam – Đồ uống giải khát có vị cam tươi mát, ngọt ngào và sảng khoái, mang đến cảm giác tươi mới trong từng ngụm!" 
       },
       item53 = {
         id: 52,
@@ -804,7 +804,7 @@ function createMenu() {
         price: 15000,
         type: "Nước ngọt",
         image: "images/Food/7up.png",
-        group: "Thức uống",
+        group: "Đồ uống",
         description: "7UP – nước giải khát vị chanh tươi mát, sảng khoái, với hương vị nhẹ nhàng và bọt nước đặc trưng, mang đến sự sảng khoái trong từng ngụm!" 
       },
       item54 = {
@@ -813,8 +813,8 @@ function createMenu() {
         price: 15000,
         type: "Nước ngọt",
         image: "images/Food/pepsi.png",
-        group: "Thức uống",
-        description: "Pepsi – thức uống giải khát với vị ngọt đặc trưng, sảng khoái và bọt nước tươi mát, mang đến cảm giác đầy năng lượng và thư giãn trong mỗi lần thưởng thức!" 
+        group: "Đồ uống",
+        description: "Pepsi – Đồ uống giải khát với vị ngọt đặc trưng, sảng khoái và bọt nước tươi mát, mang đến cảm giác đầy năng lượng và thư giãn trong mỗi lần thưởng thức!" 
       }
 
 

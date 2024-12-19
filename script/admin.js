@@ -348,7 +348,7 @@ function sortOrder(sort) {
       });
     })
     list = list.sort((a, b) => {
-      return Date.parse(a) - Date.parse(b)
+      return Date.parse(a.orderTime) - Date.parse(b.orderTime)
     })
     console.log(list)
     list.forEach(item => {

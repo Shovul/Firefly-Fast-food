@@ -27,7 +27,8 @@ buttons.forEach((btn, index) => {
 });
 
 // Bắt đầu slider
-setInterval(autoSlide, 3000);
+
+setInterval(autoSlide, 2500);
 // window.onload = function () {
 //     showSlide(currentIndex);
 // };  

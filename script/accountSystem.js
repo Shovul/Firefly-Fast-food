@@ -799,11 +799,3 @@ function disableInterface() {
   document.documentElement.style.overflow = "hidden";
   document.body.style.overflow = "hidden";
 }
-
-// Hàm vô hiệu hóa giao diện
-function disableInterface() {
-  document.body.style.pointerEvents = "none";
-  document.body.style.opacity = "0.5";
-  document.documentElement.style.overflow = "hidden";
-  document.body.style.overflow = "hidden";
-}
